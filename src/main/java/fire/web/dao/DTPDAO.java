@@ -26,6 +26,7 @@ public interface DTPDAO {
 	public int findDevicetypeparameterCount();
 	//∑÷“≥≤È—Ø
 	public List<Devicetypeparameter> findByLimit(
+			@Param("deviceTypeId")int deviceTypeId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);

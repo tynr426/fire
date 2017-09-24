@@ -67,10 +67,14 @@ var deviceType={
 }
 
 var deviceTypeParameter={
+		deviceTypeId:0,
 		editorTypeDesc:function(key){
 			console.log(key)
 		},
-		openParameterDialog:function(){
+		openParameterDialog:function(deviceTypeId){
+			if(deviceTypeId!=undefined){
+				deviceTypeParameter.deviceTypeId=deviceTypeId;
+			}
 			var opt={
 			 resizable: true,
 			    width: 950,
@@ -84,7 +88,8 @@ var deviceTypeParameter={
 			  			pageIndex:1,
 			  			barSize:3,
 			  			templateId:"DeviceParameterListTemplate",
-			  			container:"parameterBody"
+			  			container:"parameterBody",
+			  			data:{deviceTypeId:deviceTypeParameter.deviceTypeId}
 			  			};
 			  var pageInfo=new ecPage.fn._init(config);
 			  
@@ -163,7 +168,8 @@ var deviceTypeParameter={
 			$.ajax({
 				url:path+"/device/add.do",
 				type:"post",
-				data:{Description:Description,EditorType:EditorType,Unit:Unit,Candidate:candidate,Reorder:Reorder},
+				data:{Description:Description,EditorType:EditorType,
+					Unit:Unit,Candidate:candidate,Reorder:Reorder,DeviceTypeId:deviceTypeParameter.deviceTypeId},
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
@@ -236,7 +242,9 @@ var deviceTypeParameter={
 				url:path+"/device/update.do",
 				type:"post",
 				data:{Id:id,Description:Description,
-					EditorType:EditorType,Unit:Unit,Candidate:candidate,Reorder:Reorder},
+					EditorType:EditorType,Unit:Unit,
+					Candidate:candidate,Reorder:Reorder,
+					DeviceTypeId:deviceTypeParameter.deviceTypeId},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){

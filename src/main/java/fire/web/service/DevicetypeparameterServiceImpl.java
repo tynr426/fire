@@ -24,7 +24,6 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 			throw new NameException("该类型已存在");
 		}
 		dtp.setStatus(1);
-		dtp.setDeviceTypeId(1);
 		int n = dTPDAO.addDTP(dtp);
 		return n;
 	}
@@ -55,12 +54,12 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 		return n;
 	}
 
-	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int index, int size) {
+	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int deviceTypeId,int index, int size) {
 		PageInfo<Devicetypeparameter> pi = new PageInfo<Devicetypeparameter>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
 		pi.setCount(dTPDAO.findDevicetypeparameterCount());
-		pi.setList(dTPDAO.findByLimit(pi.getBegin(), size));
+		pi.setList(dTPDAO.findByLimit(deviceTypeId,pi.getBegin(), size));
 		return pi;
 	}
 

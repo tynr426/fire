@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.ManagerDAO">
+	<insert id="addManager" parameterType="fire.web.entity.Manager">
+		insert into com_manager(
+		CompanyId,
+		UserName,
+		Password,
+		UserId
+		)
+		values(
+		#{CompanyId},
+		#{UserName},
+		#{Password},
+		#{UserId})		
+	</insert>
+	<update id="updateManager" parameterType="fire.web.entity.Manager">
+		UPDATE com_manager SET 
+			Password = #{Password}
+			WHERE CompanyId = #{CompanyId} AND UserId=0
+	</update>
+	<select id="getManagerByCompanyId" parameterType="int" resultType="fire.web.entity.Manager">
+	select * from com_manager where companyId=#{companyId}
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from com_manager where CompanyId = #{CompanyId}
+	</delete>
+</mapper>

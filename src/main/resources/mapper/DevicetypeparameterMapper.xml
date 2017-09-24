@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.DTPDAO">
+	<select id="getDTPByDescription" resultType="fire.web.entity.Devicetypeparameter">
+		SELECT * FROM fir_devicetypeparameter WHERE Description = #{description} and Id!=#{id} limit 1
+	</select>
+	<select id="findById" parameterType="int" resultType="fire.web.entity.Devicetypeparameter">
+		SELECT * FROM fir_devicetypeparameter  
+		WHERE Id = #{Id}
+	</select>
+	<select id="findAll" resultType="fire.web.entity.Devicetypeparameter">
+		SELECT * FROM fir_devicetypeparameter
+	</select>
+	<update id="updateDevicetypeparameter" parameterType="fire.web.entity.Devicetypeparameter">
+		UPDATE fir_devicetypeparameter SET 
+			Description = #{Description},
+			DataType=#{DataType},
+			EditorType=#{EditorType},
+			Unit=#{Unit},
+			Candidate=#{Candidate},
+			DeviceTypeId=#{DeviceTypeId},
+			Reorder=#{Reorder}
+			WHERE Id = #{Id}
+	</update>
+	<insert id="addDTP" parameterType="fire.web.entity.Devicetypeparameter" useGeneratedKeys="true" keyProperty="id">
+		insert into fir_devicetypeparameter(
+		Description,
+		DataType,
+		EditorType,
+		Candidate,
+		Unit,
+		Reorder,
+		Required,
+		Status,
+		Remark,
+		DeviceTypeId)
+		values(
+		#{Description},#{DataType},#{EditorType},#{Candidate},#{Unit},#{Reorder},#{Required},#{Status},#{Remark},#{DeviceTypeId})		
+	</insert>
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from fir_devicetypeparameter where Id = #{Id}
+	</delete>
+	<select id="findDevicetypeparameterCount" resultType="int">
+		select count(*) from fir_devicetypeparameter 
+	</select>
+	<select id="findByLimit" resultType="fire.web.entity.Devicetypeparameter">
+		select * from fir_devicetypeparameter where DeviceTypeId=#{deviceTypeId} limit #{begin},#{size}
+	</select>
+	<update id="updateStatus" parameterType="fire.web.entity.Devicetypeparameter">
+		UPDATE fir_devicetypeparameter SET
+			status = #{status}
+		WHERE Id = #{id}
+	</update>
+</mapper>

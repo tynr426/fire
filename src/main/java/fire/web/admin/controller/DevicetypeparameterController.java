@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fire.web.controller.ExceptionController;
 import fire.web.entity.Devicetypeparameter;
 import fire.web.service.DevicetypeparameterService;
 import fire.web.utils.JsonResult;
@@ -13,13 +14,13 @@ import fire.web.utils.PageInfo;
 
 @Controller
 @RequestMapping("/device")
-public class DevicetypeparameterController {
+public class DevicetypeparameterController extends ExceptionController{
 	@Resource
 	private DevicetypeparameterService devicetypeparameterService;
 	@RequestMapping("/show.do")
 	@ResponseBody
-	public Object getDeviceTypeParameterPage(int index,int size){
-		PageInfo<Devicetypeparameter> pi = devicetypeparameterService.getDevicetypeparameterPage(index, size);
+	public Object getDeviceTypeParameterPage(int deviceTypeId,int index,int size){
+		PageInfo<Devicetypeparameter> pi = devicetypeparameterService.getDevicetypeparameterPage(deviceTypeId,index, size);
 		return new JsonResult(pi);	
 	}
 	

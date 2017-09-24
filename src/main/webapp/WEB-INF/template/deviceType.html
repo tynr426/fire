@@ -34,7 +34,7 @@
                                 <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 200});">修改</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog()">参数</a>
+                                <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog(${id})">参数</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/deviceType/delete.do');">删除</a>

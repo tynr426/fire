@@ -12,6 +12,6 @@ public interface DevicetypeparameterService {
 	public int updateDevicetypeparameter(Devicetypeparameter dtp);
 	public Devicetypeparameter getDevicetypeparameter(int Id);
 	public int deleteDevicetypeparameter(Integer Id);
-	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int index,int size);
+	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int deviceTypeId,int index,int size);
 	public int updateStatus(Integer id,int status);
 }
