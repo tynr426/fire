@@ -13,14 +13,14 @@
 	<select id="findAll" resultType="fire.web.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter
 	</select>
-	<update id="updateDTP" parameterType="fire.web.entity.Devicetypeparameter">
+	<update id="updateDevicetypeparameter" parameterType="fire.web.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET 
 			Description = #{Description},
 			DataType=#{DataType},
 			EditorType=#{EditorType},
 			Unit=#{Unit},
-			Reorder=#{Reorder},
-			Candidate=#{Candidate}
+			Candidate=#{Candidate},
+			Reorder=#{Reorder}
 			WHERE Id = #{Id}
 	</update>
 	<insert id="addDTP" parameterType="fire.web.entity.Devicetypeparameter" useGeneratedKeys="true" keyProperty="id">

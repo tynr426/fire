@@ -42,13 +42,13 @@ public class DeviceTypeController {
 	}
 	@RequestMapping("/update.do")
 	@ResponseBody	
-	public JsonResult updateDevicetypeparameter(DeviceType dt){
+	public JsonResult updateDevicetype(DeviceType dt){
 		int n = deviceTypeService.updateDeviceType(dt);	
 		return new JsonResult(n);
 	}
 	@RequestMapping("/delete.do")
 	@ResponseBody
-	public JsonResult deleteDevicetypeparameter(Integer id){
+	public JsonResult deleteDevicetype(Integer id){
 		int n = deviceTypeService.deleteDeviceType(id);
 		return new JsonResult(n);
 	}

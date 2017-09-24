@@ -199,6 +199,7 @@ var deviceTypeParameter={
 		updateFinish:function(){
 		        var doc = arguments[0];
 		        var f =$.parseJSON(doc.candidate);
+		        if(f==undefined || f.length==0) return;
 		        $.each(f,function(i,item){
 		        	 item.EditorType=doc.editorType;
 		        });

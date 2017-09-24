@@ -34,7 +34,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 		if(one!=null){
 			throw new NameException("该类型已存在");
 		}
-		int n = dTPDAO.updateDTP(dtp);
+		int n = dTPDAO.updateDevicetypeparameter(dtp);
 		return n;
 	}
 

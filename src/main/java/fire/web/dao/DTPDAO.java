@@ -15,7 +15,7 @@ public interface DTPDAO {
 	//查询DTP集合
 	public List<Devicetypeparameter> findAll();
 	//修改
-	public int updateDTP(Devicetypeparameter DTP);
+	public int updateDevicetypeparameter(Devicetypeparameter dtp);
 	//通过id查询
 	public Devicetypeparameter findById(int Id);
 	//添加
