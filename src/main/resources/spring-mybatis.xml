@@ -26,7 +26,7 @@
 	</bean>
 	 <bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"/>
-		<property name="mapperLocations" value="classpath:fire/web/mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="fire.web.dao"/>
