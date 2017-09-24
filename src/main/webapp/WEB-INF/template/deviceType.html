@@ -31,7 +31,7 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 200});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 200});">修改</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog()">参数</a>
@@ -91,20 +91,19 @@
         
         <tr>
             <td><div class="string center">${description}</div></td>
-            <td><div class="string center">${dataType}</div></td>
-            <td><div class="string center">${editorType}</div></td>
+            <td><div class="string center">${dict.editorType[(editorType)]}</div></td>
             <td><div class="string center">${unit}</div></td>
             <td><div class="string center">${reorder}</div></td>
             <td>
                 <!--自定义开关-->
                 {{if status==0}}
-                <div class="extend">
+                <div class="extend center">
                     <div class="target target-off">
                         <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/device/switchStatus.do');"></span>
                     </div>
                 </div>
                 {{else status==1}}
-                <div class="extend">
+                <div class="extend center">
                     <div class="target target-on">
                         <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/device/switchStatus.do');"></span>
                     </div>
@@ -124,7 +123,7 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'DeviceParameterFormTemplate', id: ${id}, url:'/device/getDeviceTypeParameter.do', callback: deviceTypeParameter.updateDeviceTypeParameter , width: 700, height: 400,finish: deviceTypeParameter.updateFinish});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备对应的参数', formId: 'DeviceParameterFormTemplate', id: ${id}, url:'/device/getDeviceTypeParameter.do', callback: deviceTypeParameter.updateDeviceTypeParameter , width: 700, height: 400,finish: deviceTypeParameter.updateFinish});">修改</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},deviceTypeParameter.openParameterDialog,'/device/delete.do');">删除</a>
@@ -173,9 +172,6 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                 
-                </tr>
 						
                 <tr>
 					<th>
@@ -183,12 +179,11 @@
                                 <em class="red">*</em>编辑类型：
                             </p>
                         </th>
-                        <td colspan="3">
+                        <td>
                             <div class="selectbox">
                                 <select id="EditorType" name="EditorType" validate="isnull" onchange="deviceTypeParameter.editorTypeChange(this)">
                                     <option value='text'>单文本框</option>
  									<option value='texts'>多文本框</option>
-                                   
                                     <option value='select'>下拉框</option>
                                     <option value='textarea'>备注</option>
                                     <option value='upload'>上传</option>
@@ -196,7 +191,16 @@
                             </div>
 
                         </td>
-                    
+                    <th>
+                        <p class="name">
+                            <em class="red">*</em>排序：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="Reorder" id="Reorder" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
       			
                 </tr>
 				<tr style="display:none" id="tr_Candidate">

@@ -12,7 +12,7 @@ contentType="text/html; charset=utf-8" %>
 	<!--内容-->
 	<div class="content-area">
 		<!--面包屑-->
-		<div class="content-title">设备类型总表</div>
+		<div class="content-title">消防设备类型</div>
 		<!--//面包屑-->
 		<!--内容盒-->
 		<div class="custom-area" id="scroll-box">
@@ -30,8 +30,8 @@ contentType="text/html; charset=utf-8" %>
 
 									<div class="button">
 										<a href="javascript:void(0);"
-											onclick="frm.add({ title: '添加', formId: 'DeviceTypeFormTemplate', callback: deviceTypeAll.addDeviceType, width: 800, height: 200 });"
-											class="btn">添加</a>
+											onclick="frm.add({ title: '添加消防设备类型', formId: 'DeviceTypeFormTemplate', callback: deviceType.addDeviceType, width: 800, height: 200 });"
+											class="btn">添加消防设备类型</a>
 									</div>
 
 
@@ -95,8 +95,8 @@ contentType="text/html; charset=utf-8" %>
 
 		<div class="button">
 			<a href="javascript:void(0);"
-				onclick="frm.add({ title: '添加设备类型', formId: 'DeviceParameterFormTemplate', callback: deviceTypeParameter.addDeviceTypeParameter, width: 800, height: 400 });"
-		class="btn">添加设备类型</a>
+				onclick="frm.add({ title: '添加设备参数', formId: 'DeviceParameterFormTemplate', callback: deviceTypeParameter.addDeviceTypeParameter, width: 800, height: 400 });"
+		class="btn">添加设备参数</a>
 		</div>
 		
 		
@@ -109,21 +109,17 @@ contentType="text/html; charset=utf-8" %>
 							<table border="0" cellpadding="0" cellspacing="0">
 								<colgroup>
 									<col style="width: auto;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 61px;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: 100px;" />
+									<col style="width: 100px;" />
 								</colgroup>
 
 								<thead>
 									<tr>
 										<td>
 											<p class="name center">字段描述</p>
-										</td>
-										<td>
-											<p class="name center">数据类型</p>
 										</td>
 										<td>
 											<p class="name center">编辑类型</p>

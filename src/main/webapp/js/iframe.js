@@ -198,7 +198,7 @@ var menuAction = function () {
     //点击后更换url值
     var targetUrl = function (sr) {
         //$.cookie.set(my.cookielinkid, sr.match(/\([^\)]+\)/g)[0].replace('(\'', '').replace('\')', ''));
-        $.cookie.set(my.cookielinkid, sr);
+    	addCookie(my.cookielinkid, sr);
     };
 
     //检查菜单栏的闭合情况
@@ -493,7 +493,7 @@ var menuAction = function () {
 
     //获取IFrame对象的地址
     var getiFrame = function () {
-        var sr ="";// $.cookie.get(my.cookielinkid);
+        var sr =getCookie(my.cookielinkid);
 
         if (typeof (sr) == 'undefined') return;
 
@@ -544,137 +544,6 @@ var menuAction = function () {
     };
     getiFrame();
 };
-
-var main = {
-    // iframe自动适应高度
-    dynSize: function (iframeId, noInit) {
-
-        var browserVersion = window.navigator.userAgent.toUpperCase();
-
-        var iframe = document.getElementById(iframeId);
-
-        var bHeight = 0;
-
-        if (!noInit) {
-            iframe.style.height = "auto";
-        }
-
-        if (browserVersion.indexOf("CHROME") == -1 && browserVersion.indexOf("SAFARI") == -1) {
-            bHeight = iframe.contentWindow.document.body.scrollHeight;
-        }
-
-        var dHeight = 0;
-        if (browserVersion.indexOf("FIREFOX") != -1)
-            dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;
-        else if (browserVersion.indexOf("MSIE") == -1 && browserVersion.indexOf("OPERA") == -1)
-            dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        else {
-            bHeight = bHeight + 3;
-        }
-
-        var height = Math.max(bHeight, dHeight);
-
-        if (height < 530) height = 530;
-
-        //整体框架计算尺寸
-        var nHeight = main.synSize(height, iframe);
-
-        iframe.style.height = nHeight + "px";
-
-        //获取菜单子集
-        //var menu_list = $('#menu-content');
-        //设置菜单子集高度
-        //menu_list.css({ 'height': Number($('#roomActive').height() - 30) + 'px' });
-    },
-
-    //整体框架自适应高度
-    synSize: function (height, iframe) {
-        //环境变量
-        var p = $('.wrap'),
-            t = $('*[init=head]'),
-            theight = 0,
-            b = $('*[init=body]'),
-            f = $('*[init=foot]'),
-            fheight = 0,
-            room = $('*[init=room]');
-
-        if (p.length <= 0) return;
-
-        if (t.length >= 1) {
-            theight = t[0].offsetHeight;
-        }
-
-        if (f.length >= 1) {
-            fheight = f[0].offsetHeight;
-        }
-
-        //减掉10个像素的margin-top
-        var size = Number($(window).height() - theight - fheight - 10);
-
-        //判断左侧菜单栏是不是超标
-        var menuHeight = 0;
-        if (main.leftMenu != null) {
-            menuHeight = main.leftMenu[0].offsetHeight;
-        }
-
-        if (height < size) {
-            height = size;
-        }
-
-        if (height < menuHeight) {
-            height = menuHeight;
-        }
-
-        if (b.length >= 1) {
-            b.css({
-                'height': height + 'px'
-            });
-        }
-
-        if (room.length >= 1) {
-            if (b.length >= 1) {
-                if ($(window).width() <= 1024) {
-                    room.css({
-                        'width': '960px'
-                    });
-                } else {
-                    room.css({
-                        'width': '1200px'
-                    });
-                }
-            }
-        }
-
-        return height;
-    },
-    // 退出登录
-    loginout: function () {
-        if (confirm('真的要退出管理后台吗?')) {
-            var today = new Date();
-            var expires = new Date();
-            expires.setTime(today.getTime() - 1);
-            document.cookie = 'AdminName=\'\'; path=/; expires=' + expires.toGMTString();
-            document.cookie = 'PName=0; path=/; expires=' + expires.toGMTString();
-            $.ajax({
-                url: "/aus/toLoginOut.do",
-                data: '<action>logout</action>',
-                dataType: 'xml',
-                async:false,
-                success: function () {
-                    alert("你已成功退出管理后台");
-                    window.location.href = '/aus/toLogin.do';
-                }
-            });
-        }
-    },
-    // 自动计算iframe的高度
-    autoSize: function (init) {
-        if (init == undefined) {
-            init = true;
-        }
-        //main.dynSize("contentIframe", init);
-    }
-}
 
 var cssStyle={
 		 //返回需要获取CSS尺寸样式的高度

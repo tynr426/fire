@@ -67,6 +67,9 @@ var deviceType={
 }
 
 var deviceTypeParameter={
+		editorTypeDesc:function(key){
+			console.log(key)
+		},
 		openParameterDialog:function(){
 			var opt={
 			 resizable: true,
@@ -143,6 +146,7 @@ var deviceTypeParameter={
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
 			var Unit = $("#Unit").val().trim();
+			var Reorder = $("#Reorder").val().trim();
 			var candidate="";
 			var array=[];
 			if(EditorType!="texts"){
@@ -159,7 +163,7 @@ var deviceTypeParameter={
 			$.ajax({
 				url:path+"/device/add.do",
 				type:"post",
-				data:{Description:Description,EditorType:EditorType,Unit:Unit,Candidate:candidate},
+				data:{Description:Description,EditorType:EditorType,Unit:Unit,Candidate:candidate,Reorder:Reorder},
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
@@ -213,6 +217,7 @@ var deviceTypeParameter={
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
 			var Unit = $("#Unit").val().trim();
+			var Reorder = $("#Reorder").val().trim();
 			var candidate=""; 
 			var array=[];
 			if(EditorType!="texts"){
@@ -230,7 +235,7 @@ var deviceTypeParameter={
 				url:path+"/device/update.do",
 				type:"post",
 				data:{Id:id,Description:Description,
-					EditorType:EditorType,Unit:Unit,Candidate:candidate},
+					EditorType:EditorType,Unit:Unit,Candidate:candidate,Reorder:Reorder},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){

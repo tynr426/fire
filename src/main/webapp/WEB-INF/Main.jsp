@@ -5,20 +5,9 @@ contentType="text/html; charset=utf-8" %>
 <head>
 <title>后台管理</title>
 <jsp:include page="../Meta.html"></jsp:include>
-<script language="javascript" type="text/javascript"
-	src="../Static/Js/jquery-1.8.2.js?v=2.0.14.715">
+<script type="text/javascript" src="/fire/js/iframe.js">
 </script>
-<script language="javascript" type="text/javascript"
-	src="../Static/Js/jquery.tmpl.js">
-</script>
-<script type="text/javascript" src="../js/basevalue.js">
-</script>
-<script type="text/javascript" src="../js/cookie_util.js">
-</script>
-<script type="text/javascript" src="../js/login.js">
-</script>
-<script type="text/javascript" src="../js/admin.js">
-</script>
+
 </head>
 
 <body>
@@ -112,16 +101,6 @@ contentType="text/html; charset=utf-8" %>
                                 ]
                             }
                          ]
-                    },
-                    {
-                        "Id": 18, "ParentId": 0, "MenuName": "系统客户", "CssClass": "member", "children": [
-                            {
-                                "Id": 1801, "ParentId": 18, "MenuName": "系统客户", "children": [
-                                    { "Id": 180101, "ParentId": 1801, "MenuName": "客户管理", "Link": "../Custom/Customer.html" },
-                                    { "Id": 180102, "ParentId": 1801, "MenuName": "服务器管理", "Link": "../Custom/Server.html" },
-                                    { "Id": 180103, "ParentId": 1801, "MenuName": "站点管理", "Link": "../Custom/Website.html" },
-                                    { "Id": 180104, "ParentId": 1801, "MenuName": "域名管理", "Link": "../Custom/Domain.html" }]
-                            }]
                     }
                 ];
 

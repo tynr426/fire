@@ -19,6 +19,7 @@
 			DataType=#{DataType},
 			EditorType=#{EditorType},
 			Unit=#{Unit},
+			Reorder=#{Reorder},
 			Candidate=#{Candidate}
 			WHERE Id = #{Id}
 	</update>
