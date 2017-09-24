@@ -16,7 +16,7 @@ import fire.web.utils.PageInfo;
 public class DeviceTypeController {
 	@RequestMapping("/DeviceType.do")
 	public String Api(){
-		return "System/DeviceTypeAll";
+		return "System/DeviceType";
 	}
 	@Resource
 	private DeviceTypeService deviceTypeService;

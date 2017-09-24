@@ -108,8 +108,7 @@ contentType="text/html; charset=utf-8" %>
                             {
                                 "Id": 1701, "ParentId": 17, "MenuName": "基础信息", "children": [
                                     { "Id": 170106, "ParentId": 1701, "MenuName": "单位管理", "Link": "/fire/company/Company.do" },
-                                    { "Id": 170107, "ParentId": 1701, "MenuName": "设备类型管理", "Link": "/fire/device/DeviceType.do" },
-                                    { "Id": 170108, "ParentId": 1701, "MenuName": "设备类型总表", "Link": "/fire/deviceType/DeviceType.do" }
+                                    { "Id": 170107, "ParentId": 1701, "MenuName": "设备类型", "Link": "/fire/deviceType/DeviceType.do" }
                                 ]
                             }
                          ]

@@ -1,11 +1,98 @@
 var deviceType={
-		appJson:null,
+		addDeviceType:function(obj){
+			var Name = $("#Name").val().trim();
+			var UseTime = $("#UseTime").val();
+			$.ajax({
+				url:"/fire/deviceType/addDeviceType.do",
+				type:"post",
+				data:{Name:Name,UseTime:UseTime},
+				dataType:"json",
+				success:function(result){
+					if(result.state==0){
+						alert("添加成功");
+						$(obj).dialog('close');
+						load();
+					}else{	
+						alert(result.message);		
+					}								
+
+				},
+				error:function(){
+					alert("添加失败");
+				}
+			});
+		},
+		getDeviceType:function(Id){
+			$.ajax({
+				url:path+"/deviceType/getDeviceType.do",
+				type:"post",
+				data:{Id:Id},
+				dataType:"json",
+				success:function(result){					
+					if(data.state==0){
+						user.openDialog(result.data);
+					}
+				},
+				error:function(){
+					alert("获取失败");
+				}
+			});
+		},
+		updateDeviceType:function(obj){
+			var id = $("#DeviceParameterForm").find("#Id").val();
+			var Name = $("#Name").val().trim();
+			var UseTime = $("#UseTime").val().trim();
+			$.ajax({
+				url:path+"/deviceType/update.do",
+				type:"post",
+				data:{Id:id,Name:Name,UseTime:UseTime},
+					dataType:"json",
+					success:function(result){
+						if(result.state==0){
+							alert("您已修改成功");
+							load();
+							$(obj).dialog('close');
+						}else{	
+							alert(result.message);			
+						}								
+
+					},
+					error:function(){
+						alert("修改失败");
+					}
+			});
+		},
+
+
+}
+
+var deviceTypeParameter={
+		openParameterDialog:function(){
+			var opt={
+			 resizable: true,
+			    width: 950,
+			    height: 450,
+			    modal: true,
+			    title:"设备参数"
+			};
+			  var config={
+						url:path+"/device/show.do",
+			  			pageSize:30,
+			  			pageIndex:1,
+			  			barSize:3,
+			  			templateId:"DeviceParameterListTemplate",
+			  			container:"parameterBody"
+			  			};
+			  var pageInfo=new ecPage.fn._init(config);
+			  
+			$("#dialogopen").dialog(opt).dialog("open");
+		},
 		editorTypeChange: function (obj) {
 			switch (obj.value) {
 			case "select":
 			case "texts":
 				$("#ul_body").html("");
-				deviceType.addRule();
+				deviceTypeParameter.addRule();
 				$("#tr_Candidate").show();
 				break;
 			default:
@@ -14,14 +101,7 @@ var deviceType={
 			break;
 			}
 		},
-		reset:function(){
-			$("#Keyword").val("");
-			$("#GroupName").val("");
-			var moduleId = $("#ModuleId").get(0).selectedIndex=0;
-		},
-		//行模版
-		rowTemplate: '',
-
+	
 		//添加一条规则
 		addRule: function () {
 			var arr=[
@@ -37,12 +117,12 @@ var deviceType={
 
 		//删除规则
 		delRule: function (node) {
-			deviceType.delNode(node);
+			deviceTypeParameter.delNode(node);
 		},
 
 		//删除对象
 		delNode: function (node) {
-			node = deviceType.getTr(node);
+			node = deviceTypeParameter.getTr(node);
 			$(node).remove();
 		},
 
@@ -85,7 +165,7 @@ var deviceType={
 					if(result.state==0){
 						alert("添加成功");
 						$(obj).dialog('close');
-						load();
+						deviceTypeParameter.openParameterDialog();
 					}else{	
 						alert(result.message);		
 					}								
@@ -104,8 +184,7 @@ var deviceType={
 				dataType:"json",
 				success:function(result){					
 					if(data.state==0){
-						deviceType.appJson=result.data;
-						user.openDialog(deviceType.appJson);
+						user.openDialog(result.data);
 					}
 				},
 				error:function(){
@@ -156,8 +235,8 @@ var deviceType={
 					success:function(result){
 						if(result.state==0){
 							alert("您已修改成功");
-							load();
 							$(obj).dialog('close');
+							deviceTypeParameter.openParameterDialog();
 						}else{	
 							alert(result.message);			
 						}								
@@ -168,5 +247,5 @@ var deviceType={
 					}
 			});
 		}
-
+	
 }
