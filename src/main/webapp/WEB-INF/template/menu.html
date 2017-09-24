@@ -1,0 +1,49 @@
+
+<script id="topMenuTemplate" type="text/template">
+
+                <li salemenu="list" class="${CssClass}">
+                    <!--标题按钮-->
+                    <a class="name" href="javascript:void(0);">
+                        <i class="icon"></i>
+                        <em class="tips">${MenuName}</em>
+                        <i class="cover"></i>
+                    </a>
+                    <!--//标题按钮-->
+                    <!--展示层-->
+                    <div class="show" salemenu="showbox">
+                        <ol>
+						{{each(j,second) children}}
+                            <li salemenu="showlist" >
+                               
+                                <!--二级菜单-->
+                                <div class="list-menu">
+                                    <a href="javascript:void(0);" class="level-2-btn">
+                                        <i class="arrow"></i>
+                                        <em>${second.MenuName}</em>
+                                    </a>
+                                </div>
+                                <!--//二级菜单-->
+                              
+                                <!--三级菜单-->
+                                <div class="item-box" salemenu-level="box">
+								{{each(k,third) second.children}}
+                                   {{if third.Target == '_bank'}}
+                                    <div class="item-list" salemenu-level-list="list">
+                                        <a href="${third.Link}" class="level-3-btn" target="${third.Target}" >${third.MenuName}</a>
+                                    </div>
+                                    {{else}}
+                                    <div class="item-list" salemenu-level-list="list">
+                                        <a href="javascript:frame.go('${third.Link}');" >${third.MenuName}</a>
+                                    </div>
+                                   	{{/if}}
+                                   {{/each}}
+                                </div>
+                                <!--//三级菜单-->
+                            </li>
+                          {{/each}}
+                        </ol>
+                    </div>
+                    <!--//展示层-->
+                </li>
+                   
+</script>
