@@ -4,8 +4,8 @@ var frame = {
 
     currentLinkBox: null,
 
-    // 页面跳转
-    //菜单地址跳转
+    // 椤甸潰璺宠浆
+    //鑿滃崟鍦板潃璺宠浆
     go: function (link, o, target) {
 
         if (target == "_blank") {
@@ -24,7 +24,7 @@ var frame = {
         }
 
         var body = $("body");
-        // 判断是否为ie或fireforx浏览器
+        // 鍒ゆ柇鏄惁涓篿e鎴杅ireforx娴忚鍣�
 //        if (ECF.browsers.msie || ECF.browsers.firefox) {
 //            body == $('body,html');
 //        }
@@ -33,7 +33,7 @@ var frame = {
         window.scrollTo(0, 0);
 
         if (link != "" && link != 'undefined') {
-            //给链接地址加上随机数以达到刷新的效果
+            //缁欓摼鎺ュ湴鍧�鍔犱笂闅忔満鏁颁互杈惧埌鍒锋柊鐨勬晥鏋�
             link = link + (link.indexOf("?") > 0 ? '&' : '?') + 'rnd=' + Math.random().toString();
 
             //alert(link);
@@ -41,7 +41,7 @@ var frame = {
 
             ifr[0].onload = function () {
 
-                // 处理自动适应高度
+                // 澶勭悊鑷姩閫傚簲楂樺害
                 frame.dynSize("contentIframe");
 
                 ifr[0].onload = null;
@@ -53,7 +53,7 @@ var frame = {
         }
     },
 
-    // iframe自动适应高度
+    // iframe鑷姩閫傚簲楂樺害
     dynSize: function (iframeId, noInit) {
         return;
         var browserVersion = window.navigator.userAgent.toUpperCase();
@@ -85,7 +85,7 @@ var frame = {
 
     },
 
-    // 自动计算iframe的高度
+    // 鑷姩璁＄畻iframe鐨勯珮搴�
     autoSize: function (init) {
         if (init == undefined) {
             init = true;
@@ -93,7 +93,7 @@ var frame = {
         frame.dynSize("contentIframe", init);
     },
 
-    // 加载页面菜单
+    // 鍔犺浇椤甸潰鑿滃崟
     loadMenu: function () {
         console.log(11);
         $("#MenuList").loadList("MenuTemplate", null, "menu.list", null, null, "/Store.axd");
@@ -101,50 +101,50 @@ var frame = {
 
 };
 
-//菜单
+//鑿滃崟
 var menuAction = function () {
     var my = {
-        //主体框架
+        //涓讳綋妗嗘灦
         obj: null,
-        //主体框架闭合状态
+        //涓讳綋妗嗘灦闂悎鐘舵��
         objActive: '',
-        //菜单框架
+        //鑿滃崟妗嗘灦
         menu: null,
-        //菜单框架闭合状态
+        //鑿滃崟妗嗘灦闂悎鐘舵��
         menuActive: '',
-        //区域内容
+        //鍖哄煙鍐呭
         area: null,
-        //子集列表
+        //瀛愰泦鍒楄〃
         list: null,
-        //子集列表长度
+        //瀛愰泦鍒楄〃闀垮害
         max: 0,
-        //子集列表单个高度
+        //瀛愰泦鍒楄〃鍗曚釜楂樺害
         listHeight: 0,
-        //显示层
+        //鏄剧ず灞�
         showPanel: null,
-        //整个显示层列表
+        //鏁翠釜鏄剧ず灞傚垪琛�
         showList: null,
-        //展开收缩对象
+        //灞曞紑鏀剁缉瀵硅薄
         targetBtn: null,
-        //cookie对象
+        //cookie瀵硅薄
         cookieid: 'webadmin_menu_target',
-        //主体关闭样式
+        //涓讳綋鍏抽棴鏍峰紡
         objClose: 'box-close',
-        //主体展开样式
+        //涓讳綋灞曞紑鏍峰紡
         objOpen: 'box-open',
-        //显示层关闭样式
+        //鏄剧ず灞傚叧闂牱寮�
         menuClose: 'menu-close',
-        //显示层展开样式
+        //鏄剧ず灞傚睍寮�鏍峰紡
         menuOpen: 'menu-open',
-        //缓存临时展开的列表
+        //缂撳瓨涓存椂灞曞紑鐨勫垪琛�
         showListNow: null,
-        //缓存在cookie的IFrame值
+        //缂撳瓨鍦╟ookie鐨処Frame鍊�
         cookielinkid: 'webadmin_menu_url',
-        //列表展开&关闭速度(单位:毫秒)
+        //鍒楄〃灞曞紑&鍏抽棴閫熷害(鍗曚綅:姣)
         speed: 200,
-        //记录一级目录当前点击对象的缓存
+        //璁板綍涓�绾х洰褰曞綋鍓嶇偣鍑诲璞＄殑缂撳瓨
         level_1_btn_cache: null,
-        //记录二级目录当前点击对象的缓存
+        //璁板綍浜岀骇鐩綍褰撳墠鐐瑰嚮瀵硅薄鐨勭紦瀛�
         level_2_btn_cache: null
     };
 
@@ -160,10 +160,10 @@ var menuAction = function () {
         my.area = $('*[salemenu=area]');
     }
 
-    //判定主框架的存在
+    //鍒ゅ畾涓绘鏋剁殑瀛樺湪
     if (my.obj == null && my.menu == null && my.area == null) return;
 
-    //根据cookie获取展开关闭状态
+    //鏍规嵁cookie鑾峰彇灞曞紑鍏抽棴鐘舵��
     var cookie = getCookie(my.cookieid);//$.cookie.get(my.cookieid);
     if (cookie==null||typeof (cookie) == 'undefined') {
         my.obj.removeClass(my.objClose).addClass(my.objOpen);
@@ -185,7 +185,7 @@ var menuAction = function () {
         }
     }
 
-    //cookie获取当前点击后的存储值
+    //cookie鑾峰彇褰撳墠鐐瑰嚮鍚庣殑瀛樺偍鍊�
     //var cookielink = $.cookie.get(my.cookielinkid);
     //if (typeof (cookielink) == 'undefined') {
     //    var iFrame = $('#contentIframe');
@@ -195,13 +195,13 @@ var menuAction = function () {
     //    $.cookie.set(my.cookielinkid, sr);
     //}
 
-    //点击后更换url值
+    //鐐瑰嚮鍚庢洿鎹rl鍊�
     var targetUrl = function (sr) {
         //$.cookie.set(my.cookielinkid, sr.match(/\([^\)]+\)/g)[0].replace('(\'', '').replace('\')', ''));
     	addCookie(my.cookielinkid, sr);
     };
 
-    //检查菜单栏的闭合情况
+    //妫�鏌ヨ彍鍗曟爮鐨勯棴鍚堟儏鍐�
     var targetObj = function () {
         if (my.obj.hasClass(my.objOpen) && my.menu.hasClass(my.menuOpen)) {
             my.obj.removeClass(my.objOpen).addClass(my.objClose);
@@ -217,50 +217,50 @@ var menuAction = function () {
             $.cookie.set(my.cookieid, my.menuOpen);
         }
 
-        //刷新滚动组件
+        //鍒锋柊婊氬姩缁勪欢
         if ($.iscroll) {
             $.iscroll.refresh();
         }
     };
 
-    //获取子集列表
+    //鑾峰彇瀛愰泦鍒楄〃
     if (my.list == null) {
         my.list = $('*[salemenu=list]', my.menu[0]);
-        //获取子集列表总长度
+        //鑾峰彇瀛愰泦鍒楄〃鎬婚暱搴�
         my.max = my.list.length;
         // var liSize = $(my.list[0]).size();
         // console.log(liSize);
-        //子集列表高度
+        //瀛愰泦鍒楄〃楂樺害
         my.listHeight = $(my.list[0]).height();
     }
 
-    //获取显示层
+    //鑾峰彇鏄剧ず灞�
     if (my.showPanel == null) {
         my.showPanel = $('*[salemenu=showbox]');
     }
 
-    //获取显示层所有列表
+    //鑾峰彇鏄剧ず灞傛墍鏈夊垪琛�
     if (my.showList == null) {
         my.showList = $('*[salemenu=showlist]');
     }
 
-    //获取展开收缩对象
+    //鑾峰彇灞曞紑鏀剁缉瀵硅薄
     if (my.targetBtn == null) {
         my.targetBtn = $('*[salemenu=sliderbar]');
     }
 
-    //闭合同级元素
+    //闂悎鍚岀骇鍏冪礌
     var removeStyle = function () {
         var i = my.max;
         while (--i >= 0) {
             var _this = my.list[i];
-            //先回到原来的高度
+            //鍏堝洖鍒板師鏉ョ殑楂樺害
             $(_this).animate({
                 'height': my.listHeight + 'px'
             }, 300, function () {
                 $(_this).removeClass('select');
 
-                //刷新滚动组件
+                //鍒锋柊婊氬姩缁勪欢
                 if ($.iscroll) {
                     $.iscroll.refresh();
                 }
@@ -268,7 +268,7 @@ var menuAction = function () {
         }
     };
 
-    //点击对象加上选中
+    //鐐瑰嚮瀵硅薄鍔犱笂閫変腑
     var addStyle = function (obj) {
         var show = $('*[salemenu=showbox]', obj);
         var show_hei = parseInt(show[0].getAttribute('salemenu_height'));
@@ -278,14 +278,14 @@ var menuAction = function () {
         $(obj).animate({
             'height': Number(show_hei + my.listHeight) + 'px'
         }, 300, function () {
-            //刷新滚动组件
+            //鍒锋柊婊氬姩缁勪欢
             if ($.iscroll) {
                 $.iscroll.refresh();
             }
         });
     };
 
-    //取消所有显示子集的样式
+    //鍙栨秷鎵�鏈夋樉绀哄瓙闆嗙殑鏍峰紡
     var removeShowListStyle = function () {
         var max = my.showList.length;
         var i = max;
@@ -295,7 +295,7 @@ var menuAction = function () {
         }
     };
 
-    //冒泡找父级
+    //鍐掓场鎵剧埗绾�
     var findParent = function (obj, name) {
         var _obj = obj;
         while (_obj) {
@@ -306,9 +306,9 @@ var menuAction = function () {
         }
     };
 
-    //显示层初始化
+    //鏄剧ず灞傚垵濮嬪寲
     var showListInit = function () {
-        //一级目录初始化
+        //涓�绾х洰褰曞垵濮嬪寲
         if (my.list.length <= 0) { return; }
 
         my.list.each(function () {
@@ -317,24 +317,24 @@ var menuAction = function () {
             height = $this.height();
             $this.attr('normal_height', height + 'px');
 
-            //二级目录初始化
+            //浜岀骇鐩綍鍒濆鍖�
             if (my.showPanel.length <= 0) { return; }
 
             if (my.objActive != 'box-close' && my.menuActive != 'menu-close') {
                 my.showPanel.each(function () {
-                    //获取二级目录
+                    //鑾峰彇浜岀骇鐩綍
                     var showList = $('*[salemenu=showlist]', this);
                     var showListLength = showList.length;
 
-                    //获取并计算元素的高度
+                    //鑾峰彇骞惰绠楀厓绱犵殑楂樺害
                     var showListHeight = Number($(showList[0]).height() * showListLength);
 
-                    //设置二级目录高度
+                    //璁剧疆浜岀骇鐩綍楂樺害
                     $(this).attr('normal_height', showListHeight);
 
-                    //获取三级目录
+                    //鑾峰彇涓夌骇鐩綍
                     showList.each(function () {
-                        //设置尺寸
+                        //璁剧疆灏哄
                         $(this).attr('normal_height', $(this).height());
 
                         var level = $('*[salemenu-level=box]', this);
@@ -342,10 +342,10 @@ var menuAction = function () {
                         level.each(function () {
                             var level_list = $('*[salemenu-level-list=list]', this);
                             if (level_list.length > 0) {
-                                //计算三级目录高度
+                                //璁＄畻涓夌骇鐩綍楂樺害
                                 var level_height = Number(70 * level_list.length);
                               
-                                //设置目录高度
+                                //璁剧疆鐩綍楂樺害
                                 $(this).attr('normal_height', level_height);
                             }
                         });
@@ -356,9 +356,9 @@ var menuAction = function () {
     };
     showListInit();
 
-    //绑定子集事件
+    //缁戝畾瀛愰泦浜嬩欢
     var bindList = function () {
-        //一级目录点击事件
+        //涓�绾х洰褰曠偣鍑讳簨浠�
         if (my.list.length <= 0) { return; }
 
         my.list.each(function () {
@@ -366,21 +366,21 @@ var menuAction = function () {
 
             var levle_1_box = this;
 
-            //一级目录点击事件
+            //涓�绾х洰褰曠偣鍑讳簨浠�
             if (level_1_btn.length > 0) {
                 level_1_btn.bind('click', function () {
-                    //只有在展开状态下才能被点击
+                    //鍙湁鍦ㄥ睍寮�鐘舵�佷笅鎵嶈兘琚偣鍑�
                     if (my.objActive == 'box-open' && my.menuActive == 'menu-open') {
-                        //如果没有展开就设置展开状态,否则要设置关闭状态
+                        //濡傛灉娌℃湁灞曞紑灏辫缃睍寮�鐘舵��,鍚﹀垯瑕佽缃叧闂姸鎬�
                         if ($(levle_1_box).hasClass('select')) {
-                            //关闭
+                            //鍏抽棴
 
-                            //回收选中样式
+                            //鍥炴敹閫変腑鏍峰紡
                             $(levle_1_box).removeClass('select');
                         } else {
-                            //展开
+                            //灞曞紑
 
-                            //判断是不是点击新的按钮
+                            //鍒ゆ柇鏄笉鏄偣鍑绘柊鐨勬寜閽�
                             if (my.level_1_btn_cache === null) {
                                 my.level_1_btn_cache = this;
 
@@ -388,10 +388,10 @@ var menuAction = function () {
                             } else if (my.level_1_btn_cache !== null && my.level_1_btn_cache !== this) {
                                 my.level_1_btn_cache = this;
 
-                                //取消同级选中
+                                //鍙栨秷鍚岀骇閫変腑
                                 my.list.each(function () {
                                     if ($(this).hasClass('select')) {
-                                        //回收选中样式
+                                        //鍥炴敹閫変腑鏍峰紡
                                         $(this).removeClass('select');
                                     }
                                 });
@@ -402,7 +402,7 @@ var menuAction = function () {
                             }
                         }
 
-                        //iScroll刷新
+                        //iScroll鍒锋柊
                         if ($.iscroll) {
                             $.iscroll.refresh();
                         }
@@ -411,7 +411,7 @@ var menuAction = function () {
             }
         });
 
-        //二级目录点击事件
+        //浜岀骇鐩綍鐐瑰嚮浜嬩欢
         var level_2_btn = $('a.level-2-btn');
 
         if (level_2_btn.length > 0) {
@@ -419,16 +419,16 @@ var menuAction = function () {
                 $(this).bind('click', function () {
                     var par = this.parentNode.parentNode;
 
-                    //如果没有展开就设置展开状态,否则要设置关闭状态
+                    //濡傛灉娌℃湁灞曞紑灏辫缃睍寮�鐘舵��,鍚﹀垯瑕佽缃叧闂姸鎬�
                     if ($(par).hasClass('select')) {
-                        //关闭
+                        //鍏抽棴
 
-                        //回收选中样式
+                        //鍥炴敹閫変腑鏍峰紡
                         $(par).removeClass('select');
                     } else {
-                        //展开
+                        //灞曞紑
 
-                        //判断是不是点击新的按钮
+                        //鍒ゆ柇鏄笉鏄偣鍑绘柊鐨勬寜閽�
                         if (my.level_2_btn_cache === null) {
                             my.level_2_btn_cache = par;
 
@@ -436,12 +436,12 @@ var menuAction = function () {
                         } else if (my.level_2_btn_cache !== null && my.level_2_btn_cache !== par) {
                             my.level_2_btn_cache = par;
 
-                            //取消同级选中
+                            //鍙栨秷鍚岀骇閫変腑
                             $('*[salemenu=showlist]').each(function () {
-                                //如果父级元素只有一个子集,那么就不取消选中了
+                                //濡傛灉鐖剁骇鍏冪礌鍙湁涓�涓瓙闆�,閭ｄ箞灏变笉鍙栨秷閫変腑浜�
                                 if($('*[salemenu=showlist]' ,this.parentNode).length > 1){
                                     if ($(this).hasClass('select')) {
-                                        //回收选中样式
+                                        //鍥炴敹閫変腑鏍峰紡
                                         $(this).removeClass('select');
                                     }
                                 }
@@ -453,7 +453,7 @@ var menuAction = function () {
                         }
                     }
 
-                    //刷新滚动组件
+                    //鍒锋柊婊氬姩缁勪欢
                     if ($.iscroll) {
                         $.iscroll.refresh();
                     }
@@ -461,7 +461,7 @@ var menuAction = function () {
             });
         }
 
-        //三级目录点击事件
+        //涓夌骇鐩綍鐐瑰嚮浜嬩欢
         var level_3_btn = $('a.level-3-btn');
 
         if (level_3_btn.length > 0) {
@@ -478,10 +478,10 @@ var menuAction = function () {
 
                     $(par).addClass('select');
 
-                    //获取点击的值
+                    //鑾峰彇鐐瑰嚮鐨勫��
                     var sr = $(this).attr('savename');
 
-                    //记录值
+                    //璁板綍鍊�
                     if (typeof (sr) == 'string' && sr != '') {
                         targetUrl(sr);
                     }
@@ -491,7 +491,7 @@ var menuAction = function () {
     };
     bindList();
 
-    //获取IFrame对象的地址
+    //鑾峰彇IFrame瀵硅薄鐨勫湴鍧�
     var getiFrame = function () {
         var sr =getCookie(my.cookielinkid);
 
@@ -515,16 +515,16 @@ var menuAction = function () {
             }
         });
 
-        //父级
+        //鐖剁骇
         var listParent = $(obj).parent();
 
-        //找到显示层
+        //鎵惧埌鏄剧ず灞�
         var showSpan = findParent(obj, 'showlist');
 
-        //找到根级
+        //鎵惧埌鏍圭骇
         var grandParent = findParent(obj, 'list');
 
-        //全部加上选中标记
+        //鍏ㄩ儴鍔犱笂閫変腑鏍囪
         $(listParent).addClass('select');
 
         $(showSpan).addClass('select');
@@ -535,7 +535,7 @@ var menuAction = function () {
 
         my.level_2_btn_cache = showSpan;
         
-        //刷新滚动组件
+        //鍒锋柊婊氬姩缁勪欢
         if ($.iscroll) {
             $.iscroll.refresh();
         }
@@ -546,7 +546,7 @@ var menuAction = function () {
 };
 
 var cssStyle={
-		 //返回需要获取CSS尺寸样式的高度
+		 //杩斿洖闇�瑕佽幏鍙朇SS灏哄鏍峰紡鐨勯珮搴�
         cssHeight: function () {
             if (this.length < 1) return 0;
             var obj = this[0];
@@ -559,7 +559,7 @@ var cssStyle={
             return o;
         },
 
-        //获取CSS样式中的尺寸值
+        //鑾峰彇CSS鏍峰紡涓殑灏哄鍊�
         cssSize: function (obj, style) {
             var si = 0;
             var _obj = [];
@@ -601,7 +601,7 @@ var cssStyle={
             };
             return si;
         },
-        //返回需要获取CSS尺寸样式的宽度
+        //杩斿洖闇�瑕佽幏鍙朇SS灏哄鏍峰紡鐨勫搴�
         cssWidthSize: function (obj) {
             if (!tools.check(obj)) return;
             var _obj = $e(obj);
@@ -613,7 +613,7 @@ var cssStyle={
             };
             return o;
         },
-        //返回需要获取CSS尺寸样式的高度
+        //杩斿洖闇�瑕佽幏鍙朇SS灏哄鏍峰紡鐨勯珮搴�
         cssHeightSize: function (obj) {
             if (!tools.check(obj)) return;
             var _obj = $e(obj);

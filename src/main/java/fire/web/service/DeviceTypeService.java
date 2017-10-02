@@ -4,10 +4,12 @@ package fire.web.service;
 import java.util.List;
 
 import fire.web.entity.DeviceType;
+import fire.web.entity.DeviceTypeResult;
 import fire.web.utils.PageInfo;
 
 public interface DeviceTypeService {
-	public List<DeviceType> findAll();
+	public List<DeviceTypeResult> findAll();
+	public List<DeviceTypeResult> findDeviceTypeResult();
 	public int addDeviceType(DeviceType dt)throws NameException;
 	public int updateDeviceType(DeviceType dt);
 	public DeviceType getDeviceType(int id);

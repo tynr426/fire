@@ -11,7 +11,7 @@
 		WHERE Id = #{Id}
 	</select>
 	<select id="findAll" resultType="fire.web.entity.Devicetypeparameter">
-		SELECT * FROM fir_devicetypeparameter
+		SELECT * FROM fir_devicetypeparameter where status=1
 	</select>
 	<update id="updateDevicetypeparameter" parameterType="fire.web.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET 

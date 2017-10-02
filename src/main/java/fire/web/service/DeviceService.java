@@ -1,16 +1,14 @@
 package fire.web.service;
 
 
-import java.util.List;
 
-import fire.web.entity.Device;
+import fire.web.entity.DeviceResult;
 import fire.web.utils.PageInfo;
 
 public interface DeviceService {
-	public List<Device> findAll();
-	public int addDevice(Device device)throws NameException;
-	public int updateDevice(Device device);
-	public Device getDevice(int id);
+	public int addDevice(DeviceResult device)throws NameException;
+	public int updateDevice(DeviceResult device);
+	public DeviceResult getDevice(int id);
 	public int deleteDevice(Integer id);
-	public PageInfo<Device> getDevicePage(int index,int size);
+	public PageInfo<DeviceResult> getDevicePage(int companyId,int index,int size);
 }

@@ -5,11 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import fire.web.entity.DeviceType;
+import fire.web.entity.DeviceTypeResult;
 
 
 public interface DeviceTypeDAO {
 	public DeviceType getDeviceType(String name);
-	public List<DeviceType> findAll();
+	public List<DeviceTypeResult> findAll();
 	public int updateDeviceType(DeviceType dt);
 	public DeviceType findById(int Id);
 	public int addDeviceType(DeviceType dt);

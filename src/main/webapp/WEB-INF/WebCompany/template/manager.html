@@ -1,0 +1,133 @@
+<script type="text/template" id="bodyListTemplate">
+        
+        <tr>
+            <td><div class="string center">${name}</div></td>
+            <td><div class="string center">${email}</div></td>
+            <td><div class="string center">${mobile}</div></td>
+            <td><div class="string center">${position}</div></td>
+            <td>
+                <!--自定义开关-->
+                {{if status==0}}
+                <div class="extend">
+                    <div class="target target-off">
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/manager/switchStatus.do');"></span>
+                    </div>
+                </div>
+                {{else status==1}}
+                <div class="extend">
+                    <div class="target target-on">
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/manager/switchStatus.do');"></span>
+                    </div>
+                </div>
+                {{else}}
+                <div class="string center">已删除</div>
+                {{/if}}
+                <!--//自定义开关-->
+            </td>
+            <td>
+                <div class="tool" onmouseover="tableTool.over(this);" onmouseout="tableTool.out(this);">
+                    <!--标题栏-->
+                    <p class="name">操作</p>
+                    <!--//标题栏-->
+
+                    <div class="tool-menu">
+                        <ul>
+                            
+                            <li>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'ManagerFormTemplate', id: ${id}, url:'/manager/getManager.do', callback: manager.updateManager , width: 700, height: 300,finish:manager.updateFinish});">修改</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/manager/delete.do');">删除</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+    </script>
+<script type="text/x-jquery-tmpl" id="ManagerFormTemplate">
+    <div class="custom-table">
+    <div class="form" id="ManagerForm">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col style="width:auto;" />
+                <col style="width: 150px;" />
+                <col style="width:auto;" />
+            </colgroup>
+
+            <tbody>
+                <tr>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>用户名：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="UserName" id="UserName" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+<th>
+                        <p class="name">
+                            <em class="red">*</em>密码：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="hidden" id="Id" name="Id" value="" />
+                             <input type="password" name="Password" id="Password" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>姓名：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="Name" id="Name" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+<th>
+                        <p class="name rm">
+                            <em class="red">*</em>Email：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                             <input type="text" name="Email" id="Email" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>联系电话：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="Mobile" id="Mobile" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+<th>
+                        <p class="name rm">
+                            <em class="red">*</em>负责区域：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                             <input type="text" name="Position" id="Position" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    </script>

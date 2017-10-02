@@ -1,21 +1,27 @@
 package fire.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import fire.web.dao.DTPDAO;
 import fire.web.dao.DeviceTypeDAO;
 import fire.web.entity.DeviceType;
+import fire.web.entity.DeviceTypeResult;
+import fire.web.entity.Devicetypeparameter;
 import fire.web.utils.PageInfo;
 @Service("deviceTypeService")
 public class DeviceTypeServiceImpl implements DeviceTypeService{
 	@Resource
 	private DeviceTypeDAO deviceTypeDAO;
+	@Resource
+	private DTPDAO dTPDAO;
 	
-	public List<DeviceType> findAll() {
-		List<DeviceType> list = deviceTypeDAO.findAll();
+	public List<DeviceTypeResult> findAll() {
+		List<DeviceTypeResult> list = deviceTypeDAO.findAll();
 		return list;
 	}
 
@@ -72,6 +78,20 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 		deviceType.setStatus(status);
 		int n = deviceTypeDAO.updateStatus(deviceType);
 		return n;
+	}
+
+	public List<DeviceTypeResult> findDeviceTypeResult() {
+		List<DeviceTypeResult> list = deviceTypeDAO.findAll();
+		List<Devicetypeparameter> dtp = dTPDAO.findAll();
+		for(DeviceTypeResult entity:list){
+			for(int i=0;i<dtp.size();i++){
+				Devicetypeparameter p=dtp.get(i);
+				if(p.getDeviceTypeId()==entity.getId()){
+					entity.getList().add(p);
+				}
+			}
+		}
+		return list;
 	}
 
 }

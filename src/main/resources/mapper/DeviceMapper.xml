@@ -3,23 +3,33 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.DeviceDAO">
-	<select id="findById" parameterType="int" resultType="fire.web.entity.Device">
-		SELECT * FROM fir_device  
+	<select id="findById" parameterType="int" resultType="fire.web.entity.DeviceResult">
+		select d.*,t.Name from fir_device d join fir_devicetype t
+		on(d.DeviceTypeId=t.Id)
 		WHERE Id = #{Id}
-	</select>
-	<select id="findAll" resultType="fire.web.entity.Device">
-		SELECT * FROM fir_device
 	</select>
 	<update id="updateDevice" parameterType="fire.web.entity.Device">
 		UPDATE fir_device SET 
-			Name = #{Name},
-			UseTime=#{UseTime},
+			UseTime = #{UseTime},
+			AddTime=#{AddTime},
+			Buildings=#{Buildings},
+			Floor=#{Floor},
+			Position=#{Position},
+			Passageway=#{Passageway},
+			Detail=#{Detail}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addDevice" parameterType="fire.web.entity.Device">
-		insert into fir_device(Name,UseTime,Status)
+	<insert id="addDevice" parameterType="fire.web.entity.DeviceResult" useGeneratedKeys="true" keyProperty="id">
+		insert into fir_device(
+		DeviceTypeId,Model,Manufacturer,
+		Spec,UseTime,AddTime,Buildings,
+		Floor,Position,Passageway,Detail
+		)
 		values(
-		#{Name},#{UseTime},#{Status})		
+		#{DeviceTypeId},#{Model},#{Manufacturer},
+		#{Spec},#{UseTime},#{AddTime},#{Buildings},
+		#{Floor},#{Position},#{Passageway},#{Detail}
+		)		
 	</insert>
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from fir_device where Id = #{Id}
@@ -27,7 +37,9 @@
 	<select id="findDeviceCount" resultType="int">
 		select count(*) from fir_device 
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.Device">
-		select * from fir_device limit #{begin},#{size}
+	<select id="findByLimit" resultType="fire.web.entity.DeviceResult">
+		select d.*,t.Name from fir_device d join fir_devicetype t
+		on(d.DeviceTypeId=t.Id) 
+		where CompanyId=#{companyId} limit #{begin},#{size}
 	</select>
 </mapper>

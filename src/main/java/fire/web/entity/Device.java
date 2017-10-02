@@ -2,6 +2,10 @@ package fire.web.entity;
 
 import java.sql.Timestamp;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Device {
 	private int Id;
 	private int DeviceTypeId;
@@ -15,6 +19,14 @@ public class Device {
 	private String Position;
 	private String Passageway;
 	private String Detail;
+	private int ManagerId;
+	private int CompanyId;
+	public int getCompanyId() {
+		return CompanyId;
+	}
+	public void setCompanyId(int companyId) {
+		CompanyId = companyId;
+	}
 	public Device(){
 		
 	}
@@ -54,9 +66,11 @@ public class Device {
 	public void setUseTime(Timestamp useTime) {
 		UseTime = useTime;
 	}
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	public Timestamp getAddTime() {
 		return AddTime;
 	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public void setAddTime(Timestamp addTime) {
 		AddTime = addTime;
 	}
@@ -115,7 +129,8 @@ public class Device {
 		return "Device [Id=" + Id + ", DeviceTypeId=" + DeviceTypeId + ", Model=" + Model + ", Manufacturer="
 				+ Manufacturer + ", Spec=" + Spec + ", UseTime=" + UseTime + ", AddTime=" + AddTime + ", Buildings="
 				+ Buildings + ", Floor=" + Floor + ", Position=" + Position + ", Passageway=" + Passageway + ", Detail="
-				+ Detail + "]";
+				+ Detail + ", ManagerId=" + ManagerId + ", CompanyId=" + CompanyId + "]";
 	}
+	
 	
 }

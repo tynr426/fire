@@ -11,19 +11,19 @@ public class SessionInterceptor implements HandlerInterceptor{
 
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
-		
+
 	}
 
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
 			throws Exception {
-		
+
 	}
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object arg2) throws Exception {
 		HttpSession session = req.getSession();
-		Object obj = session.getAttribute("loginUser");
+		Object obj = session.getAttribute("companyManager");
 		if(obj == null){
-			res.sendRedirect("/user/toLogin.do");
+			res.sendRedirect(req.getContextPath()+"/manager/toLogin.do");
 			return false;
 		}
 		return true;

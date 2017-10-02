@@ -25,16 +25,15 @@
     <property name="prefix" value="/WEB-INF/"/> 
     <property name="suffix" value=".jsp"/> 
 	</bean>
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/toLogin.do"/>
-			<mvc:exclude-mapping path="/getVerifyCode.do"/>
-			<mvc:exclude-mapping path="/login.do"/>
+			<mvc:mapping path="/manager/*.do"/>
+			<mvc:exclude-mapping path="/manager/toLogin.do"/>
+			<mvc:exclude-mapping path="/manager/login.do"/>
 			<bean class="fire.web.interceptors.SessionInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	 -->
+	 
 </beans>
 
 

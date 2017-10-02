@@ -10,8 +10,8 @@
 		SELECT * FROM fir_devicetype  
 		WHERE Id = #{Id}
 	</select>
-	<select id="findAll" resultType="fire.web.entity.DeviceType">
-		SELECT * FROM fir_devicetype
+	<select id="findAll" resultType="fire.web.entity.DeviceTypeResult">
+		SELECT * FROM fir_devicetype where status=1
 	</select>
 	<update id="updateDeviceType" parameterType="fire.web.entity.DeviceType">
 		UPDATE fir_devicetype SET 

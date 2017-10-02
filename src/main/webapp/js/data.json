@@ -9,5 +9,14 @@ var dict = {
     "select": "下拉框",
     "textarea": "备注",
     "upload": "上传"
+  },
+  "position":{
+	"east":"东",
+	"south":"南",
+	"west":"西",
+	"north":"北"
+  },
+  "passageway":{
+	"1":"安全出口"
   }
 };

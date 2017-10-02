@@ -20,7 +20,7 @@ public class CompanyController extends ExceptionController{
 	private CompanyService companyService;
 	@RequestMapping("/Company.do")
 	public String Company(){
-		return "Company/CompanyManager";
+		return "WebAdmin/Company/CompanyManager";
 	}
 	@RequestMapping("/showCompanyPage.do")
 	@ResponseBody

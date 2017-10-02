@@ -202,7 +202,7 @@ textArea:focus {border-color: #63b0eb !important;box-shadow: 0 0 3px 0 #63b0eb;c
 .custom-title:before {border-color: transparent transparent #282828 transparent;}
 
 /* 登录页面 */
-.login-wrap {background: url(../images/3296.jpg) 50% 50% no-repeat;background-size: cover;}
+.login-wrap {background: url(../images/16pic_1870731_b.jpg) 50% 50% no-repeat;background-size: cover;}
 .login-wrap .login-body .login-input .opacity-panel {border-color:#fff;background:rgba(255,255,255,0.6);}
 .login-wrap .login-body .login-input .logo ,
 .login-wrap .login-body .login-input p.title{color: #000;}

@@ -229,7 +229,7 @@ body {overflow-x: hidden;overflow-y: auto;}
 .login-wrap .float-logo {height: 20px;position: absolute;top: 50px;left: 50px;display: none;}
 .login-wrap .float-logo img {max-height: 100%;}
 .login-wrap .login-body {width: 360px;position: absolute;top: 50%;left: 50%;margin: -211px 0 0 -175px;overflow:visible;}
-.login-wrap .login-body .login-input {position: relative;padding:40px;z-index:1;height:342px;}
+.login-wrap .login-body .login-input {position: relative;padding:40px;z-index:1;height:390px;}
 .login-wrap .login-body .login-input .opacity-panel {position: absolute;top: 0;left: 0;right: 0;bottom: 0;border-width:1px;border-style:solid;border-radius:4px;overflow:hidden;z-index:-1;}
 .login-wrap .login-body .login-input .logo {height: 50px;text-align: center;line-height: 40px;font-size: 20px;overflow: hidden;font-weight: 600;position: relative;z-index: 2;}
 .login-wrap .login-body .login-input p.title {height: 40px;line-height: 40px;text-align: center;font-size: 16px;}
