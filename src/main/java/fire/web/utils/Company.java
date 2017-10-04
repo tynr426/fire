@@ -10,18 +10,18 @@ import fire.web.entity.Manager;
 public class Company {
 	private static Manager manager;
 	public static Manager getManager(){
-		if(manager==null){	
+		if(manager==null||manager.getId()==0){	
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 			manager =  (Manager) request.getSession().getAttribute("companyManager");
 		}
+		if(manager==null){
+			manager=new Manager();
+		}
 		return manager;
 	}
-	private static int companyId;
 	public static int getCompanyId(){
-		if(getManager()!=null){			
-			companyId = manager.getCompanyId();
-		}
-		return companyId;
-		
+
+		return getManager().getCompanyId();
+
 	}
 }

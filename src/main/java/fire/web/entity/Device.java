@@ -1,6 +1,8 @@
 package fire.web.entity;
 
-import java.sql.Timestamp;
+
+
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,10 +14,10 @@ public class Device {
 	private String Model;
 	private String Manufacturer;
 	private String Spec;
-	private Timestamp UseTime;
-	private Timestamp AddTime;
-	private int Buildings;
-	private int Floor;
+	private Date UseTime;
+	private Date AddTime;
+	private Integer Buildings;
+	private Integer Floor;
 	private String Position;
 	private String Passageway;
 	private String Detail;
@@ -60,30 +62,30 @@ public class Device {
 	public void setSpec(String spec) {
 		Spec = spec;
 	}
-	public Timestamp getUseTime() {
+	public Date getUseTime() {
 		return UseTime;
 	}
-	public void setUseTime(Timestamp useTime) {
+	public void setUseTime(Date useTime) {
 		UseTime = useTime;
 	}
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-	public Timestamp getAddTime() {
+	public Date getAddTime() {
 		return AddTime;
 	}
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	public void setAddTime(Timestamp addTime) {
+	public void setAddTime(Date addTime) {
 		AddTime = addTime;
 	}
-	public int getBuildings() {
+	public Integer getBuildings() {
 		return Buildings;
 	}
-	public void setBuildings(int buildings) {
+	public void setBuildings(Integer buildings) {
 		Buildings = buildings;
 	}
-	public int getFloor() {
+	public Integer getFloor() {
 		return Floor;
 	}
-	public void setFloor(int floor) {
+	public void setFloor(Integer floor) {
 		Floor = floor;
 	}
 	public String getPosition() {

@@ -10,13 +10,13 @@
                 {{if status==0}}
                 <div class="extend">
                     <div class="target target-off">
-                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/manager/switchStatus.do');"></span>
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/company/manager/switchStatus.do');"></span>
                     </div>
                 </div>
                 {{else status==1}}
                 <div class="extend">
                     <div class="target target-on">
-                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/manager/switchStatus.do');"></span>
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/company/manager/switchStatus.do');"></span>
                     </div>
                 </div>
                 {{else}}
@@ -34,10 +34,10 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'ManagerFormTemplate', id: ${id}, url:'/manager/getManager.do', callback: manager.updateManager , width: 700, height: 300,finish:manager.updateFinish});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'ManagerFormTemplate', id: ${id}, url:'/company/manager/getManager.do', callback: manager.updateManager , width: 700, height: 300,finish:manager.updateFinish});">修改</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/manager/delete.do');">删除</a>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/manager/delete.do');">删除</a>
                             </li>
                            
                         </ul>

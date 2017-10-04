@@ -76,7 +76,7 @@ contentType="text/html; charset=utf-8" %>
 			<!--右侧内容-->
 			<div class="content-box">
 				<iframe title="" salemenu="area" name="contentIframe"
-					id="contentIframe" src="/fire/company/Company.do" class="iframe" width="100%"
+					id="contentIframe" src="/fire/admin/company/Company.do" class="iframe" width="100%"
 					height="100%" frameborder="0" scrolling="no"></iframe>
 			</div>
 			<!--//右侧内容-->
@@ -96,7 +96,7 @@ contentType="text/html; charset=utf-8" %>
                         "Id": 17, "ParentId": 0, "MenuName": "基础信息", "CssClass": "sys", "children": [
                             {
                                 "Id": 1701, "ParentId": 17, "MenuName": "基础信息", "children": [
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "单位管理", "Link": "/fire/company/Company.do" },
+                                    { "Id": 170106, "ParentId": 1701, "MenuName": "单位管理", "Link": "/fire/admin/company/Company.do" },
                                     { "Id": 170107, "ParentId": 1701, "MenuName": "设备类型", "Link": "/fire/deviceType/DeviceType.do" }
                                 ]
                             }

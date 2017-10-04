@@ -120,7 +120,7 @@ body {overflow-x: hidden;overflow-y: auto;}
 
 /*表单&表格组件font-size: 0;font-size: 0;*/
 .custom-table {line-height: normal;}
-.custom-table .form {line-height: normal;border-style: solid;border-width: 0 1px 1px 0;position: relative;}
+.custom-table .form {line-height: normal;border-style: solid;border-width: 0 1px 1px 0;position: relative;margin-top:17px;}
 .custom-table .form table {width: 100%;table-layout: fixed;}
 .custom-table .form.no-table-layout table {width: 100%;table-layout: auto;}
 .custom-table .form table thead tr td {white-space: nowrap;border-style: solid;border-width: 1px 0 0 1px;cursor: default;}
@@ -237,13 +237,14 @@ body {overflow-x: hidden;overflow-y: auto;}
 .login-wrap .login-body .login-text ul li {position: relative;padding-left:50px;border-style: solid;border-width: 1px;height:36px;line-height:36px;border-radius:5px;margin-top:20px;}
 .login-wrap .login-body .login-text ul li:first-child{margin-top:0;}
 .login-wrap .login-body .login-text ul li i.icon {width: 20px;height: 20px;position: absolute;top: 50%;left: 15px;margin-top: -10px;}
-.login-wrap .login-body .login-text ul li.user-code {padding: 0 200px 0 18px;position:relative;}
+.login-wrap .login-body .login-text ul li.user-code {padding: 0 99px 0 18px;position:relative;}
 .login-wrap .login-body .login-text ul li .code {height: 26px;position: absolute;top: 50%;right: 10px;margin-top: -13px;}
 .login-wrap .login-body .login-text ul li .code img {max-height: 100%;max-width:100%;vertical-align:top;}
 .login-wrap .login-body .login-text ul li .inputbox input[type=text],
 .login-wrap .login-body .login-text ul li .inputbox input[type=password] {height: 36px;border: none;padding: 0;font-size: 14px;}
 .login-wrap .login-body .login-text ul li .inputbox input[type=text]:focus,
 .login-wrap .login-body .login-text ul li .inputbox input[type=password]:focus {box-shadow: none;}
+
 .login-wrap .login-body .button {margin-top: 20px;position: relative;z-index: 2;}
 .login-wrap .login-body .button a.btn {height: 44px;line-height: 44px;font-size: 14px;display: block;text-align: center;border-radius: 5px;}
 .login-wrap .login-body .login-remember {position: relative;margin-top: 20px;z-index: 2;}

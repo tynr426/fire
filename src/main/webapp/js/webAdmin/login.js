@@ -1,6 +1,7 @@
 var login = {
 
 		login:function(){
+			if(!$("#loginForm").formValidate())return;
 			var name = $("#UserName").val().trim();
 			var pwd = $("#password").val().trim();
 			var vCode = $("#verifyCode").val().trim();
@@ -36,9 +37,6 @@ var login = {
 					}
 				});
 			}
-		},
-		loadValidate:function(obj){
-			obj.src=path+'/getVerifyCode.do?t='+Math.random().toString();
 		},
 		loginOut:function(){
 			if(confirm("确认退出吗?")){

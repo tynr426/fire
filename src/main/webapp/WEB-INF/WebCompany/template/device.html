@@ -5,7 +5,14 @@
             <td><div class="string center">${model}</div></td>
             <td><div class="string center">${manufacturer}</div></td>
             <td><div class="string center">${spec}</div></td>
-            <td><div class="string center">${buildings}${floor}${position}${passageway}</div></td>
+            <td><div class="string">
+{{if buildings!=0}}
+${buildings}栋
+{{/if}}
+${floor}楼
+${dict.position[(position)]}
+${dict.passageway[(passageway)]}
+</div></td>
             <td><div class="string center">${addTime}</div></td>
             <td>
                 <div class="tool" onmouseover="tableTool.over(this);" onmouseout="tableTool.out(this);">
@@ -17,10 +24,10 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'DeviceFormTemplate', id: ${id}, url:'/device/getDevice.do', callback: device.updateDevice , width: 700, height: 400,finish: device.deviceFinish});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'DeviceFormTemplate', id: ${id}, url:'/company/device/getDevice.do', callback: device.updateDevice , width: 700, height: 400,finish: device.deviceFinish});">修改</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/device/delete.do');">删除</a>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/device/delete.do');">删除</a>
                             </li>
                            
                         </ul>
@@ -46,6 +53,7 @@
                     <th>
                         <p class="name rm">
                             <em class="red">*</em>设备类型：
+<input type="hidden" id="Id" />
                         </p>
                     </th>
                     <td>
@@ -156,7 +164,7 @@
         </p>
     </th>
 
-    <td>
+    <td colspan="${colspan}">
  {{if (editorType=="text")}}
  <div class="inputbox">
             <input type="text"  id="parameter_${id}" error="输入格式不正确！" validate="isnull|username" maxlength="20" value="" />

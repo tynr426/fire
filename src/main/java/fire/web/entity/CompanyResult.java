@@ -6,6 +6,13 @@ public class CompanyResult extends Company{
 	private String UserName;
 	private String Password;
 	private int CompanyId;
+	private int ManagerId;
+	public int getManagerId() {
+		return ManagerId;
+	}
+	public void setManagerId(int managerId) {
+		ManagerId = managerId;
+	}
 	public String getUserName() {
 		return UserName;
 	}
@@ -27,14 +34,15 @@ public class CompanyResult extends Company{
 	@Override
 	public String toString() {
 		return "CompanyResult [UserName=" + UserName + ", Password=" + Password + ", CompanyId=" + CompanyId
-				+ ", getId()=" + getId() + ", getName()=" + getName() + ", getCode()=" + getCode() + ", getLogo()="
-				+ getLogo() + ", getIntro()=" + getIntro() + ", getIndustry()=" + getIndustry() + ", getProvince()="
-				+ getProvince() + ", getCity()=" + getCity() + ", getArea()=" + getArea() + ", getAddress()="
-				+ getAddress() + ", getPassed()=" + getPassed() + ", getStatus()=" + getStatus() + ", getReorder()="
-				+ getReorder() + ", getAddTime()=" + getAddTime() + ", getRemark()=" + getRemark() + ", getLevelId()="
-				+ getLevelId() + ", getTel()=" + getTel() + ", getSN()=" + getSN() + ", getAtten()=" + getAtten()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
-				+ "]";
+				+ ", ManagerId=" + ManagerId + ", getId()=" + getId() + ", getName()=" + getName() + ", getCode()="
+				+ getCode() + ", getLogo()=" + getLogo() + ", getIntro()=" + getIntro() + ", getIndustry()="
+				+ getIndustry() + ", getProvince()=" + getProvince() + ", getCity()=" + getCity() + ", getArea()="
+				+ getArea() + ", getAddress()=" + getAddress() + ", getPassed()=" + getPassed() + ", getStatus()="
+				+ getStatus() + ", getReorder()=" + getReorder() + ", getAddTime()=" + getAddTime() + ", getRemark()="
+				+ getRemark() + ", getLevelId()=" + getLevelId() + ", getTel()=" + getTel() + ", getSN()=" + getSN()
+				+ ", getAtten()=" + getAtten() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ ", getClass()=" + getClass() + "]";
 	}
+
 	
 }

@@ -1,6 +1,7 @@
 var company={	
 
 		addCompany:function(obj){
+			if(!$("#CompanyForm").formValidate())return;
 			var Name = $("#Name").val().trim();
 			var Code = $("#Code").val().trim();
 			var Province = $("#Province").val().trim();
@@ -12,7 +13,7 @@ var company={
 			var UserName = $("#UserName").val().trim();
 			var Password = $("#Password").val().trim();
 			$.ajax({
-				url:path+"/company/addCompany.do",
+				url:adminpath+"/company/addCompany.do",
 				type:"post",
 				data:{Name:Name,Code:Code,Province:Province,City:City,
 					Area:Area,Address:Address,Tel:Tel,Atten:Atten,
@@ -36,7 +37,7 @@ var company={
 		//获取用户信息
 		getComany:function(Id){
 			$.ajax({
-				url:path+"/company/getCompany.do",
+				url:adminpath+"/company/getCompany.do",
 				type:"post",
 				data:{Id:Id},
 				dataType:"json",
@@ -76,7 +77,7 @@ var company={
 			var Atten = $("#Atten").val();
 			var Password = $("#Password").val();
 			$.ajax({
-				url:path+"/company/update.do",
+				url:adminpath+"/company/update.do",
 				type:"post",
 				data:{Id:Id,Name:Name,Province:Province,City:City,Area:Area,
 					Address:Address,Tel:Tel,Atten:Atten,Password:Password},
@@ -85,6 +86,7 @@ var company={
 					if(data.state==0){
 						load();
 						$(obj).dialog('close');	
+						alert("修改成功");
 					}
 				},
 				error:function(){

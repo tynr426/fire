@@ -2,12 +2,14 @@
 contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+
 <jsp:include page="Meta.html"></jsp:include>
 
 <script type="text/javascript">
 	$(function(){
-		loginCM.loadValidate($("#VerifyCode")[0]);
+		validateCode.loadValidate($("#VerifyCode")[0]);
 		document.onkeydown = function(e){ 
 		    var ev = document.all ? window.event : e;
 		    if(ev.keyCode==13) {
@@ -41,8 +43,8 @@ contentType="text/html; charset=utf-8" %>
 				<!--//店铺名称-->
 				<!--控件层-->
 				<div class="login-text">
-					<ul>
-						<li class="user-code">
+					<ul id="loginForm">
+						<li class="user-name"><i class="icon name-icon"></i>
 							<div class="inputbox">
 								<input id="Code" type="text" validate="isnull" value="adf"
 									name="Code" placeholder="公司代码" error="代码格式不正确" maxlength="16" />
@@ -65,7 +67,7 @@ contentType="text/html; charset=utf-8" %>
 							</div>
 							<div class="code" title="点击刷新">
 								<img title="点击刷新图片" id="VerifyCode"
-									onclick="login.loadValidate(this)"
+									onclick="validateCode.loadValidate(this)"
 									nolazy="0">
 							</div>
 						</li>

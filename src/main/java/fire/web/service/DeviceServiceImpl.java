@@ -26,7 +26,8 @@ public class DeviceServiceImpl implements DeviceService{
 	 * */
 	@Transactional
 	public int addDevice(DeviceResult device){
-
+		if(device.getCompanyId()==0)
+			throw new NameException("没有获取到公司名称");
 		int n = deviceDAO.addDevice(device);
 		List<DeviceParameterValue> list=device.getList();
 		if(list!=null){
@@ -45,14 +46,16 @@ public class DeviceServiceImpl implements DeviceService{
 	public int updateDevice(DeviceResult device) {
 		int n = deviceDAO.updateDevice(device);
 		List<DeviceParameterValue> list=device.getList();
+		//之前参数
+		List<DeviceParameterValue> preParameterList=deviceParameterValueDAO.getDeviceParameterValues(device.getId());
+		//待添加的
 		List<DeviceParameterValue> addList=new ArrayList<DeviceParameterValue>();
+		//待修改的
 		List<DeviceParameterValue> updateList=new ArrayList<DeviceParameterValue>();
 		for(DeviceParameterValue entity:list){
-			if(entity.getId()==0){
+			entity.setDeviceId(device.getId());
+			if(!getUpdate(entity,preParameterList,updateList)){
 				addList.add(entity);
-			}
-			else{
-				updateList.add(entity);
 			}
 		}
 		if(addList.size()>0){
@@ -63,14 +66,24 @@ public class DeviceServiceImpl implements DeviceService{
 		}
 		return n;
 	}
+	private boolean getUpdate(DeviceParameterValue entity,List<DeviceParameterValue> preParameterList,List<DeviceParameterValue> updateList){
+		
+		for(DeviceParameterValue p:preParameterList)
+			if(p.getDeviceId()==entity.getDeviceId()&&p.getParameterId()==entity.getParameterId()&&entity.getDeviceTypeId()==entity.getDeviceTypeId()){
+				updateList.add(entity);
+				return true;
+			}
+		return false;
+	}
 
 	public DeviceResult getDevice(int id) {
 		DeviceResult device = deviceDAO.findById(id);
+		device.setList(deviceParameterValueDAO.getDeviceParameterValues(id));
 		return device;
 	}
-
-	public int deleteDevice(Integer id) {
-		if(id==null){
+	@Transactional
+	public int deleteDevice(int id) {
+		if(id<1){
 			throw new NameException("ID不能为空");
 		}
 		Device device = deviceDAO.findById(id);
@@ -78,6 +91,7 @@ public class DeviceServiceImpl implements DeviceService{
 			throw new NameException("用户不存在");
 		}
 		int n = deviceDAO.delete(id);
+		deviceParameterValueDAO.delete(id);
 		return n;
 	}
 

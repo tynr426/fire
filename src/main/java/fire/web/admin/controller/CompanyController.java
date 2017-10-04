@@ -14,7 +14,7 @@ import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
 
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/admin/company")
 public class CompanyController extends ExceptionController{
 	@Resource
 	private CompanyService companyService;

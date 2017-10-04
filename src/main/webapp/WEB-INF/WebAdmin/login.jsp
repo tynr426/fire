@@ -6,7 +6,7 @@ contentType="text/html; charset=utf-8" %>
 <jsp:include page="Meta.html"></jsp:include>
 <script type="text/javascript">
 	$(function(){
-		login.loadValidate($("#VerifyCode")[0]);
+		validateCode.loadValidate($("#VerifyCode")[0]);
 		document.onkeydown = function(e){ 
 		    var ev = document.all ? window.event : e;
 		    if(ev.keyCode==13) {
@@ -40,7 +40,7 @@ contentType="text/html; charset=utf-8" %>
 				<!--//店铺名称-->
 				<!--控件层-->
 				<div class="login-text">
-					<ul>
+					<ul id="loginForm">
 						<li class="user-name"><i class="icon name-icon"></i>
 							<div class="inputbox">
 								<input type="text" id="UserName" name="UserName" maxlength="12" value="admin"
@@ -60,7 +60,7 @@ contentType="text/html; charset=utf-8" %>
 							</div>
 							<div class="code" title="点击刷新">
 								<img title="点击刷新图片" id="VerifyCode"
-									onclick="login.loadValidate(this)"
+									onclick="validateCode.loadValidate(this)"
 									nolazy="0">
 							</div>
 						</li>
@@ -103,4 +103,5 @@ contentType="text/html; charset=utf-8" %>
 </html>
 <script type="text/javascript">
 	$("#verifyCode").focus();
+	
 </script>

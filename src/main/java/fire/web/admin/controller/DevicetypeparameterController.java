@@ -13,7 +13,7 @@ import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
 
 @Controller
-@RequestMapping("/dtp")
+@RequestMapping("/admin/dtp")
 public class DevicetypeparameterController extends ExceptionController{
 	@Resource
 	private DevicetypeparameterService devicetypeparameterService;

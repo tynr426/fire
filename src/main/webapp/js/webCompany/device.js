@@ -1,6 +1,7 @@
 var device={
 		deviceTypeList:null,
 		addDevice:function(obj){
+			if(!$("#DeviceForm").formValidate())return;
 			var DeviceTypeId = $("#DeviceTypeId").val().trim();
 			var Manufacturer = $("#Manufacturer").val().trim();
 			var Model = $("#Model").val().trim();
@@ -27,13 +28,13 @@ var device={
 
 								$.each(child.candidate,function(j,jitem){
 									p_id="parameter_"+child.id+"_"+j;
-									multipleValue.push("'"+p_id+"':'"+$("#"+p_id).val()+"'");
+									multipleValue.push("\""+p_id+"\":\""+$("#"+p_id).val()+"\"");
 
 								});	
 							}
 							else{
 								p_id="parameter_"+child.id;
-								multipleValue.push("'"+p_id+"':'"+$("#"+p_id).val()+"'");
+								multipleValue.push("\""+p_id+"\":\""+$("#"+p_id).val()+"\"");
 
 							}
 							arrValue.push({
@@ -54,7 +55,7 @@ var device={
 				devicejson['list[' + index +'].Value']=arrValue[index].Value;
 			}
 			$.ajax({
-				url:path+"/device/add.do",
+				url:companypath+"/device/add.do",
 				type:"post",
 				data:devicejson,
 				dataType:"json",
@@ -75,7 +76,7 @@ var device={
 		},
 		getDevice:function(Id){
 			$.ajax({
-				url:path+"/manager/getManager.do",
+				url:companypath+"/manager/getManager.do",
 				type:"post",
 				data:{Id:Id},
 				dataType:"json",
@@ -89,7 +90,7 @@ var device={
 				}
 			});
 		},
-		deviceFinish:function(){
+		initControll:function(){
 			var arrFloor=[],arrPo=[],arrPassage=[];
 			for(var i=-2;i<34;i++){
 				arrFloor.push("<option value='"+i+"'>"+i+"</option>");
@@ -113,19 +114,45 @@ var device={
 
 				$("#DeviceTypeId").append(deviceType.join());
 			}
+		},
+		deviceFinish:function(){
+			device.initControll();
+			var json=arguments[0];
+			if(json.id==undefined) return ;
 
-			//var json=arguments[0];
+			$.each(json,function(key,value){
+
+				$("#"+key.firstUpperCase()).val(value);
+
+			});
+			$("#DeviceTypeId").change();
+			if(json.list!=undefined){
+				$.each(json.list,function(i,item){
+					$.each($.parseJSON(item.value),function(key,value){
+						$("#"+key).val(value);
+					}) ;
+				});
+			}
 		},
 		//获得所有的设备类型
 		getDeviceType:function(){
 			$.ajax({
-				url:path+"/deviceType/findAll.do",
+				url:companypath+"/deviceType/findAll.do",
 				async:false,
 				type:"post",
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
 						device.deviceTypeList=result.data;
+						$.each(device.deviceTypeList,function(i,item){
+							$.each(item.list,function(j,jitem){
+								if(jitem.editorType=="texts"||jitem.editorType=="select"||item.editorType=="checkbox"){
+									jitem.candidate=$.parseJSON(jitem.candidate);
+								}
+							});
+
+						});
+
 					}
 				}
 
@@ -133,6 +160,7 @@ var device={
 		},
 		/*选择设备类型是触发的事件*/
 		deviceTypeChange:function(obj){
+			$(".tr_parameter").remove();
 			if(obj.value!=""){
 				if(device.deviceTypeList!=null){
 					$.each(device.deviceTypeList,function(i,item){
@@ -140,14 +168,13 @@ var device={
 							var str="";
 							var template=$("#DeviceTypeParameterFormTemplate").html();
 							for(var i=0;i<item.list.length;i+=2){
-								str+="<tr>";
-								if(item.list.length%2!=0){
-									str+="<tr colspan='3'>";
-								}
+
+								str+="<tr class='tr_parameter'>";
+
 								for(var j=0;j<2&&i+j<item.list.length;j++){
 									var child=item.list[i+j];
-									if(child.editorType=="texts"||child.editorType=="select"){
-										child.candidate=$.parseJSON(child.candidate);
+									if(i+j==item.list.length-1&&item.list.length%2!=0){
+										child.colspan=3;
 									}
 									str+=$("#DeviceTypeParameterFormTemplate").tmpl(child).html();
 
@@ -162,16 +189,62 @@ var device={
 			}
 		},
 		updateDevice:function(obj){
-			var id = $("#ManagerForm").find("#Id").val();
-			var Password = $("#Password").val().trim();
-			var Name = $("#Name").val().trim();
-			var Email = $("#Email").val().trim();
-			var Mobile = $("#Mobile").val().trim();
-			var Position = $("#Position").val().trim();
+			var Id = $("#Id").val().trim();
+			var DeviceTypeId = $("#DeviceTypeId").val().trim();
+			var Manufacturer = $("#Manufacturer").val().trim();
+			var Model = $("#Model").val().trim();
+			var Spec = $("#Spec").val().trim();
+			var Buildings = $("#Buildings").val();
+			var Floor = $("#Floor").val();
+			var Position = $("#Position").val();
+			var Passageway = $("#Passageway").val();
+			var AddTime = $("#AddTime").val();
+			var Detail = $("#Detail").val().trim();
+			var devicejson={Id:Id,DeviceTypeId:DeviceTypeId,Manufacturer:Manufacturer,
+					Model:Model,Spec:Spec,Buildings:Buildings,Floor:Floor,
+					Position:Position,Passageway:Passageway,AddTime:AddTime,
+					Detail:Detail};
+			var arrValue=[];
+			if(device.deviceTypeList!=null){
+				$.each(device.deviceTypeList,function(i,item){
+					if(item.id==DeviceTypeId){	
+						for(var i=0;i<item.list.length;i++){
+							var child=item.list[i];
+							var multipleValue=[];
+							if(child.editorType=="texts"||child.editorType=="checkbox"){
+
+								$.each(child.candidate,function(j,jitem){
+									p_id="parameter_"+child.id+"_"+j;
+									multipleValue.push("\""+p_id+"\":\""+$("#"+p_id).val()+"\"");
+
+								});	
+							}
+							else{
+								p_id="parameter_"+child.id;
+								multipleValue.push("\""+p_id+"\":\""+$("#"+p_id).val()+"\"");
+
+							}
+							arrValue.push({
+								DeviceTypeId:DeviceTypeId,
+								ParameterId:child.id,
+								Description:child.Description,
+								Value:"{"+multipleValue.join(',')+"}"
+							});	
+						}
+					}
+
+				});
+
+			}
+			for(var index=0;index<arrValue.length;index++){
+				devicejson['list[' + index +'].DeviceTypeId']=arrValue[index].DeviceTypeId;
+				devicejson['list[' + index +'].ParameterId']=arrValue[index].ParameterId;
+				devicejson['list[' + index +'].Value']=arrValue[index].Value;
+			}
 			$.ajax({
-				url:path+"/device/update.do",
+				url:companypath+"/device/update.do",
 				type:"post",
-				data:{Id:id,Password:Password,Name:Name,Email:Email,Mobile:Mobile,Position:Position},
+				data:devicejson,
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){

@@ -1,6 +1,8 @@
 var loginCM = {
 
 		login:function(obj){
+			if(!$("#loginForm").formValidate())return;
+			
 			var name = $("#UserName").val().trim();
 			var pwd = $("#password").val().trim();
 			var vCode = $("#verifyCode").val().trim();
@@ -24,13 +26,13 @@ var loginCM = {
 			}
 			if(ok){
 				$.ajax({
-					url:path+"/manager/login.do",
+					url:path+"/company/login.do",
 					type:"post",
 					data:{username:name,password:pwd,verifyCode:vCode,code:code},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
-							window.location.href=path+"/manager/main.do";
+							window.location.href=path+"/company/main.do";
 						}else{	
 							alert(result.message);		
 						}								
@@ -42,13 +44,10 @@ var loginCM = {
 				});
 			}
 		},
-		loadValidate:function(obj){
-			obj.src=path+'/getVerifyCode.do?t='+Math.random().toString();
-		},
 		loginOut:function(){
 			if(confirm("确认退出吗?")){
 				$.ajax({
-					url:path+"/manager/loginOut.do",
+					url:path+"/company/loginOut.do",
 					dataType:"json",
 					success:function(result){
 						window.location.href="toLogin.do";

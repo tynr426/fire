@@ -10,5 +10,5 @@ public interface DeviceParameterValueDAO {
 	public int updateDeviceParameterValue(@Param("dpvs")List<DeviceParameterValue> dpvs);
 	public List<DeviceParameterValue> getDeviceParameterValues(Integer deviceId);
 	public int addDeviceParameterValue(@Param("dpvs")List<DeviceParameterValue> dpvs);
-	public int delete(int id);
+	public int delete(int deviceId);
 }

@@ -920,14 +920,14 @@ var frm = {
             	
             	if(result.state==0){
             		var doc = (result.data);
-            		 if(typeof(opt.finish)=='function'){
-                      	opt.finish(doc);
-                      }
+            	
             		$.each(doc,function(key,item){
             			$("#dialogForm").find("#"+key.firstUpperCase()).val(item);
             			
             		});
-            		
+            		 if(typeof(opt.finish)=='function'){
+                       	opt.finish(doc);
+                       }
             	}
                
             	

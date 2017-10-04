@@ -11,7 +11,7 @@ public interface DeviceDAO {
 	public int updateDevice(Device device);
 	public DeviceResult findById(int id);
 	public int addDevice(DeviceResult device);
-	public int delete(Integer id);
+	public int delete(int id);
 	public int findDeviceCount();
 	public List<DeviceResult> findByLimit(
 			@Param("companyId")int companyId,

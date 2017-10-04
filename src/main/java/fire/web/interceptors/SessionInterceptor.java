@@ -23,7 +23,7 @@ public class SessionInterceptor implements HandlerInterceptor{
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("companyManager");
 		if(obj == null){
-			res.sendRedirect(req.getContextPath()+"/manager/toLogin.do");
+			res.sendRedirect(req.getContextPath()+"/company/toLogin.do");
 			return false;
 		}
 		return true;

@@ -36,6 +36,7 @@ public class CompanyServiceImpl implements CompanyService{
 		Manager manager = new Manager();
 		manager.setUserName(result.getUserName());
 		manager.setPassword(result.getPassword());
+		manager.setStatus(1);
 		manager.setUserId(0);
 		if(n>0){			
 			manager.setCompanyId(result.getId());	
@@ -55,6 +56,7 @@ public class CompanyServiceImpl implements CompanyService{
 		int n = companyDAO.updateCompany(result);
 		if(result.getPassword()!=null){		
 			Manager mg = new Manager();
+			mg.setId(one.getManagerId());
 			mg.setCompanyId(result.getId());
 			mg.setPassword(Md5.getMd5(result.getPassword()));
 			managerDAO.updateManager(mg);
@@ -76,7 +78,7 @@ public class CompanyServiceImpl implements CompanyService{
 			throw new NameException("用户不存在");
 		}
 		int n = companyDAO.delete(Id);
-		return managerDAO.delete(result.getId());
+		return managerDAO.delete(result.getManagerId());
 	}
 
 	public PageInfo<Company> getCompanyPage(int index, int size) {

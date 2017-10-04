@@ -34,8 +34,7 @@
 			Question=#{Question},
 			Answer=#{Answer},
 			Reorder=#{Reorder},
-			Remark=#{Remark},
-			UserId=#{UserId}
+			Remark=#{Remark}
 			WHERE Id = #{Id}
 	</update>
 	<insert id="addManager" parameterType="fire.web.entity.Manager" useGeneratedKeys="true" keyProperty="id">

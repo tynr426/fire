@@ -7,15 +7,15 @@
 		select * from fir_deviceparametervalue
 		WHERE DeviceId = #{deviceId}
 	</select>
-	<update id="updateDeviceParameterValue">
-	  <foreach item="item" collection="dpvs" separator=";" open="" close="" index="">  
+	<update id="updateDeviceParameterValue" parameterType="java.util.List">
+	  <foreach item="item" collection="dpvs" separator=";">  
 		UPDATE fir_deviceparametervalue SET 
 			DeviceId = #{item.DeviceId},
 			DeviceTypeId=#{item.DeviceTypeId},
 			ParameterId=#{item.ParameterId},
 			Value=#{item.Value},
 			Description=#{item.Description}
-			WHERE Id = #{item.Id}
+			WHERE DeviceId = #{item.DeviceId} AND DeviceTypeId=#{item.DeviceTypeId} AND ParameterId=#{item.ParameterId}
 		</foreach>  
 	</update>
 	<insert id="addDeviceParameterValue" parameterType="java.util.List">
@@ -29,6 +29,6 @@
 		 </foreach>  	
 	</insert>
 	<delete id="delete" parameterType="int">
-		delete from fir_deviceparametervalue where Id = #{id}
+		delete from fir_deviceparametervalue where DeviceId = #{deviceId}
 	</delete>
 </mapper>

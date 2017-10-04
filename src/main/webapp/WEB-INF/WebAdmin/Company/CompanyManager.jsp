@@ -117,7 +117,7 @@ contentType="text/html; charset=utf-8" %>
   }); 
  function load(){
 	  var config={
-				url:path+"/company/showCompanyPage.do",
+				url:adminpath+"/company/showCompanyPage.do",
 	  			pageSize:3,
 	  			pageIndex:1,
 	  			barSize:3,

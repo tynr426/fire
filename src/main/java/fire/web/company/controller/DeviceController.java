@@ -15,7 +15,7 @@ import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
 
 @Controller
-@RequestMapping("/device")
+@RequestMapping("/company/device")
 public class DeviceController extends ExceptionController{
 	@RequestMapping("/device.do")
 	public String Api(){
@@ -52,7 +52,7 @@ public class DeviceController extends ExceptionController{
 	}
 	@RequestMapping("/delete.do")
 	@ResponseBody
-	public JsonResult deleteDeviceparameter(Integer id){
+	public JsonResult deleteDeviceparameter(int id){
 		int n = deviceService.deleteDevice(id);
 		return new JsonResult(n);
 	}

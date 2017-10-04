@@ -6,12 +6,14 @@
 	<select id="findById" parameterType="int" resultType="fire.web.entity.DeviceResult">
 		select d.*,t.Name from fir_device d join fir_devicetype t
 		on(d.DeviceTypeId=t.Id)
-		WHERE Id = #{Id}
+		WHERE d.Id = #{id}
 	</select>
 	<update id="updateDevice" parameterType="fire.web.entity.Device">
-		UPDATE fir_device SET 
-			UseTime = #{UseTime},
-			AddTime=#{AddTime},
+		UPDATE fir_device SET
+			DeviceTypeId=#{DeviceTypeId}, 
+			Model=#{Model}, 
+			Manufacturer=#{Manufacturer}, 
+			Spec=#{Spec}, 
 			Buildings=#{Buildings},
 			Floor=#{Floor},
 			Position=#{Position},
@@ -23,16 +25,16 @@
 		insert into fir_device(
 		DeviceTypeId,Model,Manufacturer,
 		Spec,UseTime,AddTime,Buildings,
-		Floor,Position,Passageway,Detail
+		Floor,Position,Passageway,Detail,CompanyId
 		)
 		values(
 		#{DeviceTypeId},#{Model},#{Manufacturer},
 		#{Spec},#{UseTime},#{AddTime},#{Buildings},
-		#{Floor},#{Position},#{Passageway},#{Detail}
+		#{Floor},#{Position},#{Passageway},#{Detail},#{CompanyId}
 		)		
 	</insert>
-	<delete id="delete" parameterType="java.lang.Integer">
-		delete from fir_device where Id = #{Id}
+	<delete id="delete" parameterType="int">
+		delete from fir_device where Id = #{id}
 	</delete>
 	<select id="findDeviceCount" resultType="int">
 		select count(*) from fir_device 

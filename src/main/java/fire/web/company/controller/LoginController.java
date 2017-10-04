@@ -17,12 +17,19 @@ import fire.web.service.PasswordException;
 import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
 
-@Controller
-@RequestMapping("/company/manager")
-public class ManagerController extends ExceptionController{
+@Controller("companyLoginController")
+@RequestMapping("/company")
+public class LoginController extends ExceptionController{
 	@Resource
 	private ManagerService managerService;
-	
+	@RequestMapping("/toLogin.do")
+	public String toLogin(){
+		return "WebCompany/loginCM";
+	}
+	@RequestMapping("/main.do")
+	public String toMain(){
+		return "WebCompany/Main";
+	}
 	@RequestMapping("/manager.do")
 	public String toManager(){
 		return "WebCompany/System/Manager";
@@ -54,43 +61,5 @@ public class ManagerController extends ExceptionController{
 		return new JsonResult(3,e);	
 	}
 	
-	@RequestMapping("/show.do")
-	@ResponseBody
-	public Object getManagerPage(int index,int size){
-		PageInfo<Manager> pi = managerService.getManagerPage(Company.getCompanyId(),index, size);
-		return new JsonResult(pi);	
-	}
-	
-	
-	@RequestMapping("/add.do")
-	@ResponseBody	
-	public JsonResult add(Manager manager){
-		manager.setCompanyId(Company.getCompanyId());
-		int n = managerService.addManager(manager);
-		return new JsonResult(n);	
-	}
-	@RequestMapping("/getManager.do")
-	@ResponseBody	
-	public JsonResult getManager(int id){
-		Manager Manager = managerService.getManager(id);	
-		return new JsonResult(Manager);
-	}
-	@RequestMapping("/update.do")
-	@ResponseBody	
-	public JsonResult updateManager(Manager manager){
-		int n = managerService.updateManager(manager);	
-		return new JsonResult(n);
-	}
-	@RequestMapping("/delete.do")
-	@ResponseBody
-	public JsonResult deleteManager(Integer id){
-		int n = managerService.deleteManager(id);
-		return new JsonResult(n);
-	}
-	@RequestMapping("/switchStatus.do")
-	@ResponseBody
-	public JsonResult updateStatus(Integer id,int status){
-		int n =managerService.updateStatus(id, status);
-		return new JsonResult(n);
-	}
+
 }

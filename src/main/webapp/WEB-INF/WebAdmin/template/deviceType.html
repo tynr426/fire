@@ -49,7 +49,7 @@
     </script>
 <script type="text/x-jquery-tmpl" id="DeviceTypeFormTemplate">
     <div class="custom-table">
-    <div class="form" id="DeviceParameterForm">
+    <div class="form" id="DeviceTypeForm">
         <table border="0" cellpadding="0" cellspacing="0">
             <colgroup>
                 <col style="width: 150px;" />
@@ -99,13 +99,13 @@
                 {{if status==0}}
                 <div class="extend center">
                     <div class="target target-off">
-                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/dtp/switchStatus.do');"></span>
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/admin/dtp/switchStatus.do');"></span>
                     </div>
                 </div>
                 {{else status==1}}
                 <div class="extend center">
                     <div class="target target-on">
-                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/dtp/switchStatus.do');"></span>
+                        <span onclick="frm.switchStatus(this, '${id}', '${status}', function () { var li = $(this).parent('li'); if (li.hasClass('close')) { li.removeClass('close'); } else { li.addClass('close'); } },'/admin/dtp/switchStatus.do');"></span>
                     </div>
                 </div>
                 {{else}}
@@ -123,10 +123,10 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备对应的参数', formId: 'DeviceParameterFormTemplate', id: ${id}, url:'/dtp/getDeviceTypeParameter.do', callback: deviceTypeParameter.updateDeviceTypeParameter , width: 700, height: 400,finish: deviceTypeParameter.updateFinish});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备对应的参数', formId: 'DeviceParameterFormTemplate', id: ${id}, url:'/admin/dtp/getDeviceTypeParameter.do', callback: deviceTypeParameter.updateDeviceTypeParameter , width: 700, height: 400,finish: deviceTypeParameter.updateFinish});">修改</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.del(${id},deviceTypeParameter.openParameterDialog,'/dtp/delete.do');">删除</a>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},deviceTypeParameter.openParameterDialog,'/admin/dtp/delete.do');">删除</a>
                             </li>
                            
                         </ul>
@@ -186,6 +186,7 @@
  									<option value='texts'>多文本框</option>
                                     <option value='select'>下拉框</option>
                                     <option value='textarea'>备注</option>
+                                    <option value='checkbox'>复选框</option>
                                     <option value='upload'>上传</option>
                                 </select>
                             </div>
@@ -242,7 +243,7 @@
             </p>
         </th>
 
-        <td {{if (EditorType=="texts")}}colspan="3"{{/if}}>
+        <td {{if (EditorType=="texts" || EditorType=="select" || EditorType=="checkbox")}}colspan="3"{{/if}}>
             <div class="extend">
                 <div class="inputbox">
                     <input type="text" id="Field" name="Field" value="${Field}" error="输入格式不正确" validate="isnull" />
@@ -250,22 +251,6 @@
                 </div>
             </div>
         </td>
-
-{{if (EditorType!="texts")}}
-        <th>
-            <p class="name">
-                值：
-            </p>
-        </th>
-        <td>
-            <div class="extend">
-                <div class="inputbox">
-                    <input type="text" id="Value" name="Value" value="${Value}" error="输入格式不正确" validate="isnull" />
-
-                </div>
-            </div>
-        </td>
-{{/if}}
 <td>
  <div class="extend">
                 <div class="inputbox">

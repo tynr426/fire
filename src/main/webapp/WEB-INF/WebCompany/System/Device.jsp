@@ -110,7 +110,7 @@ contentType="text/html; charset=utf-8" %>
   }); 
  function load(){
 	  var config={
-				url:path+"/device/show.do",
+				url:companypath+"/device/show.do",
 	  			pageSize:10,
 	  			pageIndex:1,
 	  			barSize:3,

@@ -1,8 +1,8 @@
 
 
-!function ($e, win) {
+!function ($, win) {
     // 初始化表单
-    $e.fn.forms = function (data, callback) {
+    $.fn.forms = function (data, callback) {
 
         if (typeof (this.length) == "undefined" || this.length < 1) return;
 
@@ -42,14 +42,14 @@
 
         function onPromptly(el) {
 
-            var $el = $e(el),
-                valid = $el.attr("validate"),
-                visible = $el.isVisible(),//对元素的可见性进行判断
-                isEditor = $el.attr("editor") == "true";
+            var $l = $(el),
+                valid = $l.attr("validate"),
+                visible = $l.isVisible(),//对元素的可见性进行判断
+                isEditor = $l.attr("editor") == "true";
 
             if (valid && (isEditor || visible)) {
-                $el.bind("blur", function () {
-                    $e.forms.fieldValidate(this, valid.split("|"));
+                $l.bind("blur", function () {
+                    $.forms.fieldValidate(this, valid.split("|"));
                 });
             }
         };
@@ -59,23 +59,23 @@
             var upload = "false";
 
             var id = el.id || el.name,
-                edited = $e(el).attr("editor"); //获取在线修改器是否启用
-            upload = $e(el).attr("uploads"); // 获取上传控件是否启用
+                edited = $(el).attr("editor"); //获取在线修改器是否启用
+            upload = $(el).attr("uploads"); // 获取上传控件是否启用
 
             //加载上传图片控件
             if (upload == "true") {
-                uploads($e(el).attr("divid"), {
-                    id: $e(el).attr("divid"),
+                uploads($(el).attr("divid"), {
+                    id: $(el).attr("divid"),
                     preview_hide: true,
-                    file_upload_limit: $e(el).attr("imgnum"),
-                    file_upload_limit: $e(el).attr("queuenum"),
-                    message: $e(el).attr("message"),
-                    preview_width: $e(el).attr("imgwidth"),
-                    preview_height: $e(el).attr("imgheight"),
-                    functname: $e(el).attr("functname"),
+                    file_upload_limit: $(el).attr("imgnum"),
+                    file_upload_limit: $(el).attr("queuenum"),
+                    message: $(el).attr("message"),
+                    preview_width: $(el).attr("imgwidth"),
+                    preview_height: $(el).attr("imgheight"),
+                    functname: $(el).attr("functname"),
                     post_params: {
-                        module: $e(el).attr("module"),
-                        isprdimg: $e(el).attr("isprdimg") == null ? "" : $e(el).attr("isprdimg")
+                        module: $(el).attr("module"),
+                        isprdimg: $(el).attr("isprdimg") == null ? "" : $(el).attr("isprdimg")
                     }
                 });
             }
@@ -88,7 +88,7 @@
                             // 如果元素给定了宽度或高度将被赋值到编辑器元素上 by xp 20160922
                             if (el.style.width != "") dfs.kindEditor.config.width = el.style.width;
                             if (el.style.height != "") dfs.kindEditor.config.height = el.style.height;
-                            $e.forms.editors[id] = KindEditor.create('#' + id, dfs.kindEditor.config);
+                            $.forms.editors[id] = KindEditor.create('#' + id, dfs.kindEditor.config);
                         }
                     }
                     catch (_) { alert('加载编辑器时异常' + _); throw _; };
@@ -103,19 +103,19 @@
 
 
     // 定义页面的表单元素
-    $e.forms = $e.fn.forms;
+    $.forms = $.fn.forms;
 
-    ECF.extend($e.forms, {
+    $.extend($.forms, {
         // 单个字段验证
         fieldValidate: function (o, types) {
             var vtype = "", val = o.value, isEditor = false;
             //对修改器进行取值判断
-            if ($e(o).attr("editor") == "true") {
+            if ($(o).attr("editor") == "true") {
                 isEditor = true;
-                if (!$e.forms.editors[o.id]) {
+                if (!$.forms.editors[o.id]) {
                     return;
                 }
-                val = $e.forms.editors[o.id].html();
+                val = $.forms.editors[o.id].html();
             }
             for (var i = 0; i < types.length; i++) { //根据类型进行数据的正确性判断
                 vtype = types[i];
@@ -123,27 +123,27 @@
                     vtype = vtype.toLowerCase();
                     if (o.tagName == "SELECT") {
                         if (val == "-1" || val == "") {
-                            var info = $e(o).attr("error") || '请选择信息';
-                            $e.forms.error(o, info);
-                            var pos = $e(o).offset();
+                            var info = $(o).attr("error") || '请选择信息';
+                            $.forms.error(o, info);
+                            var pos = $(o).offset();
                             //此处BUG田小军同志以后更改
                             //window.scroll(0, pos.top);
                             return false;
                         }
                     }
                     else if (o.type == "radio" || o.type == "checkbox") {
-                        val = $e("input[name=" + $e(o).attr("name") + "]:checked", $e(o).parent().parent()[0]).length;
+                        val = $("input[name=" + $(o).attr("name") + "]:checked", $(o).parent().parent()[0]).length;
                         if (val == 0) {
-                            var info = $e(o).attr("error") || '请选择信息';
-                            $e.forms.error(o, info);
+                            var info = $(o).attr("error") || '请选择信息';
+                            $.forms.error(o, info);
                             return false;
                         }
                     }
                     else if (val.trim() == "") { //如果值为空时再处理
                         if (vtype == "isnull") {
-                            var info = $e(o).attr("error") || '此项不能为空';
-                            $e.forms.error(o, info);
-                            var pos = $e(o).offset();
+                            var info = $(o).attr("error") || '此项不能为空';
+                            $.forms.error(o, info);
+                            var pos = $(o).offset();
                             //此处BUG田小军同志以后更改
                             //window.scroll(0, pos.top);
                             return false;
@@ -153,18 +153,18 @@
                         if (validateRegExp[vtype] != null) {
                             var pattern = new RegExp(validateRegExp[vtype]);
                             var ret = pattern.test(val);
-                            var info = $e(o).attr("error") || '数据格式不正确';
+                            var info = $(o).attr("error") || '数据格式不正确';
                             if (!ret) {
-                                $e.forms.error(o, info);
+                                $.forms.error(o, info);
                                 return false;
                             }
                         }
 
                         //验证length属性
-                        var len = $e(o).attr("length");
+                        var len = $(o).attr("length");
 
                         if (len && o.tagName !== "SELECT") {
-                            var valText = $e(o).value();
+                            var valText = $(o).value();
 
                             var slen = 0;
                             if (typeof (valText) == "string") {
@@ -176,15 +176,15 @@
                             maxLen = maxLen || 0;
 
                             if (slen > maxLen || slen < minLen) {
-                                var info = $e(o).attr("error") || '输入超过限定长度';
-                                $e.forms.error(o, info);
+                                var info = $(o).attr("error") || '输入超过限定长度';
+                                $.forms.error(o, info);
                                 return false;
                             }
                         }
                     }
                 }
             }
-            $e.forms.success(o);
+            $.forms.success(o);
             return true;
         },
 
@@ -193,10 +193,10 @@
 
         // 验证成功的时提示
         success: function (o) {
-            var $o = $e(o);
-            var tip = $e("#" + o.id + "_successTip");
+            var $o = $(o);
+            var tip = $("#" + o.id + "_successTip");
             if (tip.length < 1) {
-                tip = $e(document.createElement(dfs.success.tagName));
+                tip = $(document.createElement(dfs.success.tagName));
                 $o.after(tip[0]);
             }
 
@@ -206,18 +206,18 @@
             $o.addClass(dfs.success.cssName);
 
             $o.bind("focus", function () {
-                $e(this).removeClass(dfs.success.cssName);
-                $e("#" + this.id + "_successTip").remove();
+                $(this).removeClass(dfs.success.cssName);
+                $("#" + this.id + "_successTip").remove();
             });
         },
 
         //验证失败提示
         error: function (o, info) {
-            var $o = $e(o);
+            var $o = $(o);
             var id = "#" + $o.attr("id") + "_ErrorTip";
-            var tip = $e(id);
+            var tip = $(id);
             if (tip.length < 1) {
-                tip = $e(document.createElement(dfs.error.tagName));
+                tip = $(document.createElement(dfs.error.tagName));
                 $o.after(tip[0]);
             }
             tip.html(info);
@@ -230,15 +230,15 @@
             //top.pub.error(info,5);
 
             $o.bind("focus", function () {
-                $e(this).removeClass(dfs.error.cssName);
-                $e(id).remove();
+                $(this).removeClass(dfs.error.cssName);
+                $(id).remove();
             });
 
             //获取对象的宽度
             var obj = tip[0];
             while (obj) {
                 //判断是页面的表单提示还是弹出层的表单提示
-                if ($e(obj).hasClass('box_content')) {
+                if ($(obj).hasClass('box_content')) {
                     var _w = tip[0].parentNode.offsetWidth;
 
                     //如果判断他的父级元素高度小于100,那么意味着就会被遮住,这个时候该换方向提示
@@ -257,10 +257,10 @@
                             });
                         }
                     }
-                } else if ($e(obj).hasClass('custom-area')) {
+                } else if ($(obj).hasClass('custom-area')) {
                     //如果判断他的父级元素高度小于40,那么意味着就会被遮住,这个时候该换方向提示
                     if (tip[0].parentNode.offsetTop <= 40) {
-                        var _w = $e(tip[0].parentNode).width();
+                        var _w = $(tip[0].parentNode).width();
                         tip.css({
                             'left': Number(_w + 10) + 'px',
                             'bottom': '1px'
@@ -307,21 +307,21 @@
         }
     }
 
-    ECF.extend($e.fn, {
+    $.extend($.fn, {
 
         // 表单验证
         formValidate: function () {
             var frms = this.find(dfs.tags);
             var vald = true;
             frms.each(function () {
-                var $el = $e(this),
-                valid = $el.attr("validate"),
-                visible = $el.isVisible(),//对元素的可见性进行判断
-                isEditor = $el.attr("editor") == "true",
+                var $l = $(this),
+                valid = $l.attr("validate"),
+                visible = !$l.is(':hidden'),//对元素的可见性进行判断
+                isEditor = $l.attr("editor") == "true",
                 isRadioOrCheckbox = this.type == "radio" || this.type == "checkbox";
 
                 if (valid && (isEditor || isRadioOrCheckbox || visible)) {
-                    var result = $e.forms.fieldValidate(this, valid.split("|"));
+                    var result = $.forms.fieldValidate(this, valid.split("|"));
                     if (!result) {
                         vald = false;
                         return false;
@@ -363,13 +363,13 @@
 
         // 对表单元素进行赋值
         setValues: function (data, callback, args) {
-            if (typeof (data) == "object" && ECF.isXMLDoc(data)) {  //处理XmlDocument对象
+            if (typeof (data) == "object" && $.isXMLDoc(data)) {  //处理XmlDocument对象
                 try {
                     this.find(dfs.tags).each(function () {
                         var el = this,
                         id = this.id || this.name;
                         // 处理var本身不带有name属性的处理
-                        if (!id && el.tagName == "VAR") id = $e(el).attr('name');
+                        if (!id && el.tagName == "VAR") id = $(el).attr('name');
 
                         // 只有id不空的情况下才进行处理
                         if (id) {
@@ -377,11 +377,11 @@
                                 id = el.name || el.id;
                             }
                             // 如果xml的数据对象中有值存在才进行赋值
-                            if ($e.xml.hasNode(data, id, 0)) {
-                                if ($e(this).attr("formatter"))
+                            if ($.xml.hasNode(data, id, 0)) {
+                                if ($(this).attr("formatter"))
                                     setValue(el, data);
                                 else
-                                    setValue(el, $e.xml.getNodeValue(data, id, 0)); //取出xml的值并进行附值,区分节点的大小写
+                                    setValue(el, $.xml.getNodeValue(data, id, 0)); //取出xml的值并进行附值,区分节点的大小写
                             }
                         }
                     });
@@ -398,19 +398,19 @@
                     json = eval('(' + data + ')');
                 }
                 if (!json) return;
-                if (ECF.isArray(json))
+                if ($.isArray(json))
                     json = json[0];
                 this.find(dfs.tags).each(function () { //对元素进行循环附值
                     var id = this.name || this.id;
                     // 处理var本身不带有name属性的处理
-                    if (!id && this.tagName == "VAR") id = $e(this).attr('name');
+                    if (!id && this.tagName == "VAR") id = $(this).attr('name');
 
                     if (id) {
                         if (this.type == "checkbox" || this.type == "radio") {  //判断checkbox,以name为先
                             id = this.name || this.id;
                         }
                         if (typeof (json[id]) != "undefined") { //如果值存在则附值给对象
-                            if ($e(this).attr("formatter"))
+                            if ($(this).attr("formatter"))
                                 setValue(this, json);
                             else
                                 setValue(this, json[id]);
@@ -435,15 +435,15 @@
                 if (typeof (val) != "undefined") {  //如果值存在则附值给对象
 
                     //加载Editor，并赋值
-                    if ($e(el).attr("editor") == "true") {
+                    if ($(el).attr("editor") == "true") {
                         var id = el.id || el.name;
-                        //ecForms.editors[id].html(val);
+                        //$orms.editors[id].html(val);
                     }
 
                     //加载图片，显示图片
-                    if ($e(el).attr("uploads") == "true") {
+                    if ($(el).attr("uploads") == "true") {
                         var id = el.id || el.name;
-                        if (uploads && uploads.setValue) uploads.setValue($e(el).attr("divid"), val);
+                        if (uploads && uploads.setValue) uploads.setValue($(el).attr("divid"), val);
                     }
                     else { //对普通元素进行处理
                         if (el.type == "select-multiple") {
@@ -460,7 +460,7 @@
                             if (el.tagName == 'IMG') {
                                 var imgDomain = imageDomain || ""; //用于处理图片服务器地址配置
                                 el.onload = function () {
-                                    $e(this).scaleZoom();
+                                    $(this).scaleZoom();
                                 };
                                 el.onerror = function () {
                                     el.src = pub.defImgSrc;
@@ -469,8 +469,8 @@
                             }
                             else {
                                 //格式化特性method|arg0,arg1,...
-                                if($e(el).attr("formatter")){
-                                    var formatter = $e(el).attr("formatter").split('|');
+                                if($(el).attr("formatter")){
+                                    var formatter = $(el).attr("formatter").split('|');
                                     var functionName = formatter[0];
                                     if (typeof window[functionName] === "function") {
                                         var vals = [], args = formatter.length > 1 ? formatter[1].split(',') : [];
@@ -479,22 +479,22 @@
                                             vals.push(data);
                                         } else {
                                             for (var i = 0; i < args.length; i++) {
-                                                if (ECF.isXMLDoc(data))
-                                                    vals.push($e.xml.getNodeValue(val, args[i], 0));
+                                                if ($.isXMLDoc(data))
+                                                    vals.push($.xml.getNodeValue(val, args[i], 0));
                                                 else
                                                     vals.push(val[args[i]]);
                                             }
                                         }
                                         var fun = new Function(args, "return " + functionName + "(" + args.join(',') + ")");
-                                        $e(el).value(fun.apply(this, vals));
+                                        $(el).value(fun.apply(this, vals));
                                     } else {
-                                        $e(el).value(val);
+                                        $(el).value(val);
                                     }
                                 }
-                                else if ($e(el).attr("formatfloat") == "true")
-                                    $e(el).value(parseFloat(val).toFixed(2));
+                                else if ($(el).attr("formatfloat") == "true")
+                                    $(el).value(parseFloat(val).toFixed(2));
                                 else
-                                    $e(el).value(val);
+                                    $(el).value(val);
                             }
                         }
                     }
@@ -507,7 +507,7 @@
         formReset: function () {        //重置表单元素的值,如果给定了defaultValue将把defaultValue的值附到控件中
 
             this.find(dfs.tags).each(function (el) {//查找出所有需要处理的元素并获取其默认值,给元素附上默认值
-                var cel = $e(el),
+                var cel = $(el),
                     dval = cel.attr('defaultValue');
                 //判断类型
                 if (el.type === 'text' || el.type === 'hidden') {
@@ -518,12 +518,12 @@
                     var parent = el.parentNode;
                     if (parent.hasAttribute('radio')) {
                         //全部取消马甲
-                        $e(parent).removeClass('checked');
+                        $(parent).removeClass('checked');
                         el.checked = false;
 
                         //给第一个加上马甲
                         if (el.hasAttribute('checked')) {
-                            $e(parent).addClass('checked');
+                            $(parent).addClass('checked');
                             el.checked = true;
                         };
                     };
@@ -532,7 +532,7 @@
                     var parent = el.parentNode;
                     if (parent.hasAttribute('checkbox')) {
                         //全部取消马甲
-                        $e(parent).removeClass('checked');
+                        $(parent).removeClass('checked');
                         el.checked = false;
                     };
                 } else if (el.type === 'select-one') {
@@ -584,7 +584,7 @@
             }
 
             var opt = {};
-            if (arguments.length == 1 && $e.isObject(arguments[0])) {
+            if (arguments.length == 1 && $.isObject(arguments[0])) {
                 opt = arguments[0];
             }
             else {
@@ -612,10 +612,10 @@
                 opt.data = "<action>" + opt.action + "</action>" + opt.data;
             }
 
-            var $btn = $e(opt.button),
+            var $btn = $(opt.button),
                 btnHtml = $btn.html();
 
-            $e.ajax({
+            $.ajax({
                 url: opt.url,
                 dataType: opt.dataType || "xml",
                 data: opt.data,
@@ -633,7 +633,7 @@
 
                     $btn.html(btnHtml);
 
-                    if (ECF.isArray(opt.arguments)) {
+                    if ($.isArray(opt.arguments)) {
                         // 向数组的开头添加元素,在第一位
                         opt.arguments.unshift(arguments);
                     }
@@ -747,12 +747,12 @@
         code: "^[A-Za-z0-9\-\.]+$"         //条码 仅英文和数字
     };
 
-}(ECF, window);
+}($, window);
 
 // 自动初始化表单
-ECF(function () {
-    $e("*[forms]").each(function () {
-        $e(this).forms();
+$(function () {
+    $("*[forms]").each(function () {
+        $(this).forms();
         //alert(this);
     });
 });

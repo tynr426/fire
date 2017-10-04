@@ -1,5 +1,6 @@
 var deviceType={
 		addDeviceType:function(obj){
+			if(!$("#DeviceTypeForm").formValidate())return;
 			var Name = $("#Name").val().trim();
 			var UseTime = $("#UseTime").val();
 			$.ajax({
@@ -39,7 +40,7 @@ var deviceType={
 			});
 		},
 		updateDeviceType:function(obj){
-			var id = $("#DeviceParameterForm").find("#Id").val();
+			var id = $("#DeviceTypeForm").find("#Id").val();
 			var Name = $("#Name").val().trim();
 			var UseTime = $("#UseTime").val().trim();
 			$.ajax({
@@ -83,7 +84,7 @@ var deviceTypeParameter={
 			    title:"设备参数"
 			};
 			  var config={
-						url:path+"/dtp/show.do",
+						url:adminpath+"/dtp/show.do",
 			  			pageSize:30,
 			  			pageIndex:1,
 			  			barSize:3,
@@ -98,6 +99,7 @@ var deviceTypeParameter={
 		editorTypeChange: function (obj) {
 			switch (obj.value) {
 			case "select":
+			case "checkbox":
 			case "texts":
 				$("#ul_body").html("");
 				deviceTypeParameter.addRule();
@@ -148,6 +150,7 @@ var deviceTypeParameter={
 		},
 
 		addDeviceTypeParameter:function(obj){
+			if(!$("#DeviceParameterForm").formValidate())return;
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
 			var Unit = $("#Unit").val().trim();
@@ -166,7 +169,7 @@ var deviceTypeParameter={
 			
 			candidate="["+array.join(",")+"]";
 			$.ajax({
-				url:path+"/dtp/add.do",
+				url:adminpath+"/dtp/add.do",
 				type:"post",
 				data:{Description:Description,EditorType:EditorType,
 					Unit:Unit,Candidate:candidate,Reorder:Reorder,DeviceTypeId:deviceTypeParameter.deviceTypeId},
@@ -188,7 +191,7 @@ var deviceTypeParameter={
 		},
 		getDeviceTypeParameter:function(Id){
 			$.ajax({
-				url:path+"/dtp/getDeviceTypeParameter.do",
+				url:adminpath+"/dtp/getDeviceTypeParameter.do",
 				type:"post",
 				data:{Id:Id},
 				dataType:"json",
@@ -239,7 +242,7 @@ var deviceTypeParameter={
 			
 			candidate="["+array.join(",")+"]";
 			$.ajax({
-				url:path+"/dtp/update.do",
+				url:adminpath+"/dtp/update.do",
 				type:"post",
 				data:{Id:id,Description:Description,
 					EditorType:EditorType,Unit:Unit,

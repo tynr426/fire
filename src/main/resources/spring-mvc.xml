@@ -27,9 +27,9 @@
 	</bean>
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/manager/*.do"/>
-			<mvc:exclude-mapping path="/manager/toLogin.do"/>
-			<mvc:exclude-mapping path="/manager/login.do"/>
+			<mvc:mapping path="/company/*"/>
+			<mvc:exclude-mapping path="/company/toLogin.do"/>
+			<mvc:exclude-mapping path="/company/login.do"/>
 			<bean class="fire.web.interceptors.SessionInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

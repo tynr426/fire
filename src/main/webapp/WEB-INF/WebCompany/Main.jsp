@@ -95,8 +95,8 @@ contentType="text/html; charset=utf-8" %>
                         "Id": 17, "ParentId": 0, "MenuName": "基础信息", "CssClass": "sys", "children": [
                             {
                                 "Id": 1701, "ParentId": 17, "MenuName": "基础信息", "children": [
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "管理员列表", "Link": "/fire/manager/manager.do" },
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "设备列表", "Link": "/fire/device/device.do" }
+                                    { "Id": 170106, "ParentId": 1701, "MenuName": "管理员列表", "Link": "/fire/company/manager/manager.do" },
+                                    { "Id": 170106, "ParentId": 1701, "MenuName": "设备列表", "Link": "/fire/company/device/device.do" }
                                 ]
                             }
                          ]

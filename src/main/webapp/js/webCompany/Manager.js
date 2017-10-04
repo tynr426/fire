@@ -1,5 +1,7 @@
 var manager={
 		addManager:function(obj){
+			if(!$("#ManagerForm").formValidate())return;
+			
 			var UserName = $("#UserName").val().trim();
 			var Password = $("#Password").val().trim();
 			var Name = $("#Name").val().trim();
@@ -7,7 +9,7 @@ var manager={
 			var Mobile = $("#Mobile").val();
 			var Position = $("#Position").val();
 			$.ajax({
-				url:path+"/manager/add.do",
+				url:companypath+"/manager/add.do",
 				type:"post",
 				data:{UserName:UserName,Password:Password,Name:Name,Email:Email,Mobile:Mobile,Position:Position},
 				dataType:"json",
@@ -28,7 +30,7 @@ var manager={
 		},
 		getManager:function(Id){
 			$.ajax({
-				url:path+"/manager/getManager.do",
+				url:companypath+"/manager/getManager.do",
 				type:"post",
 				data:{Id:Id},
 				dataType:"json",
@@ -54,7 +56,7 @@ var manager={
 			var Mobile = $("#Mobile").val().trim();
 			var Position = $("#Position").val().trim();
 			$.ajax({
-				url:path+"/manager/update.do",
+				url:companypath+"/manager/update.do",
 				type:"post",
 				data:{Id:id,Password:Password,Name:Name,Email:Email,Mobile:Mobile,Position:Position},
 					dataType:"json",
