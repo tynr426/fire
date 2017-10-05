@@ -1,0 +1,3 @@
+导出数据必读：
+
+c:\xampp\mysql\bin>mysqldump -u root fire>e:\fire.sql
