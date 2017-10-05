@@ -7,27 +7,27 @@
             <td><div class="string center">${spec}</div></td>
             <td><div class="string">
 {{if buildings!=0}}
-${buildings}∂∞
+${buildings}Ê†ã
 {{/if}}
-${floor}¬•
+${floor}Ê•º
 ${dict.position[(position)]}
 ${dict.passageway[(passageway)]}
 </div></td>
             <td><div class="string center">${addTime}</div></td>
             <td>
                 <div class="tool" onmouseover="tableTool.over(this);" onmouseout="tableTool.out(this);">
-                    <!--±ÍÃ‚¿∏-->
-                    <p class="name">≤Ÿ◊˜</p>
-                    <!--//±ÍÃ‚¿∏-->
+                    <!--Ê†áÈ¢òÊ†è-->
+                    <p class="name">Êìç‰Ωú</p>
+                    <!--//Ê†áÈ¢òÊ†è-->
 
                     <div class="tool-menu">
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '–ﬁ∏ƒµ•Œª', formId: 'DeviceFormTemplate', id: ${id}, url:'/company/device/getDevice.do', callback: device.updateDevice , width: 700, height: 400,finish: device.deviceFinish});">–ﬁ∏ƒ</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '‰øÆÊîπÂçï‰Ωç', formId: 'DeviceFormTemplate', id: ${id}, url:'/company/device/getDevice.do', callback: device.updateDevice , width: 700, height: 400,finish: device.deviceFinish});">‰øÆÊîπ</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/device/delete.do');">…æ≥˝</a>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/device/delete.do');">Âà†Èô§</a>
                             </li>
                            
                         </ul>
@@ -52,53 +52,53 @@ ${dict.passageway[(passageway)]}
                 <tr>
                     <th>
                         <p class="name rm">
-                            <em class="red">*</em>…Ë±∏¿‡–Õ£∫
+                            <em class="red">*</em>ËÆæÂ§áÁ±ªÂûãÔºö
 <input type="hidden" id="Id" />
                         </p>
                     </th>
                     <td>
                         <div class="selectbox">
                             <select id="DeviceTypeId" onchange="device.deviceTypeChange(this)">
-								<option value="">—°‘Ò…Ë±∏</option>
+								<option value="">ÈÄâÊã©ËÆæÂ§á</option>
 							</select>
                         </div>
                     </td>
 <th>
                         <p class="name rm">
-                            <em class="red">*</em>…˙≤˙≥ßº“£∫
+                            <em class="red">*</em>Áîü‰∫ßÂéÇÂÆ∂Ôºö
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Manufacturer" id="Manufacturer" error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Manufacturer" id="Manufacturer" error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" validate="isnull|username" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
                 <tr>
                  	<th>
                         <p class="name rm">
-                            <em class="red">*</em>–Õ∫≈£∫
+                            <em class="red">*</em>ÂûãÂè∑Ôºö
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Model" id="Model" error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Model" id="Model" error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" validate="isnull|username" maxlength="20" value="" />
                         </div>
                     </td><th>
                         <p class="name rm">
-                            <em class="red">*</em>πÊ∏Ò£∫
+                            <em class="red">*</em>ËßÑÊ†ºÔºö
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Spec" id="Spec" error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Spec" id="Spec" error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" validate="isnull|username" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
 				<tr>
 					<th>
                         <p class="name rm">
-                            <em class="red">*</em>¬º»Î ±º‰£∫
+                            <em class="red">*</em>ÂΩïÂÖ•Êó∂Èó¥Ôºö
                         </p>
                     </th>
                     <td>
@@ -110,13 +110,13 @@ ${dict.passageway[(passageway)]}
                 <tr>
 					<th>
                             <p class="name">
-                                <em class="red">*</em>∞≤◊∞Œª÷√£∫
+                                <em class="red">*</em>ÂÆâË£Ö‰ΩçÁΩÆÔºö
                             </p>
                         </th>
                         <td colspan="3">
 							<div class="selectbox">
                                 <select id="Buildings" name="Buildings" validate="isnull" >
-									<option value="0">∂∞ ˝</option>
+									<option value="0">Ê†ãÊï∞</option>
                                     <option value='1'>1</option>
  									<option value='2'>2</option>
                                     <option value='3'>3</option>
@@ -131,21 +131,21 @@ ${dict.passageway[(passageway)]}
                             </div>
                             <div class="selectbox">
                                 <select id="Floor" name="Floor" validate="isnull" >
-                                 <option value="">¬•≤„</option>
+                                 <option value="">Ê•ºÂ±Ç</option>
                                 </select>
                             </div>
  							<div class="selectbox">
                                 <select id="Position" name="Position" validate="isnull" >
-                                  <option value="">∑ΩŒª</option>
+                                  <option value="">Êñπ‰Ωç</option>
                                 </select>
                             </div>
 							<div class="selectbox">
                                 <select id="Passageway" name="Passageway" validate="isnull" >
-                                 <option value="">Õ®µ¿</option>
+                                 <option value="">ÈÄöÈÅì</option>
                                 </select>
                             </div>
   							<div class="inputbox">
-                            <input type="text" name="Detail" id="Detail" error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" placeholder="œÍœ∏Œª÷√" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Detail" id="Detail" error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" placeholder="ËØ¶ÁªÜ‰ΩçÁΩÆ" validate="isnull|username" maxlength="20" value="" />
                         </div>
                 </td>
                 </tr>
@@ -160,20 +160,20 @@ ${dict.passageway[(passageway)]}
   <tr>
     <th>
         <p class="name rm">
-            <em class="red">*</em>${description}£∫
+            <em class="red">*</em>${description}Ôºö
         </p>
     </th>
 
     <td colspan="${colspan}">
  {{if (editorType=="text")}}
  <div class="inputbox">
-            <input type="text"  id="parameter_${id}" error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" validate="isnull|username" maxlength="20" value="" />
+            <input type="text"  id="parameter_${id}" error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" validate="isnull|username" maxlength="20" value="" />
   </div>
   {{else (editorType=="texts")}}
 
 	{{each(j,child) candidate}}
  	<div class="inputbox">
-     <input type="text" style='width:40px' placeholder="${child.Field}" id="parameter_${id}_${j}"  error=" ‰»Î∏Ò Ω≤ª’˝»∑£°" validate="isnull|username" maxlength="20" value="" />
+     <input type="text" style='width:40px' placeholder="${child.Field}" id="parameter_${id}_${j}"  error="ËæìÂÖ•Ê†ºÂºè‰∏çÊ≠£Á°ÆÔºÅ" validate="isnull|username" maxlength="20" value="" />
   	</div>
 	{{/each}}
  {{else (editorType=="select")}}

@@ -2,29 +2,29 @@
 <script id="topMenuTemplate" type="text/template">
 
                 <li salemenu="list" class="${CssClass}">
-                    <!--±êÌâ°´Å¥-->
+                    <!--æ ‡é¢˜æŒ‰é’®-->
                     <a class="name" href="javascript:void(0);">
                         <i class="icon"></i>
                         <em class="tips">${MenuName}</em>
                         <i class="cover"></i>
                     </a>
-                    <!--//±êÌâ°´Å¥-->
-                    <!--Õ¹Ê¾²ã-->
+                    <!--//æ ‡é¢˜æŒ‰é’®-->
+                    <!--å±•ç¤ºå±‚-->
                     <div class="show" salemenu="showbox">
                         <ol>
 						{{each(j,second) children}}
                             <li salemenu="showlist" >
                                
-                                <!--¶þ¼¶²Ëµ¥-->
+                                <!--äºŒçº§èœå•-->
                                 <div class="list-menu">
                                     <a href="javascript:void(0);" class="level-2-btn">
                                         <i class="arrow"></i>
                                         <em>${second.MenuName}</em>
                                     </a>
                                 </div>
-                                <!--//¶þ¼¶²Ëµ¥-->
+                                <!--//äºŒçº§èœå•-->
                               
-                                <!--Èý¼¶²Ëµ¥-->
+                                <!--ä¸‰çº§èœå•-->
                                 <div class="item-box" salemenu-level="box">
 								{{each(k,third) second.children}}
                                    {{if third.Target == '_bank'}}
@@ -38,12 +38,12 @@
                                    	{{/if}}
                                    {{/each}}
                                 </div>
-                                <!--//Èý¼¶²Ëµ¥-->
+                                <!--//ä¸‰çº§èœå•-->
                             </li>
                           {{/each}}
                         </ol>
                     </div>
-                    <!--//Õ¹Ê¾²ã-->
+                    <!--//å±•ç¤ºå±‚-->
                 </li>
                    
 </script>
