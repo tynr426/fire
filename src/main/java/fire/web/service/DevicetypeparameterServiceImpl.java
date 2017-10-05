@@ -21,7 +21,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 	public int addDevicetypeparameter(Devicetypeparameter dtp) throws NameException {
 		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(), dtp.getId());
 		if(one!=null){
-			throw new NameException("¸ÃÀàĞÍÒÑ´æÔÚ");
+			throw new NameException("è¯¥ç±»å‹å·²å­˜åœ¨");
 		}
 		dtp.setStatus(1);
 		int n = dTPDAO.addDTP(dtp);
@@ -31,7 +31,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 	public int updateDevicetypeparameter(Devicetypeparameter dtp) {
 		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(), dtp.getId());
 		if(one!=null){
-			throw new NameException("¸ÃÀàĞÍÒÑ´æÔÚ");
+			throw new NameException("è¯¥ç±»å‹å·²å­˜åœ¨");
 		}
 		int n = dTPDAO.updateDevicetypeparameter(dtp);
 		return n;
@@ -44,11 +44,11 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 
 	public int deleteDevicetypeparameter(Integer id) {
 		if(id==null){
-			throw new NameException("ID²»ÄÜÎª¿Õ");
+			throw new NameException("IDä¸èƒ½ä¸ºç©º");
 		}
 		Devicetypeparameter devicetypeparameter = dTPDAO.findById(id);
 		if(devicetypeparameter==null){
-			throw new NameException("ÓÃ»§²»´æÔÚ");
+			throw new NameException("ç”¨æˆ·ä¸å­˜åœ¨");
 		}
 		int n = dTPDAO.delete(id);
 		return n;
@@ -66,7 +66,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 	public int updateStatus(Integer id, int status) {
 		Devicetypeparameter devicetypeparameter = dTPDAO.findById(id);
 		if(devicetypeparameter==null){
-			throw new NameException("id²»´æÔÚ");
+			throw new NameException("idä¸å­˜åœ¨");
 		}
 		devicetypeparameter.setStatus(status);
 		int n = dTPDAO.updateStatus(devicetypeparameter);

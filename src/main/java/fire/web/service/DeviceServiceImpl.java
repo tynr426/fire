@@ -22,12 +22,12 @@ public class DeviceServiceImpl implements DeviceService{
 	@Resource
 	private DeviceParameterValueDAO deviceParameterValueDAO;
 	/*
-	 * Ìí¼ÓÉè±¸
+	 * æ·»åŠ è®¾å¤‡
 	 * */
 	@Transactional
 	public int addDevice(DeviceResult device){
 		if(device.getCompanyId()==0)
-			throw new NameException("Ã»ÓĞ»ñÈ¡µ½¹«Ë¾Ãû³Æ");
+			throw new NameException("æ²¡æœ‰è·å–åˆ°å…¬å¸åç§°");
 		int n = deviceDAO.addDevice(device);
 		List<DeviceParameterValue> list=device.getList();
 		if(list!=null){
@@ -39,18 +39,18 @@ public class DeviceServiceImpl implements DeviceService{
 		return n;
 	}
 	/*
-	 * ĞŞ¸ÄÉè±¸
+	 * ä¿®æ”¹è®¾å¤‡
 	 * 
 	 * */
 	@Transactional
 	public int updateDevice(DeviceResult device) {
 		int n = deviceDAO.updateDevice(device);
 		List<DeviceParameterValue> list=device.getList();
-		//Ö®Ç°²ÎÊı
+		//ä¹‹å‰å‚æ•°
 		List<DeviceParameterValue> preParameterList=deviceParameterValueDAO.getDeviceParameterValues(device.getId());
-		//´ıÌí¼ÓµÄ
+		//å¾…æ·»åŠ çš„
 		List<DeviceParameterValue> addList=new ArrayList<DeviceParameterValue>();
-		//´ıĞŞ¸ÄµÄ
+		//å¾…ä¿®æ”¹çš„
 		List<DeviceParameterValue> updateList=new ArrayList<DeviceParameterValue>();
 		for(DeviceParameterValue entity:list){
 			entity.setDeviceId(device.getId());
@@ -84,11 +84,11 @@ public class DeviceServiceImpl implements DeviceService{
 	@Transactional
 	public int deleteDevice(int id) {
 		if(id<1){
-			throw new NameException("ID²»ÄÜÎª¿Õ");
+			throw new NameException("IDä¸èƒ½ä¸ºç©º");
 		}
 		Device device = deviceDAO.findById(id);
 		if(device==null){
-			throw new NameException("ÓÃ»§²»´æÔÚ");
+			throw new NameException("ç”¨æˆ·ä¸å­˜åœ¨");
 		}
 		int n = deviceDAO.delete(id);
 		deviceParameterValueDAO.delete(id);

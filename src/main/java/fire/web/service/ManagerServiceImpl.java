@@ -27,41 +27,41 @@ public class ManagerServiceImpl implements ManagerService{
 	private CompanyDAO companyDAO;
 	
 	@HttpConstraint
-	//µÇÂ¼
+	//ç™»å½•
 	public Manager login(String username, String password,String verifyCode,String code) throws VerifyCodeException,NameException, PasswordException{
 		if(username==null||username.trim().isEmpty()){
-			throw new NameException("ÓÃ»§ÃûÎª¿Õ");
+			throw new NameException("ç”¨æˆ·åä¸ºç©º");
 		}
 		if(password==null||password.trim().isEmpty()){
-			throw new PasswordException("ÃÜÂëÎª¿Õ");
+			throw new PasswordException("å¯†ç ä¸ºç©º");
 		}
 		Manager manager = managerDao.findByUserName(username);
 		if(manager==null){
-			throw new NameException("ÓÃ»§Ãû²»ÕıÈ·");
+			throw new NameException("ç”¨æˆ·åä¸æ­£ç¡®");
 		}
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		Cookie cookie = CookiesUtil.getCookieByName(request, "VerifyCode");
 		
         if(cookie==null){
-            throw new VerifyCodeException("ÑéÖ¤Âë¹ıÆÚ");   
+            throw new VerifyCodeException("éªŒè¯ç è¿‡æœŸ");   
         }else if(!verifyCode.equals(cookie.getValue().toLowerCase())){
-        	throw new VerifyCodeException("ÑéÖ¤ÂëÊäÈë´íÎó"); 
+        	throw new VerifyCodeException("éªŒè¯ç è¾“å…¥é”™è¯¯"); 
         }
         Company company = companyDAO.findById(manager.getCompanyId());
         if(company==null){
-        	throw new NameException("ID²»ÄÜÎª¿Õ");
+        	throw new NameException("IDä¸èƒ½ä¸ºç©º");
         }
         if(!company.getCode().equals(code)){
-        	throw new NameException("¹«Ë¾´úÂëÊäÈë²»ÕıÈ·");
+        	throw new NameException("å…¬å¸ä»£ç è¾“å…¥ä¸æ­£ç¡®");
         }
 		String md5Password = Md5.getMd5(password);
 		if(manager.getPassword().equals(md5Password)){
 			return manager;
 		}else {
-			throw new PasswordException("ÃÜÂë´íÎó");
+			throw new PasswordException("å¯†ç é”™è¯¯");
 		}
 	}
-	//ÍË³öµÇÂ¼
+	//é€€å‡ºç™»å½•
 	public int loginOut() {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		request.getSession().removeAttribute("manager");
@@ -70,7 +70,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public int addManager(Manager manager) throws NameException {
 		Manager one = managerDao.findByName(manager.getName());
 		if(one!=null){
-			throw new NameException("¸ÃÓÃ»§ÒÑ´æÔÚ");
+			throw new NameException("è¯¥ç”¨æˆ·å·²å­˜åœ¨");
 		}
 		Company company = companyDAO.findById(manager.getCompanyId());
 		if(company!=null){
@@ -85,7 +85,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public int updateManager(Manager manager) {
 		Manager one = managerDao.findNameIsExist(manager.getName(),manager.getId());
 		if(one!=null){
-			throw new NameException("¸ÃÓÃ»§ÒÑ´æÔÚ");
+			throw new NameException("è¯¥ç”¨æˆ·å·²å­˜åœ¨");
 		}
 		manager.setPassword(Md5.getMd5(manager.getPassword()));
 		int n = managerDao.updateManager(manager);
@@ -98,7 +98,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public int deleteManager(int id) {
 		Manager manager = managerDao.findById(id);
 		if(manager==null){
-			throw new NameException("Id²»´æÔÚ");
+			throw new NameException("Idä¸å­˜åœ¨");
 		}
 		int n = managerDao.delete(id);
 		return n;
@@ -114,7 +114,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public int updateStatus(Integer id, int status) {
 		Manager manager = managerDao.findById(id);
 		if(manager==null){
-			throw new NameException("id²»´æÔÚ");
+			throw new NameException("idä¸å­˜åœ¨");
 		}
 		manager.setStatus(status);
 		int n = managerDao.updateStatus(manager);

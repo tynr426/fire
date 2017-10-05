@@ -8,28 +8,28 @@ import fire.web.entity.Devicetypeparameter;
 
 
 public interface DTPDAO {
-	//Í¨¹ıDTPname²éÑ¯DTP
+	//é€šè¿‡DTPnameæŸ¥è¯¢DTP
 	public Devicetypeparameter getDTPByDescription(
 			@Param("description")String description,
 			@Param("id")int id );
-	//²éÑ¯DTP¼¯ºÏ
+	//æŸ¥è¯¢DTPé›†åˆ
 	public List<Devicetypeparameter> findAll();
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	public int updateDevicetypeparameter(Devicetypeparameter dtp);
-	//Í¨¹ıid²éÑ¯
+	//é€šè¿‡idæŸ¥è¯¢
 	public Devicetypeparameter findById(int Id);
-	//Ìí¼Ó
+	//æ·»åŠ 
 	public int addDTP(Devicetypeparameter dtp);
-	//É¾³ı
+	//åˆ é™¤
 	public int delete(Integer Id);
-	//²éÑ¯¼ÆÊı
+	//æŸ¥è¯¢è®¡æ•°
 	public int findDevicetypeparameterCount();
-	//·ÖÒ³²éÑ¯
+	//åˆ†é¡µæŸ¥è¯¢
 	public List<Devicetypeparameter> findByLimit(
 			@Param("deviceTypeId")int deviceTypeId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
-	//ĞŞ¸Ä×´Ì¬Öµ
+	//ä¿®æ”¹çŠ¶æ€å€¼
 	public int updateStatus(Devicetypeparameter dtp);
 }

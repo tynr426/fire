@@ -3,14 +3,14 @@ package fire.web.utils;
 
 
 public enum GroupName {
-	Administrator("ºóÌ¨¹ÜÀíÔ±","1"),
-	Factories("ÖÆÔìÉÌ","2"),
-	Passport("»áÔ±","3"),
-	Resale("ÁãÊÛÏà¹Ø","4"),
-	Store("ÁãÊÛÉÌ","5"),
-	Supplier("¹©Ó¦ÉÌ","6"),
-	Wholesale("Åú·¢Ïà¹Ø","7"),
-	Zone("ÔËÓªÉÌ","8");
+	Administrator("åå°ç®¡ç†å‘˜","1"),
+	Factories("åˆ¶é€ å•†","2"),
+	Passport("ä¼šå‘˜","3"),
+	Resale("é›¶å”®ç›¸å…³","4"),
+	Store("é›¶å”®å•†","5"),
+	Supplier("ä¾›åº”å•†","6"),
+	Wholesale("æ‰¹å‘ç›¸å…³","7"),
+	Zone("è¿è¥å•†","8");
 	private String typeName;
 	private String typeCode;
 	

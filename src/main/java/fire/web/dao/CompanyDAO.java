@@ -9,29 +9,29 @@ import fire.web.entity.CompanyResult;
 
 
 public interface CompanyDAO {
-	//Í¨¹ıCompanyname²éÑ¯Company
+	//é€šè¿‡CompanynameæŸ¥è¯¢Company
 	public Company getCompanyByCode(String code);
-	//²éÑ¯Company¼¯ºÏ
+	//æŸ¥è¯¢Companyé›†åˆ
 	public List<Company> findAll();
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	public int updateCompany(Company company);
-	//Í¨¹ıid²éÑ¯
+	//é€šè¿‡idæŸ¥è¯¢
 	public CompanyResult findById(int Id);
-	//Í¨¹ıTel²éÑ¯
+	//é€šè¿‡TelæŸ¥è¯¢
 	public Company findByTel(
 			@Param("Id")int Id,
 			@Param("mobile")String mobile);
-	//Ìí¼Ó
+	//æ·»åŠ 
 	public int addCompany(Company company);
-	//É¾³ı
+	//åˆ é™¤
 	public int delete(Integer Id);
-	//²éÑ¯¼ÆÊı
+	//æŸ¥è¯¢è®¡æ•°
 	public int findCompanyCount();
-	//·ÖÒ³²éÑ¯
+	//åˆ†é¡µæŸ¥è¯¢
 	public List<Company> findByLimit(
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
-	//ĞŞ¸Ä×´Ì¬Öµ
+	//ä¿®æ”¹çŠ¶æ€å€¼
 	public int updateStatus(Company company);
 }

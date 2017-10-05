@@ -1,6 +1,5 @@
 package fire.web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,7 +27,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 	public int addDeviceType(DeviceType dt) throws NameException {
 		DeviceType one = deviceTypeDAO.getDeviceType(dt.getName());
 		if(one!=null){
-			throw new NameException("¸ÃÀàĞÍÒÑ´æÔÚ");
+			throw new NameException("è¯¥ç±»å‹å·²å­˜åœ¨");
 		}
 		dt.setStatus(1);
 		int n = deviceTypeDAO.addDeviceType(dt);
@@ -38,7 +37,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 	public int updateDeviceType(DeviceType dt) {
 		DeviceType one = deviceTypeDAO.findById(dt.getId());
 		if(one==null){
-			throw new NameException("¸ÃÀàĞÍ²»´æÔÚ");
+			throw new NameException("è¯¥ç±»å‹ä¸å­˜åœ¨");
 		}
 		int n = deviceTypeDAO.updateDeviceType(dt);
 		return n;
@@ -51,11 +50,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 
 	public int deleteDeviceType(Integer id) {
 		if(id==null){
-			throw new NameException("ID²»ÄÜÎª¿Õ");
+			throw new NameException("IDä¸èƒ½ä¸ºç©º");
 		}
 		DeviceType deviceType = deviceTypeDAO.findById(id);
 		if(deviceType==null){
-			throw new NameException("ÓÃ»§²»´æÔÚ");
+			throw new NameException("ç”¨æˆ·ä¸å­˜åœ¨");
 		}
 		int n = deviceTypeDAO.delete(id);
 		return n;
@@ -73,7 +72,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 	public int updateStatus(Integer id, int status) {
 		DeviceType deviceType = deviceTypeDAO.findById(id);
 		if(deviceType==null){
-			throw new NameException("id²»´æÔÚ");
+			throw new NameException("idä¸å­˜åœ¨");
 		}
 		deviceType.setStatus(status);
 		int n = deviceTypeDAO.updateStatus(deviceType);

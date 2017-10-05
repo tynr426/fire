@@ -28,7 +28,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int addCompany(CompanyResult result) throws NameException {
 		Company one = companyDAO.getCompanyByCode(result.getCode());
 		if(one!=null){
-			throw new NameException("ÓÃ»§ÒÑ´æÔÚ");
+			throw new NameException("ç”¨æˆ·å·²å­˜åœ¨");
 		}
 		result.setStatus(1);
 		result.setSN(Md5.createID());
@@ -42,8 +42,8 @@ public class CompanyServiceImpl implements CompanyService{
 			manager.setCompanyId(result.getId());	
 		}
 		Manager entity=managerDAO.getManagerByCompanyId(manager.getCompanyId());
-		if(entity!=null)  throw new  NameException("ÓÃ»§ÒÑ¾­´æÔÚ");
-		if(manager.getPassword()==""||manager.getUserName()=="") throw new NameException("ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ");
+		if(entity!=null)  throw new  NameException("ç”¨æˆ·å·²ç»å­˜åœ¨");
+		if(manager.getPassword()==""||manager.getUserName()=="") throw new NameException("ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º");
 		manager.setPassword(Md5.getMd5(manager.getPassword()));
 		return managerDAO.addManager(manager);
 	}
@@ -51,7 +51,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int updateCompany(CompanyResult result) {
 		CompanyResult one = companyDAO.findById(result.getId());
 		if(one==null){
-			throw new NameException("ÓÃ»§²»´æÔÚ");
+			throw new NameException("ç”¨æˆ·ä¸å­˜åœ¨");
 		}
 		int n = companyDAO.updateCompany(result);
 		if(result.getPassword()!=null){		
@@ -71,11 +71,11 @@ public class CompanyServiceImpl implements CompanyService{
 	@Transactional
 	public int deleteCompany(Integer Id) {
 		if(Id==null){
-			throw new NameException("ID²»ÄÜÎª¿Õ");
+			throw new NameException("IDä¸èƒ½ä¸ºç©º");
 		}
 		CompanyResult result = companyDAO.findById(Id);
 		if(result==null){
-			throw new NameException("ÓÃ»§²»´æÔÚ");
+			throw new NameException("ç”¨æˆ·ä¸å­˜åœ¨");
 		}
 		int n = companyDAO.delete(Id);
 		return managerDAO.delete(result.getManagerId());
@@ -93,7 +93,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int updateStatus(Integer id, int status) {
 		Company company = companyDAO.findById(id);
 		if(company==null){
-			throw new NameException("id²»´æÔÚ");
+			throw new NameException("idä¸å­˜åœ¨");
 		}
 		company.setStatus(status);
 		int n = companyDAO.updateStatus(company);

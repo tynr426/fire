@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 public class EnumHelperUtil{
 	/**
-	 * indexOf,´«ÈëµÄ²ÎÊıordinalÖ¸µÄÊÇĞèÒªµÄÃ¶¾ÙÖµÔÚÉè¶¨µÄÃ¶¾ÙÀàÖĞµÄË³Ğò£¬ÒÔ0¿ªÊ¼
+	 * indexOf,ä¼ å…¥çš„å‚æ•°ordinalæŒ‡çš„æ˜¯éœ€è¦çš„æšä¸¾å€¼åœ¨è®¾å®šçš„æšä¸¾ç±»ä¸­çš„é¡ºåºï¼Œä»¥0å¼€å§‹
 	 * T
 	 * @param clazz
 	 * @param ordinal
@@ -15,7 +15,7 @@ public class EnumHelperUtil{
 		return (T) clazz.getEnumConstants()[ordinal];
 	}
 	/**
-	 * nameOf,´«ÈëµÄ²ÎÊınameÖ¸µÄÊÇÃ¶¾ÙÖµµÄÃû³Æ£¬Ò»°ãÊÇ´óĞ´¼ÓÏÂ»®ÏßµÄ
+	 * nameOf,ä¼ å…¥çš„å‚æ•°nameæŒ‡çš„æ˜¯æšä¸¾å€¼çš„åç§°ï¼Œä¸€èˆ¬æ˜¯å¤§å†™åŠ ä¸‹åˆ’çº¿çš„
 	 * T
 	 * @param clazz
 	 * @param name
@@ -26,11 +26,11 @@ public class EnumHelperUtil{
 		return (T) Enum.valueOf(clazz, name);
 	}
 	/**
-	 * Ê¹ÓÃÃ¶¾ÙÀàĞÍ¶ÔÓ¦µÄtypeCode»ñÈ¡Ã¶¾ÙÀàĞÍ
+	 * ä½¿ç”¨æšä¸¾ç±»å‹å¯¹åº”çš„typeCodeè·å–æšä¸¾ç±»å‹
 	 * T
-	 * @param clazz    Ã¶¾ÙÀàµÄclass
-	 * @param getTypeCodeMethodName  ´«ÈëµÄtypeCodeµÄget·½·¨
-	 * @param typeCode  ´«ÈëµÄtypeCodeÖµ£¬Õâ¸ö·½·¨ÎªStringÀàĞÍ
+	 * @param clazz    æšä¸¾ç±»çš„class
+	 * @param getTypeCodeMethodName  ä¼ å…¥çš„typeCodeçš„getæ–¹æ³•
+	 * @param typeCode  ä¼ å…¥çš„typeCodeå€¼ï¼Œè¿™ä¸ªæ–¹æ³•ä¸ºStringç±»å‹
 	 * @return
 	 */
 	public static <T extends Enum<T>> T getByStringTypeCode(Class<T> clazz,String getTypeCodeMethodName, String typeCode){
@@ -61,11 +61,11 @@ public class EnumHelperUtil{
 	}
 
 	/**
-	 * Ê¹ÓÃÃ¶¾ÙÀàĞÍ¶ÔÓ¦µÄtypeCode»ñÈ¡Ã¶¾ÙÀàĞÍ
+	 * ä½¿ç”¨æšä¸¾ç±»å‹å¯¹åº”çš„typeCodeè·å–æšä¸¾ç±»å‹
 	 * T
-	 * @param clazz    Ã¶¾ÙÀàµÄclass
-	 * @param getTypeCodeMethodName  ´«ÈëµÄtypeCodeµÄget·½·¨
-	 * @param typeCode  ´«ÈëµÄtypeCodeÖµ£¬Õâ¸ö·½·¨ÎªIntegerÀàĞÍ
+	 * @param clazz    æšä¸¾ç±»çš„class
+	 * @param getTypeCodeMethodName  ä¼ å…¥çš„typeCodeçš„getæ–¹æ³•
+	 * @param typeCode  ä¼ å…¥çš„typeCodeå€¼ï¼Œè¿™ä¸ªæ–¹æ³•ä¸ºIntegerç±»å‹
 	 * @return
 	 */
 	public static <T extends Enum<T>> T getByIntegerTypeCode(Class<T> clazz,String getTypeCodeMethodName, Integer typeCode){
@@ -95,11 +95,11 @@ public class EnumHelperUtil{
 		return result;
 	}
 	/**
-	 * Ê¹ÓÃÃ¶¾ÙÀàĞÍ¶ÔÓ¦µÄtypeName»ñÈ¡Ã¶¾ÙÀàĞÍ
+	 * ä½¿ç”¨æšä¸¾ç±»å‹å¯¹åº”çš„typeNameè·å–æšä¸¾ç±»å‹
 	 * T
-	 * @param clazz   Ã¶¾ÙÀàµÄclass 
-	 * @param getTypeNameMethodName  ´«ÈëµÄtypeNameµÄget·½·¨
-	 * @param typeName ´«ÈëµÄtypeNameÖµ£¬Õâ¸ö·½·¨ÎªStringÀàĞÍ
+	 * @param clazz   æšä¸¾ç±»çš„class 
+	 * @param getTypeNameMethodName  ä¼ å…¥çš„typeNameçš„getæ–¹æ³•
+	 * @param typeName ä¼ å…¥çš„typeNameå€¼ï¼Œè¿™ä¸ªæ–¹æ³•ä¸ºStringç±»å‹
 	 * @return
 	 */
 	public static <T extends Enum<T>> T getByStringTypeName(Class<T> clazz,String getTypeNameMethodName, String typeName){

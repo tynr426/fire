@@ -15,22 +15,22 @@ public interface ManagerDAO {
 	public Manager findNameIsExist(
 			@Param("name")String name,
 			@Param("id")int id);
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	public int updateManager(Manager Manager);
-	//Í¨¹ıid²éÑ¯
+	//é€šè¿‡idæŸ¥è¯¢
 	public Manager findById(int Id);
-	//Ìí¼Ó
+	//æ·»åŠ 
 	public int addManager(Manager Manager);
-	//É¾³ı
+	//åˆ é™¤
 	public int delete(Integer Id);
-	//²éÑ¯¼ÆÊı
+	//æŸ¥è¯¢è®¡æ•°
 	public int findManagerCount();
-	//·ÖÒ³²éÑ¯
+	//åˆ†é¡µæŸ¥è¯¢
 	public List<Manager> findByLimit(
 			@Param("companyId")int companyId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
-	//ĞŞ¸Ä×´Ì¬Öµ
+	//ä¿®æ”¹çŠ¶æ€å€¼
 	public int updateStatus(Manager Manager);
 }

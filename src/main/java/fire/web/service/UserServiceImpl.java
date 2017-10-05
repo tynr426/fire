@@ -21,25 +21,25 @@ public class UserServiceImpl implements UserService{
 	private UserDAO userDAO;
 	
 	@HttpConstraint
-	//µÇÂ¼
+	//ç™»å½•
 	public User login(String username, String password,String verifyCode) throws VerifyCodeException,NameException, PasswordException{
 		if(username==null||username.trim().isEmpty()){
-			throw new NameException("ÓÃ»§ÃûÎª¿Õ");
+			throw new NameException("ç”¨æˆ·åä¸ºç©º");
 		}
 		if(password==null||password.trim().isEmpty()){
-			throw new PasswordException("ÃÜÂëÎª¿Õ");
+			throw new PasswordException("å¯†ç ä¸ºç©º");
 		}
 		User user = userDAO.findByUserName(username);
 		if(user==null){
-			throw new NameException("ÓÃ»§Ãû²»ÕıÈ·");
+			throw new NameException("ç”¨æˆ·åä¸æ­£ç¡®");
 		}
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		Cookie cookie = CookiesUtil.getCookieByName(request, "VerifyCode");
 		
         if(cookie==null){
-            throw new VerifyCodeException("ÑéÖ¤Âë¹ıÆÚ");   
+            throw new VerifyCodeException("éªŒè¯ç è¿‡æœŸ");   
         }else if(!verifyCode.equals(cookie.getValue().toLowerCase())){
-        	throw new VerifyCodeException("ÑéÖ¤ÂëÊäÈë´íÎó"); 
+        	throw new VerifyCodeException("éªŒè¯ç è¾“å…¥é”™è¯¯"); 
         }
         
 		String md5Password = Md5.getMd5(password);
@@ -47,10 +47,10 @@ public class UserServiceImpl implements UserService{
 			request.getSession().setAttribute("user",user );
 			return user;
 		}else {
-			throw new PasswordException("ÃÜÂë´íÎó");
+			throw new PasswordException("å¯†ç é”™è¯¯");
 		}
 	}
-	//ÍË³öµÇÂ¼
+	//é€€å‡ºç™»å½•
 	public int loginOut() {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		request.getSession().removeAttribute("user");

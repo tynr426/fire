@@ -8,33 +8,33 @@ import fire.web.entity.User;
 
 
 public interface UserDAO {
-	//Í¨¹ıusername²éÑ¯User
+	//é€šè¿‡usernameæŸ¥è¯¢User
 	public User findByUserName(String username);
-	//²éÑ¯User¼¯ºÏ
+	//æŸ¥è¯¢Useré›†åˆ
 	public List<User> findAll();
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	public int updateUser(User user);
-	//Í¨¹ıemail²éÑ¯
+	//é€šè¿‡emailæŸ¥è¯¢
 	public User findByEmail(
 			@Param("Id")int Id,
 			@Param("email")String email);
-	//Í¨¹ıid²éÑ¯
+	//é€šè¿‡idæŸ¥è¯¢
 	public User findById(int Id);
-	//Í¨¹ıMobile²éÑ¯
+	//é€šè¿‡MobileæŸ¥è¯¢
 	public User findByMobile(
 			@Param("Id")int Id,
 			@Param("mobile")String mobile);
-	//Ìí¼Ó
+	//æ·»åŠ 
 	public int addUser(User user);
-	//É¾³ı
+	//åˆ é™¤
 	public int delete(Integer Id);
-	//²éÑ¯¼ÆÊı
+	//æŸ¥è¯¢è®¡æ•°
 	public int findUserCount();
-	//·ÖÒ³²éÑ¯
+	//åˆ†é¡µæŸ¥è¯¢
 	public List<User> findByLimit(
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
-	//ĞŞ¸Ä×´Ì¬Öµ
+	//ä¿®æ”¹çŠ¶æ€å€¼
 	public int updateStatus(User user);
 }
