@@ -246,7 +246,7 @@
         <td {{if (EditorType=="texts" || EditorType=="select" || EditorType=="checkbox")}}colspan="3"{{/if}}>
             <div class="extend">
                 <div class="inputbox">
-                    <input type="text" id="Field" name="Field" value="${Field}"  validate="" />
+                    <input type="text" id="Field" name="Field" value="${Field}"  validate="isnull" error="不能为空！"/>
 
                 </div>
             </div>
