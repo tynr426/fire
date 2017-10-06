@@ -20,7 +20,28 @@
 <servlet-mapping> 
     <servlet-name>springmvc</servlet-name> 
     <url-pattern>*.do</url-pattern> 
-</servlet-mapping>
+</servlet-mapping> 
+<servlet>
+	<servlet-name>RouteServlet</servlet-name>
+	<servlet-class>fire.web.ops.Route</servlet-class>
+</servlet>
+  <servlet-mapping>  
+    <servlet-name>RouteServlet</servlet-name>  
+    <url-pattern>/Route</url-pattern>  
+  </servlet-mapping>  
+<!--   <servlet>
+        <servlet-name>context</servlet-name>
+        <servlet-class>org.springframework.web.context.ContextLoaderServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+  </servlet> -->
+<context-param> 
+<param-name>contextConfigLocation</param-name> 
+<param-value>classpath:spring-*.xml</param-value> 
+</context-param> 
+
+<listener> 
+<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+</listener> 
 <filter>
   	<filter-name>encodingFilter</filter-name>
   	<filter-class>
