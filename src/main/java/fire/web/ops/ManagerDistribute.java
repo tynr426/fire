@@ -9,15 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import fire.web.service.ManagerService;
+import fire.web.utils.JsonResult;
 
-public class ManagerDistribute extends HttpServlet {
+public class ManagerDistribute extends Distribute {
+
+	public ManagerDistribute(ServletContext context) {
+		super(context);
+	}
+
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,20 +29,20 @@ public class ManagerDistribute extends HttpServlet {
 		String userName=req.getParameter("UserName");
 		String password=req.getParameter("Password");
 		String code=req.getParameter("Code");
-		managerService.login(userName, password, "111111", code);
+	resp.getWriter().write(new JsonResult(getManagerService().login(userName, password, code)).toString());
+
 	}
 
 
 	private ManagerService managerService; 
 
-    public  ManagerDistribute(ServletContext context) 
-    {  
-	    WebApplicationContext wac = null;   
-	    wac = WebApplicationContextUtils.getWebApplicationContext(context);  
-	    if(wac!=null){
-	    managerService=(ManagerService)wac.getBean("managerService");
-	    }
-	    
-    } 
+	
+	public ManagerService getManagerService() {
+		if( managerService==null){
+			managerService=getServiceIml("managerService");
+		}
+		return managerService;
+	}
+
 
 }

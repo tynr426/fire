@@ -28,7 +28,7 @@ public class Route extends HttpServlet {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
 		String str=req.getParameter("method");
-		ManagerDistribute distribute=null;
+		Distribute distribute=null;
 		if(str.equals("company.login")){
 
 			distribute=new ManagerDistribute(this.getServletContext());

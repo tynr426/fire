@@ -30,7 +30,7 @@ public class ManagerController extends ExceptionController{
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public Object login(String username,String password,String verifyCode,String code,HttpSession session){
-		Manager manager = managerService.login(username, password,verifyCode,code);
+		Manager manager = managerService.login(username, password,code);
 		session.setAttribute("companyManager", manager);
 		return new JsonResult(manager);
 	}

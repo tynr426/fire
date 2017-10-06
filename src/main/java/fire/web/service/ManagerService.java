@@ -7,7 +7,7 @@ import fire.web.service.VerifyCodeException;
 import fire.web.utils.PageInfo;
 
 public interface ManagerService {
-	public Manager login(String username,String password,String verifyCode,String code) throws VerifyCodeException,NameException,PasswordException;
+	public Manager login(String username,String password,String code) throws VerifyCodeException,NameException,PasswordException;
 	public int loginOut();
 	public int addManager(Manager manager)throws NameException;
 	public int updateManager(Manager manager);

@@ -28,7 +28,7 @@ public class ManagerServiceImpl implements ManagerService{
 	
 	@HttpConstraint
 	//登录
-	public Manager login(String username, String password,String verifyCode,String code) throws VerifyCodeException,NameException, PasswordException{
+	public Manager login(String username, String password,String code) throws VerifyCodeException,NameException, PasswordException{
 		if(username==null||username.trim().isEmpty()){
 			throw new NameException("用户名为空");
 		}
@@ -39,14 +39,7 @@ public class ManagerServiceImpl implements ManagerService{
 		if(manager==null){
 			throw new NameException("用户名不正确");
 		}
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		Cookie cookie = CookiesUtil.getCookieByName(request, "VerifyCode");
-		
-        if(cookie==null){
-            throw new VerifyCodeException("验证码过期");   
-        }else if(!verifyCode.equals(cookie.getValue().toLowerCase())){
-        	throw new VerifyCodeException("验证码输入错误"); 
-        }
+
         Company company = companyDAO.findById(manager.getCompanyId());
         if(company==null){
         	throw new NameException("ID不能为空");
