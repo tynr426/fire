@@ -27,6 +27,13 @@ public class Manager {
 	private Date AddTime;
 	private String Remark;
 	private int UserId;
+	private String Token;
+	public String getToken() {
+		return Token;
+	}
+	public void setToken(String token) {
+		Token = token;
+	}
 	public Manager(){
 		
 	}
@@ -202,7 +209,7 @@ public class Manager {
 				+ LoginIP + ", LoginTime=" + LoginTime + ", LastLoginIP=" + LastLoginIP + ", LastLoginTime="
 				+ LastLoginTime + ", LoginCount=" + LoginCount + ", Question=" + Question + ", Answer=" + Answer
 				+ ", Reorder=" + Reorder + ", Status=" + Status + ", AddTime=" + AddTime + ", Remark=" + Remark
-				+ ", UserId=" + UserId + "]";
+				+ ", UserId=" + UserId + ", Token=" + Token + "]";
 	}
 	
 }

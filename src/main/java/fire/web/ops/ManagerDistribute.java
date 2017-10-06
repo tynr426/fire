@@ -29,14 +29,15 @@ public class ManagerDistribute extends Distribute {
 		String userName=req.getParameter("UserName");
 		String password=req.getParameter("Password");
 		String code=req.getParameter("Code");
-	resp.getWriter().write(new JsonResult(getManagerService().login(userName, password, code)).toString());
+		resp.setContentType("text/javascript; charset=utf-8"); 
+		resp.getWriter().write(new JsonResult(getManagerService().login(userName, password, code)).toString());
 
 	}
 
 
 	private ManagerService managerService; 
 
-	
+
 	public ManagerService getManagerService() {
 		if( managerService==null){
 			managerService=getServiceIml("managerService");

@@ -16,6 +16,7 @@ import fire.web.entity.Company;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;
+import fire.web.utils.Authorize;
 import fire.web.utils.CookiesUtil;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
@@ -49,6 +50,7 @@ public class ManagerServiceImpl implements ManagerService{
         }
 		String md5Password = Md5.getMd5(password);
 		if(manager.getPassword().equals(md5Password)){
+			manager.setToken(Authorize.getCompanyToken(manager, 1));
 			return manager;
 		}else {
 			throw new PasswordException("密码错误");
