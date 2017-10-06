@@ -17,8 +17,13 @@ import fire.web.utils.JsonResult;
 
 public class ManagerDistribute extends Distribute {
 
+
+	private ManagerService managerService; 
 	public ManagerDistribute(ServletContext context) {
 		super(context);
+		if( managerService==null){
+			managerService=getServiceIml("managerService");
+		}
 	}
 
 
@@ -30,19 +35,7 @@ public class ManagerDistribute extends Distribute {
 		String password=req.getParameter("Password");
 		String code=req.getParameter("Code");
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		resp.getWriter().write(new JsonResult(getManagerService().login(userName, password, code)).toString());
-
-	}
-
-
-	private ManagerService managerService; 
-
-
-	public ManagerService getManagerService() {
-		if( managerService==null){
-			managerService=getServiceIml("managerService");
-		}
-		return managerService;
+		resp.getWriter().write(new JsonResult(managerService.login(userName, password, code)).toString());
 	}
 
 
