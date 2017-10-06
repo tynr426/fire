@@ -1,6 +1,6 @@
 var login = {
 
-		login:function(){
+		login:function(obj){
 			if(!$("#loginForm").formValidate())return;
 			var name = $("#UserName").val().trim();
 			var pwd = $("#password").val().trim();
@@ -41,10 +41,10 @@ var login = {
 		loginOut:function(){
 			if(confirm("确认退出吗?")){
 				$.ajax({
-					url:path+"/user/loginOut.do",
+					url:path+"/admin/loginOut.do",
 					dataType:"json",
 					success:function(result){
-						window.location.href="login";
+						window.location.href="toLogin.do";
 					},
 					error:function(){
 						alert(arguments);
