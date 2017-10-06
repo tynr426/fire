@@ -77,7 +77,7 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="UseTime" id="UseTime" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" />
+                            <input type="text" name="UseTime" id="UseTime" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" validate="isnull" error="请选择时间！"/>
                         </div>
                     </td>
                 </tr>
@@ -163,12 +163,12 @@
                     </td>
 <th>
                         <p class="name rm">
-                            <em class="red">*</em>使用单位：
+                            	使用单位：
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Unit" id="Unit" error="输入格式不正确！" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Unit" id="Unit" validate="true|username" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
@@ -181,7 +181,7 @@
                         </th>
                         <td>
                             <div class="selectbox">
-                                <select id="EditorType" name="EditorType" validate="isnull" onchange="deviceTypeParameter.editorTypeChange(this)">
+                                <select id="EditorType" name="EditorType" validate="isnull" error="请选择编辑类型！" onchange="deviceTypeParameter.editorTypeChange(this)">
                                     <option value='text'>单文本框</option>
  									<option value='texts'>多文本框</option>
                                     <option value='select'>下拉框</option>
@@ -194,12 +194,12 @@
                         </td>
                     <th>
                         <p class="name">
-                            <em class="red">*</em>排序：
+                            	排序：
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Reorder" id="Reorder" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                            <input type="text" name="Reorder" id="Reorder"  error="输入格式不正确！" validate="true|intege1" maxlength="20" value="" />
                         </div>
                     </td>
       			
@@ -246,7 +246,7 @@
         <td {{if (EditorType=="texts" || EditorType=="select" || EditorType=="checkbox")}}colspan="3"{{/if}}>
             <div class="extend">
                 <div class="inputbox">
-                    <input type="text" id="Field" name="Field" value="${Field}" error="输入格式不正确" validate="isnull" />
+                    <input type="text" id="Field" name="Field" value="${Field}"  validate="" />
 
                 </div>
             </div>

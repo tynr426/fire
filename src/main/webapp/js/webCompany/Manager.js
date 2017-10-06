@@ -47,8 +47,10 @@ var manager={
 		updateFinish:function(){
 			var json=arguments[0];
 			$("#UserName").parent().html(json.userName);
+			$("#Password").val("");
 		},
 		updateManager:function(obj){
+			if(!$("#ManagerForm").formValidate())return;
 			var id = $("#ManagerForm").find("#Id").val();
 			var Password = $("#Password").val().trim();
 			var Name = $("#Name").val().trim();

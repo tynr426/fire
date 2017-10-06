@@ -189,6 +189,7 @@ var device={
 			}
 		},
 		updateDevice:function(obj){
+			if(!$("#DeviceForm").formValidate())return;
 			var Id = $("#Id").val().trim();
 			var DeviceTypeId = $("#DeviceTypeId").val().trim();
 			var Manufacturer = $("#Manufacturer").val().trim();

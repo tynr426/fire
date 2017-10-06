@@ -66,6 +66,7 @@ var company={
 		},
 		//修改用户信息
 		updateCompany:function(obj){
+			if(!$("#CompanyForm").formValidate())return;
 			var Id = $("#CompanyForm").find("#Id").val().trim();
 			console.log(Id);
 			var Name = $("#Name").val().trim();
