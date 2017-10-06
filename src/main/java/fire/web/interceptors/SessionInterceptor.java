@@ -22,6 +22,8 @@ public class SessionInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object arg2) throws Exception {
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("companyManager");
+		String url=req.getRequestURI();
+		String url2=req.getServletPath();
 		if(obj == null){
 			res.sendRedirect(req.getContextPath()+"/company/toLogin.do");
 			return false;

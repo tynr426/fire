@@ -30,7 +30,7 @@ public class LoginController extends ExceptionController{
 	public String toLogin(){
 		return "WebAdmin/login";
 	}
-	@RequestMapping("/main.do")
+	@RequestMapping("/toMain.do")
 	public String toMain(){
 		return "WebAdmin/Main";
 	}

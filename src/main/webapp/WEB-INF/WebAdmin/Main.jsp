@@ -5,7 +5,7 @@ contentType="text/html; charset=utf-8" %>
 <head>
 <title>后台管理</title>
 <jsp:include page="Meta.html"></jsp:include>
-<script type="text/javascript" src="/fire/js/iframe.js">
+<script type="text/javascript" src="/fire/js/webAdmin/iframe.js">
 </script>
 
 </head>

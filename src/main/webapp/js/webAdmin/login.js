@@ -26,7 +26,7 @@ var login = {
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
-							window.location.href=path+"/admin/main.do";
+							window.location.href=path+"/admin/toMain.do";
 						}else{	
 							alert(result.message);		
 						}								
