@@ -85,12 +85,9 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Code" id="Code" value="" maxlength="64" error="" validate="isnull" />
+                            <input type="text" name="Code" id="Code" value="" maxlength="64" error="输入格式不正确" validate="isnull|code" />
                         </div>
                     </td>
-                </tr>
-                <tr>
-                 
                 </tr>
                 <tr>
                     <th>
@@ -99,7 +96,7 @@
                         </p>
                     </th>
                     <td colspan="3">
-                       <div class="selectbox"><select id="Province" name="Province" onchange="" validate="isnull"></select></div><span class="tips"></span><div class="selectbox"><select id="City" name="City" onchange="" validate="isnull"><option value='-1' selected="selected">请选择</option></select></div><span class="tips"></span><div class="selectbox"><select id="Area" name="Area" validate="isnull"><option value='-1' selected="selected">请选择</option></select></div>
+                       <div class="selectbox"><select id="Province" name="Province" onchange="" validate="isnull" error="请选择所在地"></select></div><span class="tips"></span><div class="selectbox"><select id="City" name="City" onchange="" validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div><span class="tips"></span><div class="selectbox"><select id="Area" name="Area" validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div>
                     </td>
       			
                 </tr>
@@ -112,7 +109,7 @@
                     </th>
                     <td colspan="3">
                         <div class="inputbox">
-                            <input type="text" name="Address" id="Address" value="" maxlength="50" validate="isnull" />
+                            <input type="text" name="Address" id="Address" value="" maxlength="50" error="输入格式不正确" validate="isnull|companyaddr" />
                         </div>
                     </td>
                   
@@ -120,22 +117,22 @@
 				<tr>
 			<th>
                         <p class="name">
-                          	联系人：
+                          	<em class="red">*</em>联系人：
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Atten" id="Atten" error="输入格式不正确！" validate="isnull" value="" maxlength="20" />
+                            <input type="text" name="Atten" id="Atten" error="输入格式不正确！" validate="isnull|realname" value="" maxlength="20" />
                         </div>
                     </td>
   <th>
                         <p class="name">
-                            联系电话：
+                            <em class="red">*</em>联系电话：
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Tel" id="Tel" error="输入格式不正确！" validate="true|Tel" value="" maxlength="20" />
+                            <input type="text" name="Tel" id="Tel" error="请输入正确的号码！" validate="isnull|tel" value="" maxlength="20" />
                         </div>
                     </td>
 				</tr>
@@ -147,7 +144,7 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="UserName" id="UserName" value="" maxlength="50" validate="isnull" />
+                            <input type="text" name="UserName" id="UserName" value="" error="输入格式不正确！" maxlength="50"  validate="isnull|username" />
                         </div>
                     </td>
       <th>
@@ -157,8 +154,12 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="password" name="Password" id="Password" value="" maxlength="50" validate="isnull" />
+  							<input type="password" name="Password" id="Password1" value=""  style="display:none" />
+                            <input type="password" name="Password" id="Password" value="" error="输入格式不正确！" maxlength="50" validate="true|password" />
                         </div>
+					<span  class="tips">
+						默认为:000000
+					</span>
                     </td>
                 </tr>
             </tbody>

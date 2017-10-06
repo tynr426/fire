@@ -23,8 +23,10 @@
 		WHERE Id = #{Id}
 	</select>
 	<update id="updateManager" parameterType="fire.web.entity.Manager">
-		UPDATE com_manager SET
-			Password=#{Password},
+		UPDATE com_manager SET		
+        <if test="Password != null and Password != ''">
+            Password=#{Password},
+        </if>
 			Position=#{Position},
 			Name = #{Name},
 			NickName=#{NickName},

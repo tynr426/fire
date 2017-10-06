@@ -82,7 +82,9 @@ public class ManagerServiceImpl implements ManagerService{
 		if(one!=null){
 			throw new NameException("该用户已存在");
 		}
-		manager.setPassword(Md5.getMd5(manager.getPassword()));
+		if(manager.getPassword()!=null&&!manager.getPassword().isEmpty()){	
+			manager.setPassword(Md5.getMd5(manager.getPassword()));
+		}
 		int n = managerDao.updateManager(manager);
 		return n;
 	}

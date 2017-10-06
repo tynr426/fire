@@ -33,6 +33,9 @@ public class CompanyServiceImpl implements CompanyService{
 		result.setStatus(1);
 		result.setSN(Md5.createID());
 		int n = companyDAO.addCompany(result);
+		if(result.getPassword()==null||result.getPassword().isEmpty()){
+			result.setPassword("000000");
+		}
 		Manager manager = new Manager();
 		manager.setUserName(result.getUserName());
 		manager.setPassword(result.getPassword());
@@ -54,7 +57,7 @@ public class CompanyServiceImpl implements CompanyService{
 			throw new NameException("用户不存在");
 		}
 		int n = companyDAO.updateCompany(result);
-		if(result.getPassword()!=null){		
+		if(result.getPassword()!=null&&!result.getPassword().isEmpty()){		
 			Manager mg = new Manager();
 			mg.setId(one.getManagerId());
 			mg.setCompanyId(result.getId());

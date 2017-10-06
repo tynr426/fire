@@ -58,7 +58,7 @@ ${dict.passageway[(passageway)]}
                     </th>
                     <td>
                         <div class="selectbox">
-                            <select id="DeviceTypeId" onchange="device.deviceTypeChange(this)">
+                            <select id="DeviceTypeId" onchange="device.deviceTypeChange(this)" error="请选择设备！" validate="isnull">
 								<option value="">选择设备</option>
 							</select>
                         </div>
@@ -82,7 +82,7 @@ ${dict.passageway[(passageway)]}
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Model" id="Model" error="输入格式不正确！" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Model" id="Model" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
                         </div>
                     </td><th>
                         <p class="name rm">
@@ -91,7 +91,7 @@ ${dict.passageway[(passageway)]}
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Spec" id="Spec" error="输入格式不正确！" validate="isnull|username" maxlength="20" value="" />
+                            <input type="text" name="Spec" id="Spec" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
@@ -103,7 +103,7 @@ ${dict.passageway[(passageway)]}
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="AddTime" id="AddTime" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" />
+                            <input type="text" name="AddTime" id="AddTime" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" error="输入格式不正确！" validate="isnull"/>
                         </div>
                     </td>
 				</tr>				
@@ -115,8 +115,8 @@ ${dict.passageway[(passageway)]}
                         </th>
                         <td colspan="3">
 							<div class="selectbox">
-                                <select id="Buildings" name="Buildings" validate="isnull" >
-									<option value="0">栋数</option>
+                                <select id="Buildings" name="Buildings" validate="isnull" error="输入格式不正确！">
+									<option value="">栋数</option>
                                     <option value='1'>1</option>
  									<option value='2'>2</option>
                                     <option value='3'>3</option>

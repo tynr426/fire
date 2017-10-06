@@ -67,7 +67,7 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="UserName" id="UserName" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                            <input type="text" name="UserName" id="UserName" error="输入格式不正确！" validate="isnull|username" maxlength="20" value="" />
                         </div>
                     </td>
 <th>
@@ -78,7 +78,7 @@
                     <td>
                         <div class="inputbox">
                             <input type="hidden" id="Id" name="Id" value="" />
-                             <input type="password" name="Password" id="Password" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                             <input type="password" name="Password" id="Password" error="输入格式不正确！" validate="true|password" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Name" id="Name" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                            <input type="text" name="Name" id="Name" error="输入格式不正确！" validate="isnull|realname" maxlength="20" value="" />
                         </div>
                     </td>
 <th>
@@ -100,7 +100,7 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                             <input type="text" name="Email" id="Email" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                             <input type="text" name="Email" id="Email" error="输入格式不正确！" validate="isnull|email" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>
@@ -112,17 +112,17 @@
                     </th>
                     <td>
                         <div class="inputbox">
-                            <input type="text" name="Mobile" id="Mobile" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                            <input type="text" name="Mobile" id="Mobile" error="输入格式不正确！" validate="isnull|tel" maxlength="20" value="" />
                         </div>
                     </td>
 <th>
                         <p class="name rm">
-                            <em class="red">*</em>负责区域：
+							负责区域：
                         </p>
                     </th>
                     <td>
                         <div class="inputbox">
-                             <input type="text" name="Position" id="Position" error="输入格式不正确！" validate="isnull" maxlength="20" value="" />
+                             <input type="text" name="Position" id="Position"  validate="" maxlength="20" value="" />
                         </div>
                     </td>
                 </tr>

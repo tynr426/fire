@@ -40,6 +40,7 @@ var deviceType={
 			});
 		},
 		updateDeviceType:function(obj){
+			if(!$("#DeviceTypeForm").formValidate())return;
 			var id = $("#DeviceTypeForm").find("#Id").val();
 			var Name = $("#Name").val().trim();
 			var UseTime = $("#UseTime").val().trim();
@@ -223,6 +224,7 @@ var deviceTypeParameter={
 		        }
 		},
 		updateDeviceTypeParameter:function(obj){
+			if(!$("#DeviceParameterForm").formValidate())return;
 			var id = $("#DeviceParameterForm").find("#Id").val();
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
