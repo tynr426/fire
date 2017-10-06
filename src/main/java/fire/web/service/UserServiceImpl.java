@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	
 	@HttpConstraint
 	//登录
-	public User login(String username, String password,String verifyCode) throws VerifyCodeException,NameException, PasswordException{
+	public User login(String username, String password) throws NameException, PasswordException{
 		if(username==null||username.trim().isEmpty()){
 			throw new NameException("用户名为空");
 		}
@@ -32,19 +32,9 @@ public class UserServiceImpl implements UserService{
 		User user = userDAO.findByUserName(username);
 		if(user==null){
 			throw new NameException("用户名不正确");
-		}
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		Cookie cookie = CookiesUtil.getCookieByName(request, "VerifyCode");
-		
-        if(cookie==null){
-            throw new VerifyCodeException("验证码过期");   
-        }else if(!verifyCode.equals(cookie.getValue().toLowerCase())){
-        	throw new VerifyCodeException("验证码输入错误"); 
-        }
-        
+		}   
 		String md5Password = Md5.getMd5(password);
 		if(user.getPassword().equals(md5Password)){			
-			request.getSession().setAttribute("user",user );
 			return user;
 		}else {
 			throw new PasswordException("密码错误");
