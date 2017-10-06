@@ -18,7 +18,7 @@ public class AccessFilter implements Filter{
 
 	public void destroy() {
 	}
-	private String login="/login.jsp";
+	private String login="/WebAdmin/login.jsp";
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -29,7 +29,7 @@ public class AccessFilter implements Filter{
 			chain.doFilter(request, response);
 			return;
 		}
-		User user = (User) session.getAttribute("loginUser");
+		User user = (User) session.getAttribute("User");
 		if(user==null){
 			res.sendRedirect(req.getContextPath()+login);
 			return;
