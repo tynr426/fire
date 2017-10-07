@@ -99,6 +99,12 @@ contentType="text/html; charset=utf-8" %>
                                     { "Id": 170106, "ParentId": 1701, "MenuName": "单位管理", "Link": "/fire/admin/company/Company.do" },
                                     { "Id": 170107, "ParentId": 1701, "MenuName": "设备类型", "Link": "/fire/deviceType/DeviceType.do" }
                                 ]
+                            },
+                            {
+                                "Id": 1702, "ParentId": 17, "MenuName": "微商城", "children": [
+                                    { "Id": 170206, "ParentId": 1702, "MenuName": "基础授权", "Link": "/fire/admin/social/toWechatSet.do" },
+                                    { "Id": 170207, "ParentId": 1702, "MenuName": "自定义菜单", "Link": "/fire/deviceType/DeviceType.do" }
+                                ]
                             }
                          ]
                     }
