@@ -1,3 +1,41 @@
+/*====================================*/
+/* Table: soc_wechataccount           */
+/*====================================*/
+create table soc_wechataccount
+(
+    Id    int not null auto_increment,
+    FKId    int not null,
+    FKFlag    smallint not null,
+    Name    varchar(100) not null,
+    HeaderSrc    varchar(500),
+    OriginalId    varchar(100),
+    Account    varchar(100),
+    Catering    smallint,
+    BindAccount    varchar(200),
+    OpenId    varchar(200),
+    AppId    varchar(200),
+    Secret    varchar(200),
+    Token    varchar(200),
+    EncodingAESKey    varchar(200),
+    AccessToken    varchar(1000),
+    AccessTime    datetime,
+    ExpireTime    datetime,
+    Country    varchar(100),
+    Province    varchar(100),
+    City    varchar(100),
+    Area    varchar(100),
+    Intro    varchar(1000),
+    Followers    int,
+    Qrcode    varchar(500),
+    Industry    varchar(200),
+    Config    text,
+    Status    smallint default 1,
+    AddTime    datetime,
+    Remark    text,
+    FKWay    smallint not null default 1,
+    primary key (Id)
+);
+
 -- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
 --
 -- Host: localhost    Database: localhost
