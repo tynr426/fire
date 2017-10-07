@@ -21,7 +21,8 @@
 			Unit=#{Unit},
 			Candidate=#{Candidate},
 			DeviceTypeId=#{DeviceTypeId},
-			Reorder=#{Reorder}
+			Reorder=#{Reorder},
+			Required=#{Required}
 			WHERE Id = #{Id}
 	</update>
 	<insert id="addDTP" parameterType="fire.web.entity.Devicetypeparameter" useGeneratedKeys="true" keyProperty="id">

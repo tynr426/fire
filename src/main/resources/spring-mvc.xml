@@ -26,13 +26,12 @@
     <property name="suffix" value=".jsp"/> 
 	</bean>
 	<mvc:interceptors>
-	<mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/admin/*"/>
 			<mvc:exclude-mapping path="/admin/toLogin.do"/>
 			<mvc:exclude-mapping path="/admin/login.do"/>
 			<bean class="fire.web.interceptors.AdminSessionInterceptor"/>
-		</mvc:interceptor>
-		 
+		</mvc:interceptor>	 
 		<mvc:interceptor>
 			<mvc:mapping path="/company/*"/>
 			<mvc:exclude-mapping path="/company/toLogin.do"/>

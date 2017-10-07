@@ -176,6 +176,32 @@
                 <tr>
 					<th>
                             <p class="name">
+                                <em class="red">*</em>参数是否必填：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="selectbox">
+                                <select id="Required" name="Required" validate="isnull" error="请至少选择一项！">
+                                    <option value='0'>非必填</option>
+ 									<option value='1'>必填</option>
+                                </select>
+                            </div>
+
+                        </td>
+                    <th>
+                        <p class="name">
+                            	排序：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="Reorder" id="Reorder"  c validate="true|intege1" maxlength="20" value="" />
+                        </div>
+                    </td>
+      			
+                </tr>
+				<th>
+                            <p class="name">
                                 <em class="red">*</em>编辑类型：
                             </p>
                         </th>
@@ -192,18 +218,6 @@
                             </div>
 
                         </td>
-                    <th>
-                        <p class="name">
-                            	排序：
-                        </p>
-                    </th>
-                    <td>
-                        <div class="inputbox">
-                            <input type="text" name="Reorder" id="Reorder"  error="输入格式不正确！" validate="true|intege1" maxlength="20" value="" />
-                        </div>
-                    </td>
-      			
-                </tr>
 				<tr style="display:none" id="tr_Candidate">
                         <th>
                             <p class="name">
@@ -246,7 +260,7 @@
         <td {{if (EditorType=="texts" || EditorType=="select" || EditorType=="checkbox")}}colspan="3"{{/if}}>
             <div class="extend">
                 <div class="inputbox">
-                    <input type="text" id="Field" name="Field" value="${Field}"  validate="isnull" error="不能为空！"/>
+                    <input type="text" id="Field" name="Field" value="${Field}"  validate="isnull" error="请添加参数描述！"/>
 
                 </div>
             </div>
