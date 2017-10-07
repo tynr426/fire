@@ -14,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import fire.web.service.ManagerService;
 import fire.web.utils.JsonResult;
+import fire.web.utils.Utils;
 
 public class ManagerDistribute extends Distribute {
 
@@ -35,7 +36,8 @@ public class ManagerDistribute extends Distribute {
 		String password=req.getParameter("Password");
 		String code=req.getParameter("Code");
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		resp.getWriter().write(new JsonResult(managerService.login(userName, password, code)).toString());
+		String str=Utils.objectToJson(new JsonResult(managerService.login(userName, password, code)));
+		resp.getWriter().write(str);
 	}
 
 

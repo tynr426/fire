@@ -1,8 +1,13 @@
 package fire.web.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Manager {
+public class Manager  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7301234958351142733L;
 	private int Id;
 	private int CompanyId;
 	private String UserName;
