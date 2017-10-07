@@ -14,12 +14,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.entity.Manager;
 import fire.web.utils.PageInfo;
+import fire.company.entity.CompanyResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.ManagerService;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;
 import fire.web.utils.Company;
+import fire.web.utils.Constants;
 import fire.web.utils.CookiesUtil;
 import fire.web.utils.JsonResult;
 
@@ -32,7 +34,7 @@ public class LoginController extends ExceptionController{
 	public String toLogin(){
 		return "WebCompany/loginCM";
 	}
-	@RequestMapping("/main.do")
+	@RequestMapping("/toMain.do")
 	public String toMain(){
 		return "WebCompany/Main";
 	}
@@ -52,8 +54,8 @@ public class LoginController extends ExceptionController{
         	throw new VerifyCodeException("验证码输入错误"); 
         }
         
-		Manager manager = managerService.login(username, password,code);
-		session.setAttribute("companyManager", manager);
+		CompanyResult manager = managerService.login(username, password,code);
+		session.setAttribute(Constants.CompanyPre+Constants.LoginCacheKey, manager);
 		return new JsonResult(manager);
 	}
 	@RequestMapping("/loginOut.do")
