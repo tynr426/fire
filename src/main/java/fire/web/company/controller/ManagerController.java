@@ -23,24 +23,10 @@ public class ManagerController extends ExceptionController{
 	@Resource
 	private ManagerService managerService;
 	
-	@RequestMapping("/manager.do")
+	@RequestMapping("/toManager.do")
 	public String toManager(){
 		return "WebCompany/System/Manager";
 	}
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public Object login(String username,String password,String verifyCode,String code,HttpSession session){
-		Manager manager = managerService.login(username, password,code);
-		session.setAttribute("companyManager", manager);
-		return new JsonResult(manager);
-	}
-	@RequestMapping("/loginOut.do")
-	@ResponseBody
-	public Object loginOut(){
-		return new JsonResult(managerService.loginOut());	
-	}
-	
-	
 	@ExceptionHandler(NameException.class)
 	@ResponseBody
 	public Object nameExp(NameException e){

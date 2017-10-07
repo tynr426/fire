@@ -11,6 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.dao.ManagerDAO;
 import fire.web.entity.Manager;
+import fire.company.entity.CompanyResult;
 import fire.web.dao.CompanyDAO;
 import fire.web.entity.Company;
 import fire.web.service.NameException;
@@ -26,32 +27,43 @@ public class ManagerServiceImpl implements ManagerService{
 	private ManagerDAO managerDao;
 	@Resource
 	private CompanyDAO companyDAO;
-	
+
 	@HttpConstraint
 	//登录
-	public Manager login(String username, String password,String code) throws VerifyCodeException,NameException, PasswordException{
+	public CompanyResult login(String username, String password,String code) throws VerifyCodeException,NameException, PasswordException{
 		if(username==null||username.trim().isEmpty()){
 			throw new NameException("用户名为空");
 		}
 		if(password==null||password.trim().isEmpty()){
 			throw new PasswordException("密码为空");
 		}
+		if(code.isEmpty()){
+			throw new NameException("公司代码为空");
+		}
+
+
+		Company company =companyDAO.getCompanyByCode(code);
+		if(company==null){
+			throw new NameException("公司代码输入不正确");
+		}		
+
 		Manager manager = managerDao.findByUserName(username);
 		if(manager==null){
 			throw new NameException("用户名不正确");
 		}
 
-        Company company = companyDAO.findById(manager.getCompanyId());
-        if(company==null){
-        	throw new NameException("ID不能为空");
-        }
-        if(!company.getCode().equals(code)){
-        	throw new NameException("公司代码输入不正确");
-        }
 		String md5Password = Md5.getMd5(password);
 		if(manager.getPassword().equals(md5Password)){
-			manager.setToken(Authorize.getCompanyToken(manager, 1));
-			return manager;
+			CompanyResult result=new CompanyResult();
+			result.setId(company.getId());
+			result.setName(company.getName());
+			result.setCode(company.getCode());
+			result.setAddress(company.getAddress());
+			result.setFace(company.getLogo());
+			result.setManagerId(manager.getId());
+			result.setUserName(manager.getUserName());
+			result.setToken(Authorize.getCompanyToken(manager, 1));
+			return result;
 		}else {
 			throw new PasswordException("密码错误");
 		}
@@ -117,5 +129,5 @@ public class ManagerServiceImpl implements ManagerService{
 		int n = managerDao.updateStatus(manager);
 		return n;
 	}
-	
+
 }

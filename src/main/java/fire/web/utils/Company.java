@@ -5,23 +5,26 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import fire.web.entity.Manager;
+import fire.company.entity.CompanyResult;
 
 public class Company {
-	private static Manager manager;
-	public static Manager getManager(){
-		if(manager==null||manager.getId()==0){	
+	private static CompanyResult company;
+	public static CompanyResult getCompany(){
+		if(company==null||company.getId()==0){	
 			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-			manager =  (Manager) request.getSession().getAttribute("companyManager");
+			company =  (CompanyResult) request.getSession().getAttribute(Constants.CompanyPre+Constants.LoginCacheKey);
 		}
-		if(manager==null){
-			manager=new Manager();
+		if(company==null){
+			company=new CompanyResult();
 		}
-		return manager;
+		return company;
 	}
 	public static int getCompanyId(){
 
-		return getManager().getCompanyId();
+		return getCompany().getId();
 
+	}
+	public void setCookie(){
+		
 	}
 }

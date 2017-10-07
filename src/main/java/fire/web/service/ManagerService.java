@@ -1,5 +1,6 @@
 package fire.web.service;
 
+import fire.company.entity.CompanyResult;
 import fire.web.entity.Manager;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
@@ -7,7 +8,7 @@ import fire.web.service.VerifyCodeException;
 import fire.web.utils.PageInfo;
 
 public interface ManagerService {
-	public Manager login(String username,String password,String code) throws VerifyCodeException,NameException,PasswordException;
+	public CompanyResult login(String username,String password,String code) throws VerifyCodeException,NameException,PasswordException;
 	public int loginOut();
 	public int addManager(Manager manager)throws NameException;
 	public int updateManager(Manager manager);
