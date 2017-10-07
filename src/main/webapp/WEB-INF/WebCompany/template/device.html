@@ -157,10 +157,14 @@ ${dict.passageway[(passageway)]}
     </script>
     
     <script type="text/x-jquery-tmpl" id="DeviceTypeParameterFormTemplate">
-  <tr>
+{{if (required=="1")}} 
+ <tr>
     <th>
         <p class="name rm">
-            <em class="red">*</em>${description}：
+			
+            <em class="red">*</em>
+			
+			${description}：
         </p>
     </th>
 
@@ -178,7 +182,7 @@ ${dict.passageway[(passageway)]}
 	{{/each}}
  {{else (editorType=="select")}}
   <div class="selectbox">
-            <select id="parameter_${id}">
+            <select id="parameter_${id}" error="请选择！" validate="isnull">
 				{{each(j,child) candidate}}
 				<option value="${child.Value}">${child.Field}</option>
 				{{/each}}
@@ -188,4 +192,37 @@ ${dict.passageway[(passageway)]}
       
     </td>
 </tr>
+{{else}}
+ <tr>
+    <th>
+        <p class="name rm">
+
+			${description}：
+        </p>
+    </th>
+
+    <td colspan="${colspan}">
+ {{if (editorType=="text")}}
+ <div class="inputbox">
+            <input type="text"  id="parameter_${id}"  maxlength="20" value="" />
+  </div>
+  {{else (editorType=="texts")}}
+
+	{{each(j,child) candidate}}
+ 	<div class="inputbox">
+     <input type="text" style='width:40px' placeholder="${child.Field}" id="parameter_${id}_${j}" maxlength="20" value="" />
+  	</div>
+	{{/each}}
+ {{else (editorType=="select")}}
+  <div class="selectbox">
+            <select id="parameter_${id}">
+				{{each(j,child) candidate}}
+				<option value="${child.Value}">${child.Field}</option>
+				{{/each}}
+			</select>
+        </div>
+ {{/if}}    
+    </td>
+</tr>
+{{/if}}
     </script>

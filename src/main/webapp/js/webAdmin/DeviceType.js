@@ -154,6 +154,7 @@ var deviceTypeParameter={
 			if(!$("#DeviceParameterForm").formValidate())return;
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
+			var Required = $("#Required").val();
 			var Unit = $("#Unit").val().trim();
 			var Reorder = $("#Reorder").val().trim();
 			var candidate="";
@@ -173,7 +174,8 @@ var deviceTypeParameter={
 				url:adminpath+"/dtp/add.do",
 				type:"post",
 				data:{Description:Description,EditorType:EditorType,
-					Unit:Unit,Candidate:candidate,Reorder:Reorder,DeviceTypeId:deviceTypeParameter.deviceTypeId},
+					Unit:Unit,Candidate:candidate,Reorder:Reorder,
+					Required:Required,DeviceTypeId:deviceTypeParameter.deviceTypeId},
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
@@ -228,6 +230,7 @@ var deviceTypeParameter={
 			var id = $("#DeviceParameterForm").find("#Id").val();
 			var Description = $("#Description").val().trim();
 			var EditorType = $("#EditorType").val().trim();
+			var Required = $("#Required").val();
 			var Unit = $("#Unit").val().trim();
 			var Reorder = $("#Reorder").val().trim();
 			var candidate=""; 
@@ -248,7 +251,7 @@ var deviceTypeParameter={
 				type:"post",
 				data:{Id:id,Description:Description,
 					EditorType:EditorType,Unit:Unit,
-					Candidate:candidate,Reorder:Reorder,
+					Candidate:candidate,Reorder:Reorder,Required:Required,
 					DeviceTypeId:deviceTypeParameter.deviceTypeId},
 					dataType:"json",
 					success:function(result){
