@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fire.common.entity.CompanyResult;
 import fire.web.dao.CompanyDAO;
 import fire.web.dao.ManagerDAO;
 import fire.common.entity.*;
@@ -101,4 +100,5 @@ public class CompanyServiceImpl implements CompanyService{
 		int n = companyDAO.updateStatus(company);
 		return n;
 	}
+	
 }

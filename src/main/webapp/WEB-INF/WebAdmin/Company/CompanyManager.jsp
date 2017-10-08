@@ -50,10 +50,9 @@ contentType="text/html; charset=utf-8" %>
 								<colgroup>
 									<col style="width: 25px;" />
 									<col style="width: auto;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
-									<col style="width: 150px;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
 									<col style="width: 61px;" />
 									<col style="width: 61px;" />
 								</colgroup>
@@ -63,9 +62,6 @@ contentType="text/html; charset=utf-8" %>
 										<td>
 											<!--自定义复选按钮--> <input type="checkbox" value="" name=""
 											checkall="1"> <!--//自定义复选按钮-->
-										</td>
-										<td>
-											<p class="name center">logo</p>
 										</td>
 										<td>
 											<p class="name center">单位名称</p>
