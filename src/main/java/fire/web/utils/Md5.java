@@ -31,6 +31,7 @@ public class Md5 {
 	}
 	public static void main(String[] args) {
 		System.out.println(getMd5("admin"));
+		System.out.println(createID().substring(0,3));
 	}
 	
 }

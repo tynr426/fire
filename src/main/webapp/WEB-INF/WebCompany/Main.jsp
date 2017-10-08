@@ -75,7 +75,7 @@ contentType="text/html; charset=utf-8" %>
 			<!--右侧内容-->
 			<div class="content-box">
 				<iframe title="" salemenu="area" name="contentIframe"
-					id="contentIframe" src="/fire/company/manager/manager.do" class="iframe" width="100%"
+					id="contentIframe" src="/fire/company/manager/toManager.do" class="iframe" width="100%"
 					height="100%" frameborder="0" scrolling="no"></iframe>
 			</div>
 			<!--//右侧内容-->

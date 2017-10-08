@@ -25,16 +25,11 @@ public class Social extends ExceptionController {
 	public JsonResult getWeChatAccount(){
 		return new JsonResult(wcaService.getWeChatAccount());	
 	}
-	@RequestMapping("/add.do")
+	@RequestMapping("/save.do")
 	@ResponseBody	
-	public JsonResult addWeChatAccount(WeChatAccount wca){
-		int n = wcaService.addWeChatAccount(wca);
+	public JsonResult save(WeChatAccount wca){
+		int n = wcaService.save(wca);
 		return new JsonResult(n);	
 	}
-	@RequestMapping("/update.do")
-	@ResponseBody	
-	public JsonResult updateWeChatAccount(WeChatAccount wca){
-		int n = wcaService.updateWeChatAccount(wca);
-		return new JsonResult(n);	
-	}
+	
 }

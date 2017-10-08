@@ -71,8 +71,8 @@
                                                             </p>
                                                         </th>
                                                         <td>
-                                                            <div class="string">
-                                                                <$var account.token>IfNull:</$var>
+                                                            <div class="string" id="div_token">
+                                                                
                                                             </div>
 
                                                             <span class="tips">(token区分大小写，请正确填写token）</span>
@@ -80,13 +80,13 @@
                                                     </tr>
                                                     <tr>
                                                         <th>
-                                                            <p class="name">
+                                                            <p class="name" >
                                                                 EncodingAESKey：
                                                             </p>
                                                         </th>
                                                         <td>
-                                                            <div class="string">
-                                                                <$var account.encodingaeskey>IfNull:</$var>
+                                                            <div class="string" id="div_key">
+                                                               
                                                             </div>
 
                                                             <span class="tips">(EncodingAESKey区分大小写，消息加解密密钥,在配置时请选择兼容模式）</span>
@@ -122,5 +122,5 @@
 <jsp:include  page="../template/wechatSet.html"></jsp:include>
 
 <script language="javascript" type="text/javascript">
-    wechat.set.show();
+ 	wechat.set.load();
 </script>

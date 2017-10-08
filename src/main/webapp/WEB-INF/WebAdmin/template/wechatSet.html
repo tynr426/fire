@@ -18,8 +18,8 @@
                         </th>
                         <td>
                             <div class="inputbox">
-                                <input type="hidden" value="<$var account.PublicId>IfNull:</$var>" name="Id" id="Id" />
-                                <input type="text" id="Name" name="Name" placeholder="公众号名称" validate="isnull" value="<$var account.Name>IfNull:</$var>" />
+                                <input type="hidden" value="0" name="Id" id="Id" />
+                                <input type="text" id="Name" name="Name" placeholder="公众号名称" validate="isnull" value="" />
                             </div>
                         </td>
                     </tr>
@@ -31,7 +31,7 @@
                         </th>
                         <td>
                             <div class="inputbox">
-                                <input type="text" id="OriginalId" name="OriginalId" placeholder="公众号原始ID" value="<$var account.OriginalId>IfNull:</$var>" />
+                                <input type="text" id="OriginalId" name="OriginalId" placeholder="公众号原始ID" value="" />
                             </div>
                         </td>
                     </tr>
@@ -43,7 +43,7 @@
                         </th>
                         <td>
                             <div class="inputbox">
-                                <input type="text" id="Account" name="Account" placeholder="微信号" value="<$var account.Account>IfNull:</$var>" />
+                                <input type="text" id="Account" name="Account" placeholder="微信号" value="" />
                             </div>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
                         </th>
                         <td>
                             <div class="inputbox">
-                                <input type="text" value="<$var account.AppId>IfNull:</$var>" name="AppId" id="AppId" placeholder="AppId" />
+                                <input type="text" value="" name="AppId" id="AppId" placeholder="AppId" />
                             </div>
                         </td>
                     </tr>
@@ -84,35 +84,11 @@
                         </th>
                         <td>
                             <div class="inputbox">
-                                <input type="text" value="<$var account.secret>IfNull:</$var>" name="Secret" id="Secret" placeholder="Secret" />
+                                <input type="text" value="" name="Secret" id="Secret" placeholder="Secret" />
                             </div>
                         </td>
                     </tr>
-                    <tr style="display:none;">
-                        <th><p class="name"><em class="red">*</em>微信公众号二维码</p></th>
-                        <td>
-                            <div class="extend">
-                                <div class="product-pic">
-                                    <div class="show-pic">
-                                        <div class="pic">
-                                            <div class="picbox">
-                                                <ol>
-                                                    <li>
-                                                        <a href="javascript:void(0);">
-                                                            <input id="Qrcode" type="hidden" validate="isnull" value="/userfiles/20160623/a09991e208334bc0be66fff9513bd6cd.jpg">
-                                                            <img onload="$e(this).scaleZoom();" name="Qrcode" static="1" original="data:image/gif;base64,R0lGODlhZABkAJEAAOfn58/Pz7y8vP///yH5BAAAAAAALAAAAABkAGQAAAL/nI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8QEIBARKwJGzFEinUufzEmUqldPAtdK1HpJS7zcSNS+i4jMDUH5E3Y45skpnxCFLdR6Bxyf1lwAn0NZgR2hgiMiguDiwJ8cUeQD5Fmhp6Lc2aHmpqZAGOtbl+VnKSBUA4JoloFoIS1Upq0DW1XrL2+v7CxwsPExcbJyya2wYWwzb6ZvLJJrhOrRsNuVIkfu8k6W2jBE9ubN8WEgeMc5lq/P9mN6wHjpNk6V9kI3kPKpfc43PVCpc/DLVc/FOXbx5d+KtMBcQFThYEdE5RHHtQrZxehXhHSyR0II5fxjupYCoAWAHkyZCaiDlIeOIaB0nsPkgE4RKnFN0nvrgkmc7DyxTUqlZ8mKGolh+tvxIjWQFpiZ6hsgpYedJpVG5JgiKzGvSrFRX3ISB9YXVF5xowEFKItmxuXTr2r2LN6/evXz7+v0LOLDgwYQLWyoAADs=" src="data:image/gif;base64,R0lGODlhZABkAJEAAOfn58/Pz7y8vP///yH5BAAAAAAALAAAAABkAGQAAAL/nI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8QEIBARKwJGzFEinUufzEmUqldPAtdK1HpJS7zcSNS+i4jMDUH5E3Y45skpnxCFLdR6Bxyf1lwAn0NZgR2hgiMiguDiwJ8cUeQD5Fmhp6Lc2aHmpqZAGOtbl+VnKSBUA4JoloFoIS1Upq0DW1XrL2+v7CxwsPExcbJyya2wYWwzb6ZvLJJrhOrRsNuVIkfu8k6W2jBE9ubN8WEgeMc5lq/P9mN6wHjpNk6V9kI3kPKpfc43PVCpc/DLVc/FOXbx5d+KtMBcQFThYEdE5RHHtQrZxehXhHSyR0II5fxjupYCoAWAHkyZCaiDlIeOIaB0nsPkgE4RKnFN0nvrgkmc7DyxTUqlZ8mKGolh+tvxIjWQFpiZ6hsgpYedJpVG5JgiKzGvSrFRX3ISB9YXVF5xowEFKItmxuXTr2r2LN6/evXz7+v0LOLDgwYQLWyoAADs=" maxwidth="100" maxheight="100" width="100" height="100" style="opacity: 1;">
-                                                        </a>
-                                                    </li>
-                                                </ol>
-                                            </div>
-                                        </div>
-                                    </div><div class="upload-button">
-                                        <a href="javascript:void(0);" onclick="files.select({title:'选择图片',width:780,height:580,element: 'Qrcode' ,module:'Wechat'});" class="btn">选择图片</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                   
                     <tr>
                         <th></th>
                         <td>
@@ -128,7 +104,7 @@
 </script>
 
 <!--微信基础配置信息展示模板-->
-<script type="text/template" id="wechat_info_template">
+<script type="text/x-jquery-tmpl" id="wechat_info_template">
     <div class="custom-table">
         <div class="form">
             <table id="MailForm" border="0" cellpadding="0" cellspacing="0">
@@ -146,7 +122,7 @@
                         </th>
                         <td>
                             <div class="string">
-                                <$var account.name>IfNull:</$var>
+                                ${name}
                             </div>
                         </td>
                     </tr>
@@ -158,7 +134,7 @@
                         </th>
                         <td>
                             <div class="number left">
-                                <$var account.originalid>IfNull:</$var>
+                                ${originalId}
                             </div>
                         </td>
                     </tr>
@@ -170,7 +146,7 @@
                         </th>
                         <td>
                             <div class="string">
-                                <$var account.account>IfNull:</$var>
+								${account}
                             </div>
                         </td>
                     </tr>
@@ -182,20 +158,16 @@
                         </th>
                         <td>
                             <div class="string">
-                                <$switch id="cateringType">
-                                    [# <$var account.catering /> == 1]
+                                   {{if (catering==1)}}
                                     普通订阅号
-                                    [#/]
-                                    [# <$var account.catering /> == 2]
+                                   {{else (catering==2)}}
                                     普通服务号
-                                    [#/]
-                                    [# <$var account.catering /> == 3]
+                                    {{else (catering==3)}}
                                     认证订阅号
-                                    [#/]
-                                    [# <$var account.catering /> == 4]
+                                    {{else (catering==4)}}
                                     认证服务号
-                                    [#/]
-                                </$switch>
+                                    {{else}}
+{{/if}}
                             </div>
                         </td>
                     </tr>
@@ -207,7 +179,7 @@
                         </th>
                         <td>
                             <div class="number left">
-                                <$var account.appid>IfNull:</$var>
+                               ${appId}
                             </div>
                         </td>
                     </tr>
@@ -219,35 +191,11 @@
                         </th>
                         <td>
                             <div class="number left">
-                                <$var account.secret>IfNull:</$var>
+                                ${secret}
                             </div>
                         </td>
                     </tr>
-                    <tr style="display:none;">
-                        <th><p class="name"><em class="red">*</em>微信公众号二维码</p></th>
-                        <td>
-                            <div class="extend">
-                                <div class="product-pic">
-                                    <div class="show-pic">
-                                        <div class="pic">
-                                            <div class="picbox">
-                                                <ol>
-                                                    <li>
-                                                        <a href="javascript:void(0);">
-                                                            <input id="Qrcode" type="hidden" validate="isnull" value="<$var account.Qrcode>IfNull:</$var>">
-                                                            <img onload="$e(this).scaleZoom();" name="Qrcode" static="1" src="<$var account.Qrcode>IfNull:</$var>" 
-                                                                 maxwidth="100" maxheight="100" width="100" height="100" style="opacity: 1;
-">
-                                                        </a>
-                                                    </li>
-                                                </ol>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+               
                     <tr>
                         <th>
                         </th>

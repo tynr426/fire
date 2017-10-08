@@ -38,10 +38,6 @@ public class LoginController extends ExceptionController{
 	public String toMain(){
 		return "WebCompany/Main";
 	}
-	@RequestMapping("/manager.do")
-	public String toManager(){
-		return "WebCompany/System/Manager";
-	}
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public Object login(String username,String password,String verifyCode,String code,HttpSession session){
