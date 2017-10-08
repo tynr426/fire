@@ -24,10 +24,10 @@ public class ManagerDistribute extends Distribute {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(sp.Action=="login"){
+		if(sp.Action.equals("login")){
 			login(req,resp);
 		}
-		else if(sp.Action=="autologin"){
+		else if(sp.Action.equals("autologin")){
 			autoLogin(req,resp);
 		}
 	}

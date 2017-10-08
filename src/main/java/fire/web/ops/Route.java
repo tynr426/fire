@@ -31,10 +31,10 @@ public class Route extends HttpServlet {
 		//super.doPost(req, resp);
 		String method=req.getParameter("method");
 		String module="",action="";
-		Pattern p=Pattern.compile("^(?<platform>[^\\.]+)\\.(?<module>[^\\.]+)\\.(?<action>[\\S\\s]*?)");
+		Pattern p=Pattern.compile("^(?<platform>[^\\.]+)\\.(?<module>[^\\.]+)\\.(?<action>.*)");
 		Matcher m =p.matcher(method);
 		if (m.find()) { 
-			module=m.group("module")+"."+m.group("module");
+			module=m.group("platform")+"."+m.group("module");
 			action=m.group("action");
 		}
 		SysParameter sp=new SysParameter();
