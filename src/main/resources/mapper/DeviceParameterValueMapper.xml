@@ -3,7 +3,7 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.DeviceParameterValueDAO">
-	<select id="getDeviceParameterValues" parameterType="java.lang.Integer" resultType="fire.web.entity.DeviceParameterValue">
+	<select id="getDeviceParameterValues" parameterType="java.lang.Integer" resultType="fire.common.entity.DeviceParameterValue">
 		select * from fir_deviceparametervalue
 		WHERE DeviceId = #{deviceId}
 	</select>

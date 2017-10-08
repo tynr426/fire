@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import fire.web.entity.Manager;
+import fire.common.entity.Manager;
 
 public class Authorize {
 	public static String getCompanyToken(Manager entity,int day){

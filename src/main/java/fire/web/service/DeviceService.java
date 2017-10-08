@@ -2,7 +2,7 @@ package fire.web.service;
 
 
 
-import fire.web.entity.DeviceResult;
+import fire.common.entity.DeviceResult;
 import fire.web.utils.PageInfo;
 
 public interface DeviceService {

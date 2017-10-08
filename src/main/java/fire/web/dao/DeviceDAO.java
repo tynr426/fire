@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.Device;
-import fire.web.entity.DeviceResult;
+import fire.common.entity.Device;
+import fire.common.entity.DeviceResult;
 
 public interface DeviceDAO {
 	public int updateDevice(Device device);

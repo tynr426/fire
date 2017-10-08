@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import fire.web.entity.Manager;
-import fire.web.utils.PageInfo;
-import fire.company.entity.CompanyResult;
+import fire.common.entity.CompanyResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.ManagerService;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;
-import fire.web.utils.Company;
 import fire.web.utils.Constants;
 import fire.web.utils.CookiesUtil;
 import fire.web.utils.JsonResult;

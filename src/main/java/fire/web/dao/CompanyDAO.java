@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.Company;
-import fire.web.entity.CompanyResult;
+import fire.common.entity.CompanyResult;
+import fire.common.entity.Company;
 
 
 public interface CompanyDAO {
@@ -17,6 +17,7 @@ public interface CompanyDAO {
 	public int updateCompany(Company company);
 	//通过id查询
 	public CompanyResult findById(int Id);
+	public Company getCompanyById(int Id);
 	//通过Tel查询
 	public Company findByTel(
 			@Param("Id")int Id,

@@ -3,12 +3,12 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.DeviceDAO">
-	<select id="findById" parameterType="int" resultType="fire.web.entity.DeviceResult">
+	<select id="findById" parameterType="int" resultType="fire.common.entity.DeviceResult">
 		select d.*,t.Name from fir_device d join fir_devicetype t
 		on(d.DeviceTypeId=t.Id)
 		WHERE d.Id = #{id}
 	</select>
-	<update id="updateDevice" parameterType="fire.web.entity.Device">
+	<update id="updateDevice" parameterType="fire.common.entity.Device">
 		UPDATE fir_device SET
 			DeviceTypeId=#{DeviceTypeId}, 
 			Model=#{Model}, 
@@ -21,7 +21,7 @@
 			Detail=#{Detail}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addDevice" parameterType="fire.web.entity.DeviceResult" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addDevice" parameterType="fire.common.entity.DeviceResult" useGeneratedKeys="true" keyProperty="id">
 		insert into fir_device(
 		DeviceTypeId,Model,Manufacturer,
 		Spec,UseTime,AddTime,Buildings,
@@ -39,7 +39,7 @@
 	<select id="findDeviceCount" resultType="int">
 		select count(*) from fir_device 
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.DeviceResult">
+	<select id="findByLimit" resultType="fire.common.entity.DeviceResult">
 		select d.*,t.Name from fir_device d join fir_devicetype t
 		on(d.DeviceTypeId=t.Id) 
 		where CompanyId=#{companyId} limit #{begin},#{size}

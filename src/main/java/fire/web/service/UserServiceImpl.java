@@ -2,7 +2,6 @@ package fire.web.service;
 
 import javax.annotation.Resource;
 import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -10,8 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.dao.UserDAO;
-import fire.web.entity.User;
-import fire.web.utils.CookiesUtil;
+import fire.common.entity.User;
 import fire.web.utils.Md5;
 
 

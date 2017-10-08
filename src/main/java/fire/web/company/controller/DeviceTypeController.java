@@ -8,11 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fire.web.entity.DeviceType;
-import fire.web.entity.DeviceTypeResult;
+import fire.common.entity.DeviceTypeResult;
 import fire.web.service.DeviceTypeService;
 import fire.web.utils.JsonResult;
-import fire.web.utils.PageInfo;
 
 @Controller("companyDeviceType")
 @RequestMapping("/company/deviceType")

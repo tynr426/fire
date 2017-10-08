@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.User;
+import fire.common.entity.User;
 
 
 public interface UserDAO {

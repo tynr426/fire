@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.Devicetypeparameter;
+import fire.common.entity.Devicetypeparameter;
 
 
 public interface DTPDAO {

@@ -3,17 +3,17 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.DTPDAO">
-	<select id="getDTPByDescription" resultType="fire.web.entity.Devicetypeparameter">
+	<select id="getDTPByDescription" resultType="fire.common.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter WHERE Description = #{description} and Id!=#{id} limit 1
 	</select>
-	<select id="findById" parameterType="int" resultType="fire.web.entity.Devicetypeparameter">
+	<select id="findById" parameterType="int" resultType="fire.common.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter  
 		WHERE Id = #{Id}
 	</select>
-	<select id="findAll" resultType="fire.web.entity.Devicetypeparameter">
+	<select id="findAll" resultType="fire.common.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter where status=1
 	</select>
-	<update id="updateDevicetypeparameter" parameterType="fire.web.entity.Devicetypeparameter">
+	<update id="updateDevicetypeparameter" parameterType="fire.common.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET 
 			Description = #{Description},
 			DataType=#{DataType},
@@ -25,7 +25,7 @@
 			Required=#{Required}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addDTP" parameterType="fire.web.entity.Devicetypeparameter" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addDTP" parameterType="fire.common.entity.Devicetypeparameter" useGeneratedKeys="true" keyProperty="id">
 		insert into fir_devicetypeparameter(
 		Description,
 		DataType,
@@ -46,10 +46,10 @@
 	<select id="findDevicetypeparameterCount" resultType="int">
 		select count(*) from fir_devicetypeparameter 
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.Devicetypeparameter">
+	<select id="findByLimit" resultType="fire.common.entity.Devicetypeparameter">
 		select * from fir_devicetypeparameter where DeviceTypeId=#{deviceTypeId} limit #{begin},#{size}
 	</select>
-	<update id="updateStatus" parameterType="fire.web.entity.Devicetypeparameter">
+	<update id="updateStatus" parameterType="fire.common.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET
 			status = #{status}
 		WHERE Id = #{id}

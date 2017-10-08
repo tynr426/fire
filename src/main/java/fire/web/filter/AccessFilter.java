@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fire.web.entity.User;
+import fire.common.entity.User;
 
 public class AccessFilter implements Filter{
 

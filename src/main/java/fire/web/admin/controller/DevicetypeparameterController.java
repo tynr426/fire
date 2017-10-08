@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fire.web.controller.ExceptionController;
-import fire.web.entity.Devicetypeparameter;
+import fire.common.entity.Devicetypeparameter;
 import fire.web.service.DevicetypeparameterService;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;

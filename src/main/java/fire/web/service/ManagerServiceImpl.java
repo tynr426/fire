@@ -2,7 +2,6 @@ package fire.web.service;
 
 import javax.annotation.Resource;
 import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -10,15 +9,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.dao.ManagerDAO;
-import fire.web.entity.Manager;
-import fire.company.entity.CompanyResult;
+import fire.common.entity.*;
+import fire.common.entity.CompanyResult;
 import fire.web.dao.CompanyDAO;
-import fire.web.entity.Company;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;
 import fire.web.utils.Authorize;
-import fire.web.utils.CookiesUtil;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
 @Service("managerService")
@@ -79,7 +76,7 @@ public class ManagerServiceImpl implements ManagerService{
 		if(one!=null){
 			throw new NameException("该用户已存在");
 		}
-		Company company = companyDAO.findById(manager.getCompanyId());
+		CompanyResult company = companyDAO.findById(manager.getCompanyId());
 		if(company!=null){
 			manager.setCompanyId(company.getId());
 		}

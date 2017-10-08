@@ -1,14 +1,13 @@
 package fire.web.company.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fire.web.entity.Manager;
+import fire.common.entity.Manager;
 import fire.web.utils.PageInfo;
 import fire.web.controller.ExceptionController;
 import fire.web.service.ManagerService;

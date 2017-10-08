@@ -4,9 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import fire.sdk.utils.EncrypDES;
 import fire.web.dao.WeChatAccountDAO;
-import fire.web.entity.WeChatAccount;
+import fire.common.entity.WeChatAccount;
 import fire.web.utils.Md5;
 @Service("weChatAccountService")
 public class WeChatAccountServiceImpl implements WeChatAccountService{

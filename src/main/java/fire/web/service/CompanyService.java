@@ -3,8 +3,8 @@ package fire.web.service;
 
 import java.util.List;
 
-import fire.web.entity.Company;
-import fire.web.entity.CompanyResult;
+import fire.common.entity.CompanyResult;
+import fire.common.entity.Company;
 import fire.web.utils.PageInfo;
 
 public interface CompanyService {

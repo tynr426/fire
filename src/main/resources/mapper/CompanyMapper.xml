@@ -3,21 +3,25 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.CompanyDAO">
-	<select id="getCompanyByCode" parameterType="String" resultType="fire.web.entity.Company">
+	<select id="getCompanyByCode" parameterType="String" resultType="fire.common.entity.Company">
 		SELECT * FROM com_company WHERE Code = #{code} limit 1
 	</select>
-	<select id="findByTel" resultType="fire.web.entity.Company">
+	<select id="findByTel" resultType="fire.common.entity.Company">
 		SELECT * FROM com_company WHERE Tel = #{Tel} AND Id!=#{Id} limit 1
 	</select>
-	<select id="findById" parameterType="int" resultType="fire.web.entity.CompanyResult">
-		SELECT c.*,m.UserName,m.Id as ManagerId,NickName,Face,Email,Mobile FROM com_company c join com_manager m
+	<select id="findById" parameterType="int" resultType="fire.common.entity.CompanyResult">
+		SELECT c.*,m.UserName,m.Name,m.Id as ManagerId,NickName,Face,Email,Mobile FROM com_company c join com_manager m
 		on(c.Id=m.CompanyId) 
 		WHERE c.Id = #{Id} and m.UserId=0 limit 1;
 	</select>
-	<select id="findAll" resultType="fire.web.entity.Company">
+	<select id="getCompanyById" parameterType="int" resultType="fire.common.entity.Company">
+		SELECT * FROM com_company
+		WHERE Id = #{Id} limit 1;
+	</select>
+	<select id="findAll" resultType="fire.common.entity.Company">
 		SELECT * FROM com_company
 	</select>
-	<update id="updateCompany" parameterType="fire.web.entity.Company">
+	<update id="updateCompany" parameterType="fire.common.entity.Company">
 		UPDATE com_company SET 
 			Name = #{Name},
 			Province=#{Province},
@@ -28,7 +32,7 @@
 			Atten=#{Atten}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addCompany" parameterType="fire.web.entity.Company" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addCompany" parameterType="fire.common.entity.Company" useGeneratedKeys="true" keyProperty="id">
 		insert into com_company(
 		Name,
 		Code,
@@ -49,10 +53,10 @@
 	<select id="findCompanyCount" resultType="int">
 		select count(*) from com_company
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.Company">
+	<select id="findByLimit" resultType="fire.common.entity.Company">
 		select * from com_company limit #{begin},#{size}
 	</select>
-	<update id="updateStatus" parameterType="fire.web.entity.Company">
+	<update id="updateStatus" parameterType="fire.common.entity.Company">
 		UPDATE com_company SET
 			status = #{status}
 		WHERE Id = #{id}

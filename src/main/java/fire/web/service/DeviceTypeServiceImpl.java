@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import fire.web.dao.DTPDAO;
 import fire.web.dao.DeviceTypeDAO;
-import fire.web.entity.DeviceType;
-import fire.web.entity.DeviceTypeResult;
-import fire.web.entity.Devicetypeparameter;
+import fire.common.entity.DeviceType;
+import fire.common.entity.DeviceTypeResult;
+import fire.common.entity.Devicetypeparameter;
 import fire.web.utils.PageInfo;
 @Service("deviceTypeService")
 public class DeviceTypeServiceImpl implements DeviceTypeService{

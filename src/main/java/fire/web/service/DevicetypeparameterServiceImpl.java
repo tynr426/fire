@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import fire.web.dao.DTPDAO;
-import fire.web.entity.Devicetypeparameter;
+import fire.common.entity.Devicetypeparameter;
 import fire.web.utils.PageInfo;
 @Service("devicetypeparameterService")
 public class DevicetypeparameterServiceImpl implements DevicetypeparameterService{

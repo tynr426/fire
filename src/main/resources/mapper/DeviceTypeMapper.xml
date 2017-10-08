@@ -3,23 +3,23 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.DeviceTypeDAO">
-	<select id="getDeviceType" parameterType="String" resultType="fire.web.entity.DeviceType">
+	<select id="getDeviceType" parameterType="String" resultType="fire.common.entity.DeviceType">
 		SELECT * FROM fir_devicetype WHERE Name = #{Name} limit 1
 	</select>
-	<select id="findById" parameterType="int" resultType="fire.web.entity.DeviceType">
+	<select id="findById" parameterType="int" resultType="fire.common.entity.DeviceType">
 		SELECT * FROM fir_devicetype  
 		WHERE Id = #{Id}
 	</select>
-	<select id="findAll" resultType="fire.web.entity.DeviceTypeResult">
+	<select id="findAll" resultType="fire.common.entity.DeviceTypeResult">
 		SELECT * FROM fir_devicetype where status=1
 	</select>
-	<update id="updateDeviceType" parameterType="fire.web.entity.DeviceType">
+	<update id="updateDeviceType" parameterType="fire.common.entity.DeviceType">
 		UPDATE fir_devicetype SET 
 			Name = #{Name},
 			UseTime=#{UseTime}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addDeviceType" parameterType="fire.web.entity.DeviceType">
+	<insert id="addDeviceType" parameterType="fire.common.entity.DeviceType">
 		insert into fir_devicetype(Name,UseTime,Status)
 		values(
 		#{Name},#{UseTime},#{Status})		
@@ -30,10 +30,10 @@
 	<select id="findDeviceTypeCount" resultType="int">
 		select count(*) from fir_devicetype 
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.DeviceType">
+	<select id="findByLimit" resultType="fire.common.entity.DeviceType">
 		select * from fir_devicetype limit #{begin},#{size}
 	</select>
-	<update id="updateStatus" parameterType="fire.web.entity.DeviceType">
+	<update id="updateStatus" parameterType="fire.common.entity.DeviceType">
 		UPDATE fir_devicetype SET
 			status = #{status}
 		WHERE Id = #{id}

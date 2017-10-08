@@ -7,11 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fire.common.entity.CompanyResult;
 import fire.web.dao.CompanyDAO;
 import fire.web.dao.ManagerDAO;
-import fire.web.entity.Company;
-import fire.web.entity.CompanyResult;
-import fire.web.entity.Manager;
+import fire.common.entity.*;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
 @Service("companyService")
@@ -76,12 +75,12 @@ public class CompanyServiceImpl implements CompanyService{
 		if(Id==null){
 			throw new NameException("ID不能为空");
 		}
-		CompanyResult result = companyDAO.findById(Id);
+		Company result = companyDAO.getCompanyById(Id);
 		if(result==null){
 			throw new NameException("用户不存在");
 		}
 		int n = companyDAO.delete(Id);
-		return managerDAO.delete(result.getManagerId());
+		return managerDAO.deleteResult(Id);
 	}
 
 	public PageInfo<Company> getCompanyPage(int index, int size) {
@@ -94,7 +93,7 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 	public int updateStatus(Integer id, int status) {
-		Company company = companyDAO.findById(id);
+		Company company = companyDAO.getCompanyById(id);
 		if(company==null){
 			throw new NameException("id不存在");
 		}

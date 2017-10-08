@@ -13,7 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.controller.ExceptionController;
-import fire.web.entity.User;
+import fire.common.entity.User;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.UserService;

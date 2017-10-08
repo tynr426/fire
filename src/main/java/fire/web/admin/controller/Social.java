@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fire.web.controller.ExceptionController;
-import fire.web.entity.WeChatAccount;
+import fire.common.entity.WeChatAccount;
 import fire.web.service.WeChatAccountService;
 import fire.web.utils.JsonResult;
 

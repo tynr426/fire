@@ -1,7 +1,7 @@
 package fire.web.service;
 
-import fire.company.entity.CompanyResult;
-import fire.web.entity.Manager;
+import fire.common.entity.CompanyResult;
+import fire.common.entity.Manager;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;

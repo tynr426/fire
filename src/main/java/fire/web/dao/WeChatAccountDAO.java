@@ -1,6 +1,6 @@
 package fire.web.dao;
 
-import fire.web.entity.WeChatAccount;
+import fire.common.entity.WeChatAccount;
 
 public interface WeChatAccountDAO {
 	public WeChatAccount getWeChatAccount();

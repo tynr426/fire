@@ -3,8 +3,8 @@ package fire.web.service;
 
 import java.util.List;
 
-import fire.web.entity.DeviceType;
-import fire.web.entity.DeviceTypeResult;
+import fire.common.entity.DeviceType;
+import fire.common.entity.DeviceTypeResult;
 import fire.web.utils.PageInfo;
 
 public interface DeviceTypeService {

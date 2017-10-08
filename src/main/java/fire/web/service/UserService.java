@@ -1,6 +1,6 @@
 package fire.web.service;
 
-import fire.web.entity.User;
+import fire.common.entity.User;
 
 
 public interface UserService {

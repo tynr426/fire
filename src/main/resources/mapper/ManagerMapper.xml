@@ -3,26 +3,26 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.ManagerDAO">
-	<select id="getManagerByCompanyId" parameterType="int" resultType="fire.web.entity.Manager">
+	<select id="getManagerByCompanyId" parameterType="int" resultType="fire.common.entity.Manager">
 	select * from com_manager where companyId=#{companyId}
 	</select>
 	<delete id="deleteByCompanyId" parameterType="int">
 		delete from com_manager where CompanyId = #{CompanyId}
 	</delete>
-	<select id="findByUserName" parameterType="String" resultType="fire.web.entity.Manager">
+	<select id="findByUserName" parameterType="String" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager WHERE UserName = #{UserName} limit 1
 	</select>
-	<select id="findByName" parameterType="String" resultType="fire.web.entity.Manager">
+	<select id="findByName" parameterType="String" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager WHERE Name = #{name} limit 1
 	</select>
-	<select id="findNameIsExist" resultType="fire.web.entity.Manager">
+	<select id="findNameIsExist" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager WHERE Name = #{name} and Id!=#{id} limit 1
 	</select>
-	<select id="findById" parameterType="int" resultType="fire.web.entity.Manager">
+	<select id="findById" parameterType="int" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager
 		WHERE Id = #{Id}
 	</select>
-	<update id="updateManager" parameterType="fire.web.entity.Manager">
+	<update id="updateManager" parameterType="fire.common.entity.Manager">
 		UPDATE com_manager SET		
         <if test="Password != null and Password != ''">
             Password=#{Password},
@@ -39,7 +39,7 @@
 			Remark=#{Remark}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addManager" parameterType="fire.web.entity.Manager" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addManager" parameterType="fire.common.entity.Manager" useGeneratedKeys="true" keyProperty="id">
 		insert into com_manager(
 		CompanyId,
 		UserName,
@@ -74,13 +74,16 @@
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from com_manager where Id = #{Id}
 	</delete>
+	<delete id="deleteResult" parameterType="java.lang.Integer">
+		delete from com_manager where CompanyId = #{companyId}
+	</delete>
 	<select id="findManagerCount" resultType="int">
 		select count(*) from com_manager
 	</select>
-	<select id="findByLimit" resultType="fire.web.entity.Manager">
+	<select id="findByLimit" resultType="fire.common.entity.Manager">
 		select * from com_manager where CompanyId=#{companyId} limit #{begin},#{size}
 	</select>
-	<update id="updateStatus" parameterType="fire.web.entity.Manager">
+	<update id="updateStatus" parameterType="fire.common.entity.Manager">
 		UPDATE com_manager SET
 			status = #{status}
 		WHERE Id = #{id}

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import fire.company.entity.CompanyResult;
+import fire.common.entity.CompanyResult;
 
 public class Company {
 	private static CompanyResult company;

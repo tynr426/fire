@@ -3,10 +3,10 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.WeChatAccountDAO">
-	<select id="getWeChatAccount" resultType="fire.web.entity.WeChatAccount">
+	<select id="getWeChatAccount" resultType="fire.common.entity.WeChatAccount">
 		SELECT * FROM soc_wechataccount limit 1
 	</select>
-	<update id="updateWeChatAccount" parameterType="fire.web.entity.WeChatAccount">
+	<update id="updateWeChatAccount" parameterType="fire.common.entity.WeChatAccount">
 		UPDATE soc_wechataccount SET 
 			Name = #{Name},
 			OriginalId=#{OriginalId},
@@ -16,7 +16,7 @@
 			Secret=#{Secret}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addWeChatAccount" parameterType="fire.web.entity.WeChatAccount">
+	<insert id="addWeChatAccount" parameterType="fire.common.entity.WeChatAccount">
 		insert into soc_wechataccount(
 		Name,
 		OriginalId,

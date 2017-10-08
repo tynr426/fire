@@ -1,6 +1,6 @@
 package fire.web.service;
 
-import fire.web.entity.WeChatAccount;
+import fire.common.entity.WeChatAccount;
 
 public interface WeChatAccountService {
 	public WeChatAccount getWeChatAccount();

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.DeviceParameterValue;
+import fire.common.entity.DeviceParameterValue;
 
 public interface DeviceParameterValueDAO {
 	public int updateDeviceParameterValue(@Param("dpvs")List<DeviceParameterValue> dpvs);

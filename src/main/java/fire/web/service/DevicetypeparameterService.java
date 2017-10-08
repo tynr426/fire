@@ -3,7 +3,7 @@ package fire.web.service;
 
 import java.util.List;
 
-import fire.web.entity.Devicetypeparameter;
+import fire.common.entity.Devicetypeparameter;
 import fire.web.utils.PageInfo;
 
 public interface DevicetypeparameterService {

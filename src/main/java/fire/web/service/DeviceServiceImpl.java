@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fire.web.dao.DeviceDAO;
 import fire.web.dao.DeviceParameterValueDAO;
-import fire.web.entity.Device;
-import fire.web.entity.DeviceParameterValue;
-import fire.web.entity.DeviceResult;
+import fire.common.entity.Device;
+import fire.common.entity.DeviceParameterValue;
+import fire.common.entity.DeviceResult;
 import fire.web.utils.PageInfo;
 @Service("deviceService")
 public class DeviceServiceImpl implements DeviceService{

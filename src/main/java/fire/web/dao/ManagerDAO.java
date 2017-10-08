@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import fire.web.entity.Manager;
+import fire.common.entity.Manager;
 
 
 public interface ManagerDAO {
@@ -23,6 +23,7 @@ public interface ManagerDAO {
 	public int addManager(Manager Manager);
 	//删除
 	public int delete(Integer Id);
+	public int deleteResult(Integer companyId);
 	//查询计数
 	public int findManagerCount();
 	//分页查询
