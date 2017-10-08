@@ -1,5 +1,9 @@
 package fire.web.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import fire.web.dao.ManagerDAO;
 import fire.common.entity.*;
 import fire.common.entity.CompanyResult;
+import fire.sdk.utils.AES;
 import fire.web.dao.CompanyDAO;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
@@ -18,6 +23,7 @@ import fire.web.service.VerifyCodeException;
 import fire.web.utils.Authorize;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
+import fire.web.utils.Utils;
 @Service("managerService")
 public class ManagerServiceImpl implements ManagerService{
 	@Resource
@@ -59,7 +65,7 @@ public class ManagerServiceImpl implements ManagerService{
 			result.setFace(company.getLogo());
 			result.setManagerId(manager.getId());
 			result.setUserName(manager.getUserName());
-			result.setToken(Authorize.getCompanyToken(manager, 1));
+			result.setToken(Authorize.getCompanyToken(manager, code,1));
 			return result;
 		}else {
 			throw new PasswordException("密码错误");
@@ -126,5 +132,44 @@ public class ManagerServiceImpl implements ManagerService{
 		int n = managerDao.updateStatus(manager);
 		return n;
 	}
+	/// <summary>
+	/// 验证token是否有效
+	/// </summary>
+	/// <param name="token">Token数据.</param>
+	/// <returns></returns>
+	public CompanyResult verifyToken(String token)
+	{
+		if(token.isEmpty()) return null;
 
+		String stoken;
+		try {
+			stoken = AES.aesDecrypt(token, "fire");
+			String[] ts = stoken.split("|");
+			if(ts.length!=7) return null;
+			// 0: tokenkey
+			// 1: 授权host
+			// 2: 会员id
+			// 3: 用户名
+			// 4: 密码 
+			// 5: 店铺Id
+			// 6: 到期时间
+
+			if (ts[1] != Utils.getHost()) return null;
+
+
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			Date dt1=df.parse(ts[6]);
+			// token 授权已经过期
+			if (dt1.getTime()-new Date().getTime()<0) return null;
+			return login(ts[4],ts[5],ts[2]);
+
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return null;
+	}
 }

@@ -1,6 +1,8 @@
 package fire.web.ops;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -27,11 +29,21 @@ public class Route extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
-		String str=req.getParameter("method");
+		String method=req.getParameter("method");
+		String module="",action="";
+		Pattern p=Pattern.compile("^(?<platform>[^\\.]+)\\.(?<module>[^\\.]+)\\.(?<action>.*)");
+		Matcher m =p.matcher(method);
+		if (m.find()) { 
+			module=m.group("platform")+"."+m.group("module");
+			action=m.group("action");
+		}
+		SysParameter sp=new SysParameter();
+		sp.Action=action;
+		sp.Module=module;
 		Distribute distribute=null;
-		if(str.equals("company.login")){
+		if(module.equals("company.manager")){
 
-			distribute=new ManagerDistribute(this.getServletContext());
+			distribute=new ManagerDistribute(sp,this.getServletContext());
 		}
 		distribute.doPost(req, resp);
 

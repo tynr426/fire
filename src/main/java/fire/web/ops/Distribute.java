@@ -18,7 +18,9 @@ import fire.web.service.ManagerService;
 
 public class Distribute extends HttpServlet {
 	private WebApplicationContext wac=null;
-	public Distribute(ServletContext context){
+	protected SysParameter sp;
+	public Distribute(SysParameter sp,ServletContext context){
+		this.sp=sp;
 		wac =WebApplicationContextUtils.getWebApplicationContext(context); 
 	}
 	public <E> E getServiceIml(String name){

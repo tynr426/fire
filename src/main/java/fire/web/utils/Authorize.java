@@ -6,9 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import fire.common.entity.Manager;
+import fire.sdk.utils.AES;
 
 public class Authorize {
-	public static String getCompanyToken(Manager entity,int day){
+	public static String getCompanyToken(Manager entity,String code,int day){
 		String url=Utils.getHost();
 		Format f = new SimpleDateFormat("yyyy-MM-dd");  
 
@@ -17,6 +18,12 @@ public class Authorize {
 		c.setTime(today);  
 		c.add(Calendar.DAY_OF_MONTH, day);
 
-		return "fire|"+url+"|"+ entity.getCompanyId()+"|"+entity.getId()+"|"+entity.getUserName()+"|"+entity.getPassword()+"|"+f.format(c.getTime());
+		try {
+			return AES.aesEncrypt("fire|"+url+"|"+code+"|"+entity.getId()+"|"+entity.getUserName()+"|"+entity.getPassword()+"|"+f.format(c.getTime()),"fire");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 }
