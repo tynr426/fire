@@ -44,6 +44,8 @@ public class Route extends HttpServlet {
 		if(module.equals("company.manager")){
 
 			distribute=new ManagerDistribute(sp,this.getServletContext());
+		}else if(module.equals("company.device")){
+			distribute=new DeviceDistribute(sp,this.getServletContext());
 		}
 		distribute.doPost(req, resp);
 
