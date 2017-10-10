@@ -10,7 +10,7 @@
 		SELECT * FROM com_company WHERE Tel = #{Tel} AND Id!=#{Id} limit 1
 	</select>
 	<select id="findById" parameterType="int" resultType="fire.common.entity.CompanyResult">
-		SELECT c.*,m.UserName,m.Id as ManagerId,NickName,Face,Email,Mobile FROM com_company c join com_manager m
+		SELECT c.*,m.UserName,m.Id as ManagerId,m.Name as ManagerName,NickName,Face,Email,Mobile FROM com_company c join com_manager m
 		on(c.Id=m.CompanyId) 
 		WHERE c.Id = #{Id} and m.UserId=0 limit 1;
 	</select>
