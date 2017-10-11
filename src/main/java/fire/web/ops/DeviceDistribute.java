@@ -36,4 +36,5 @@ public class DeviceDistribute extends Distribute {
 		resp.getWriter().write(str);
 	}
 	
+	
 }

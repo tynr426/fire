@@ -29,6 +29,8 @@ public class ManagerDistribute extends Distribute {
 		}
 		else if(sp.Action.equals("autologin")){
 			autoLogin(req,resp);
+		}else if(sp.Action.equals("getManager")){
+			getManager(req,resp);
 		}
 	}
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -43,6 +45,12 @@ public class ManagerDistribute extends Distribute {
 		String token=req.getParameter("Token");
 				resp.setContentType("text/javascript; charset=utf-8"); 
 		String str=Utils.objectToJson(new JsonResult(managerService.verifyToken(token)));
+		resp.getWriter().write(str);
+	}
+	private void getManager(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String id=req.getParameter("Id");
+		resp.setContentType("text/javascript; charset=utf-8"); 
+		String str=Utils.objectToJson(new JsonResult(managerService.getManager(Integer.parseInt(id))));
 		resp.getWriter().write(str);
 	}
 }
