@@ -33,6 +33,7 @@ public class DeviceTypeDistribute extends Distribute {
 	}
 	private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String str=Utils.objectToJson(new JsonResult(deviceTypeService.findDeviceTypeResult()));
+		resp.setContentType("text/javascript; charset=utf-8"); 
 		resp.getWriter().write(str);
 	}
 	
