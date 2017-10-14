@@ -1,6 +1,7 @@
 package fire.web.ops;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -30,11 +31,20 @@ public class DeviceDistribute extends Distribute {
 			addDevice(req,resp);
 		}
 	}
-	private void addDevice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{ 
-		DeviceResult device=(DeviceResult)DTOBeanUtils.getDTO(req, DeviceResult.class);
+	private void addDevice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		DeviceResult device=null;
+		try {
+			ObjectInputStream ois = new ObjectInputStream(req.getInputStream());
+			device= (DeviceResult) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//DeviceResult device=(DeviceResult)DTOBeanUtils.getDTO(req, DeviceResult.class);
 		String str=Utils.objectToJson(new JsonResult(deviceService.addDevice(device)));
 		resp.getWriter().write(str);
 	}
-	
-	
+
+
 }
