@@ -52,10 +52,12 @@ public class DeviceServiceImpl implements DeviceService{
 		List<DeviceParameterValue> addList=new ArrayList<DeviceParameterValue>();
 		//待修改的
 		List<DeviceParameterValue> updateList=new ArrayList<DeviceParameterValue>();
-		for(DeviceParameterValue entity:list){
-			entity.setDeviceId(device.getId());
-			if(!getUpdate(entity,preParameterList,updateList)){
-				addList.add(entity);
+		if(list!=null){
+			for(DeviceParameterValue entity:list){
+				entity.setDeviceId(device.getId());
+				if(!getUpdate(entity,preParameterList,updateList)){
+					addList.add(entity);
+				}
 			}
 		}
 		if(addList.size()>0){

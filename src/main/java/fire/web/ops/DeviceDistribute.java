@@ -34,6 +34,8 @@ public class DeviceDistribute extends Distribute {
 			getDevice(req,resp);
 		}else if(sp.Action.equals("showDevice")){
 			showDevice(req,resp);
+		}else if(sp.Action.equals("updateDevice")){
+			updateDevice(req,resp);
 		}
 	}
 	private void addDevice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -64,6 +66,20 @@ public class DeviceDistribute extends Distribute {
 		String str=Utils.objectToJson(new JsonResult(deviceService.getDevicePage(companyId, index, size)));
 		resp.getWriter().write(str);
 	}
-	
+	private void updateDevice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		DeviceResult device=null;
+		try {
+			ObjectInputStream ois = new ObjectInputStream(req.getInputStream());
+			device= (DeviceResult) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//DeviceResult device=(DeviceResult)DTOBeanUtils.getDTO(req, DeviceResult.class);
+		String str=Utils.objectToJson(new JsonResult(deviceService.updateDevice(device)));
+		resp.getWriter().write(str);
+	}
+
 
 }
