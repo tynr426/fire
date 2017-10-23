@@ -1,6 +1,5 @@
 package fire.web.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;

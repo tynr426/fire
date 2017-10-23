@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.RepairrecordDAO">
+	<select id="findById" parameterType="int" resultType="fire.common.entity.Repairrecord">
+		select * from fir_repairrecord WHERE Id = #{id}
+	</select>
+	<update id="updateRepairrecord" parameterType="fire.common.entity.Repairrecord">
+		UPDATE fir_repairrecord SET
+			AssignmentId=#{AssignmentId}, 
+			DeviceId=#{DeviceId}, 
+			DeviceTypeId=#{DeviceTypeId}, 
+			IsFinish=#{IsFinish}, 
+			Certificate=#{Certificate},
+			Description=#{Description},
+			AddTime=#{AddTime},
+			Status=#{Status}
+			WHERE Id = #{Id}
+	</update>
+	<insert id="addRepairrecord" parameterType="fire.common.entity.Repairrecord" useGeneratedKeys="true" keyProperty="id">
+		insert into fir_repairrecord(
+		AssignmentId,DeviceId,DeviceTypeId,
+		IsFinish,Certificate,Description,AddTime,Status
+		)
+		values(
+		#{AssignmentId},#{DeviceId},#{DeviceTypeId},
+		#{IsFinish},#{Certificate},#{Description},#{AddTime},
+		#{Status}
+		)		
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from fir_repairrecord where Id = #{id}
+	</delete>
+	<select id="findRepairrecordCount" resultType="int">
+		select count(*) from fir_repairrecord 
+	</select>
+	<select id="findByLimit" resultType="fire.common.entity.Repairrecord">
+		select *from fir_repairrecord limit #{begin},#{size}
+	</select>
+</mapper>
