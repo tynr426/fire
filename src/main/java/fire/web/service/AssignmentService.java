@@ -11,6 +11,6 @@ public interface AssignmentService {
 	public int updateAssignment(Assignment assignment);
 	public Assignment getAssignment(int id);
 	public int deleteAssignment(int id);
-	public PageInfo<Assignment> getDevicePage(int companyId,int index,int size);
+	public PageInfo<Assignment> getAssignmentPage(int companyId,int index,int size);
 	public int updateStatus(Integer id, Integer status);
 }

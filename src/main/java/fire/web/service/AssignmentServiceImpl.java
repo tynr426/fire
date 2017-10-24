@@ -39,7 +39,7 @@ public class AssignmentServiceImpl implements AssignmentService{
 		return assignmentDAO.delete(id);
 	}
 
-	public PageInfo<Assignment> getDevicePage(int companyId, int index, int size) {
+	public PageInfo<Assignment> getAssignmentPage(int companyId, int index, int size) {
 		PageInfo<Assignment> pi = new PageInfo<Assignment>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
