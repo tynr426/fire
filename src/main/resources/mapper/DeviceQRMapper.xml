@@ -11,14 +11,14 @@
 		<foreach collection ="list" item="deviceQR" index= "index" separator =";">
               insert into fir_deviceqr(
 		DeviceTypeId,Code,QRVirtural,
-		IsUsed,AddTime
+		IsUsed,AddTime,DeviceId
 		)
 		values
                 (
                 #{deviceQR.DeviceTypeId}, #{deviceQR.code},
                 #{deviceQR.QRVirtural},
                 #{deviceQR.IsUsed},
-                #{deviceQR.AddTime}
+                #{deviceQR.AddTime},#{deviceQR.DeviceId}
                )  
         </foreach >		
 		</insert>

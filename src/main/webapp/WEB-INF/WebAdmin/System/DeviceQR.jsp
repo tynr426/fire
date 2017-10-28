@@ -36,7 +36,7 @@
 									<div class="button">
 										<a href="javascript:void(0);"
 											onclick="frm.add({ title: '添加消防设备类型', formId: 'DeviceTypeFormTemplate', callback: deviceType.addDeviceType, width: 700, height: 300,finish:deviceType.finishUploadBtn });"
-											class="btn">添加消防设备类型</a>
+											class="btn">查询设备</a>
 									</div>
 
 
