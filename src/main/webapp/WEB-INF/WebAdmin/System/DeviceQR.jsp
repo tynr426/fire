@@ -31,7 +31,54 @@
 						<div class="mc" label-limitarea="group1">
 							<div class="for select" label-area="group1|key1">
 								<div class="extend-button">
+  <div class="button expert-close">
+                                        <a href="javascript:void(0);" onclick="expert(this);" class="btn">高级查询</a>
 
+                                        <div class="expert-list">
+                                            <div class="list">
+                                                <div class="custom-table">
+                                                    <div class="form">
+                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                            <colgroup>
+                                                                <col style="width: 100px;" />
+                                                                <col style="width: auto;" />
+                                                            </colgroup>
+
+                                                            <tbody id="filterForm">
+                                                                <tr>
+                                                                    <th><p class="name">供应商名称：</p></th>
+                                                                    <td>
+                                                                        <div class="inputbox">
+                                                                            <input type="text" name="Name" value="" placeholder="供应商名称" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><p class="name">所属行业：</p></th>
+                                                                    <td>
+                                                                        <div class="selectbox">
+                                                                            <select name="Industry" id="Industry">
+                                                                                <option selected="selected" value="">全部</option>
+                                                                                <$loop id="EnumsList" datasourceid="EnumsList">
+                                                                                    <option value="<$var enumslist.id />"><$var enumslist.name /></option>
+                                                                                </$loop>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="button">
+                                                <a href="javascript:void(0);" onclick="$e('#filterForm').filter();" class="btn">筛选</a>
+                                                <a href="javascript:void(0);" onclick="frm.loadAllData();" class="btn">全部</a>
+                                                <a href="javascript:void(0);" onclick="$e('#filterForm').formReset();" class="btn">清空</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
 									<div class="button">
 										<a href="javascript:void(0);"
