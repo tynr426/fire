@@ -3,10 +3,11 @@ var deviceType={
 			if(!$("#DeviceTypeForm").formValidate())return;
 			var Name = $("#Name").val().trim();
 			var UseTime = $("#UseTime").val();
+			var VirtualPath = $("#VirtualPath").val();
 			$.ajax({
 				url:"/fire/deviceType/addDeviceType.do",
 				type:"post",
-				data:{Name:Name,UseTime:UseTime},
+				data:{Name:Name,UseTime:UseTime,VirtualPath:VirtualPath},
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
@@ -44,10 +45,11 @@ var deviceType={
 			var id = $("#DeviceTypeForm").find("#Id").val();
 			var Name = $("#Name").val().trim();
 			var UseTime = $("#UseTime").val().trim();
+			var VirtualPath = $("#VirtualPath").val().trim();
 			$.ajax({
 				url:path+"/deviceType/update.do",
 				type:"post",
-				data:{Id:id,Name:Name,UseTime:UseTime},
+				data:{Id:id,Name:Name,UseTime:UseTime,VirtualPath:VirtualPath},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
@@ -64,8 +66,86 @@ var deviceType={
 					}
 			});
 		},
+		openDialog:function(id){
+			  if($("#dialogForm").length==0){
+                	$("body").append("	<div id='dialogForm' style='display: none'></div>");
+                }
+			  
+			var opt={
+					 resizable: true,
+					    width: 450,
+					    height: 200,
+					    modal: true,
+					    title:"二维码"
+					};
+			
+			// 添加按钮
+            opt.buttons = {
+    				"确定":function(){
+    						deviceType.createQR(this,id);
+    				},
+    				"取消":function(){
+    					$(this).dialog('close');
+    				}
+    		};
+            opt.Cancle =function(){
+    			$(this).dialog('close');
+    		};
+    		$("#dialogForm").html($("#CreateQRTemplate").html());
+			
+			$("#dialogForm").dialog(opt).dialog("open");
+		},
+		createQR:function(obj,id){
+			var number=$("#QRNumber").val();
+			$.ajax({
+				url:path+"/deviceType/createQR.do",
+				type:"post",
+				data:{id:id,number:number},
+					dataType:"json",
+					success:function(result){
+						if(result.state==0){
+							alert("您已生成成功");
+							$(obj).dialog('close');
+						}else{	
+							alert(result.message);			
+						}								
 
-
+					},
+					error:function(){
+						alert("生成失败");
+					}
+			});
+		},
+		  finishUploadBtn: function () {
+			  var json=arguments[0];
+			  if(json.virtualPath!=undefined){
+				  $("[name=VirtualPath]").attr("src", path+json.virtualPath);
+			  }
+			  console.log(arguments[0]);
+		        var upObject = uploads('uploadDemo', {
+		            id: 'uploadDemo',
+		            preview_hide: true,
+		            upload_url: path+"/upload.do",
+		            upload_success_handler: deviceType.callBackUpdateFilePath,
+		            file_size_limit: 12000,
+		            post_params: {
+		                module: "Web"
+		            },
+		            call_back: function () {
+		            }
+		        })
+		    },
+		    callBackUpdateFilePath: function (file, serverData, responseReceived) {
+		        debugger;
+		        console.log(serverData);
+		        if (file.filestatus == -4) {
+		        	 var json= $.parseJSON(serverData);
+		            $("#VirtualPath").val(json.data);
+		           
+		            $("[name=VirtualPath]").attr("src", path+json.data);
+		        }
+		        file = this.unescapeFilePostParams(file);
+		    }
 }
 
 var deviceTypeParameter={
@@ -269,5 +349,4 @@ var deviceTypeParameter={
 					}
 			});
 		}
-	
 }

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/fire/web/controller/UploadFileController.java=UTF-8
 encoding//src/main/java/fire/web/controller/VerifyCodeController.java=UTF-8
 encoding//src/main/java/fire/web/dao/CompanyDAO.java=UTF-8
 encoding//src/main/java/fire/web/dao/DTPDAO.java=UTF-8

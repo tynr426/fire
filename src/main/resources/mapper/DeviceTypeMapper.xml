@@ -16,13 +16,14 @@
 	<update id="updateDeviceType" parameterType="fire.common.entity.DeviceType">
 		UPDATE fir_devicetype SET 
 			Name = #{Name},
-			UseTime=#{UseTime}
+			UseTime=#{UseTime},
+			VirtualPath=#{VirtualPath}
 			WHERE Id = #{Id}
 	</update>
 	<insert id="addDeviceType" parameterType="fire.common.entity.DeviceType">
-		insert into fir_devicetype(Name,UseTime,Status)
+		insert into fir_devicetype(Name,UseTime,Status,VirtualPath)
 		values(
-		#{Name},#{UseTime},#{Status})		
+		#{Name},#{UseTime},#{Status},#{VirtualPath})		
 	</insert>
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from fir_devicetype where Id = #{Id}

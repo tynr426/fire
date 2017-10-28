@@ -1,24 +1,24 @@
-ï»¿/*åˆå§‹åŒ–å¼€å§‹*/
+/*³õÊ¼»¯¿ªÊ¼*/
 
 /*
-	æ–‡ä»¶å›¾ç‰‡ä¸Šä¼ jså¤„ç†
+	ÎÄ¼şÍ¼Æ¬ÉÏ´«js´¦Àí
 	file: swfUploadHander.js
 	Version: 1.1.0
 	Author: xp
-	Modefiy: 2012-02-15:æ–°å¢å›¾ç‰‡é¢„è§ˆçš„ç›¸å…³é…ç½®,preview_width,preview_height,class_name(xp)
+	Modefiy: 2012-02-15:ĞÂÔöÍ¼Æ¬Ô¤ÀÀµÄÏà¹ØÅäÖÃ,preview_width,preview_height,class_name(xp)
 */
-// å›¾ç‰‡æœåŠ¡å™¨
+// Í¼Æ¬·şÎñÆ÷
 if (typeof (imageDomain) == "undefined")
     imageDomain = '';
 
-//åˆ›å»ºä¸Šä¼ çš„å¤„ç†æ–¹æ³•
+//´´½¨ÉÏ´«µÄ´¦Àí·½·¨
 var uploadHandler = function (config){
     //alert(uploadHandler.fn.init);
     swfCurrentObj: null;
 	return new uploadHandler.fn.init(config);
 }
 
-//ç‚¹å‡»æŸ¥çœ‹å¤§å›¾
+//µã»÷²é¿´´óÍ¼
 function upload_Preview_Image (id,src,o){
 	var oimg = document.getElementById(id + "_max_pic_img");
 	oimg.src = src;
@@ -27,11 +27,11 @@ function upload_Preview_Image (id,src,o){
 uploadHandler.fn = uploadHandler.prototype = {
     version: "1.0.0 beta",
     handler: null,
-    //åˆå§‹åŒ–å®‰è£…flash
+    //³õÊ¼»¯°²×°flash
     init: function (config) {
         var self = this,
             dfs = this.defaults();
-        //å°†é»˜è®¤é…ç½®æ·»åŠ åˆ°configä¸­
+        //½«Ä¬ÈÏÅäÖÃÌí¼Óµ½configÖĞ
         for (var _ in dfs) { if (config[_] === undefined) config[_] = dfs[_]; }
         this.config = config;
         uploadHandler[config.id + "_Config"] = config;
@@ -41,26 +41,26 @@ uploadHandler.fn = uploadHandler.prototype = {
         if (hid) hid.value = "";
         return this;
     },
-    //å¼€å§‹æ‰“å¼€æ–‡ä»¶é€‰æ‹©å¯¹è¯æ¡†
+    //¿ªÊ¼´ò¿ªÎÄ¼şÑ¡Ôñ¶Ô»°¿ò
     fileDialogStart: function () {
     },
-    //å¤„ç†æ–‡ä»¶é˜Ÿåˆ—
+    //´¦ÀíÎÄ¼ş¶ÓÁĞ
     fileQueued: function () {
         var imgSrc = document.getElementById(this.settings.id).value;
         var length = imgSrc.split(";").length;
-        //å¦‚æœä¸Šä¼ å›¾ç‰‡å¤§ç­‰äºäº†è®¾ç½®å¤§å°
+        //Èç¹ûÉÏ´«Í¼Æ¬´óµÈÓÚÁËÉèÖÃ´óĞ¡
         if (length == parseInt(this.settings.file_upload_limit) && imgSrc.length > 0) {
-            //å–æ¶ˆä¸Šä¼ 
+            //È¡ÏûÉÏ´«
             this.cancelUpload(null, false);
-            alert("æœ€å¤šåªèƒ½ä¸Šä¼ " + this.settings.file_upload_limit + "å¼ å›¾ç‰‡ï¼Œè¯·åˆ é™¤éƒ¨åˆ†å›¾ç‰‡åç»§ç»­ã€‚");
+            alert("×î¶àÖ»ÄÜÉÏ´«" + this.settings.file_upload_limit + "ÕÅÍ¼Æ¬£¬ÇëÉ¾³ı²¿·ÖÍ¼Æ¬ºó¼ÌĞø¡£");
             return;
         }
-        ECF("#Delete_Div").show();
+        $("#Delete_Div").show();
         var arg = arguments[0],
 			tid = uploadHandler.getId(arg.id);
         var tbox = document.getElementById(tid + "_thumbs_box");
 
-        //ç¦æ­¢æ˜¾ç¤ºä¸Šä¼ æˆåŠŸåçš„ç¼©ç•¥å›¾ By Zkai 2015-07-06
+        //½ûÖ¹ÏÔÊ¾ÉÏ´«³É¹¦ºóµÄËõÂÔÍ¼ By Zkai 2015-07-06
         return;
         if (tbox) {
             tbox.style.display = this.settings.file_upload_limit == 1 ? "none":"block";
@@ -69,30 +69,30 @@ uploadHandler.fn = uploadHandler.prototype = {
             thumb.id = 'thumbs_inner_' + arg.id;
             thumb.className = "thumbs_inner";
             thumb.innerHTML = uploadHandler["thumbHtml"]
-			.replace("{$img$}", arg.name + "å¾…ä¸Šä¼ æ–‡ä»¶...")
+			.replace("{$img$}", arg.name + "´ıÉÏ´«ÎÄ¼ş...")
 			.replace("{$method$}", "")
 			.replace("{$view$}", "")
 			.replace("{$delete$}", "");
             tbox.appendChild(thumb);
         }
     },
-    //æ–‡ä»¶å¯¹åˆ—é”™è¯¯
+    //ÎÄ¼ş¶ÔÁĞ´íÎó
     fileQueueError: function (file, errorCode, message) {
         try {
             var errorMsg = "";
             switch (errorCode) {
                 case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
                     if (message > 0) {
-                        errorMsg = "æ‚¨åªèƒ½åŒæ—¶ä¸Šä¼ " + message + "ä¸ªæ–‡ä»¶!";
+                        errorMsg = "ÄúÖ»ÄÜÍ¬Ê±ÉÏ´«" + message + "¸öÎÄ¼ş!";
                     } else {
-                        errorMsg = "ä¸èƒ½å†ç»§ç»­ä¸Šä¼ ";
+                        errorMsg = "²»ÄÜÔÙ¼ÌĞøÉÏ´«";
                     }
                     break;
                 case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-                    errorMsg = "æ‚¨ä¸å¯ä¸Šä¼ 0å­—èŠ‚çš„æ–‡ä»¶";
+                    errorMsg = "Äú²»¿ÉÉÏ´«0×Ö½ÚµÄÎÄ¼ş";
                     break;
                 case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-                    errorMsg = "æ–‡ä»¶ä¸å¯å¤§äº" + this.settings.file_size_limit;
+                    errorMsg = "ÎÄ¼ş²»¿É´óÓÚ" + this.settings.file_size_limit;
                     break;
                 case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
                 case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
@@ -109,19 +109,19 @@ uploadHandler.fn = uploadHandler.prototype = {
             this.debug(ex);
         }
     },
-    //æ‰“å¼€é€‰æ‹©å›¾ç‰‡å¯¹è¯æ¡†å®Œæˆæ—¶è°ƒç”¨
+    //´ò¿ªÑ¡ÔñÍ¼Æ¬¶Ô»°¿òÍê³ÉÊ±µ÷ÓÃ
     fileDialogComplete: function (numFilesSelected, numFilesQueued) {
         try {
             if (numFilesSelected > 0) {
                 this.startUpload();
-                //ç¦ç”¨æäº¤æŒ‰é’®
+                //½ûÓÃÌá½»°´Å¥
                 //document.getElementById(this.customSettings.submitBtnId).disabled = true;
             }
         } catch (ex) {
             this.debug(ex);
         }
     },
-    //ä¸Šä¼ è¿›åº¦å¤„ç†
+    //ÉÏ´«½ø¶È´¦Àí
     uploadProgress: function (file, bytesLoaded) {
         var arg = arguments[0];
         try {
@@ -129,15 +129,15 @@ uploadHandler.fn = uploadHandler.prototype = {
             var thumb = document.getElementById('thumbs_inner_' + arg.id);
             thumb.style.display = "block";
             if (percent === 100) {
-                if (thumb) thumb.innerHTML = uploadHandler["thumbHtml"].replace("{$img$}", "å·²ä¸Šä¼ å®Œæˆ").replace("{$method$}", "");
+                if (thumb) thumb.innerHTML = uploadHandler["thumbHtml"].replace("{$img$}", "ÒÑÉÏ´«Íê³É").replace("{$method$}", "");
             } else {
-                if (thumb) thumb.innerHTML = uploadHandler["thumbHtml"].replace("{$img$}", "å·²ä¸Šä¼ : " + percent + "%").replace("{$method$}", ""); 			//progress.setStatus("æ­£åœ¨ä¸Šä¼ ...");
+                if (thumb) thumb.innerHTML = uploadHandler["thumbHtml"].replace("{$img$}", "ÒÑÉÏ´«: " + percent + "%").replace("{$method$}", ""); 			//progress.setStatus("ÕıÔÚÉÏ´«...");
             }
         } catch (ex) {
             this.debug(ex);
         }
     },
-    //ä¸€å¼ å›¾ç‰‡ä¸Šä¼ æˆåŠŸå¤„ç†
+    //Ò»ÕÅÍ¼Æ¬ÉÏ´«³É¹¦´¦Àí
     uploadSuccess: function (file, serverData) {
         var thumb = document.getElementById('thumbs_inner_' + file.id),
 			tid = uploadHandler.getId(file.id);
@@ -158,16 +158,16 @@ uploadHandler.fn = uploadHandler.prototype = {
 		.replace("{$method$}", "upload_Preview_Image('" + tid + "','" + serverData + "',this);return false;")
 		.replace("{$view$}", "uploadHandler.view(\'" + serverData + "\',\'" + file.id + "\',this);")
 		.replace("{$delete$}", "uploadHandler.deleteFile(\'" + serverData + "\',\'" + file.id + "\',this,'');")
-		.replace("{$deltitle$}", "åˆ é™¤å›¾ç‰‡");
+		.replace("{$deltitle$}", "É¾³ıÍ¼Æ¬");
     },
-    //ä¸Šä¼ å…¨éƒ¨å®Œæˆæ—¶å¤„ç†
+    //ÉÏ´«È«²¿Íê³ÉÊ±´¦Àí
     uploadComplete: function (file) {
         //alert(this.config);
     },
-    //å–æ¶ˆä¸Šä¼ 
+    //È¡ÏûÉÏ´«
     cancelUpload: function () {
     },
-    //ä¸Šä¼ å‡ºé”™æ—¶å¤„ç†
+    //ÉÏ´«³ö´íÊ±´¦Àí
     uploadError: function (file, errorCode, message) {
         //alert("error" + message +"||"+ errorCode);
         var imageName = "error.gif";
@@ -175,23 +175,23 @@ uploadHandler.fn = uploadHandler.prototype = {
         try {
             switch (message) {
                 case "417":
-                    alert("æœåŠ¡å™¨ä¸å…è®¸ä¸Šä¼ æ­¤æ ¼å¼çš„æ–‡ä»¶");
+                    alert("·şÎñÆ÷²»ÔÊĞíÉÏ´«´Ë¸ñÊ½µÄÎÄ¼ş");
                     break;
                 case "500":
-                    alert("æœåŠ¡å™¨é”™è¯¯");
+                    alert("·şÎñÆ÷´íÎó");
                     break;
                 case "501":
-                    alert("å•å¼ å›¾ç‰‡ä¸å…è®¸è¶…è¿‡2M");
+                    alert("µ¥ÕÅÍ¼Æ¬²»ÔÊĞí³¬¹ı2M");
                     break;
                 case "405":
-                    alert("ä¸Šä¼ æ–‡ä»¶æ—¶ä¸å…è®¸å†™å…¥");
+                    alert("ÉÏ´«ÎÄ¼şÊ±²»ÔÊĞíĞ´Èë");
                     break;
                 default:
                     break;
             } 
             delThumb(file.id);
             switch (errorCode) {
-                case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED: //å½“ä¸Šä¼ è¢«å–æ¶ˆ
+                case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED: //µ±ÉÏ´«±»È¡Ïû
                     try {
 
                     }
@@ -199,17 +199,17 @@ uploadHandler.fn = uploadHandler.prototype = {
                         this.debug(ex1);
                     }
                     break;
-                case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED: //å½“ä¸Šä¼ è¢«åœæ­¢
+                case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED: //µ±ÉÏ´«±»Í£Ö¹
                     try {
                         progress = GetFileProgressObject(this.customSettings, file, this.customSettings.upload_target);
                         progress.setCancelled();
-                        progress.setStatus("å·²åœæ­¢");
+                        progress.setStatus("ÒÑÍ£Ö¹");
                         progress.toggleCancel(true);
                     }
                     catch (ex2) {
                         this.debug(ex2);
                     }
-                case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:  //ä¸å…è®¸ä¸Šä¼ çš„æ–‡ä»¶
+                case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:  //²»ÔÊĞíÉÏ´«µÄÎÄ¼ş
                     imageName = "uploadlimit.gif";
                     break;
                 default:
@@ -219,7 +219,7 @@ uploadHandler.fn = uploadHandler.prototype = {
         } catch (ex3) {
             this.debug(ex3);
         }
-        //åˆ é™¤å·²åŠ å…¥çš„ç¼©ç•¥æ˜¾ç¤º
+        //É¾³ıÒÑ¼ÓÈëµÄËõÂÔÏÔÊ¾
         function delThumb(fid) {
             var th = document.getElementById("thumbs_inner_" + fid),
 				tid = uploadHandler.getId(fid),
@@ -227,16 +227,16 @@ uploadHandler.fn = uploadHandler.prototype = {
             p.removeChild(th);
         }
     },
-    //ç©ºæ–¹æ³•
+    //¿Õ·½·¨
     empty: function () {
     },
-    // æ›´æ”¹postå‚æ•°
+    // ¸ü¸Äpost²ÎÊı
     setPostParams: function (param) {
         if(typeof(param) == "object"){
             this.swf.setPostParams(param);
         }
     },
-    //åˆå§‹åŒ–ä¸€äº›å¸¸ç”¨html
+    //³õÊ¼»¯Ò»Ğ©³£ÓÃhtml
     _init: (function () {
         uploadHandler["thumbHtml"] = '\
             <div class="picbox rm">\
@@ -245,37 +245,37 @@ uploadHandler.fn = uploadHandler.prototype = {
                 </a>\
 			</div>\
 			<div class="thumb_btn_bar rm">\
-			    <a href="javascript:void(0);" onclick="{$view$}" title="æŸ¥çœ‹å›¾ç‰‡è·¯å¾„"><span class="thumb_btn_view"></span></a>\
+			    <a href="javascript:void(0);" onclick="{$view$}" title="²é¿´Í¼Æ¬Â·¾¶"><span class="thumb_btn_view"></span></a>\
 			    <a href="javascript:void(0);" onclick="{$delete$}" title="{$deltitle$}"><span  class="thumb_btn_delete"></span></a>\
 		    </div>';
     })(),
-    //ä¸Šä¼ å¤„ç†çš„é»˜è®¤é…ç½®éƒ¨åˆ†
+    //ÉÏ´«´¦ÀíµÄÄ¬ÈÏÅäÖÃ²¿·Ö
     defaults: (function () {
         return {
             id: "swfUpload",
             upload_url: "/Upload.axd",
-            file_dialog_start_handler: this.fileDialogStart, 				//æ‰“å¼€å¯¹è¯æ¡†
-            file_queued_handler: this.fileQueued, 						//é€‰æ‹©æ–‡ä»¶å
-            file_dialog_complete_handler: this.fileDialogComplete, //å¯¹è¯æ¡†å®Œæˆ
-            file_queue_error_handler: this.fileQueueError, 		//ä¸Šä¼ é˜Ÿåˆ—å‡ºé”™çš„å›è°ƒ
+            file_dialog_start_handler: this.fileDialogStart, 				//´ò¿ª¶Ô»°¿ò
+            file_queued_handler: this.fileQueued, 						//Ñ¡ÔñÎÄ¼şºó
+            file_dialog_complete_handler: this.fileDialogComplete, //¶Ô»°¿òÍê³É
+            file_queue_error_handler: this.fileQueueError, 		//ÉÏ´«¶ÓÁĞ³ö´íµÄ»Øµ÷
             upload_progress_handler: this.uploadProgress,
             upload_error_handler: this.uploadError,
             upload_success_handler: this.uploadSuccess,
             upload_complete_handler: this.uploadComplete,
             call_back: null, //function(){alert("this");}
-            call_back_args: [], 	//é˜Ÿåˆ—ä¸Šä¼ å®Œæˆåå›è°ƒå‚æ•°
-            class_name: "upload_box", //ä¸Šä¼ æ§ä»¶çš„æ•´ä½“æ ·å¼æ›¿æ¢
-            preview_hide: false, //æ˜¯å¦éšè—å›¾ç‰‡é¢„è§ˆ
-            default_preview: "/Static/Images/error.png", //é»˜è®¤çš„é¢„è§ˆå›¾ç‰‡
-            max_picture: "", 	//ç»™å®šåˆå§‹çš„å›¾ç‰‡
-            preview_width: 200, 	//é¢„è§ˆå›¾ç‰‡å®½åº¦
-            preview_height: 200, //é¢„è§ˆå›¾ç‰‡é«˜åº¦
-            debug: false				//å¼€å¯è°ƒè¯•
+            call_back_args: [], 	//¶ÓÁĞÉÏ´«Íê³Éºó»Øµ÷²ÎÊı
+            class_name: "upload_box", //ÉÏ´«¿Ø¼şµÄÕûÌåÑùÊ½Ìæ»»
+            preview_hide: false, //ÊÇ·ñÒş²ØÍ¼Æ¬Ô¤ÀÀ
+            default_preview: path+"/Static/Images/error.png", //Ä¬ÈÏµÄÔ¤ÀÀÍ¼Æ¬
+            max_picture: "", 	//¸ø¶¨³õÊ¼µÄÍ¼Æ¬
+            preview_width: 200, 	//Ô¤ÀÀÍ¼Æ¬¿í¶È
+            preview_height: 200, //Ô¤ÀÀÍ¼Æ¬¸ß¶È
+            debug: false				//¿ªÆôµ÷ÊÔ
         }
     })
 };
 
-//æ ¹æ®å®é™…idå–å‡ºå½“å‰ç»„ä»¶çš„id
+//¸ù¾İÊµ¼ÊidÈ¡³öµ±Ç°×é¼şµÄid
 uploadHandler.getId = function (id) {
     var tid = id.substr(0, id.length - 4);
     if (tid.substr(tid.length - 1) == "_") {
@@ -284,9 +284,9 @@ uploadHandler.getId = function (id) {
     return tid;
 }
 
-//æ‰§è¡Œå›¾ç‰‡çš„åˆ é™¤æ“ä½œ
+//Ö´ĞĞÍ¼Æ¬µÄÉ¾³ı²Ù×÷
 uploadHandler.deleteFile = function () {
-    if (!confirm("ä½ ç¡®å®šè¦åˆ é™¤æ­¤å›¾ç‰‡å—?")) return;
+    if (!confirm("ÄãÈ·¶¨ÒªÉ¾³ı´ËÍ¼Æ¬Âğ?")) return;
     var fname = arguments[0],
 		fid = arguments[1],
 		o = arguments[2],
@@ -296,7 +296,7 @@ uploadHandler.deleteFile = function () {
     if (th == null) {
         return;
     }
-    ECF.ajax({
+    $.ajax({
         url: "/upload.axd",
         dataType: "xml",
         data: '<action>deleteImg</action><filename>' + fname + '</filename>',
@@ -310,7 +310,7 @@ uploadHandler.deleteFile = function () {
 
                 p.removeChild(th);
 
-                if (hid) {  //å¤„ç†è¾“å…¥éšè—åŸŸä¸­çš„å€¼
+                if (hid) {  //´¦ÀíÊäÈëÒş²ØÓòÖĞµÄÖµ
                     var val = hid.value + ";";
                     val = val.replace(fname + ";", "");
                     val = val.substr(0, val.length - 1);
@@ -332,33 +332,33 @@ uploadHandler.deleteFile = function () {
 
                     oimg.src = "";
                     if (p.childNodes.length > 0) {
-                        var m = ECF("img", p)[0];
+                        var m = $("img", p)[0];
                         if (m) m.parentNode.click();
                     }
                 }
-                ECF("#Delete_Div").hide();
-                alert("åˆ é™¤å›¾ç‰‡æˆåŠŸï¼");
+                $("#Delete_Div").hide();
+                alert("É¾³ıÍ¼Æ¬³É¹¦£¡");
 
                 if (document.getElementById(tid + '_thumbs_box').childNodes.length == 3) {
                     oimg.parentNode.style.display = "none";
                 }
 
-                //æ‰§è¡Œå›è°ƒå‡½æ•°
+                //Ö´ĞĞ»Øµ÷º¯Êı
                 //eval(functName + "('" + fname + "',true)");
             }
             else {
-                alert("åˆ é™¤å›¾ç‰‡å¤±è´¥ï¼");
+                alert("É¾³ıÍ¼Æ¬Ê§°Ü£¡");
             }
         }
     });
 }
 
-//åˆ é™¤å›¾ç‰‡
+//É¾³ıÍ¼Æ¬
 uploadHandler.deleteImg = function (id, functName, delDiv) {
-    if (!confirm("ä½ ç¡®å®šè¦åˆ é™¤æ­¤å›¾ç‰‡å—?")) return;
+    if (!confirm("ÄãÈ·¶¨ÒªÉ¾³ı´ËÍ¼Æ¬Âğ?")) return;
     var imgSrc = document.getElementById(id).value;
     var oimg = document.getElementById(id + "_max_pic_img");
-    ECF.ajax({
+    $.ajax({
         url: "/upload.axd",
         dataType: "xml",
         data: '<action>deleteImg</action><filename>' + imgSrc + '</filename>',
@@ -373,17 +373,17 @@ uploadHandler.deleteImg = function (id, functName, delDiv) {
             }           
         },
         error: function () {
-            alert("é”™è¯¯ä»£ç : " + arguments[0] + ";é”™è¯¯ä¿¡æ¯: " + arguments[1]);
+            alert("´íÎó´úÂë: " + arguments[0] + ";´íÎóĞÅÏ¢: " + arguments[1]);
         }
     });
 
     window.location.reload();
 }
 
-//åˆ é™¤å›¾ç‰‡
+//É¾³ıÍ¼Æ¬
 uploadHandler.delImg = function (src) {
     var isSucceed = false;
-    ECF.ajax({
+    $.ajax({
         url: "/upload.axd",
         dataType: "xml",
         data: '<action>deleteImg</action><filename>' + src + '</filename>',
@@ -401,15 +401,15 @@ uploadHandler.delImg = function (src) {
     return isSucceed;
 }
 
-//åˆ é™¤ä¸€å¼ æˆ–è€…å¤šå¼ å›¾ç‰‡
+//É¾³ıÒ»ÕÅ»òÕß¶àÕÅÍ¼Æ¬
 uploadHandler.deleteFiles = function (val) {
-    ECF.ajax({
+    $.ajax({
         url: "/upload.axd",
         dataType: "xml",
         data: '<action>deleteImg</action><filename>' + val + '</filename>',
         success: function () {
             if (arguments[1].text == 200) {
-                //alert("æˆåŠŸï¼");
+                //alert("³É¹¦£¡");
             }
             else {
             }
@@ -418,21 +418,21 @@ uploadHandler.deleteFiles = function (val) {
 }
 
 
-//æŸ¥çœ‹å›¾ç‰‡æºæ–‡ä»¶åœ°å€
+//²é¿´Í¼Æ¬Ô´ÎÄ¼şµØÖ·
 uploadHandler.view = function(){
 	alert(arguments[0]);
 }
 
 uploadHandler.fn.init.prototype = uploadHandler.fn;
 
-//å°†ä¸Šä¼ æ§ä»¶å¯ä»¥ä»¥jsä¸€å½¢å¼æ•´åˆåœ¨éœ€è¦ç”¨åˆ°ä¸Šä¼ çš„ä½ç½®
+//½«ÉÏ´«¿Ø¼ş¿ÉÒÔÒÔjsÒ»ĞÎÊ½ÕûºÏÔÚĞèÒªÓÃµ½ÉÏ´«µÄÎ»ÖÃ
 var uploads = function (container, config) {
     return new uploads.fn.init(container, config);
 }
 
-//å®šä¹‰ä¸Šä¼ åŠŸèƒ½å‡½æ•°
+//¶¨ÒåÉÏ´«¹¦ÄÜº¯Êı
 uploads.fn = uploads.prototype = {
-    //å¯¹å¤–çš„åˆå§‹åŒ–å¤„ç†
+    //¶ÔÍâµÄ³õÊ¼»¯´¦Àí
     init: function (container, config) {
         //alert(document.getElementById(config.id).value);
         var self = this,
@@ -442,26 +442,26 @@ uploads.fn = uploads.prototype = {
             container = document.getElementById(container);
         }
         if (!container) {
-            //alert("æ‰¾ä¸åˆ°æ”¾ç½®ä¸Šä¼ æ§ä»¶çš„å®¹å™¨");
+            //alert("ÕÒ²»µ½·ÅÖÃÉÏ´«¿Ø¼şµÄÈİÆ÷");
             return;
         }
-        //å°†é»˜è®¤é…ç½®æ·»åŠ åˆ°configä¸­
+        //½«Ä¬ÈÏÅäÖÃÌí¼Óµ½configÖĞ
         for (var _ in dfs) { if (config[_] === undefined) config[_] = dfs[_]; }
         //alert(config.default_preview);
         container.innerHTML = uploads["innerUploads"]
 		.replace(/\{\$id\$\}/g, config.id)
 		.replace(/\{\$classname\$\}/g, config.class_name)
         .replace(/\{\$message\$\}/g, typeof (config.message) == "undefined" ? "" : config.message)
-		.replace(/\{\$src\$\}/g, config.default_preview == undefined ? "/Static/Images/error.png" : config.default_preview)//æ›¿æ¢é»˜è®¤é¢„è§ˆå›¾ç‰‡
-		.replace(/\{\$pwidth\$\}/g, config.preview_width)//æ›¿æ¢é»˜è®¤é¢„è§ˆå›¾ç‰‡å®½åº¦
-		.replace(/\{\$pheight\$\}/g, config.preview_height)//æ›¿æ¢é»˜è®¤é¢„è§ˆå›¾ç‰‡é«˜åº¦
+		.replace(/\{\$src\$\}/g, config.default_preview == undefined ? path+"/Static/Images/error.png" : config.default_preview)//Ìæ»»Ä¬ÈÏÔ¤ÀÀÍ¼Æ¬
+		.replace(/\{\$pwidth\$\}/g, config.preview_width)//Ìæ»»Ä¬ÈÏÔ¤ÀÀÍ¼Æ¬¿í¶È
+		.replace(/\{\$pheight\$\}/g, config.preview_height)//Ìæ»»Ä¬ÈÏÔ¤ÀÀÍ¼Æ¬¸ß¶È
 		.replace(/\{\$display\$\}/g, (config.preview_hide ? " style=\"display:none\"" : ""))
         .replace(/\{\$isDisplay\$\}/g, (parseInt(config.file_upload_limit) > 1 ? " style=\"display:block;\"" : " style=\"display:none;\""))
-        .replace(/\{\$isDelete\$\}/g, (parseInt(config.file_upload_limit) == 1 ? "<div id=\"Delete_Div\" class=\"max_pic_delete\"  onclick=\"uploadHandler.deleteImg(\'" + config.id + "\', '" + config.functname + "', this);\" title=\"åˆ é™¤å›¾ç‰‡\"></div>" : ""));
+        .replace(/\{\$isDelete\$\}/g, (parseInt(config.file_upload_limit) == 1 ? "<div id=\"Delete_Div\" class=\"max_pic_delete\"  onclick=\"uploadHandler.deleteImg(\'" + config.id + "\', '" + config.functname + "', this);\" title=\"É¾³ıÍ¼Æ¬\"></div>" : ""));
         config.button_placeholder_id = config.id + "_Buttons";
         return new uploadHandler(config);
     },
-    //åˆå§‹åŒ–å¤„ç†
+    //³õÊ¼»¯´¦Àí
     _init: (function () {
         uploads["innerUploads"] = '<script language="javascript">\
 			function prev_Thumb_Image(src,o){\
@@ -470,15 +470,15 @@ uploads.fn = uploads.prototype = {
 			}\
 			</script>\
 			<div id="{$id$}_box" class="{$classname$} rm">\
-			<!--ä¸Šä¼ æŒ‰é’®-->\
+			<!--ÉÏ´«°´Å¥-->\
 			<div class="buttons rm">\
 			<input type="hidden" id="{$id$}" value="" />\
 			<span id="{$id$}_Buttons"></span>\
             <span class="tips rm">{$message$}</span>\
 			</div>\
-			<!--å¤§å›¾é¢„è§ˆ-->\
-			<div class="max_pic_box" style="display:none;" >{$isDelete$}<img id="{$id$}_max_pic_img" src="{$src$}" alt="æš‚æ— é¢„è§ˆ" onload="javascript:ECF(this).scaleZoom({$pwidth$},{$pheight$});" nolazy="0" /></div>\
-			<!--ç¼©ç•¥å›¾-->\
+			<!--´óÍ¼Ô¤ÀÀ-->\
+			<div class="max_pic_box" style="display:none;" >{$isDelete$}<img id="{$id$}_max_pic_img" src="{$src$}" alt="ÔİÎŞÔ¤ÀÀ" onload="javascript:$(this).scaleZoom({$pwidth$},{$pheight$});" nolazy="0" /></div>\
+			<!--ËõÂÔÍ¼-->\
             <div class="clear"></div>\
 			<div id="{$id$}_thumbs_box" class="thumbs_box" {$isDisplay$}></div>\
 		</div>';
@@ -490,14 +490,14 @@ uploads.fn = uploads.prototype = {
     }
 }
 
-//ç»™ä¸Šä¼ æ§ä»¶è®¾ç½®å€¼
+//¸øÉÏ´«¿Ø¼şÉèÖÃÖµ
 uploads.setValue = function (id, val) {
     //console.log(val);
     if(typeof(val)!='string') return;
 
     val = val.replace(" ", "");
     if (val.length == 0) {
-        ECF("#Delete_Div").hide();
+        $("#Delete_Div").hide();
         return;
     }
     var c = uploadHandler[id + "_Config"];
@@ -508,21 +508,21 @@ uploads.setValue = function (id, val) {
     if (hid) {
         hid.value = val;
     }
-    if (box) {	//åˆ¤æ–­æ˜¾ç¤ºå›¾ç‰‡çš„åŒºåŸŸæ˜¯å¦å­˜åœ¨
-        var max_box = ECF(".max_pic_box", box),
-			thmbs_box = ECF(".thumbs_box", box);
+    if (box) {	//ÅĞ¶ÏÏÔÊ¾Í¼Æ¬µÄÇøÓòÊÇ·ñ´æÔÚ
+        var max_box = $(".max_pic_box", box),
+			thmbs_box = $(".thumbs_box", box);
         max_box.css("display", "none");
-        for (var i = 0; i < vs.length; i++) {	//å¯¹å¤šä¸ªå€¼è¿›è¡Œå¾ªç¯è®¾ç½®å¤„ç†
+        for (var i = 0; i < vs.length; i++) {	//¶Ô¶à¸öÖµ½øĞĞÑ­»·ÉèÖÃ´¦Àí
             if (vs[i] != "") {
-                //åˆ¤æ–­å›¾ç‰‡è·¯å¾„ç¬¬ä¸€ä¸ªå­—ç¬¦æ˜¯å¦ä¸ºåæ–œæ 
+                //ÅĞ¶ÏÍ¼Æ¬Â·¾¶µÚÒ»¸ö×Ö·ûÊÇ·ñÎª·´Ğ±¸Ü
                 vs[i] = (vs[i].substr(0, 1) == "/" ? "" : "/") + vs[i];
                 if (i == 0) {
-                    ECF("#" + id + "_max_pic_img", box).attr("src", vs[i]);
+                    $("#" + id + "_max_pic_img", box).attr("src", vs[i]);
                 }
                 var preSrc = (imageDomain == "" ? "http://" + window.location.host : imageDomain);
 
                 if (vs.length == 1) {
-                    //åˆ¤æ–­å›¾ç‰‡æ˜¯å¦å­˜åœ¨
+                    //ÅĞ¶ÏÍ¼Æ¬ÊÇ·ñ´æÔÚ
                     var Img = new Image;
                     Img.src = preSrc + vs[i];
 
@@ -530,7 +530,7 @@ uploads.setValue = function (id, val) {
                         i = i - 1;
                         if (i == 0) {
                             if (c.max_picture == "")
-                                ECF("#" + id + "_max_pic_img", box).attr("src", preSrc + vs[i]);
+                                $("#" + id + "_max_pic_img", box).attr("src", preSrc + vs[i]);
                         }
                         var tbox = thmbs_box[0];
                         if (tbox) {
@@ -543,35 +543,35 @@ uploads.setValue = function (id, val) {
 					        .replace("{$method$}", "upload_Preview_Image('" + id + "','" + vs[i] + "',this);return false;")
 					        .replace("{$view$}", "uploadHandler.view(\'" + vs[i] + "\',\'" + tid + "\',this);")
 					        .replace("{$delete$}", "uploadHandler.deleteFile(\'" + vs[i] + "\',\'" + tid + "\',this);")
-					        .replace("{$deltitle$}", "åˆ é™¤å›¾ç‰‡");
+					        .replace("{$deltitle$}", "É¾³ıÍ¼Æ¬");
                             //tbox.appendChild(thumb);
                         }
                     }
                     Img.onerror = function () {
                         i = i - 1;
                         var hid = document.getElementById(id);
-                        //å¤„ç†è¾“å…¥éšè—åŸŸä¸­çš„å€¼
+                        //´¦ÀíÊäÈëÒş²ØÓòÖĞµÄÖµ
                         if (hid) {
                             var val = hid.value + ";";
                             val = val.replace(vs[i] + ";", "");
                             val = val.substr(0, val.length - 1);
                             hid.value = val;
                         }
-                        ECF("#" + id + "_max_pic_img", box).attr("src", "");
-                        ECF("#" + id + "_max_pic_img", box).attr("alt", "");
-                        ECF("#Delete_Div").hide();
+                        $("#" + id + "_max_pic_img", box).attr("src", "");
+                        $("#" + id + "_max_pic_img", box).attr("alt", "");
+                        $("#Delete_Div").hide();
                     }
                 }
                 else {
                     var src =  vs[i];
-                    //åˆ¤æ–­å›¾ç‰‡æ˜¯å¦å­˜åœ¨
+                    //ÅĞ¶ÏÍ¼Æ¬ÊÇ·ñ´æÔÚ
                     var Img = new Image;
                     
                     Img.src = preSrc + src;
 
                     Img.onload = function () {
                         src = this.src;
-                        ECF("#" + id + "_max_pic_img", box).attr("src", preSrc + src);
+                        $("#" + id + "_max_pic_img", box).attr("src", preSrc + src);
                         var tbox = thmbs_box[0];
                         if (tbox) {
                             var thumb = document.createElement("div");
@@ -583,7 +583,7 @@ uploads.setValue = function (id, val) {
 					                        .replace("{$method$}", "upload_Preview_Image('" + id + "','" + src + "',this);return false;")
 					                        .replace("{$view$}", "uploadHandler.view(\'" + src + "\',\'" + tid + "\',this);")
 					                        .replace("{$delete$}", "uploadHandler.deleteFile(\'" + src + "\',\'" + tid + "\',this," + c.funtname + ");")
-					                        .replace("{$deltitle$}", "åˆ é™¤å›¾ç‰‡");
+					                        .replace("{$deltitle$}", "É¾³ıÍ¼Æ¬");
                             tbox.appendChild(thumb);
                         }
                     }
@@ -595,7 +595,7 @@ uploads.setValue = function (id, val) {
     }
 }
 
-//ä¸Šä¼ çš„é…ç½®ä¿¡æ¯
+//ÉÏ´«µÄÅäÖÃĞÅÏ¢
 uploads.config = function(){
 	//alert('');
 }
@@ -604,13 +604,13 @@ uploads.fn.init.prototype = uploads.fn;
 //window.unload = function () {
 //}
 
-//å›¾ç‰‡æŒ‰æ¯”ä¾‹ç¼©æ”¾ 
+//Í¼Æ¬°´±ÈÀıËõ·Å 
 function DrawImage(ImgID, w, h) {
     var flag = false;
     var image = new Image();
-    var iwidth = w || ImgID.width;  //å®šä¹‰å…è®¸å›¾ç‰‡å®½åº¦ 
-    var iheight = h || ImgID.height;  //å®šä¹‰å…è®¸å›¾ç‰‡é«˜åº¦
-    //å¦‚è°ƒç”¨å‡½æ•°å’Œimgä¸­éƒ½æ²¡è®¾ç½®å®½å’Œé«˜
+    var iwidth = w || ImgID.width;  //¶¨ÒåÔÊĞíÍ¼Æ¬¿í¶È 
+    var iheight = h || ImgID.height;  //¶¨ÒåÔÊĞíÍ¼Æ¬¸ß¶È
+    //Èçµ÷ÓÃº¯ÊıºÍimgÖĞ¶¼Ã»ÉèÖÃ¿íºÍ¸ß
     iwidth = iwidth == 0 ? 200 : iwidth;
     iheight = iheight == 0 ? 150 : iheight;
 

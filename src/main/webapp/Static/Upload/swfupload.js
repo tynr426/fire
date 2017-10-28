@@ -1,10 +1,10 @@
-ï»¿
+
 /**
  * SWFUpload: http://www.swfupload.org, http://swfupload.googlecode.com
  *
  * mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
  *
- * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzé–š and Mammon Media and is released under the MIT License:
+ * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media and is released under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  *
  * SWFUpload 2 is (c) 2007-2008 Jake Roberts and is released under the MIT License:
@@ -167,8 +167,8 @@ SWFUpload.prototype.initSettings = function (userSettings) {
     this.ensureDefault("http_success", []);
     this.ensureDefault("assume_success_timeout", 0);
 
-    //æ–°æ·»èµ„æºæ–‡ä»¶ç›®å½• xp by 10/14w
-    this.ensureDefault("resource_dir", "/Static/Upload/");
+    //ĞÂÌí×ÊÔ´ÎÄ¼şÄ¿Â¼ xp by 10/14w
+    this.ensureDefault("resource_dir", path+"/Static/Upload/");
 
     // File Settings
     this.ensureDefault("file_types", "*.*");
@@ -178,7 +178,7 @@ SWFUpload.prototype.initSettings = function (userSettings) {
     this.ensureDefault("file_queue_limit", 0);
 
     // Flash Settings
-    this.ensureDefault("flash_url", this.settings.resource_dir + "swfupload.swf");
+    this.ensureDefault("flash_url", this.settings.resource_dir + "SwfUpload.swf");
     this.ensureDefault("flash9_url", this.settings.resource_dir + "swfupload_fp9.swf");
     this.ensureDefault("prevent_swf_caching", true);
 
@@ -224,9 +224,9 @@ SWFUpload.prototype.initSettings = function (userSettings) {
 
     this.ensureDefault("debug_handler", this.debugMessage);
 
-    //ä¸Šä¼ å®Œæˆå›è°ƒå¤„ç†
+    //ÉÏ´«Íê³É»Øµ÷´¦Àí
     this.ensureDefault("call_back", null);
-    this.ensureDefault("call_back_args", null); //å›è°ƒå‚æ•°
+    this.ensureDefault("call_back_args", null); //»Øµ÷²ÎÊı
 
     this.ensureDefault("custom_settings", {});
 
@@ -1158,7 +1158,7 @@ swfobject.addDomLoadEvent(function () {
 
 
 
-/*flashé›†åˆ*/
+/*flash¼¯ºÏ*/
 
 var SWFUpload;
 if (typeof(SWFUpload) === "function") {
@@ -1183,7 +1183,7 @@ if (typeof(SWFUpload) === "function") {
 			this.settings.queue_complete_handler = this.settings.queue_complete_handler || null;
 		};
 	})(SWFUpload.prototype.initSettings);
-	//å¼€å§‹ä¸Šä¼ å¤„ç†
+	//¿ªÊ¼ÉÏ´«´¦Àí
 	SWFUpload.prototype.startUpload = function (fileID) {
 		this.queueSettings.queue_cancelled_flag = false;
 		this.callFlash("StartUpload", [fileID]);
@@ -1246,7 +1246,7 @@ if (typeof(SWFUpload) === "function") {
 				this.queueSettings.queue_upload_count = 0;
 			}
 			
-			//ä¸Šä¼ å®Œæˆåçš„CallBackå¤„ç†
+			//ÉÏ´«Íê³ÉºóµÄCallBack´¦Àí
 			if (stats.files_queued == 0){
 				var cb = this.settings["call_back"];
 				if(typeof(cb) == "function"){

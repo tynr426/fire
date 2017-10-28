@@ -29,7 +29,9 @@ ${dict.passageway[(passageway)]}
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/device/delete.do');">删除</a>
                             </li>
-                           
+                           	<li>
+                                <a href="javascript:void(0);" onclick="frm.add({ title: '生成二维码', formId: 'DeviceFormTemplate1', callback: device.addRrCode, width: 800, height: 400">生成二维码</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -155,6 +157,7 @@ ${dict.passageway[(passageway)]}
     </div>
 </div>
     </script>
+
     
     <script type="text/x-jquery-tmpl" id="DeviceTypeParameterFormTemplate">
 {{if (required=="1")}} 

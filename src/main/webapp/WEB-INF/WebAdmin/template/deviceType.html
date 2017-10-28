@@ -2,6 +2,7 @@
         <tr>
             <td><div class="string center">${name}</div></td>
             <td><div class="string center">${useTime}</div></td>
+            <td><div class="string center">${virtualPath}</div></td>
             <td>
                 <!--自定义开关-->
                 {{if status==0}}
@@ -31,10 +32,13 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 200});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 300,finish:deviceType.finishUploadBtn});">修改</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog(${id})">参数</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="deviceType.openDialog(${id})">生成二维码</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/deviceType/delete.do');">删除</a>
@@ -52,7 +56,7 @@
     <div class="form" id="DeviceTypeForm">
         <table border="0" cellpadding="0" cellspacing="0">
             <colgroup>
-                <col style="width: 150px;" />
+                <col style="width: 100px;" />
                 <col style="width:auto;" />
             </colgroup>
 
@@ -81,12 +85,35 @@
                         </div>
                     </td>
                 </tr>
+				<tr>
+				<th>
+                        <p class="name rm">
+                            <em class="red">*</em>logo：
+                        </p>
+                    </th>
+<td colspan="3"><input type="hidden" id="VirtualPath" />
+<div class="extend">
+		<div class="product-pic">
+			<div class="show-pic">
+				<div class="pic">
+					<div class="pic-box">
+						<ol>
+							<li><img name="VirtualPath" style="width: 100%; height: 100px;"
+								src="/fire/Static/Upload/selectPic.png" />
+							<div class="button" id="uploadDemo"></div></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div></td>
+				</tr>
             </tbody>
         </table>
     </div>
 </div>
 </script>
-    
+
 <script type="text/template" id="DeviceParameterListTemplate">
         
         <tr>
@@ -136,6 +163,36 @@
         </tr>
         
     </script>
+<script type="text/x-jquery-tmpl" id="CreateQRTemplate">
+    <div class="custom-table">
+    <div class="form" id="CreateQRForm">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col style="width:auto;" />
+            </colgroup>
+
+            <tbody>
+                <tr>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>生成数量：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="QRNumber" id="QRNumber" error="输入格式不正确！" validate="isnull|num1" maxlength="20" value="" />
+                        </div>
+                    </td>
+
+                </tr>
+						
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</script>
 <script type="text/x-jquery-tmpl" id="DeviceParameterFormTemplate">
     <div class="custom-table">
     <div class="form" id="DeviceParameterForm">
