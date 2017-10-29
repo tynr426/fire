@@ -50,49 +50,49 @@ var deviceType={
 				url:path+"/deviceType/update.do",
 				type:"post",
 				data:{Id:id,Name:Name,UseTime:UseTime,VirtualPath:VirtualPath},
-					dataType:"json",
-					success:function(result){
-						if(result.state==0){
-							alert("您已修改成功");
-							load();
-							$(obj).dialog('close');
-						}else{	
-							alert(result.message);			
-						}								
+				dataType:"json",
+				success:function(result){
+					if(result.state==0){
+						alert("您已修改成功");
+						load();
+						$(obj).dialog('close');
+					}else{	
+						alert(result.message);			
+					}								
 
-					},
-					error:function(){
-						alert("修改失败");
-					}
+				},
+				error:function(){
+					alert("修改失败");
+				}
 			});
 		},
 		openDialog:function(id){
-			  if($("#dialogForm").length==0){
-                	$("body").append("	<div id='dialogForm' style='display: none'></div>");
-                }
-			  
+			if($("#dialogForm").length==0){
+				$("body").append("	<div id='dialogForm' style='display: none'></div>");
+			}
+
 			var opt={
-					 resizable: true,
-					    width: 450,
-					    height: 200,
-					    modal: true,
-					    title:"二维码"
-					};
-			
+					resizable: true,
+					width: 450,
+					height: 200,
+					modal: true,
+					title:"二维码"
+			};
+
 			// 添加按钮
-            opt.buttons = {
-    				"确定":function(){
-    						deviceType.createQR(this,id);
-    				},
-    				"取消":function(){
-    					$(this).dialog('close');
-    				}
-    		};
-            opt.Cancle =function(){
-    			$(this).dialog('close');
-    		};
-    		$("#dialogForm").html($("#CreateQRTemplate").html());
-			
+			opt.buttons = {
+					"确定":function(){
+						deviceType.createQR(this,id);
+					},
+					"取消":function(){
+						$(this).dialog('close');
+					}
+			};
+			opt.Cancle =function(){
+				$(this).dialog('close');
+			};
+			$("#dialogForm").html($("#CreateQRTemplate").html());
+
 			$("#dialogForm").dialog(opt).dialog("open");
 		},
 		createQR:function(obj,id){
@@ -101,51 +101,53 @@ var deviceType={
 				url:path+"/deviceType/createQR.do",
 				type:"post",
 				data:{id:id,number:number},
-					dataType:"json",
-					success:function(result){
-						if(result.state==0){
-							alert("您已生成成功");
-							$(obj).dialog('close');
-						}else{	
-							alert(result.message);			
-						}								
+				dataType:"json",
+				success:function(result){
+					if(result.state==0){
+						alert("您已生成成功");
+						$(obj).dialog('close');
+						window.open(path+"/deviceQR/toQRList.do?batch="+result.data);
 
-					},
-					error:function(){
-						alert("生成失败");
-					}
+					}else{	
+						alert(result.message);			
+					}								
+
+				},
+				error:function(){
+					alert("生成失败");
+				}
 			});
 		},
-		  finishUploadBtn: function () {
-			  var json=arguments[0];
-			  if(json.virtualPath!=undefined){
-				  $("[name=VirtualPath]").attr("src", path+json.virtualPath);
-			  }
-			  console.log(arguments[0]);
-		        var upObject = uploads('uploadDemo', {
-		            id: 'uploadDemo',
-		            preview_hide: true,
-		            upload_url: path+"/upload.do",
-		            upload_success_handler: deviceType.callBackUpdateFilePath,
-		            file_size_limit: 12000,
-		            post_params: {
-		                module: "Web"
-		            },
-		            call_back: function () {
-		            }
-		        })
-		    },
-		    callBackUpdateFilePath: function (file, serverData, responseReceived) {
-		        debugger;
-		        console.log(serverData);
-		        if (file.filestatus == -4) {
-		        	 var json= $.parseJSON(serverData);
-		            $("#VirtualPath").val(json.data);
-		           
-		            $("[name=VirtualPath]").attr("src", path+json.data);
-		        }
-		        file = this.unescapeFilePostParams(file);
-		    }
+		finishUploadBtn: function () {
+			var json=arguments[0];
+			if(json.virtualPath!=undefined){
+				$("[name=VirtualPath]").attr("src", path+json.virtualPath);
+			}
+			console.log(arguments[0]);
+			var upObject = uploads('uploadDemo', {
+				id: 'uploadDemo',
+				preview_hide: true,
+				upload_url: path+"/upload.do",
+				upload_success_handler: deviceType.callBackUpdateFilePath,
+				file_size_limit: 12000,
+				post_params: {
+					module: "Web"
+				},
+				call_back: function () {
+				}
+			})
+		},
+		callBackUpdateFilePath: function (file, serverData, responseReceived) {
+			debugger;
+			console.log(serverData);
+			if (file.filestatus == -4) {
+				var json= $.parseJSON(serverData);
+				$("#VirtualPath").val(json.data);
+
+				$("[name=VirtualPath]").attr("src", path+json.data);
+			}
+			file = this.unescapeFilePostParams(file);
+		}
 }
 
 var deviceTypeParameter={
@@ -158,23 +160,23 @@ var deviceTypeParameter={
 				deviceTypeParameter.deviceTypeId=deviceTypeId;
 			}
 			var opt={
-			 resizable: true,
-			    width: 950,
-			    height: 450,
-			    modal: true,
-			    title:"设备参数"
+					resizable: true,
+					width: 950,
+					height: 450,
+					modal: true,
+					title:"设备参数"
 			};
-			  var config={
-						url:adminpath+"/dtp/show.do",
-			  			pageSize:30,
-			  			pageIndex:1,
-			  			barSize:3,
-			  			templateId:"DeviceParameterListTemplate",
-			  			container:"parameterBody",
-			  			data:{deviceTypeId:deviceTypeParameter.deviceTypeId}
-			  			};
-			  var pageInfo=new ecPage.fn._init(config);
-			  
+			var config={
+					url:adminpath+"/dtp/show.do",
+					pageSize:30,
+					pageIndex:1,
+					barSize:3,
+					templateId:"DeviceParameterListTemplate",
+					container:"parameterBody",
+					data:{deviceTypeId:deviceTypeParameter.deviceTypeId}
+			};
+			var pageInfo=new ecPage.fn._init(config);
+
 			$("#dialogopen").dialog(opt).dialog("open");
 		},
 		editorTypeChange: function (obj) {
@@ -192,7 +194,7 @@ var deviceTypeParameter={
 			break;
 			}
 		},
-	
+
 		//添加一条规则
 		addRule: function () {
 			var arr=[
@@ -248,7 +250,7 @@ var deviceTypeParameter={
 					array.push("{\"Field\":\""+$(this).find("#Field").val()+"\"}");
 				});		
 			}
-			
+
 			candidate="["+array.join(",")+"]";
 			$.ajax({
 				url:adminpath+"/dtp/add.do",
@@ -256,20 +258,20 @@ var deviceTypeParameter={
 				data:{Description:Description,EditorType:EditorType,
 					Unit:Unit,Candidate:candidate,Reorder:Reorder,
 					Required:Required,DeviceTypeId:deviceTypeParameter.deviceTypeId},
-				dataType:"json",
-				success:function(result){
-					if(result.state==0){
-						alert("添加成功");
-						$(obj).dialog('close');
-						deviceTypeParameter.openParameterDialog();
-					}else{	
-						alert(result.message);		
-					}								
+					dataType:"json",
+					success:function(result){
+						if(result.state==0){
+							alert("添加成功");
+							$(obj).dialog('close');
+							deviceTypeParameter.openParameterDialog();
+						}else{	
+							alert(result.message);		
+						}								
 
-				},
-				error:function(){
-					alert("添加失败");
-				}
+					},
+					error:function(){
+						alert("添加失败");
+					}
 			});
 		},
 		getDeviceTypeParameter:function(Id){
@@ -289,21 +291,21 @@ var deviceTypeParameter={
 			});
 		},
 		updateFinish:function(){
-		        var doc = arguments[0];
-		        var f =$.parseJSON(doc.candidate);
-		        if(f==undefined || f.length==0) return;
-		        $.each(f,function(i,item){
-		        	 item.EditorType=doc.editorType;
-		        });
-		        switch (doc.editorType) {
-		            case "select":
-		            case "texts":
-		                $("#tr_Candidate").show();
-		                console.log(f);
-		                var html = $("#rowTemplate").tmpl(f).appendTo("#ul_body");
-		               
-		                break;
-		        }
+			var doc = arguments[0];
+			var f =$.parseJSON(doc.candidate);
+			if(f==undefined || f.length==0) return;
+			$.each(f,function(i,item){
+				item.EditorType=doc.editorType;
+			});
+			switch (doc.editorType) {
+			case "select":
+			case "texts":
+				$("#tr_Candidate").show();
+				console.log(f);
+				var html = $("#rowTemplate").tmpl(f).appendTo("#ul_body");
+
+				break;
+			}
 		},
 		updateDeviceTypeParameter:function(obj){
 			if(!$("#DeviceParameterForm").formValidate())return;
@@ -324,7 +326,7 @@ var deviceTypeParameter={
 					array.push("{\"Field\":\""+$(this).find("#Field").val()+"\"}");
 				});	
 			}
-			
+
 			candidate="["+array.join(",")+"]";
 			$.ajax({
 				url:adminpath+"/dtp/update.do",
@@ -348,5 +350,47 @@ var deviceTypeParameter={
 						alert("修改失败");
 					}
 			});
+		}
+}
+
+var deviceQR={
+		loadQRList:function(){
+			var batch=$.getUrlParam("batch");
+			$.ajax({
+				url:path+"/deviceQR/showQRList.do",
+				type:"post",
+				data:{batch:batch},
+				dataType:"json",
+				success:function(result){
+					if(result.state==0){
+						var item=result.data;
+						var str = "";
+						for(var i=0;i<item.length;i+=3){
+
+							str+="<tr style='height:160px'>";
+
+							for(var j=0;j<3&&i+j<item.length;j++){
+								var child=item[i+j];
+								child.qrvirtural=path+child.qrvirtural;
+								if(i+j==item.length-1&&item.length%2!=0){
+									child.colspan=3;
+								}
+								str+=$("#deviceQRbodyListTemplate").tmpl(child).html();
+
+							}
+							str+="</tr>";
+						}
+						$("#pageBody").append(str);
+
+					}else{	
+						alert(result.message);			
+					}								
+
+				},
+				error:function(){
+					alert("修改失败");
+				}
+			});
+
 		}
 }

@@ -37,4 +37,9 @@ public class DeviceQRServiceImpl implements DeviceQRService{
 		return pi;
 	}
 
+	public List<DeviceQR> getDeviceQRList(String batch) {
+		// TODO Auto-generated method stub
+		return deviceQRDAO.getQRList(batch);
+	}
+
 }

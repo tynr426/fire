@@ -11,14 +11,14 @@
 		<foreach collection ="list" item="deviceQR" index= "index" separator =";">
               insert into fir_deviceqr(
 		DeviceTypeId,Code,QRVirtural,
-		IsUsed,AddTime,DeviceId
+		IsUsed,AddTime,DeviceId,Batch
 		)
 		values
                 (
                 #{deviceQR.DeviceTypeId}, #{deviceQR.code},
                 #{deviceQR.QRVirtural},
                 #{deviceQR.IsUsed},
-                #{deviceQR.AddTime},#{deviceQR.DeviceId}
+                #{deviceQR.AddTime},#{deviceQR.DeviceId},#{deviceQR.Batch}
                )  
         </foreach >		
 		</insert>
@@ -30,5 +30,8 @@
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.DeviceQR">
 		select *from fir_deviceqr limit #{begin},#{size}
+	</select>
+	<select id="getQRList" parameterType="String" resultType="fire.common.entity.DeviceQR">
+		select *from fir_deviceqr where batch=#{batch}
 	</select>
 </mapper>

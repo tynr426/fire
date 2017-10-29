@@ -13,4 +13,5 @@ public interface DeviceQRService {
 	public DeviceQR getDeviceQR(int id);
 	public int deleteDeviceQR(int id);
 	public PageInfo<DeviceQR> getDeviceQRPage(int begin,int size);
+	public List<DeviceQR> getDeviceQRList(String batch);
 }

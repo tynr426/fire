@@ -3,9 +3,11 @@ package fire.web.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
@@ -86,19 +88,25 @@ public class DeviceTypeController {
 	@RequestMapping("/createQR.do")
 	@ResponseBody
 	public JsonResult createQR(int id,int number, HttpServletResponse response,HttpServletRequest req ){
+		DeviceType deviceType= deviceTypeService.getDeviceType(id);
+		if(deviceType==null) return new JsonResult(new Exception("当前设备不存在"));
 		
+		String imagePath=req.getSession().getServletContext().getRealPath(deviceType.getVirtualPath());
 		List<DeviceQR> list=new ArrayList<DeviceQR>();
-		String dir=req.getSession().getServletContext().getRealPath("/userfiles/"+id+"/");
-
+		String virtural = "/userfiles/"+id+"/";
+		String dir=req.getSession().getServletContext().getRealPath(virtural);
+		Random rand = new Random();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");	
+		String batch = sdf.format(new Date())+rand.nextInt(1000);
 		for(int i=0;i<number;i++){
 			DeviceQR entity=new DeviceQR();
 			entity.setDeviceTypeId(id);
 			entity.setCode(Md5.createID());
 			entity.setAddTime(new Date());
-			entity.setQRVirtural("/userfiles/"+entity.getCode()+".jpg");
+			entity.setBatch(batch);
 			
 				try {
-					QRUtil.encode(entity.getCode(),dir);
+					entity.setQRVirtural(virtural+ QRUtil.encode(entity.getCode(),imagePath,dir,false));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -109,6 +117,7 @@ public class DeviceTypeController {
 			
 			list.add(entity);
 		}
-		return new JsonResult(deviceQRService.addDeviceQR(list));
+		deviceQRService.addDeviceQR(list);
+		return new JsonResult(batch);
 	}
 }

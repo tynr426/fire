@@ -15,4 +15,7 @@ public interface DeviceQRDAO {
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
+	public List<DeviceQR> getQRList(
+			String batch
+			);
 }
