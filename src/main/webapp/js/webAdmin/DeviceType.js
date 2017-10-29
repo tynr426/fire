@@ -364,23 +364,8 @@ var deviceQR={
 				success:function(result){
 					if(result.state==0){
 						var item=result.data;
-						var str = "";
-						for(var i=0;i<item.length;i+=3){
-
-							str+="<tr style='height:160px'>";
-
-							for(var j=0;j<3&&i+j<item.length;j++){
-								var child=item[i+j];
-								child.qrvirtural=path+child.qrvirtural;
-								if(i+j==item.length-1&&item.length%2!=0){
-									child.colspan=3;
-								}
-								str+=$("#deviceQRbodyListTemplate").tmpl(child).html();
-
-							}
-							str+="</tr>";
-						}
-						$("#pageBody").append(str);
+					
+						$("#deviceQRbodyListTemplate").tmpl(item).appendTo("#DataFrom");
 
 					}else{	
 						alert(result.message);			
