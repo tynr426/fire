@@ -1,24 +1,24 @@
 <script type="text/template" id="deviceQRbodyListTemplate">
-       <li type="Images" title="${f.FileName}">
-        <input type="hidden" id="Id" name="Id" value="${f.Id}" />
-        <input type="hidden" id="VirtualPath" name="VirtualPath" value="${f.VirtualPath}" />
-        <div class="pic" onclick="var obj=this.parentNode,style='select';if($e(obj).hasClass(style)){$e(obj).removeClass(style)}else{$e(obj).addClass(style);}">
-            <img lazy_src="${f.VirtualPath}" alt="" />
+       <li type="Images">
+        <input type="hidden" id="Id" name="Id" value="${id}" />
+        <input type="hidden" id="QRVirtual" name="QRVirtual" value="${qrvirtural}" />
+        <div class="pic" onclick="var obj=this.parentNode,style='select';if($(obj).hasClass(style)){$(obj).removeClass(style)}else{$(obj).addClass(style);}">
+            <img src="${qrvirtural}" alt="" />
         </div>
-        <p class="name">${f.FileName}</p>
+        <p class="name">${code}</p>
 
         <!--编辑区域-->
         <div class="tool">
             <ol>
-                <li class="c3"><a href="javascript:void(0);" class="icon-move" title="移动" onclick="frm.update({ title: '此图片移动到...', url:'Uploads.aspx', action: 'MoveImg', formId: 'MoveImgFormTemplate', id: '${f.Id}', callback: album.moveImg, completed: album.showAlbum, completes: [''], width: 500, height: 180 });"></a></li>
-                <li class="c3"><a href="javascript:void(0);" onclick="checkPic.click('${f.VirtualPath}');" class="icon-view" title="查看大图"></a></li>
-                <li class="c3"><a href="javascript:void(0);" class="icon-delete" title="删除" onclick="album.delImg(${f.Id});"></a></li>
+                
+                <li class="c3"><a href="javascript:void(0);" onclick="checkPic.click('${qrvirtural}');" class="icon-view" title="查看大图"></a></li>
+                <li class="c3"><a href="javascript:void(0);" class="icon-delete" title="删除" onclick="album.delImg(${id});"></a></li>
             </ol>
         </div>
         <!--//编辑区域-->
 
         <!--选中区域-->
-        <div class="pitch" onclick="var obj=this.parentNode,style='select';if($e(obj).hasClass(style)){$e(obj).removeClass(style)}else{$e(obj).addClass(style);}">
+        <div class="pitch" onclick="var obj=this.parentNode,style='select';if($(obj).hasClass(style)){$(obj).removeClass(style)}else{$(obj).addClass(style);}">
             <!--遮罩层-->
             <div class="sm"></div>
             <!--//遮罩层-->

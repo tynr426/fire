@@ -360,13 +360,16 @@ var deviceQR={
 				url:path+"/deviceQR/showQRList.do",
 				type:"post",
 				data:{batch:batch},
+				asyne:false,
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){
-						var item=result.data;
-					
-						$("#deviceQRbodyListTemplate").tmpl(item).appendTo("#DataFrom");
-
+						var list=result.data;
+						$.each(list,function(i,item){
+							item.qrvirtural=path+item.qrvirtural;
+						});
+						$("#deviceQRbodyListTemplate").tmpl(list).appendTo("#DataFrom");
+						
 					}else{	
 						alert(result.message);			
 					}								
