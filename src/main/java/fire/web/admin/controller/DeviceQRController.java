@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fire.common.entity.DeviceQR;
+import fire.common.entity.DeviceQRResult;
 import fire.web.service.DeviceQRService;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
@@ -30,8 +31,19 @@ public class DeviceQRController {
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getDeviceQRPage(int index,int size){
-		PageInfo<DeviceQR> pi = deviceQRService.getDeviceQRPage(index, size);
+		PageInfo<DeviceQRResult> pi = deviceQRService.getDeviceQRPage(index, size);
 		return new JsonResult(pi);	
+	}
+	@RequestMapping("/search.do")
+	@ResponseBody
+	public Object search(String model,Integer deviceTypeId,int index,int size){
+		PageInfo<DeviceQRResult> pi = deviceQRService.search(model,deviceTypeId, index, size);
+		return new JsonResult(pi);	
+	}
+	@RequestMapping("/delete.do")
+	@ResponseBody
+	public Object delete(int id){
+		return new JsonResult(deviceQRService.deleteDeviceQR(id));
 	}
 	@RequestMapping("/showQRList.do")
 	@ResponseBody

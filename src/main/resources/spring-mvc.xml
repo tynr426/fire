@@ -47,7 +47,8 @@
 	    	value="10000000"/>
 	    <property name="defaultEncoding"
 	    	value="UTF-8"/>
-	</bean>	
+	</bean>
+	<mvc:resources location="/" mapping="/**"/>	
 </beans>
 
 

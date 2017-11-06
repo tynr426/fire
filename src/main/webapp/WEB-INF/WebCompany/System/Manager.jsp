@@ -32,7 +32,7 @@ contentType="text/html; charset=utf-8" %>
 
 									<div class="button">
 										<a href="javascript:void(0);"
-											onclick="frm.add({ title: '添加', formId: 'ManagerFormTemplate', callback: manager.addManager, width: 800, height: 400 });"
+											onclick="frm.add({ title: '添加', formId: 'ManagerFormTemplate', callback: manager.addManager, width: 800, height: 280 });"
 											class="btn">添加管理员</a>
 									</div>
 

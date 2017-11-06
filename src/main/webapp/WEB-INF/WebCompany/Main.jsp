@@ -92,13 +92,28 @@ contentType="text/html; charset=utf-8" %>
 <script type="text/javascript">
                 var menuList = [
                     {
-                        "Id": 17, "ParentId": 0, "MenuName": "基础信息", "CssClass": "sys", "children": [
+                        "Id": 1, "ParentId": 0, "MenuName": "基础信息", "CssClass": "sys", "children": [
                             {
-                                "Id": 1701, "ParentId": 17, "MenuName": "基础信息", "children": [
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "管理员列表", "Link": "/fire/company/manager/toManager.do" },
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "设备列表", "Link": "/fire/company/device/device.do" },
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "公司信息", "Link": "/fire/admin/company/toCompany.do" },
-                                    { "Id": 170106, "ParentId": 1701, "MenuName": "任务信息", "Link": "/fire/company/assignment/toAssignment.do" }
+                                "Id": 101, "ParentId": 1, "MenuName": "基础信息", "children": [
+                                    { "Id": 10101, "ParentId": 101, "MenuName": "管理员列表", "Link": "/fire/company/manager/toManager.do" },
+                                    { "Id": 10102, "ParentId": 101, "MenuName": "公司信息", "Link": "/fire/admin/company/toCompany.do" }
+                                ]
+                            }
+                         ],
+                        "Id": 2, "ParentId": 0, "MenuName": "管理信息", "CssClass": "product", "children": [
+                            {
+                                     "Id": 201, "ParentId": 2, "MenuName": "管理信息", "children": [
+                                    { "Id": 20101, "ParentId": 201, "MenuName": "设备列表", "Link": "/fire/company/device/device.do" },
+                                    { "Id": 20102, "ParentId": 201, "MenuName": "检查报告", "Link": "/fire/company/device/device.do" },
+                                    { "Id": 20103, "ParentId": 201, "MenuName": "任务列表", "Link": "/fire/company/assignment/toAssignment.do" }
+                                ]
+                            }
+                         ],
+                        "Id": 3, "ParentId": 0, "MenuName": "统计信息", "CssClass": "m-report", "children": [
+                            {
+                                "Id": 301, "ParentId": 3, "MenuName": "统计信息", "children": [
+                                    { "Id": 30101, "ParentId": 301, "MenuName": "管理员列表", "Link": "/fire/company/manager/toManager.do" },
+                                    { "Id": 30102, "ParentId": 301, "MenuName": "公司信息", "Link": "/fire/admin/company/toCompany.do" }
                                 ]
                             }
                          ]

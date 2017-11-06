@@ -47,10 +47,10 @@ public class Route extends HttpServlet {
 			distribute=new DeviceDistribute(sp,this.getServletContext());
 		}else if(module.equals("company.deviceType")){
 			distribute=new DeviceTypeDistribute(sp,this.getServletContext());
-		}else if(module.equals("company.checkDevice")){
-			distribute=new CheckDeviceDistribute(sp,this.getServletContext());
 		}else if(module.equals("company.social")){
 			distribute=new SocialDistribute(sp,this.getServletContext());
+		}else if(module.equals("company.checkDevice")){
+			distribute=new CheckDeviceDistribute(sp,this.getServletContext());
 		}
 		distribute.doPost(req, resp);
 

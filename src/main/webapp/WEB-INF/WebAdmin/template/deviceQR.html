@@ -1,0 +1,26 @@
+<script type="text/template" id="bodyListTemplate">
+        <tr>
+            <td><div class="string center">${code}</div></td>
+            <td><div class="string center">${name}</div></td>
+            <td><div class="string center">${useTime}</div></td>
+            <td><div class="string center">${model}</div></td>
+            <td>
+                <div class="tool" onmouseover="tableTool.over(this);" onmouseout="tableTool.out(this);">
+                    <!--标题栏-->
+                    <p class="name">操作</p>
+                    <!--//标题栏-->
+
+                    <div class="tool-menu">
+                        <ul>
+                            
+                            <li>
+                                <a href="javascript:void(0);" onclick="frm.del(${id},load,'/deviceQR/delete.do');">删除</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+    </script>

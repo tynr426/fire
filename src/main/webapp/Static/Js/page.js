@@ -9,12 +9,16 @@ ecPage.fn = ecPage.prototype = {
 		
 
 		// 配置信息
-		_config: {},
+		_config: {
+  			isHover:true,
+  			hoverColor:"#EEF3F7"
+		},
 
 		// page初始化
 		_init: function (c) {
 			var my = this;
-			my._config = c;
+			
+			my._config = $.extend({},c,my._config);
 			my.pages = c.pages;
 			my.render();
 

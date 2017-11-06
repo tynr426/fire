@@ -51,7 +51,7 @@ contentType="text/html; charset=utf-8" %>
 									<col style="width: 25px;" />
 									<col style="width: auto;" />
 									<col style="width: auto;" />
-									<col style="width: auto;" />
+									<col style="width: 280px;" />
 									<col style="width: auto;" />
 									<col style="width: 61px;" />
 									<col style="width: 61px;" />

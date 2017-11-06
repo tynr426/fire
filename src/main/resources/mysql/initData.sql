@@ -1,0 +1,13 @@
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(1,'基础信息','','sys',0,1);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(101,'基础信息','','',1,2);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(10101,'管理员列表','/fire/company/manager/toManager.do','',101,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(10102,'公司信息','/fire/admin/company/toCompany.do','',101,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(2,'管理信息','','product',0,1);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(201,'管理信息','','',2,2);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(20101,'设备列表','/fire/company/device/toDevice.do','',201,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(20102,'检查报告','/fire/company/device/toCheckDevice.do','',201,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(20103,'任务列表','/fire/company/assignment/toAssignment.d','',201,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(3,'统计信息','','m-report',0,1);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(301,'统计信息','','',3,2);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(30101,'设备故障率','/fire/company/statistics/faultRate.do','',301,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(30101,'设备整改及时率','/fire/company/statistics/timelyRateOfRectification.do','',301,3);

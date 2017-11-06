@@ -26,10 +26,26 @@
 		delete from fir_deviceqr where Id = #{id}
 	</delete>
 	<select id="findDeviceQRCount" resultType="int">
-		select count(*) from fir_deviceqr 
+		select count(*) from fir_deviceqr q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id)
 	</select>
-	<select id="findByLimit" resultType="fire.common.entity.DeviceQR">
-		select *from fir_deviceqr limit #{begin},#{size}
+	<select id="findByLimit" resultType="fire.common.entity.DeviceQRResult">
+		select q.*,t.Name,n.Model,n.UseTime from fir_deviceqr q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id) left join fir_device n 
+		on(q.DeviceId=n.Id) limit #{begin},#{size}
+	</select>
+	<select id="search" resultType="fire.common.entity.DeviceQRResult">
+		select q.*,t.Name,n.Model,n.UseTime from fir_deviceqr q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id) left join fir_device n 
+		on(q.DeviceId=n.Id) 
+		where 1=1
+		<if test="model!=null and model!=''">
+			and n.Model = #{model}
+		</if>
+		<if test="deviceTypeId!=null">
+			and q.DeviceTypeId = #{deviceTypeId}
+		</if>
+		limit #{begin},#{size}
 	</select>
 	<select id="getQRList" parameterType="String" resultType="fire.common.entity.DeviceQR">
 		select *from fir_deviceqr where batch=#{batch}

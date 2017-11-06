@@ -1,4 +1,22 @@
-
+/* 授权表 */
+create table com_authbind
+(
+    Id    int not null auto_increment,
+    CompanyId    int not null,
+    ManagerId    int not null,
+    UnionId    varchar(200),
+    Guid    varchar(50),
+    OpenId    varchar(200) not null,
+    NickName    varchar(50),
+    Sex    smallint,
+    Face    varchar(255),
+    IntegType    varchar(20),
+    AuthoreTime    datetime,
+    IsReceiveMsg    bit,
+    Subscribe    smallint,
+    Remark    text,
+    primary key (Id)
+);
 /*====================================*/
 /* Table: soc_wechataccount           */
 /*====================================*/

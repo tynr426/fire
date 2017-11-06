@@ -16,7 +16,7 @@ import fire.web.utils.PageInfo;
 @Controller
 @RequestMapping("/company/device")
 public class DeviceController extends ExceptionController{
-	@RequestMapping("/device.do")
+	@RequestMapping("/toDevice.do")
 	public String Api(){
 		return "WebCompany/System/Device";
 	}
