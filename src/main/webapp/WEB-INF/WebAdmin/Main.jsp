@@ -106,6 +106,12 @@ contentType="text/html; charset=utf-8" %>
                                     { "Id": 170206, "ParentId": 1702, "MenuName": "基础授权", "Link": "/fire/admin/social/toWechatSet.do" },
                                     { "Id": 170207, "ParentId": 1702, "MenuName": "自定义菜单", "Link": "/fire/deviceQR/DeviceType.do" }
                                 ]
+                            },
+                            {
+                                "Id": 1703, "ParentId": 17, "MenuName": "微商城", "children": [
+                                    { "Id": 170306, "ParentId": 1703, "MenuName": "设备数量概况", "Link": "/fire/admin/device/toDeviceNumSummary.do" },
+                                    { "Id": 170307, "ParentId": 1703, "MenuName": "自定义菜单", "Link": "/fire/deviceQR/DeviceType.do" }
+                                ]
                             }
                          ]
                     }
