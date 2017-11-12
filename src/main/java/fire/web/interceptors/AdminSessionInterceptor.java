@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import fire.web.utils.Constants;
+
 public class AdminSessionInterceptor implements HandlerInterceptor{
 
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -23,7 +25,7 @@ public class AdminSessionInterceptor implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object arg2) throws Exception {
 		HttpSession session = req.getSession();
-		Object obj = session.getAttribute("user");
+		Object obj = session.getAttribute(Constants.AdminPre+Constants.AdminLoginCacheKey);
 		if(obj == null){
 		    PrintWriter out = res.getWriter();  
 	        out.println("<html>");      
