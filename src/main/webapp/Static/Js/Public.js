@@ -291,21 +291,22 @@ var pub = {
 			var opts = null,
 			_top = pub.top;
 
-			if (arguments.length == 1 && $.isObject(arguments[0])) {
+			if (arguments.length == 1 && $.isPlainObject(arguments[0])) {
 				opts = arguments[0];
 			} else {
-				opt={
+				opts={
 						resizable: true,
 						width: width||450,
 						height: height||200,
 						modal: true,
-						title:title
+						title:title,
+						content:content
 				};
 			}
 			// 添加按钮
-			opt.buttons ={
+			opts.buttons ={
 					"确定":function(){
-						opts[0].callback.apply(this, opts[0].completes);
+						opts.callback.apply(this, opts.arguments);
 
 					},
 					"取消":function(){
@@ -313,12 +314,16 @@ var pub = {
 					}
 			};
 
-			opt.Cancle =function(){
+			opts.Cancle =function(){
 				$(this).dialog('close');
 			};
-			$("#dialogForm").html(content);
+			$("#dialogForm").html(opts.content);
 
-			$("#dialogForm").dialog(opt).dialog("open");
+			$("#dialogForm").dialog(opts).dialog("open");
+			//初始化UI
+			if (typeof($().customCheck) == 'function') {
+				$("#dialogForm").customCheck();
+			}
 		},
 		/*
     向一个弹出层中写入html数据

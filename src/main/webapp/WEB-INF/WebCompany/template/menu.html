@@ -1,39 +1,39 @@
 
 <script id="topMenuTemplate" type="text/template">
 
-                <li salemenu="list" class="${CssClass}">
+                <li salemenu="list" class="${cssClass}">
                     <!--标题按钮-->
                     <a class="name" href="javascript:void(0);">
                         <i class="icon"></i>
-                        <em class="tips">${MenuName}</em>
+                        <em class="tips">${menuName}</em>
                         <i class="cover"></i>
                     </a>
                     <!--//标题按钮-->
                     <!--展示层-->
                     <div class="show" salemenu="showbox">
                         <ol>
-						{{each(j,second) children}}
+						{{each(j,second) list}}
                             <li salemenu="showlist" >
                                
                                 <!--二级菜单-->
                                 <div class="list-menu">
                                     <a href="javascript:void(0);" class="level-2-btn">
                                         <i class="arrow"></i>
-                                        <em>${second.MenuName}</em>
+                                        <em>${second.menuName}</em>
                                     </a>
                                 </div>
                                 <!--//二级菜单-->
                               
                                 <!--三级菜单-->
                                 <div class="item-box" salemenu-level="box">
-								{{each(k,third) second.children}}
-                                   {{if third.Target == '_bank'}}
+								{{each(k,third) second.list}}
+                                   {{if third.target == '_bank'}}
                                     <div class="item-list" salemenu-level-list="list">
-                                        <a href="${third.Link}" class="level-3-btn" target="${third.Target}" >${third.MenuName}</a>
+                                        <a href="${third.link}" class="level-3-btn" target="${third.target}" >${third.menuName}</a>
                                     </div>
                                     {{else}}
                                     <div class="item-list" salemenu-level-list="list">
-                                        <a href="javascript:frame.go('${third.Link}');" class="level-3-btn" savename="${MenuName}-${second.MenuName}-${third.MenuName}">${third.MenuName}</a>
+                                        <a href="javascript:frame.go('${third.link}');" class="level-3-btn" savename="${menuName}-${second.menuName}-${third.menuName}">${third.menuName}</a>
                                     </div>
                                    	{{/if}}
                                    {{/each}}
@@ -46,4 +46,101 @@
                     <!--//展示层-->
                 </li>
                    
+</script>
+<script id="AccountBoxTemplate" type="text/template">
+
+<div class="custom-table" id="AccountForm">
+	<div class="form">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<colgroup>
+				<col style="width: 150px;">
+				<col style="width: auto;">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>用户名：
+						</p></th>
+					<td><div class="string">
+							<var class="notice-inline" id="UserName" name="UserName"></var>
+						</div></td>
+				</tr>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>显示昵称：
+						</p></th>
+					<td><div class="inputbox">
+
+							<input type="hidden" id="Id" name="Id" value="">
+							<input type="text" id="Name" name="Name" value=""
+								validate="isnull">
+						</div></td>
+				</tr>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>手机号码：
+						</p></th>
+					<td><div class="inputbox">
+							<input type="text" id="Mobile" name="Mobile" value=""
+								error="输入手机号码不正确" validate="isnull|mobile">
+						</div></td>
+				</tr>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>电子邮箱：
+						</p></th>
+					<td><div class="inputbox">
+							<input type="text" id="Email" name="Email" value=""
+								error="输入电子邮箱不正确" validate="isnull|email">
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</script>
+<script id="PasswordBoxTemplate" type="text/template">
+
+<div class="custom-table" id="PasswordForm">
+	<div class="form">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<colgroup>
+				<col style="width: 150px;">
+					<col style="width: auto;">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>旧密码：
+						</p></th>
+					<td><div class="inputbox">
+							<input
+								type="password" id="OldPwd" name="OldPwd" value=""
+								validate="isnull" maxlength="64">
+						</div></td>
+				</tr>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>新密码：
+						</p></th>
+					<td><div class="inputbox">
+							<input type="password" id="NewPwd" name="NewPwd" value=""
+								validate="isnull" maxlength="64">
+						</div></td>
+				</tr>
+				<tr>
+					<th><p class="name rm">
+							<em class="red">*</em>再次输入新密码：
+						</p></th>
+					<td><div class="inputbox">
+							<input type="password" id="PassWord" name="PassWord" value=""
+								validate="isnull" maxlength="64">
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
 </script>

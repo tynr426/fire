@@ -36,13 +36,11 @@
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'ManagerFormTemplate', id: ${id}, url:'/company/manager/getManager.do', callback: manager.updateManager , width: 700, height: 300,finish:manager.updateFinish});">修改</a>
                             </li>
+{{if top.getCurrentUserId()==0}}
  							<li>
-                                <a href="javascript:void(0);" onclick="managerMenu.showCheckBoxToMenu(${id});">设置权限</a>
+                                <a href="javascript:void(0);" onclick="managerMenu.showCheckBoxToMenu(${companyId},${id});">设置权限</a>
                             </li>
- 							<li>
-                                <a href="javascript:void(0);" onclick="managerMenu.showPower(${id});">浏览权限</a>
-                            </li>
-
+{{/if}} 							
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/manager/delete.do');">删除</a>
                             </li>

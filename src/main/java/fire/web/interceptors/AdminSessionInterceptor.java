@@ -1,5 +1,7 @@
 package fire.web.interceptors;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,8 +25,13 @@ public class AdminSessionInterceptor implements HandlerInterceptor{
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("user");
 		if(obj == null){
-			res.sendRedirect(req.getContextPath()+"/admin/toLogin.do");
-			return false;
+		    PrintWriter out = res.getWriter();  
+	        out.println("<html>");      
+	        out.println("<script>");      
+	        out.println("window.open ('"+req.getContextPath()+"/admin/toLogin.do','_top')");      
+	        out.println("</script>");      
+	        out.println("</html>"); 
+	        return false;
 		}
 		return true;
 	}

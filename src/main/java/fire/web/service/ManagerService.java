@@ -17,4 +17,5 @@ public interface ManagerService {
 	public PageInfo<Manager> getManagerPage(int companyId,int index,int size);
 	public int updateStatus(Integer id,int status);
 	public CompanyResult verifyToken(String token);
+	public int updatePwd(String oldPwd,String pwd,int managerId);
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import fire.common.entity.Company;
 import fire.common.entity.CompanyResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.ManagerService;
@@ -48,7 +49,8 @@ public class LoginController extends ExceptionController{
         }
         
 		CompanyResult manager = managerService.login(username, password,code);
-		session.setAttribute(Constants.CompanyPre+Constants.LoginCacheKey, manager);
+		fire.web.utils.Company.setCookie(manager);
+		
 		return new JsonResult(manager);
 	}
 	@RequestMapping("/loginOut.do")

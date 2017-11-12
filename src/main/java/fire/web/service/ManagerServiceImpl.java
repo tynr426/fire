@@ -21,6 +21,7 @@ import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.VerifyCodeException;
 import fire.web.utils.Authorize;
+import fire.web.utils.Constants;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
 import fire.web.utils.Utils;
@@ -65,6 +66,7 @@ public class ManagerServiceImpl implements ManagerService{
 			result.setFace(company.getLogo());
 			result.setManagerId(manager.getId());
 			result.setUserName(manager.getUserName());
+			result.setUserId(manager.getUserId());
 			result.setToken(Authorize.getCompanyToken(manager, code,1));
 			return result;
 		}else {
@@ -74,7 +76,7 @@ public class ManagerServiceImpl implements ManagerService{
 	//退出登录
 	public int loginOut() {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-		request.getSession().removeAttribute("manager");
+		request.getSession().removeAttribute(Constants.CompanyPre+Constants.CompanyLoginCacheKey);
 		return 0;
 	}
 	public int addManager(Manager manager) throws NameException {
@@ -171,5 +173,16 @@ public class ManagerServiceImpl implements ManagerService{
 
 
 		return null;
+	}
+	public int updatePwd(String oldPwd,String pwd,int managerId){
+		Manager manager = managerDao.findById(managerId);
+		if(manager==null){
+			throw new NameException("不存在该用户");
+		}
+		if(!Md5.getMd5(oldPwd).equals(manager.getPassword())){
+			throw new PasswordException("原密码不正确");
+		}
+		manager.setPassword(Md5.getMd5(pwd));
+		return managerDao.updateManager(manager);
 	}
 }

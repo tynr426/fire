@@ -18,6 +18,7 @@ import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.service.UserService;
 import fire.web.service.VerifyCodeException;
+import fire.web.utils.Admin;
 import fire.web.utils.CookiesUtil;
 import fire.web.utils.JsonResult;
 
@@ -46,7 +47,7 @@ public class LoginController extends ExceptionController{
         	throw new VerifyCodeException("验证码输入错误"); 
         }
 		User user = userService.login(username, password);
-		session.setAttribute("user", user);
+		Admin.setCookie(user);
 		return new JsonResult(user);
 	}
 	@RequestMapping("/loginOut.do")

@@ -1,6 +1,5 @@
 /*
  * 自定义单选复选控件
- * By Mr.z
  *
  * 参数参考
  * setSwitch    类型：bool 默认值：true  功能：是否启用自定义单选复选功能
@@ -446,10 +445,10 @@
     };
 
     $.fn.customCheck = function (options) {
-        debugger;
+
         //定义插件名称
         var check = new customCheck(this, options);
 
         return check.init();
     };
-})(ECF, window);
+})($, window);

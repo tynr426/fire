@@ -1,5 +1,7 @@
 package fire.web.interceptors;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fire.web.utils.Constants;
 
-public class SessionInterceptor implements HandlerInterceptor{
+public class CompanySessionInterceptor implements HandlerInterceptor{
 
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
@@ -23,12 +25,15 @@ public class SessionInterceptor implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object arg2) throws Exception {
 		HttpSession session = req.getSession();
-		Object obj = session.getAttribute(Constants.CompanyPre+Constants.LoginCacheKey);
-		String url=req.getRequestURI();
-		String url2=req.getServletPath();
+		Object obj = session.getAttribute(Constants.CompanyPre+Constants.CompanyLoginCacheKey);
 		if(obj == null){
-			res.sendRedirect(req.getContextPath()+"/company/toLogin.do");
-			return false;
+		    PrintWriter out = res.getWriter();  
+	        out.println("<html>");      
+	        out.println("<script>");      
+	        out.println("window.open ('"+req.getContextPath()+"/company/toLogin.do','_top')");      
+	        out.println("</script>");      
+	        out.println("</html>");    
+	        return false;  
 		}
 		return true;
 	}

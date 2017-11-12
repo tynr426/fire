@@ -22,7 +22,7 @@ create table fir_Menu
 /* Table: MenuRelation 菜单关联          */
 /*====================================*/
 
-CREATE TABLE IF NOT EXISTS `fir_MenuRelation` (
+CREATE TABLE IF NOT EXISTS `com_MenuRelation` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `CompanyId` INT NULL,
   `ManagerId` INT NULL,
