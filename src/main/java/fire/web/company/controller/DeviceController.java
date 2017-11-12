@@ -76,7 +76,7 @@ public class DeviceController extends ExceptionController{
 	@ResponseBody	
 	public JsonResult addRepairrecord(RepairrecordResult repairrecordResult){
 		int n = repairrecordService.addRepairrecord(repairrecordResult);
-		return new JsonResult(n);	
+		return new JsonResult(n);
 	}
 	@RequestMapping("/getRepairrecord.do")
 	@ResponseBody	
