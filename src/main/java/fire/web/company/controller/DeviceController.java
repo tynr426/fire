@@ -6,9 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fire.web.controller.ExceptionController;
 import fire.common.entity.DeviceResult;
+import fire.common.entity.Repairrecord;
+import fire.common.entity.RepairrecordResult;
+import fire.web.controller.ExceptionController;
 import fire.web.service.DeviceService;
+import fire.web.service.RepairrecordService;
 import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
@@ -20,8 +23,14 @@ public class DeviceController extends ExceptionController{
 	public String Api(){
 		return "WebCompany/System/Device";
 	}
+	@RequestMapping("/toRepairrecord.do")
+	public String toRepairrecord(){
+		return "WebCompany/System/Repairrecord";
+	}
 	@Resource
 	private DeviceService deviceService;
+	@Resource
+	private RepairrecordService repairrecordService;
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getDevicePage(int index,int size){
@@ -53,6 +62,44 @@ public class DeviceController extends ExceptionController{
 	@ResponseBody
 	public JsonResult deleteDeviceparameter(int id){
 		int n = deviceService.deleteDevice(id);
+		return new JsonResult(n);
+	}
+	@RequestMapping("/showRepairrecord.do")
+	@ResponseBody
+	public Object getRepairrecordPage(int index,int size){
+		PageInfo<RepairrecordResult> pi = repairrecordService.getRepairrecordpage(index, size);
+		return new JsonResult(pi);
+	}
+	
+	
+	@RequestMapping("/addRepairrecord.do")
+	@ResponseBody	
+	public JsonResult addRepairrecord(RepairrecordResult repairrecordResult){
+		int n = repairrecordService.addRepairrecord(repairrecordResult);
+		return new JsonResult(n);	
+	}
+	@RequestMapping("/getRepairrecord.do")
+	@ResponseBody	
+	public JsonResult getRepairrecord(int id){
+		RepairrecordResult repairrecordResult = repairrecordService.getRepairrecord(id);	
+		return new JsonResult(repairrecordResult);
+	}
+	@RequestMapping("/updateRepairrecord.do")
+	@ResponseBody	
+	public JsonResult updateRepairrecord(Repairrecord repairrecord){
+		int n = repairrecordService.updateRepairrecord(repairrecord);	
+		return new JsonResult(n);
+	}
+	@RequestMapping("/deleteRepairrecord.do")
+	@ResponseBody
+	public JsonResult deleteRepairrecord(int id){
+		int n = repairrecordService.deleteRepairrecord(id);
+		return new JsonResult(n);
+	}
+	@RequestMapping("/switchStatus.do")
+	@ResponseBody
+	public JsonResult switchStatus(int id,int status){
+		int n = repairrecordService.updateStatus(id, status);
 		return new JsonResult(n);
 	}
 	
