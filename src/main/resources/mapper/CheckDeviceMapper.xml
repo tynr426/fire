@@ -7,12 +7,54 @@
 		insert into fir_checkdevice(
 		DeviceId,DeviceTypeId,CompanyId,ManagerId,
 		ManagerName,Description,Certificate,SeverityLevel,
-		AddTime
+		AddTime,Status
 		)
 		values(
 		#{DeviceId},#{DeviceTypeId},#{CompanyId},
 		#{ManagerId},#{ManagerName},#{Description},#{Certificate},
-		#{SeverityLevel},#{AddTime}
+		#{SeverityLevel},#{AddTime}.#{Status}
 		)	
 	</insert>
+	<select id="findById" parameterType="int" resultType="fire.common.entity.CheckDeviceResult">
+		select q.*,t.Name,n.Model from fir_checkdevice q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id) left join fir_device n 
+		on(q.DeviceId=n.Id)
+		where q.Id=#{id}
+	</select>
+	<update id="updateCD" parameterType="fire.common.entity.CheckDevice">
+		UPDATE fir_repairrecord SET
+			DeviceId=#{DeviceId}, 
+			DeviceTypeId=#{DeviceTypeId}, 
+			CompanyId=#{CompanyId}, 
+			ManagerId=#{ManagerId}, 
+			ManagerName=#{ManagerName},
+			Description=#{Description},
+			Certificate=#{Certificate},
+			SeverityLevel=#{SeverityLevel},
+			AddTime=#{AddTime},
+			Status=#{Status}
+			WHERE Id = #{Id}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from fir_checkdevice where Id = #{id}
+	</delete>
+	<select id="findCDCount" resultType="int">
+		select count(*) from fir_checkdevice 
+	</select>
+	<select id="findByLimit" resultType="fire.common.entity.CheckDeviceResult">
+		select q.*,t.Name,n.Model from fir_checkdevice q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id)  join fir_device n 
+
+		on(q.DeviceId=n.Id) where 1=1
+		<if test="managerName!=null and managerName!=''">
+			and q.ManagerName=#{managerName}
+		</if>
+		<if test="deviceTypeId!=null and deviceTypeId!=0">
+			and t.Id=#{deviceTypeId}
+		</if>
+		<if test="model!=null and model!=''">
+			and n.Model=#{model}
+		</if>
+		 limit #{begin},#{size}
+	</select>
 </mapper>

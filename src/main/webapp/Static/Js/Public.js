@@ -338,7 +338,7 @@ var pub = {
 
 			var opt = {};
 
-			if (arguments.length == 1 && $.isObject(arguments[0])) {
+			if (arguments.length == 1 && $.isPlainObject(arguments[0])) {
 				opt = arguments[0];
 			} else {
 				opt = {
@@ -1468,7 +1468,7 @@ $.extend($.fn, {
         @5: 执行方法回调参数
         @6: 请求地址
 	 */
-	loadList: function(templateId, data, action, func, args, url) {
+	loadList: function(templateId, data, func, args, url) {
 
 		if (this.length < 1) {
 			alert("数据错误");
@@ -1482,13 +1482,11 @@ $.extend($.fn, {
 		if (arguments.length == 1 && $.isObject(arguments[0])) {
 			if (typeof(arguments[0]) == "string") {
 				opt.templateId = arguments[0];
-				opt.action = action || "loaddata";
 			} else {
 				opt = arguments[0];
 			}
 		} else {
 			opt.url = url;
-			opt.action = action || "loaddata";
 			opt.callback = func;
 			opt.arguments = args;
 			opt.data = data;
@@ -1499,23 +1497,18 @@ $.extend($.fn, {
 			return;
 		}
 
-		var my = this,
-		sendData = "<action>" + opt.action + "</action>" + opt.data;
+		var my = this;
 		$.ajax({
 			url: opt.url,
-			dataType: "xml",
-			data: sendData,
+			dataType: "json",
+			data: opt.data,
 			loading: function() {
 				my.html("数据获取中...");
 			},
-			success: function() {
-
-				var doc = arguments[1].xml ? arguments[1].xml : arguments[1].text,
-						json = null;
-				if (typeof(doc) == "string") {
-					json = $.parseJSON(arguments[1].text);
-				} else {
-					json = $.xml.toJson(doc);
+			success: function(result) {
+				var json=[];
+				if(result.state==0){
+					json=result.data;
 				}
 
 				opt.html = $("#" + opt.templateId).html();
@@ -1526,7 +1519,7 @@ $.extend($.fn, {
 				}
 
 				if (json) {
-					my.html(jte(opt.html, json));
+					my.html($.tmpl(opt.html,json));
 					if (my[0].nodeName == "TBODY") {
 						$(">tr", my[0]).each(function () {
 							$(this).bind("mouseover", function () {

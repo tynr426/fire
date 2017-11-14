@@ -1,0 +1,172 @@
+<script type="text/template" id="bodyListTemplate">
+        
+        <tr>
+            <td><div class="string center">${name}</div></td>
+            <td><div class="string center">${model}</div></td>
+            <td><div class="string center">${managerName}</div></td>
+            <td><div class="string center">
+{{if severityLevel==1}}
+一般
+{{else severityLevel==2}}
+比较严重
+{{else severityLevel==3}}
+特别严重
+{{else severityLevel==0}}
+无异常
+{{/if}}
+</div></td>
+            <td><div class="string center">${description}</div></td>
+			
+            <td><div class="string center">
+{{if status==1}}
+待整改
+{{else status==2}}
+已整改
+{{else status==0}}
+正常
+{{/if}}
+</div></td>
+            <td><div class="string center">${addTime}</div></td>
+            <td>
+                <div class="tool" onmouseover="tableTool.over(this);" onmouseout="tableTool.out(this);">
+                    <!--标题栏-->
+                    <p class="name">操作</p>
+                    <!--//标题栏-->
+
+                    <div class="tool-menu">
+                        <ul>
+                            
+                            <li>
+                                <a href="javascript:void(0);" onclick="checkdevice.detail(${id})">详情</a>
+                            </li>						
+                            
+                           
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        
+    </script>
+<script type="text/x-jquery-tmpl" id="CheckDeviceFormTemplate">
+    <div class="custom-table">
+    <div class="form" id="CheckDeviceForm">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col style="width:auto;" />
+                <col style="width: 150px;" />
+                <col style="width:auto;" />
+            </colgroup>
+
+            <tbody id="tbDevice">
+                <tr>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>设备类型
+                        </p>
+                    </th>
+                    <td>
+                        <div class="string">
+                           <var id="Name"/>
+                        </div>
+                    </td>
+					<th>
+                        <p class="name rm">
+                            <em class="red">*</em>型号：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="string">
+                           <var id="Model"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+ <th>
+                        <p class="name rm">
+                            <em class="red">*</em>检查人员：
+                        </p>
+                    </th>
+                    <td>
+                          <div class="string">
+                           <var id="ManagerName"/>
+                        </div>
+                    </td>
+                    <th>
+                        <p class="name rm">
+                            <em class="red">*</em>故障级别：
+                        </p>
+                    </th>
+                    <td>
+                         <div class="string">
+                           <var id="SeverityLevel"/>
+                        </div>
+                    </td>
+                   
+                </tr>
+             
+				<tr>
+				<th>
+					
+                        <p class="name rm">
+                            <em class="red">*</em>设备状态：
+                        </p>
+                    </th>
+                    <td>
+                         <div class="string">
+                           <var id="Status"/>
+                        </div>
+                    </td>
+					<th>
+                        <p class="name rm">
+                            <em class="red">*</em>检查时间：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="string">
+                           <var id="AddTime"/>
+                        </div>
+                    </td>
+                </tr>
+				<tr>
+				<th>
+                        <p class="name rm">
+                            <em class="red">*</em>logo：
+                        </p>
+                    </th>
+<td colspan="3">
+<div class="extend">
+		<div class="product-pic">
+			<div class="show-pic">
+				<div class="pic">
+					<div class="pic-box">
+						<ol>
+							<li><img name="Certificate" style="width: 100%; height: 100px;"
+								src="/fire/Static/Upload/selectPic.png" />
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div></td>
+				</tr>
+  				 <tr>
+				<th>
+                        <p class="name rm">
+                            <em class="red">*</em>问题描述：
+                        </p>
+                    </th>
+                    <td colspan="3">
+                        <div class="string">
+                           <var id="Description"/>
+                        </div>
+                    </td>
+					
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    </script>

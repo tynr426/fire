@@ -142,4 +142,4 @@
             });
         }
     };
-}(jquery, window));
+}($, window));

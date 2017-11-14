@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<jsp:include page="../Meta.html"></jsp:include>
 </head>
 <body>
 	<!--内容-->
@@ -57,18 +58,24 @@
 
 															<tbody>
 																<tr>
-																	<th><p class="name">年份：</p></th>
+																	<th><p class="name">年月日：</p></th>
 																	<td><div class="inputbox">
-																			<input type="text" id="Year" name="Year" value="2017"
-																				placeholder="年份"
-																				onclick="WdatePicker({ dateFmt: 'yyyy'});">
-																		</div></td>
+																			<input type="text" id="StartTime" name="StartTime" value=""
+																				
+																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																		</div>
+																		<div class="inputbox">
+																			<input type="text" id="EndTime" name="EndTime" value=""
+																				
+																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																		</div>
+																		</td>
 																</tr>
 															
 																<tr>
 																	<th><p class="name">设备类型：</p></th>
 																	<td><div class="selectbox">
-																			<select name="DeviceId"><option value="-1"
+																			<select id="DeviceTypeId"><option value="0"
 																					selected="selected">全部</option>
 																				</select>
 																		</div></td>
@@ -76,20 +83,11 @@
 																<tr>
 																	<th><p class="name">单位名称：</p></th>
 																	<td><div class="selectbox">
-																			<select name="CompanyId"><option value="-1"
+																			<select id="CompanyId"><option value="0"
 																					selected="selected">全部</option>
 																				</select>
 																		</div></td>
 
-																</tr>
-																<tr>
-																	<th><p class="name">状态：</p></th>
-																	<td><label class="custom-radio checked"><input
-																			type="radio" value="" name="Status" checked="checked"><span>全部</span></label><label
-																		class="custom-radio"><input type="radio"
-																			value="1" name="Status"><span>开启</span></label><label
-																		class="custom-radio"><input type="radio"
-																			value="0" name="Status"><span>关闭</span></label></td>
 																</tr>
 															</tbody>
 														</table>
@@ -101,9 +99,8 @@
 											<!--//列表-->
 											<!--按钮-->
 											<div class="button">
-												<a href="javascript:void(0);" onclick="GetData(); "
-													class="btn">筛选</a> <a href="javascript:void(0);"
-													onclick="GetData(); " class="btn">全部</a> <a
+												<a href="javascript:void(0);" onclick="load(); "
+													class="btn">筛选</a>  <a
 													href="javascript:void(0);"
 													onclick="$('#filterForm').formReset();" class="btn">清空</a>
 											</div>
@@ -118,14 +115,45 @@
 					</div>
 					<!--//列表切换-->
 
-					<!--报表-->
-					<div class="report martop">
-						<p class="name">图形报表</p>
-						<!--图表数据-->
-						<div class="report-data" id="ReportBox"></div>
-						<!--//图表数据-->
+					<!--表格组件-->
+					<div class="custom-table">
+						<!--表格内盒-->
+						<div class="form" id="customChangeTable">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<colgroup>
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+								</colgroup>
+
+								<thead>
+									<tr>
+										<td>
+											<p class="name center">设备名</p>
+										</td>
+										<td>
+											<p class="name center">设备数量</p>
+										</td>
+										<td>
+											<p class="name center">故障数量</p>
+										</td>
+										<td>
+											<p class="name center">检修数量</p>
+										</td>
+										<td>
+											<p class="name center">未检修数量</p>
+										</td>
+									</tr>
+								</thead>
+
+								<tbody id="pageBody"></tbody>
+							</table>
+						</div>
+						<!--//表格内盒-->
 					</div>
-					<!--//报表-->
+					<!--//表格组件-->
 
 				</div>
 				<!--//滚动用盒层-->
@@ -137,69 +165,23 @@
 	<!--//内容-->
 </body>
 </html>
+<jsp:include page="../template/deviceNumSummary.html"></jsp:include>
+<script>
+function load(){
+	var start=$("#StartTime").val(),end=$("#EndTime").val();
+	if(start.length==0)start="2017/01/01";
+	if(end.length==0) end=new Date().toLocaleDateString();
+	var data={
+			companyId:$("#CompanyId").val(),
+			deviceTypeId:$("#DeviceTypeId").val(),
+			startTime:start,
+			endTime:end
+			};
 
-<script src="/fire/Static/Js/jquery.report.js" type="text/javascript"></script>
-<script type="text/javascript">
-    function GetData() {
-        var type =  parseInt( $("#type").val());
-        $.ajax({
-            data: "<action>getsalessummary</action><Filter>" + $('#filterForm').getValues("xml") + "</Filter>",
-            dataType: "xml",
-            loading: function () {
-                tip.show("数据加载中 ...");
-            },
-            success: function () {
-                tip.hide();
-                $("#table").hide();
-                $("#pageBody").html("");
-                $("#pageBar").html("");
-
-                // 判断动态刷新框架高度
-                if (window.top) {
-                    if (window.top.main) {
-                        if (typeof (window.top.main.autoSize) == "function") {
-                            window.top.main.autoSize(false);
-                        }
-                    }
-                }
-x 1].xml ? arguments[1].xml : argum >XV>>X.x.XXxx>fcxents[1].text);
-                doc = ECF.parseJSON(doc );
-                var option = { type: type, labels: doc[0].labels.split(','), datasets: [] };
-                $(doc[0].datasets).each(function (n, i) {
-                    var dataset = {};
-                    dataset.label = n.label;
-                    dataset.data = n.data.split(",");
-                    option.datasets.push(dataset);
-                });
-                $.report.createReport("#ReportBox", option, function () {
-                    $("#sdate").html(arguments[0].label);
-                    var fkflag = 1;
-                    if (arguments[0].label == "商家") {
-                        fkflag = 1;
-                    } else {
-                        fkflag = 2;
-                    }
-                    $("#table").show();
-                    $("#pageBody").loadPage("bodyListTemplate", "PageBarList", "<SortField>a.AddTime</SortField><SortDirect>DESC</SortDirect><Filter>" + $('#filterForm').getValues("xml") + "</Filter><FKFlag>" + fkflag + "</FKFlag>", status, 10);
-                });
-            },
-            error: function () {
-                tip.hide();
-                pub.tips("数据处理错误,错误代码: " + arguments[0] + ";错误信息: " + arguments[1], 1.5);
-            }
-        });
-    }
-</script>
-<script type="text/javascript">
-    (window.loadData = function (type) {
-        $("#type").val(type);
-        GetData();
-    })(1);
+	$("#pageBody").loadList("bodyListTemplate",data,null,null,'/fire/admin/device/getDeviceNumSummaryList.do')
+}
+$(function(){
+	load();
+});
 </script>
 
-<!--调用模板JS-->
-<script type="text/javascript" charset="utf-8">
-    //列表切换
-    $.getScript('/Static/Js/changeTableUI.js',function(){},true);
-</script>
-<!--//调用模板JS-->

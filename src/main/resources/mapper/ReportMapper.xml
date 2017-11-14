@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.ReportDAO">
+	<select id="getDeviceNumSummaryList" resultType="fire.common.entity.DeviceNumSummary">
+		SELECT 
+    Name,
+    (SELECT 
+            COUNT(*)
+        FROM
+            fir_device
+        WHERE
+            DeviceTypeId= a.Id
+            <if test="deviceTypeId!=0">
+            	and DeviceTypeId=#{deviceTypeId}
+            </if>
+              <if test="companyId!=0">
+            	and CompanyId=#{companyId}
+            </if>
+            <if test="endTime!=null">
+            	and AddTime&lt;#{endTime}
+            </if>
+            ) as DeviceNum,
+              (SELECT 
+            COUNT(*)
+        FROM
+            fir_checkdevice
+        WHERE
+            deviceTypeId = a.Id AND Status > 0
+              <if test="deviceTypeId!=0">
+            	and DeviceTypeId=#{deviceTypeId}
+            </if>
+              <if test="companyId!=0">
+            	and CompanyId=#{companyId}
+            </if>
+             <if test="startTime!=null">
+            	and AddTime&gt;#{startTime}
+             </if>
+             <if test="endTime!=null">
+            	and AddTime&lt;#{endTime}
+            </if>
+            ) AS FailureNum,
+    (SELECT 
+            COUNT(*)
+        FROM
+            fir_checkdevice
+        WHERE
+            deviceTypeId = a.Id AND Status = 2
+              <if test="deviceTypeId!=0">
+            	and DeviceTypeId=#{deviceTypeId}
+            </if>
+              <if test="companyId!=0">
+            	and CompanyId=#{companyId}
+            </if>
+               <if test="startTime!=null">
+            	and AddTime&gt;#{startTime}
+             </if>
+             <if test="endTime!=null">
+            	and AddTime&lt;#{endTime}
+            </if>
+            ) AS RectifiedNum
+FROM
+    fir_deviceType AS a;
+	</select>
+	
+</mapper>
