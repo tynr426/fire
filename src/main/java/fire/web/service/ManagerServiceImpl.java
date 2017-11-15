@@ -3,6 +3,7 @@ package fire.web.service;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.annotation.HttpConstraint;
@@ -14,7 +15,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import fire.web.dao.ManagerDAO;
 import fire.common.entity.*;
-import fire.common.entity.CompanyResult;
 import fire.sdk.utils.AES;
 import fire.web.dao.CompanyDAO;
 import fire.web.service.NameException;
@@ -184,5 +184,9 @@ public class ManagerServiceImpl implements ManagerService{
 		}
 		manager.setPassword(Md5.getMd5(pwd));
 		return managerDao.updateManager(manager);
+	}
+	public List<Manager> getManagerList(int companyId) {
+		List<Manager> list = managerDao.getManagerByCompanyId(companyId);
+		return list;
 	}
 }

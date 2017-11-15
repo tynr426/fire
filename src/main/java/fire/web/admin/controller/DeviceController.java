@@ -1,22 +1,14 @@
 package fire.web.admin.controller;
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import fire.web.controller.ExceptionController;
 import fire.web.service.DeviceNumSummaryService;

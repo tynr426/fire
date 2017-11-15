@@ -1,10 +1,9 @@
 package fire.web.service;
 
+import java.util.List;
+
 import fire.common.entity.CompanyResult;
 import fire.common.entity.Manager;
-import fire.web.service.NameException;
-import fire.web.service.PasswordException;
-import fire.web.service.VerifyCodeException;
 import fire.web.utils.PageInfo;
 
 public interface ManagerService {
@@ -18,4 +17,5 @@ public interface ManagerService {
 	public int updateStatus(Integer id,int status);
 	public CompanyResult verifyToken(String token);
 	public int updatePwd(String oldPwd,String pwd,int managerId);
+	public List<Manager> getManagerList(int companyId);
 }

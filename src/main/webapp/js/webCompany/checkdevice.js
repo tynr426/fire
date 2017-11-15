@@ -20,7 +20,14 @@ var checkdevice={
 								}
 							});
 							
-							pub.openDialog({ content: div, width: 500, height: 450, title: "分配菜单", callback: null, arguments: [] } );
+							pub.openDialog({ content: div, width: 700, height: 500, title: "指派任务", callback: checkdevice.assignment, arguments: [id] } );
+							var arr=[];
+							manager.getManagerList(function(data){
+								$.each(data,function(i,item){
+									arr.push('<option value="'+item.id+'">'+item.name+'</option>')
+								});
+								$("#ToManagerId").append(arr.join(""));
+							});
 						}
 						
 					},
@@ -29,21 +36,39 @@ var checkdevice={
 					}
 				});
 			},
+			
 			getJsonValue:function(json,name){
 				var v="";
 				$.each(json,function(key,value){
 					if(key.firstUpperCase()==name){
 						v= value;
-						if(name=="SeverityLevel"){
-							switch(v){
-							case 1:v="一般"; break;
-							case 2:v="扬中"; break;
-							}
-						}
 						return;
 					}
 					
 				});
 				return v;
+			},
+			assignment:function(id){
+				if(!$("#CheckDeviceForm").formValidate())return;
+				var obj=this;
+				var ToManagerId=$("#ToManagerId").val();
+				var PredictTime=$("#PredictTime").val();
+				var Remark=$("#Remark").val();
+				$.ajax({
+					url:companypath+"/assignment/save.do",
+					type:"post",
+					dataType:"json",
+					data:{CheckId:id,ToManagerId:ToManagerId,
+						PredictTime:PredictTime,Remark:Remark},
+					success:function(result){
+						if(result.state==0){
+							alert("操作成功!");
+							$(obj).dialog('close');
+						}
+					},
+					error:function(){
+						alert("加载失败!");
+					}
+				});
 			}
 }

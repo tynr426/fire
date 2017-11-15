@@ -132,8 +132,25 @@ var manager={
 					alert("修改失败");
 				}
 			});
+		},
+		getManagerList:function(fn){
+			$.ajax({
+				url:companypath+"/manager/getManagerList.do",
+				type:"post",
+				dataType:"json",
+				success:function(result){
+					if(result.state==0){
+						if(typeof(fn)=="function") fn(result.data);
+					}else{	
+						alert(result.message);			
+					}								
+					
+				},
+				error:function(){
+					alert("修改失败");
+				}
+			});
 		}
-
 
 };
 //分配菜单js操作对象

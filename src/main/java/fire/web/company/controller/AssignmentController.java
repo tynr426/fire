@@ -29,5 +29,11 @@ public class AssignmentController extends ExceptionController{
 		PageInfo<Assignment> pi = assignmentService.getAssignmentPage(Company.getCompanyId(), index, size);
 		return new JsonResult(pi);	
 	}
+	@RequestMapping("/save.do")
+	@ResponseBody
+	public Object save(Assignment assignment){
+		
+		return new JsonResult(assignmentService.save(assignment));	
+	}
 
 }

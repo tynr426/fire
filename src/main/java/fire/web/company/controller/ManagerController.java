@@ -84,4 +84,9 @@ public class ManagerController extends ExceptionController{
 		int n =managerService.updatePwd(oldPwd, pwd, Company.getCompany().getManagerId());
 		return new JsonResult(n);
 	}
+	@RequestMapping("/getManagerList.do")
+	@ResponseBody
+	public JsonResult getManagerList(){
+		return new JsonResult(managerService.getManagerList(Company.getCompanyId()));
+	}
 }

@@ -1,28 +1,31 @@
 package fire.web.service;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import fire.common.entity.Assignment;
 import fire.web.dao.AssignmentDAO;
+import fire.web.utils.Company;
 import fire.web.utils.PageInfo;
 @Service("assignmentService")
 public class AssignmentServiceImpl implements AssignmentService{
 	@Resource
 	private AssignmentDAO assignmentDAO;
-	
-	public int addAssignment(Assignment assignment) throws NameException {
-		assignment.setStatus(1);
-		int n = assignmentDAO.addAssignment(assignment);
-		return n;
+	public int save(Assignment entity){
+		if(assignmentDAO.getAssignmentByCheckId(entity.getCheckId())!=null)
+		{
+			return assignmentDAO.updateAssignment(entity);
+		}
+		else{
+			entity.setCompanyId(Company.getCompanyId());
+			entity.setFromManagerId(Company.getCompany().getManagerId());
+			entity.setAddTime(new Date());
+			return assignmentDAO.addAssignment(entity);
+		}
 	}
-
-	public int updateAssignment(Assignment assignment) {
-		int n = assignmentDAO.updateAssignment(assignment);
-		return n;
-	}
-
 	public Assignment getAssignment(int id) {
 		Assignment assignment = assignmentDAO.findById(id);
 		if(assignment==null){

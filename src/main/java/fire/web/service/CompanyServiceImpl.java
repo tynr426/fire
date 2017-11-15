@@ -42,7 +42,7 @@ public class CompanyServiceImpl implements CompanyService{
 		if(n>0){			
 			manager.setCompanyId(result.getId());	
 		}
-		Manager entity=managerDAO.getManagerByCompanyId(manager.getCompanyId());
+		Manager entity=managerDAO.findById(manager.getId());
 		if(entity!=null)  throw new  NameException("用户已经存在");
 		if(manager.getPassword()==""||manager.getUserName()=="") throw new NameException("用户名或密码不能为空");
 		manager.setPassword(Md5.getMd5(manager.getPassword()));

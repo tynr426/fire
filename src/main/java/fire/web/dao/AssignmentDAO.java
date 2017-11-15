@@ -18,4 +18,5 @@ public interface AssignmentDAO {
 			@Param("size") Integer size
 			);
 	public int updateStatus(Assignment assignment);
+	public Assignment getAssignmentByCheckId(int checkId);
 }

@@ -22,27 +22,7 @@ contentType="text/html; charset=utf-8" %>
 			<div class="custom-box" scrollarea="box">
 				<!--滚动用盒层-->
 				<div class="custom-scroll" scrollroom="box" lazyscroll="box">
-					<div class="label-box" label-box="group1">
-
-
-						<div class="mc" label-limitarea="group1">
-							<div class="for select" label-area="group1|key1">
-								<div class="extend-button">
-
-
-									<div class="button">
-										<a href="javascript:void(0);"
-											onclick="frm.add({ title: '添加', formId: 'ManagerFormTemplate', callback: manager.addManager, width: 800, height: 400 });"
-											class="btn">添加任务</a>
-									</div>
-
-
-								</div>
-							</div>
-
-
-						</div>
-					</div>
+					
 
 					<!--表格组件-->
 					<div class="custom-table">

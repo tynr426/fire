@@ -8,7 +8,7 @@ import fire.common.entity.Manager;
 
 
 public interface ManagerDAO {
-	public Manager getManagerByCompanyId(int companyId);
+	public List<Manager> getManagerByCompanyId(int companyId);
 	public int deleteByCompanyId(int companyId);
 	public Manager findByUserName(String username);
 	public Manager findByName(String name);
