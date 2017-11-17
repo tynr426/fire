@@ -21,7 +21,7 @@
 			Status=#{Status}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addAssignment" parameterType="fire.common.entity.Assignment" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addAssignment" parameterType="fire.common.entity.Assignment">
 		insert into fir_assignment(
 		CompanyId,FromManagerId,ToManagerId,
 		CheckId,PredictTime,Remark,AddTime,Status
@@ -38,9 +38,9 @@
 	<select id="findAssignmentCount" resultType="int">
 		select count(*) from fir_assignment 
 	</select>
-	<select id="findByLimit" resultType="fire.common.entity.Assignment">
-		select a.*,b.Name,c.Certificate from fir_assignment a join com_manager b
-		on(a.ManagerId=b.Id) join fir_checkdevice c
+	<select id="findByLimit" resultType="fire.common.entity.AssignmentResult">
+		select a.*,b.Name,c.Description from fir_assignment a join com_manager b
+		on(a.ToManagerId=b.Id) join fir_checkdevice c
 		on(a.CheckId=c.Id)
 		where a.CompanyId=#{companyId} 
 		limit #{begin},#{size}

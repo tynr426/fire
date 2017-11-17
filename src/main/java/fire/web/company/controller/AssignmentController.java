@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fire.common.entity.Assignment;
+import fire.common.entity.AssignmentResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.AssignmentService;
 import fire.web.utils.Company;
@@ -26,7 +27,7 @@ public class AssignmentController extends ExceptionController{
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getManagerPage(int index,int size){
-		PageInfo<Assignment> pi = assignmentService.getAssignmentPage(Company.getCompanyId(), index, size);
+		PageInfo<AssignmentResult> pi = assignmentService.getAssignmentPage(Company.getCompanyId(), index, size);
 		return new JsonResult(pi);	
 	}
 	@RequestMapping("/save.do")

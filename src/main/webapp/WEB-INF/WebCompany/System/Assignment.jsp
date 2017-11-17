@@ -35,7 +35,6 @@ contentType="text/html; charset=utf-8" %>
 									<col style="width: auto;" />
 									<col style="width: auto;" />
 									<col style="width: 100px;" />
-									<col style="width: 100px;" />
 								</colgroup>
 
 								<thead>
@@ -54,9 +53,6 @@ contentType="text/html; charset=utf-8" %>
 										</td>
 										<td>
 											<p class="name center">状态</p>
-										</td>
-										<td>
-											<p class="name">操作</p>
 										</td>
 									</tr>
 								</thead>
@@ -79,7 +75,7 @@ contentType="text/html; charset=utf-8" %>
 	</div>    
 </body>
 </html>
-<jsp:include  page="../template/manager.html"></jsp:include>
+<jsp:include  page="../template/assignment.html"></jsp:include>
 <script language="javascript" type="text/javascript">
  $(function(){
 	 load();

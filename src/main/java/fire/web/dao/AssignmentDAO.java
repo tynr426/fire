@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import fire.common.entity.Assignment;
+import fire.common.entity.AssignmentResult;
 
 public interface AssignmentDAO {
 	public int updateAssignment(Assignment assignment);
@@ -12,7 +13,7 @@ public interface AssignmentDAO {
 	public int addAssignment(Assignment assignment);
 	public int delete(int id);
 	public int findAssignmentCount();
-	public List<Assignment> findByLimit(
+	public List<AssignmentResult> findByLimit(
 			@Param("companyId")int companyId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size

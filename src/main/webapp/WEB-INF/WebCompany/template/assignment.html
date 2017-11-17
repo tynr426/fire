@@ -1,0 +1,19 @@
+<script type="text/template" id="bodyListTemplate">
+        
+        <tr>
+            <td><div class="string center">${name}</div></td>
+            <td><div class="string center">${description}</div></td>
+            <td><div class="string center">${predictTime}</div></td>
+            <td><div class="string center">${addTime}</div></td>
+            <td><div class="string center">
+{{if status==1}}
+待整改
+{{else status==2}}
+已整改
+{{else status==0}}
+正常
+{{/if}}
+</div></td>
+        </tr>
+        
+    </script>
