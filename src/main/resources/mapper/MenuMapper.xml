@@ -19,7 +19,7 @@
 			ManagerId=#{ManagerId}
 	</update>
 	<select id="getMenuList" resultType="fire.common.entity.Menu">
-		select * from com_menu
+		select * from com_menu order by Reorder
 	</select>
 	<select id="getMenuRelation" resultType="fire.common.entity.MenuRelation">
 		select * from com_menurelation
@@ -33,5 +33,6 @@
 		close=")" separator=","> 
 			#{menuIds}
 		</foreach>
+		order by Reorder
 	</select>
 </mapper>

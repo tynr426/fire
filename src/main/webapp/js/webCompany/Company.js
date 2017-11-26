@@ -1,7 +1,7 @@
 var companyManager={
 			load:function(){
 				$.ajax({
-					url:path+"/admin/company/getCompanyByCompanyId.do",
+					url:path+"/company/manager/getCompanyByCompanyId.do",
 					type:"post",
 					dataType:"json",
 					success:function(result){
@@ -55,7 +55,7 @@ var companyManager={
 				var Email = $("#Email").val().trim();
 				var Mobile = $("#Mobile").val().trim();
 				$.ajax({
-					url:path+"/admin/company/update.do",
+					url:path+"/company/manager/updateCompany.do",
 					type:"post",
 					data:{Id:Id,Name:Name,Code:Code,
 						Address:Address,Atten:Atten,Tel:Tel,

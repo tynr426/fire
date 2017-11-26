@@ -137,6 +137,7 @@ var manager={
 			$.ajax({
 				url:companypath+"/manager/getManagerList.do",
 				type:"post",
+				async:false,
 				dataType:"json",
 				success:function(result){
 					if(result.state==0){

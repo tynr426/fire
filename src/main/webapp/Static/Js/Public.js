@@ -313,7 +313,13 @@ var pub = {
 						$(this).dialog('close');
 					}
 			};
-
+			if(opts.isView){
+				opts.buttons ={
+						"关闭":function(){
+							$(this).dialog('close');
+						}
+				};
+			}
 			opts.Cancle =function(){
 				$(this).dialog('close');
 			};

@@ -1,7 +1,10 @@
 package fire.web.company.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +13,7 @@ import fire.common.entity.DeviceResult;
 import fire.common.entity.Repairrecord;
 import fire.common.entity.RepairrecordResult;
 import fire.web.controller.ExceptionController;
+import fire.web.service.DeviceNumSummaryService;
 import fire.web.service.DeviceService;
 import fire.web.service.RepairrecordService;
 import fire.web.utils.Company;
@@ -31,6 +35,8 @@ public class DeviceController extends ExceptionController{
 	private DeviceService deviceService;
 	@Resource
 	private RepairrecordService repairrecordService;
+	@Resource
+	private DeviceNumSummaryService dnsService;
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getDevicePage(int index,int size){
@@ -102,5 +108,14 @@ public class DeviceController extends ExceptionController{
 		int n = repairrecordService.updateStatus(id, status);
 		return new JsonResult(n);
 	}
-	
+	@RequestMapping("/toCompanyDeviceNumSummary.do")
+	public String toCompanyDeviceNumSummary(){
+		return "WebCompany/Report/CompanyDeviceNumSummary";
+	}
+	@RequestMapping("getCompanyDeviceNumSummaryList.do")
+	@ResponseBody
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	public Object getDeviceNumSummaryList(int deviceTypeId,Date startTime,Date endTime){
+		return new JsonResult(dnsService.getDeviceNumSummaryList(Company.getCompanyId(), deviceTypeId, startTime, endTime));
+	}
 }

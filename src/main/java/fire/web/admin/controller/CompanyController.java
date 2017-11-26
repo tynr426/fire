@@ -42,16 +42,7 @@ public class CompanyController extends ExceptionController{
 		CompanyResult result = companyService.getCompany(id);	
 		return new JsonResult(result);
 	}
-	@RequestMapping("/getCompanyByCompanyId.do")
-	@ResponseBody	
-	public JsonResult getCompanyByCompanyId(){
-		CompanyResult result = companyService.getCompany(fire.web.utils.Company.getCompanyId());	
-		return new JsonResult(result);
-	}
-	@RequestMapping("/toCompany.do")
-	public String showCompany(){
-		return "WebCompany/System/Company";
-	}
+	
 	
 	@RequestMapping("/update.do")
 	@ResponseBody	

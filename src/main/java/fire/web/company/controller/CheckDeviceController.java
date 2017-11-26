@@ -10,6 +10,7 @@ import fire.common.entity.CheckDevice;
 import fire.common.entity.CheckDeviceResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.CheckDeviceService;
+import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
 
@@ -44,7 +45,7 @@ public class CheckDeviceController extends ExceptionController{
 	@RequestMapping("/showCheckDevice.do")
 	@ResponseBody
 	public Object getCheckDevicePage(int index,int size,String managerName,String model,Integer deviceTypeId){
-		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(index, size,managerName,model,deviceTypeId);
+		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(Company.getCompanyId(),index, size,managerName,model,deviceTypeId);
 		return new JsonResult(pi);
 	}
 }

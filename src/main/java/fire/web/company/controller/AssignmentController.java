@@ -33,8 +33,12 @@ public class AssignmentController extends ExceptionController{
 	@RequestMapping("/save.do")
 	@ResponseBody
 	public Object save(Assignment assignment){
-		
 		return new JsonResult(assignmentService.save(assignment));	
+	}
+	@RequestMapping("/getAssignmentByCheckId.do")
+	@ResponseBody
+	public Object getAssignmentByCheckId(int checkId){
+		return new JsonResult(assignmentService.getAssignmentByCheckId(checkId));	
 	}
 
 }

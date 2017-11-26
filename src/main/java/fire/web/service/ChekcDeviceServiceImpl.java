@@ -41,12 +41,12 @@ public class ChekcDeviceServiceImpl implements CheckDeviceService{
 		return cDDAO.delete(id);
 	}
 
-	public PageInfo<CheckDeviceResult> getCheckDevicePage(int index,int size,String managerName,String model,Integer deviceTypeId){
+	public PageInfo<CheckDeviceResult> getCheckDevicePage(int companyId,int index,int size,String managerName,String model,Integer deviceTypeId){
 		PageInfo<CheckDeviceResult> pi = new PageInfo<CheckDeviceResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
 		pi.setCount(cDDAO.findCDCount());
-		pi.setList(cDDAO.findByLimit(pi.getBegin(), size,managerName,model,deviceTypeId));
+		pi.setList(cDDAO.findByLimit(companyId,pi.getBegin(), size,managerName,model,deviceTypeId));
 		return pi;
 	}
 

@@ -15,6 +15,7 @@ public interface CheckDeviceDAO {
 	public int delete(int id);
 	public int findCDCount();
 	public List<CheckDeviceResult> findByLimit(
+			@Param("companyId") Integer companyId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size,
 			@Param("managerName") String managerName,

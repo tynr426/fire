@@ -7,21 +7,24 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fire.common.entity.CompanyResult;
 import fire.common.entity.Manager;
-import fire.web.utils.PageInfo;
 import fire.web.controller.ExceptionController;
+import fire.web.service.CompanyService;
 import fire.web.service.ManagerService;
 import fire.web.service.NameException;
 import fire.web.service.PasswordException;
 import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
+import fire.web.utils.PageInfo;
 
 @Controller
 @RequestMapping("/company/manager")
 public class ManagerController extends ExceptionController{
 	@Resource
 	private ManagerService managerService;
-	
+	@Resource
+	private CompanyService companyService;
 	@RequestMapping("/toManager.do")
 	public String toManager(){
 		return "WebCompany/System/Manager";
@@ -88,5 +91,21 @@ public class ManagerController extends ExceptionController{
 	@ResponseBody
 	public JsonResult getManagerList(){
 		return new JsonResult(managerService.getManagerList(Company.getCompanyId()));
+	}
+	@RequestMapping("/toCompany.do")
+	public String showCompany(){
+		return "WebCompany/System/Company";
+	}
+	@RequestMapping("/getCompanyByCompanyId.do")
+	@ResponseBody	
+	public JsonResult getCompanyByCompanyId(){
+		CompanyResult result = companyService.getCompany(fire.web.utils.Company.getCompanyId());	
+		return new JsonResult(result);
+	}
+	@RequestMapping("/updateCompany.do")
+	@ResponseBody	
+	public JsonResult updateCompany(CompanyResult result){
+		int n = companyService.updateCompany(result);	
+		return new JsonResult(n);
 	}
 }

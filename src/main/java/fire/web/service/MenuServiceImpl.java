@@ -7,14 +7,17 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import fire.common.entity.Manager;
 import fire.common.entity.Menu;
 import fire.common.entity.MenuRelation;
+import fire.web.dao.ManagerDAO;
 import fire.web.dao.MenuDAO;
 @Service("menuService")
 public class MenuServiceImpl implements MenuService{
 	@Resource
 	private MenuDAO menuDAO;
-	
+	@Resource
+	private ManagerDAO managerDAO;
 	public int save(MenuRelation entity) {
 		MenuRelation mr =getMenuRelation(entity.getCompanyId(), entity.getManagerId());
 		if(mr==null){
@@ -35,6 +38,10 @@ public class MenuServiceImpl implements MenuService{
 	}
 
 	public List<Menu> getMenuRelationList(Integer companyId, Integer managerId) {
+		Manager manager = managerDAO.findById(managerId);
+		if(manager.getUserId()==0){
+			return getMenuList();
+		}
 		MenuRelation entity=getMenuRelation(companyId,managerId);
 		if(entity!=null&&entity.getMenuIds().length()>0){
 			List<Menu> list= menuDAO.getMenuRelationList(entity.getMenuIds().split(","));

@@ -19,8 +19,18 @@ var checkdevice={
 									$(this).html(checkdevice.getJsonValue(result.data,name));
 								}
 							});
-							
-							pub.openDialog({ content: div, width: 700, height: 500, title: "指派任务", callback: checkdevice.assignment, arguments: [id] } );
+							var config={ 
+									content: div, 
+									width: 700, 
+									height: 500, 
+									title: "指派任务", 
+									callback: checkdevice.assignment, 
+									arguments: [id] 
+							} ;
+							if(result.data.status==2){
+								config.isView=true;
+							}
+							pub.openDialog(config);
 							var arr=[];
 							manager.getManagerList(function(data){
 								$.each(data,function(i,item){
@@ -28,6 +38,9 @@ var checkdevice={
 								});
 								$("#ToManagerId").append(arr.join(""));
 							});
+							if(result.data.status==2){
+								checkdevice.getAssigment(id);
+							}
 						}
 						
 					},
@@ -36,7 +49,19 @@ var checkdevice={
 					}
 				});
 			},
-			
+			getAssigment:function(checkId){
+				$.ajax({
+					url:companypath+"/assignment/getAssignmentByCheckId.do",
+					type:"post",
+					dataType:"json",
+					data:{checkId:checkId},
+					success:function(result){
+						$("#ToManagerId").val(result.data.toManagerId);
+						$("#PredictTime").val(result.data.predictTime);
+						$("#Remark").val(result.data.remark);
+					}		
+				});
+			},
 			getJsonValue:function(json,name){
 				var v="";
 				$.each(json,function(key,value){

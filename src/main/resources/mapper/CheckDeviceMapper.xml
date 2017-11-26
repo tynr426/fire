@@ -22,7 +22,7 @@
 		where q.Id=#{id}
 	</select>
 	<update id="updateCD" parameterType="fire.common.entity.CheckDevice">
-		UPDATE fir_repairrecord SET
+		UPDATE fir_checkdevice SET
 			DeviceId=#{DeviceId}, 
 			DeviceTypeId=#{DeviceTypeId}, 
 			CompanyId=#{CompanyId}, 
@@ -46,6 +46,9 @@
 		on(q.DeviceTypeId=t.Id)  join fir_device n 
 
 		on(q.DeviceId=n.Id) where 1=1
+		<if test="companyId!=null and companyId!=''">
+			and q.CompanyId=#{companyId}
+		</if>
 		<if test="managerName!=null and managerName!=''">
 			and q.ManagerName=#{managerName}
 		</if>

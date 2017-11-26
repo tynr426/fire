@@ -14,5 +14,5 @@ public interface AssignmentService {
 	public PageInfo<AssignmentResult> getAssignmentPage(int companyId,int index,int size);
 	public int updateStatus(Integer id, Integer status);
 	public int save(Assignment entity);
-
+	public Assignment getAssignmentByCheckId(int checkId);
 }

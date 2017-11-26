@@ -1,3 +1,3 @@
-var path="http://localhost:8080/fire";
-var companypath="http://localhost:8080/fire/company";
-var adminpath="http://localhost:8080/fire/admin";
+var path="http://b2b.366ec.net:80/fire";
+var companypath="http://b2b.366ec.net:80/fire/company";
+var adminpath="http://b2b.366ec.net:80/fire/admin";

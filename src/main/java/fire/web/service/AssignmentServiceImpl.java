@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fire.common.entity.Assignment;
 import fire.common.entity.AssignmentResult;
@@ -19,24 +20,27 @@ public class AssignmentServiceImpl implements AssignmentService{
 	private AssignmentDAO assignmentDAO;
 	@Resource
 	private CheckDeviceDAO cdDAO;
+	@Transactional
 	public int save(Assignment entity){
-//		if(assignmentDAO.getAssignmentByCheckId(entity.getCheckId())!=null)
-//		{
-//			return assignmentDAO.updateAssignment(entity);
-//		}
-//		else{
 		    CheckDevice cd = cdDAO.findById(entity.getCheckId());
 			entity.setCompanyId(Company.getCompanyId());
 			entity.setFromManagerId(Company.getCompany().getManagerId());
 			entity.setAddTime(new Date());
-			entity.setStatus(cd.getStatus());
+			cd.setStatus(2);//将检查报告中设备的状态设置为待整改
+			cdDAO.updateCD(cd);
 			return assignmentDAO.addAssignment(entity);
-//		}
 	}
 	public Assignment getAssignment(int id) {
 		Assignment assignment = assignmentDAO.findById(id);
 		if(assignment==null){
 			throw new NameException("Id不存在");
+		}
+		return assignment;
+	}
+	public Assignment getAssignmentByCheckId(int checkId) {
+		Assignment assignment = assignmentDAO.getAssignmentByCheckId(checkId);
+		if(assignment==null){
+			throw new NameException("checkId不存在");
 		}
 		return assignment;
 	}

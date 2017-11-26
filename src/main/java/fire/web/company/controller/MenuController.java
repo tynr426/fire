@@ -34,6 +34,7 @@ public class MenuController {
 	@RequestMapping("/getMenuRelationList.do")
 	@ResponseBody
 	public JsonResult getMenuRelationList(Integer companyId, Integer managerId) {
+		
 		return new JsonResult(menuService.getMenuRelationList(companyId, managerId));
 	}
 }
