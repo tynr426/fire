@@ -16,10 +16,10 @@
 		)	
 	</insert>
 	<select id="findById" parameterType="int" resultType="fire.common.entity.CheckDeviceResult">
-		select q.*,t.Name,n.Model from fir_checkdevice q join fir_devicetype t
-		on(q.DeviceTypeId=t.Id) left join fir_device n 
-		on(q.DeviceId=n.Id)
-		where q.Id=#{id}
+		select c.*,t.Name,n.Model,n.Detail from fir_checkdevice c join fir_devicetype t
+		on(c.DeviceTypeId=t.Id) left join fir_device n 
+		on(c.DeviceId=n.Id)
+		where c.Id=#{id}
 	</select>
 	<update id="updateCD" parameterType="fire.common.entity.CheckDevice">
 		UPDATE fir_checkdevice SET
@@ -42,15 +42,15 @@
 		select count(*) from fir_checkdevice 
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.CheckDeviceResult">
-		select q.*,t.Name,n.Model from fir_checkdevice q join fir_devicetype t
-		on(q.DeviceTypeId=t.Id)  join fir_device n 
+		select c.*,t.Name,n.Model,n.Detail from fir_checkdevice c join fir_devicetype t
+		on(c.DeviceTypeId=t.Id)  join fir_device n 
 
-		on(q.DeviceId=n.Id) where 1=1
+		on(c.DeviceId=n.Id) where 1=1
 		<if test="companyId!=null and companyId!=''">
-			and q.CompanyId=#{companyId}
+			and c.CompanyId=#{companyId}
 		</if>
 		<if test="managerName!=null and managerName!=''">
-			and q.ManagerName=#{managerName}
+			and c.ManagerName=#{managerName}
 		</if>
 		<if test="deviceTypeId!=null and deviceTypeId!=0">
 			and t.Id=#{deviceTypeId}

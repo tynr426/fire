@@ -62,12 +62,12 @@
 																	<td><div class="inputbox">
 																			<input type="text" id="StartTime" name="StartTime" value=""
 																				
-																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																				onclick="WdatePicker({ dateFmt: 'yyyy/MM/dd'});">
 																		</div>
 																		<div class="inputbox">
 																			<input type="text" id="EndTime" name="EndTime" value=""
 																				
-																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																				onclick="WdatePicker({ dateFmt: 'yyyy/MM/dd'});">
 																		</div>
 																		</td>
 																</tr>
@@ -79,15 +79,6 @@
 																					selected="selected">全部</option>
 																				</select>
 																		</div></td>
-																</tr>
-																<tr>
-																	<th><p class="name">单位名称：</p></th>
-																	<td><div class="selectbox">
-																			<select id="CompanyId"><option value="0"
-																					selected="selected">全部</option>
-																				</select>
-																		</div></td>
-
 																</tr>
 															</tbody>
 														</table>
@@ -102,7 +93,7 @@
 												<a href="javascript:void(0);" onclick="load(); "
 													class="btn">筛选</a>  <a
 													href="javascript:void(0);"
-													onclick="$('#filterForm').formReset();" class="btn">清空</a>
+													onclick="companyDeviceNumSummary.reset();" class="btn">清空</a>
 											</div>
 											<!--//按钮-->
 										</div>
@@ -179,9 +170,12 @@ function load(){
 			};
 
 	$("#pageBody").loadList("bodyListTemplate",data,null,null,'/fire/company/device/getCompanyDeviceNumSummaryList.do')
+	$(".expert-open").addClass("expert-close").removeClass("expert-open");
+
 }
 $(function(){
 	load();
+	companyDeviceNumSummary.loadDeviceType();
 });
 </script>
 

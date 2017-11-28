@@ -26,7 +26,7 @@ public class ChekcDeviceServiceImpl implements CheckDeviceService{
 	}
 
 	public CheckDeviceResult getCheckDevice(int id) {
-		CheckDeviceResult cdr = cDDAO.findById(id);
+		CheckDeviceResult cdr = cDDAO.getCD(id);
 		if(cdr==null){
 			throw new NameException("Id不存在");
 		}
@@ -34,7 +34,7 @@ public class ChekcDeviceServiceImpl implements CheckDeviceService{
 	}
 
 	public int deleteCD(int id) {
-		CheckDeviceResult cdr = cDDAO.findById(id);
+		CheckDeviceResult cdr = cDDAO.getCD(id);
 		if(cdr==null){
 			throw new NameException("Id不存在");
 		}

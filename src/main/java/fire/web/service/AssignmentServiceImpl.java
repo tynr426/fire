@@ -22,7 +22,7 @@ public class AssignmentServiceImpl implements AssignmentService{
 	private CheckDeviceDAO cdDAO;
 	@Transactional
 	public int save(Assignment entity){
-		    CheckDevice cd = cdDAO.findById(entity.getCheckId());
+		    CheckDevice cd = cdDAO.getCD(entity.getCheckId());
 			entity.setCompanyId(Company.getCompanyId());
 			entity.setFromManagerId(Company.getCompany().getManagerId());
 			entity.setAddTime(new Date());

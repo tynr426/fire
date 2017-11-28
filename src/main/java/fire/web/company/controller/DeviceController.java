@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import fire.common.entity.DeviceResult;
 import fire.common.entity.Repairrecord;
 import fire.common.entity.RepairrecordResult;
@@ -114,7 +116,7 @@ public class DeviceController extends ExceptionController{
 	}
 	@RequestMapping("getCompanyDeviceNumSummaryList.do")
 	@ResponseBody
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Object getDeviceNumSummaryList(int deviceTypeId,Date startTime,Date endTime){
 		return new JsonResult(dnsService.getDeviceNumSummaryList(Company.getCompanyId(), deviceTypeId, startTime, endTime));
 	}
