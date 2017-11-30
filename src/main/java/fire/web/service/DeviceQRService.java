@@ -12,6 +12,7 @@ import fire.web.utils.PageInfo;
 public interface DeviceQRService {
 	public int addDeviceQR(List<DeviceQR> list)throws NameException;
 	public DeviceQR getDeviceQR(int id);
+	public DeviceQR getDeviceQRByCode(String code);
 	public int deleteDeviceQR(int id);
 	public PageInfo<DeviceQRResult> getDeviceQRPage(int begin,int size);
 	public PageInfo<DeviceQRResult> search(String model,Integer deviceTypeId,int begin,int size);

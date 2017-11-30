@@ -9,7 +9,10 @@ import fire.common.entity.DeviceQRResult;
 
 public interface DeviceQRDAO {
 	public DeviceQR findById(int id);
+	public DeviceQR findByCode(String code);
 	public int addDeviceQR(List<DeviceQR> list);
+	public int update(@Param("code") String code,
+			@Param("deviceId") Integer deviceId);
 	public int delete(int id);
 	public int findDeviceQRCount();
 	public List<DeviceQRResult> findByLimit(
