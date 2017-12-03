@@ -110,7 +110,7 @@ contentType="text/html; charset=utf-8" %>
                             {
                                 "Id": 1703, "ParentId": 17, "MenuName": "统计信息", "children": [
                                     { "Id": 170306, "ParentId": 1703, "MenuName": "设备数量概况", "Link": "/fire/admin/device/toDeviceNumSummary.do" },
-                                    { "Id": 170307, "ParentId": 1703, "MenuName": "自定义菜单", "Link": "/fire/deviceQR/DeviceType.do" }
+                                    { "Id": 170307, "ParentId": 1703, "MenuName": "设备整改及时率", "Link": adminpath+"/device/toRectificationRate.do" }
                                 ]
                             }
                          ]

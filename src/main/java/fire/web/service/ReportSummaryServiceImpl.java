@@ -18,7 +18,7 @@ import fire.common.entity.ReportData;
 import fire.common.entity.ReportSummary;
 import fire.web.dao.ReportDAO;
 
-@Service("deviceNumSummaryService")
+@Service("reportSummaryService")
 public class ReportSummaryServiceImpl implements ReportSummaryService{
 	@Resource
 	private ReportDAO reportDAO;

@@ -24,14 +24,7 @@
 					<!--列表切换-->
 					<div class="label-box" label-box="group1">
 						<!--按钮-->
-						<div class="mt" label-btncom="group1">
-							<ul>
-								<li label-btn="group1|click|key1" clicks="window.loadData(1);"
-									class="select">柱状图</li>
-								<!--<li label-btn="group1|click|key1" clicks="window.loadData(2);">折线图</li>-->
-								<li label-btn="group1|click|key1" clicks="window.loadData(3);">饼形图</li>
-							</ul>
-						</div>
+			
 						<input type="hidden" id="type" value="1" />
 						<!--//按钮-->
 						<div class="mc" label-limitarea="group1">

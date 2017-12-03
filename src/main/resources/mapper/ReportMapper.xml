@@ -80,13 +80,16 @@ FROM
                 AND Addtime &gt; a.PredictTime
         GROUP BY DATE_FORMAT(Addtime, '%m')) as CompleteCount
 FROM
-    fir_assignment AS a
+    fir_assignment AS a join fir_CheckDevice  as b on(a.checkId=b.Id)
     where 1=1
       <if test="startTime!=null">
             	and DATE_FORMAT(PredictTime, '%Y')=#{startTime}
              </if>
      <if test="companyId!=0">
             	and a.CompanyId=#{companyId}
+            </if>
+              <if test="deviceTypeId!=0">
+            	and b.DeviceTypeId=#{deviceTypeId}
             </if>
 GROUP BY Month;
 

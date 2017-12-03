@@ -86,9 +86,9 @@
 											<!--//列表-->
 											<!--按钮-->
 											<div class="button">
-												<a href="javascript:void(0);" onclick="GetData(); "
+												<a href="javascript:void(0);" onclick="GetData(t); "
 													class="btn">筛选</a> <a href="javascript:void(0);"
-													onclick="GetData(); " class="btn">全部</a> <a
+													onclick="GetData(t); " class="btn">全部</a> <a
 													href="javascript:void(0);"
 													onclick="$('#filterForm').formReset();" class="btn">清空</a>
 											</div>
@@ -125,7 +125,9 @@
 
 <script src="/fire/Static/Js/jquery.report.js" type="text/javascript"></script>
 <script type="text/javascript">
+var t=1;
     function GetData(type) {
+    	t=type;
     	$('[label-btn="group1|click|key1"]').removeClass("select");
     	$('[label-btn="group1|click|key1"]').eq(type-1).addClass("select");
     	$(".expert-open").addClass("expert-close").removeClass("expert-open");
@@ -167,6 +169,7 @@
     
  $(function(){
 	 GetData(1);
+	 companyDeviceNumSummary.loadDeviceType();
  })
  </script>
 

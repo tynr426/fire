@@ -11,7 +11,7 @@
 	<!--内容-->
 	<div class="content-area">
 		<!--面包屑-->
-		<div class="content-title">设备总数量概况</div>
+		<div class="content-title">设备整改及时率</div>
 		<!--//面包屑-->
 
 		<!--内容盒-->
@@ -26,10 +26,10 @@
 						<!--按钮-->
 						<div class="mt" label-btncom="group1">
 							<ul>
-								<li label-btn="group1|click|key1" clicks="window.loadData(1);"
+								<li label-btn="group1|click|key1" onclick="GetData(1)"
 									class="select">柱状图</li>
-								<!--<li label-btn="group1|click|key1" clicks="window.loadData(2);">折线图</li>-->
-								<li label-btn="group1|click|key1" clicks="window.loadData(3);">饼形图</li>
+								<li label-btn="group1|click|key1" onclick="GetData(2);">折线图</li>
+								<li label-btn="group1|click|key1" onclick="GetData(3)">饼形图</li>
 							</ul>
 						</div>
 						<input type="hidden" id="type" value="1" />
@@ -69,29 +69,22 @@
 																<tr>
 																	<th><p class="name">设备类型：</p></th>
 																	<td><div class="selectbox">
-																			<select name="DeviceId"><option value="-1"
+																			<select name="DeviceTypeId" id="DeviceTypeId"><option value="0"
 																					selected="selected">全部</option>
 																				</select>
 																		</div></td>
 																</tr>
-																<tr>
+															<tr>
 																	<th><p class="name">单位名称：</p></th>
 																	<td><div class="selectbox">
-																			<select name="CompanyId"><option value="-1"
+																			<select id="CompanyId"><option value="0"
 																					selected="selected">全部</option>
 																				</select>
 																		</div></td>
 
 																</tr>
-																<tr>
-																	<th><p class="name">状态：</p></th>
-																	<td><label class="custom-radio checked"><input
-																			type="radio" value="" name="Status" checked="checked"><span>全部</span></label><label
-																		class="custom-radio"><input type="radio"
-																			value="1" name="Status"><span>开启</span></label><label
-																		class="custom-radio"><input type="radio"
-																			value="0" name="Status"><span>关闭</span></label></td>
-																</tr>
+															
+
 															</tbody>
 														</table>
 													</div>
@@ -102,9 +95,9 @@
 											<!--//列表-->
 											<!--按钮-->
 											<div class="button">
-												<a href="javascript:void(0);" onclick="GetData(); "
+												<a href="javascript:void(0);" onclick="GetData(t); "
 													class="btn">筛选</a> <a href="javascript:void(0);"
-													onclick="GetData(); " class="btn">全部</a> <a
+													onclick="GetData(t); " class="btn">全部</a> <a
 													href="javascript:void(0);"
 													onclick="$('#filterForm').formReset();" class="btn">清空</a>
 											</div>
@@ -141,65 +134,53 @@
 
 <script src="/fire/Static/Js/jquery.report.js" type="text/javascript"></script>
 <script type="text/javascript">
-    function GetData() {
-        var type =  parseInt( $("#type").val());
-        $.ajax({
-            data: "<action>getsalessummary</action><Filter>" + $('#filterForm').getValues("xml") + "</Filter>",
-            dataType: "xml",
-            loading: function () {
-                tip.show("数据加载中 ...");
-            },
-            success: function () {
-                tip.hide();
-                $("#table").hide();
-                $("#pageBody").html("");
-                $("#pageBar").html("");
-
-                // 判断动态刷新框架高度
-                if (window.top) {
-                    if (window.top.main) {
-                        if (typeof (window.top.main.autoSize) == "function") {
-                            window.top.main.autoSize(false);
-                        }
-                    }
-                }
-                doc = ECF.parseJSON(doc );
-                var option = { type: type, labels: doc[0].labels.split(','), datasets: [] };
-                $(doc[0].datasets).each(function (n, i) {
-                    var dataset = {};
-                    dataset.label = n.label;
-                    dataset.data = n.data.split(",");
-                    option.datasets.push(dataset);
-                });
-                $.report.createReport("#ReportBox", option, function () {
-                    $("#sdate").html(arguments[0].label);
-                    var fkflag = 1;
-                    if (arguments[0].label == "商家") {
-                        fkflag = 1;
-                    } else {
-                        fkflag = 2;
-                    }
-                    $("#table").show();
-                    $("#pageBody").loadPage("bodyListTemplate", "PageBarList", "<SortField>a.AddTime</SortField><SortDirect>DESC</SortDirect><Filter>" + $('#filterForm').getValues("xml") + "</Filter><FKFlag>" + fkflag + "</FKFlag>", status, 10);
-                });
-            },
-            error: function () {
-                tip.hide();
-                pub.tips("数据处理错误,错误代码: " + arguments[0] + ";错误信息: " + arguments[1], 1.5);
-            }
-        });
+var t=1;
+    function GetData(type) {
+    	t=type;
+    	$('[label-btn="group1|click|key1"]').removeClass("select");
+    	$('[label-btn="group1|click|key1"]').eq(type-1).addClass("select");
+    	$(".expert-open").addClass("expert-close").removeClass("expert-open");
+    	var year=$("#Year").val();
+    	if(year=="")year=2017;
+    	var data={   			
+    			companyId:$("#CompanyId").val(),
+    			deviceTypeId:$("#DeviceTypeId").val(),
+    			year:year
+    			};
+    	$.ajax({
+    		url: adminpath+'/device/getAssignmentSummaryList.do',
+    		data:data,
+    		type:"post",
+    		dataType: "json",
+    		success:function(result){
+    			if(result.state==0){
+    				 var option = { type: type, labels: result.data.labels, datasets: [] };
+    				
+    			        $(result.data.dataSet).each(function (i, n) {
+    			        	
+    			            var dataset = {};
+    			            dataset.label = n.label;
+    			            dataset.data = n.data;
+    			            option.datasets.push(dataset);
+    			        });
+    			        $.report.createReport("#ReportBox", option, function () {
+    			            
+    			            var fkflag = 1;
+    			            if (arguments[0].label == "商家") {
+    			                fkflag = 1;
+    			            } else {
+    			                fkflag = 2;
+    			            }
+    			        });
+    			}
+    		}
+    	});
     }
-</script>
-<script type="text/javascript">
-    (window.loadData = function (type) {
-        $("#type").val(type);
-        GetData();
-    })(1);
-</script>
+    
+ $(function(){
+	 GetData(1);
+	 deviceNumSummary.loadDeviceType();
+	 deviceNumSummary.loadCompanyName();
+ })
+ </script>
 
-<!--调用模板JS-->
-<script type="text/javascript" charset="utf-8">
-    //列表切换
-    $.getScript('/fire/Static/Js/changeTableUI.js',function(){},true);
-</script>
-<!--//调用模板JS-->
