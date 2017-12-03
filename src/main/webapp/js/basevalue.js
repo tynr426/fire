@@ -1,3 +1,3 @@
-var path="http://b2b.366ec.net:80/fire";
-var companypath="http://b2b.366ec.net:80/fire/company";
-var adminpath="http://b2b.366ec.net:80/fire/admin";
+var path="http://m.b2b.366ec.net:8080/fire";
+var companypath=path+"/company";
+var adminpath=path+"/admin";

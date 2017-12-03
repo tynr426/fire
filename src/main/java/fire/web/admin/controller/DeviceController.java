@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fire.web.controller.ExceptionController;
-import fire.web.service.DeviceNumSummaryService;
+import fire.web.service.ReportSummaryService;
 import fire.web.utils.JsonResult;
 
 
@@ -19,7 +19,7 @@ import fire.web.utils.JsonResult;
 @RequestMapping("/admin/device")
 public class DeviceController extends ExceptionController{
 	@Resource
-	private DeviceNumSummaryService dnsService;
+	private ReportSummaryService dnsService;
 	@RequestMapping("/toDeviceNumSummary.do")
 	public String Api(){
 		return "WebAdmin/Report/DeviceNumSummary";

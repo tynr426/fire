@@ -63,5 +63,29 @@
 FROM
     fir_deviceType AS a;
 	</select>
+	<select id="getAssignmentSummaryList" resultType="fire.common.entity.AssignmentSummary">
+	SELECT 
+    DATE_FORMAT(PredictTime, '%m') Month,
+    COUNT(*) as AssignmentCount,
+    (SELECT 
+            COUNT(*)
+        FROM
+            fir_RepairRecord
+        WHERE
+            assignmentid = a.Id
+                AND Addtime &gt; a.PredictTime
+        GROUP BY DATE_FORMAT(Addtime, '%m')) as CompleteCount
+FROM
+    fir_assignment AS a
+    where 1=1
+      <if test="startTime!=null">
+            	and DATE_FORMAT(PredictTime, '%Y')=#{startTime}
+             </if>
+     <if test="companyId!=0">
+            	and a.CompanyId=#{companyId}
+            </if>
+GROUP BY Month;
+
 	
+	</select>
 </mapper>

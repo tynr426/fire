@@ -13,7 +13,7 @@ import fire.common.entity.DeviceResult;
 import fire.common.entity.Repairrecord;
 import fire.common.entity.RepairrecordResult;
 import fire.web.controller.ExceptionController;
-import fire.web.service.DeviceNumSummaryService;
+import fire.web.service.ReportSummaryService;
 import fire.web.service.DeviceService;
 import fire.web.service.RepairrecordService;
 import fire.web.utils.Company;
@@ -36,7 +36,7 @@ public class DeviceController extends ExceptionController{
 	@Resource
 	private RepairrecordService repairrecordService;
 	@Resource
-	private DeviceNumSummaryService dnsService;
+	private ReportSummaryService dnsService;
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getDevicePage(int index,int size){

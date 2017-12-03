@@ -48,7 +48,7 @@
             return "rgba(" + R + "," + G + "," + B + "," + a + ")";
         },
         createReport: function (container, option, callback) {
-            $.getScript("/Static/js/chart.js", function () {
+            $.getScript(path+"/Static/Js/chart.js", function () {
                 var myCanvas = document.createElement("canvas"),
                     mychart = $(container);
                 myCanvas.setAttribute("width", mychart.width() + "px");
@@ -63,7 +63,7 @@
                     items: option.items || []
                 };
 
-                $(option.datasets).each(function (n, i) {
+                $(option.datasets).each(function (i,n) {
                     var dataset = {};
                     dataset.fill = false;
                     dataset.label = n.label || "";

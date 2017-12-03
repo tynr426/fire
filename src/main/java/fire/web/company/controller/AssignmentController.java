@@ -1,7 +1,10 @@
 package fire.web.company.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +13,7 @@ import fire.common.entity.Assignment;
 import fire.common.entity.AssignmentResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.AssignmentService;
+import fire.web.service.ReportSummaryService;
 import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
@@ -19,11 +23,13 @@ import fire.web.utils.PageInfo;
 public class AssignmentController extends ExceptionController{
 	@Resource
 	private AssignmentService assignmentService;
-	
+	@Resource
+	private ReportSummaryService reportService;
 	@RequestMapping("/toAssignment.do")
 	public String toManager(){
 		return "WebCompany/System/Assignment";
 	}
+	
 	@RequestMapping("/show.do")
 	@ResponseBody
 	public Object getManagerPage(int index,int size){
@@ -40,5 +46,15 @@ public class AssignmentController extends ExceptionController{
 	public Object getAssignmentByCheckId(int checkId){
 		return new JsonResult(assignmentService.getAssignmentByCheckId(checkId));	
 	}
-
+	@RequestMapping("/toRectificationRate.do")
+	public String toRectificationRate(){
+		return "WebCompany/Report/RectificationRate";
+	}
+	
+	@RequestMapping("getAssignmentSummaryList.do")
+	@ResponseBody
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	public Object getAssignmentSummaryList(int deviceTypeId,String year){
+		return new JsonResult(reportService.getAssignmentSummaryList(Company.getCompanyId(), deviceTypeId, year));
+	}
 }

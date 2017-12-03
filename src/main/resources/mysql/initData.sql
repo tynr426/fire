@@ -10,4 +10,4 @@ insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(20103,'任�
 insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(3,'统计信息','','m-report',0,1);
 insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(301,'统计信息','','',3,2);
 insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(30101,'设备故障率','/fire/company/statistics/faultRate.do','',301,3);
-insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(30102,'设备整改及时率','/fire/company/statistics/timelyRateOfRectification.do','',301,3);
+insert into com_menu(Id,MenuName,Link,CssClass,ParentId,layer)values(30102,'设备整改及时率','/fire/company/assignment/toRectificationRate.do','',301,3);
