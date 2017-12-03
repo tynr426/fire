@@ -42,6 +42,10 @@
 	<select id="findByLimit" resultType="fire.common.entity.DeviceResult">
 		select d.*,t.Name from fir_device d join fir_devicetype t
 		on(d.DeviceTypeId=t.Id) 
-		where CompanyId=#{companyId} limit #{begin},#{size}
+		where CompanyId=#{companyId} 
+		<if test="deviceTypeId!=null and deviceTypeId!=0">
+			and t.Id=#{deviceTypeId}
+		</if>
+		limit #{begin},#{size}
 	</select>
 </mapper>

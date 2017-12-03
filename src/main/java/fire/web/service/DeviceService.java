@@ -11,6 +11,6 @@ public interface DeviceService {
 	public int updateDevice(DeviceResult device);
 	public DeviceResult getDevice(int id);
 	public int deleteDevice(int id);
-	public PageInfo<DeviceResult> getDevicePage(int companyId,int index,int size);
+	public PageInfo<DeviceResult> getDevicePage(int companyId,int index,int size,int deviceTypeId);
 	
 }

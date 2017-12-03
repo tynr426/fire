@@ -16,7 +16,8 @@ public interface DeviceDAO {
 	public List<DeviceResult> findByLimit(
 			@Param("companyId")int companyId,
 			@Param("begin") Integer begin,
-			@Param("size") Integer size
+			@Param("size") Integer size,
+			@Param("deviceTypeId") int deviceTypeId
 			);
 	public int updateStatus(Device device);
 }

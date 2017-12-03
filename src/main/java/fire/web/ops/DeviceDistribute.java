@@ -62,8 +62,9 @@ public class DeviceDistribute extends Distribute {
 		int companyId=ConvertUtils.toInt(req.getParameter("CompanyId"));
 		int index=ConvertUtils.toInt(req.getParameter("Index"));
 		int size=ConvertUtils.toInt(req.getParameter("Size"));
+		int deviceTypeId=ConvertUtils.toInt(req.getParameter("DeviceTypeId"));
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		String str=Utils.objectToJson(new JsonResult(deviceService.getDevicePage(companyId, index, size)));
+		String str=Utils.objectToJson(new JsonResult(deviceService.getDevicePage(companyId, index, size, deviceTypeId)));
 		resp.getWriter().write(str);
 	}
 	private void updateDevice(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
