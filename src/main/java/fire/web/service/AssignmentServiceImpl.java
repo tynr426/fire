@@ -71,5 +71,13 @@ public class AssignmentServiceImpl implements AssignmentService{
 		int n = assignmentDAO.updateStatus(assignment);
 		return n;
 	}
+	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId, int index, int size) {
+		PageInfo<AssignmentResult> pi = new PageInfo<AssignmentResult>();
+		pi.setPageIndex(index);
+		pi.setPageSize(size);
+		pi.setCount(assignmentDAO.findAssignmentCount());
+		pi.setList(assignmentDAO.findByLimit(managerId,pi.getBegin(), size));
+		return pi;
+	}
 
 }

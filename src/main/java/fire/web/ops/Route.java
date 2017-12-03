@@ -53,6 +53,8 @@ public class Route extends HttpServlet {
 			distribute=new CheckDeviceDistribute(sp,this.getServletContext());
 		}else if(module.equals("company.getQR")){
 			distribute=new DeviceQRDistribute(sp,this.getServletContext());
+		}else if(module.equals("company.assigment")){
+			distribute=new AssigmentDistribute(sp,this.getServletContext());
 		}
 		distribute.doPost(req, resp);
 

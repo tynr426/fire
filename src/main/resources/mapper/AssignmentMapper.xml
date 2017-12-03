@@ -45,6 +45,13 @@
 		where a.CompanyId=#{companyId} 
 		limit #{begin},#{size}
 	</select>
+	<select id="findByManagerLimit" resultType="fire.common.entity.AssignmentResult">
+		select a.*,b.Name,c.Description from fir_assignment a join com_manager b
+		on(a.ToManagerId=b.Id) join fir_checkdevice c
+		on(a.CheckId=c.Id)
+		where a.ToManagerId=#{managerId} 
+		limit #{begin},#{size}
+	</select>
 	<update id="updateStatus" parameterType="fire.common.entity.Assignment">
 		UPDATE fir_assignment SET
 			status = #{status}
