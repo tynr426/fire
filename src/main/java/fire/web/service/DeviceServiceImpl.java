@@ -106,12 +106,12 @@ public class DeviceServiceImpl implements DeviceService{
 		return n;
 	}
 
-	public PageInfo<DeviceResult> getDevicePage(int companyId,int index, int size) {
+	public PageInfo<DeviceResult> getDevicePage(int companyId,int index, int size,int deviceTypeId) {
 		PageInfo<DeviceResult> pi = new PageInfo<DeviceResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
 		pi.setCount(deviceDAO.findDeviceCount());
-		pi.setList(deviceDAO.findByLimit(companyId,pi.getBegin(), size));
+		pi.setList(deviceDAO.findByLimit(companyId,pi.getBegin(), size,deviceTypeId));
 		return pi;
 	}
 

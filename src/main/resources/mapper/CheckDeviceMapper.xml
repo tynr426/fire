@@ -15,7 +15,7 @@
 		#{SeverityLevel},#{AddTime}.#{Status}
 		)	
 	</insert>
-	<select id="findById" parameterType="int" resultType="fire.common.entity.CheckDeviceResult">
+	<select id="getCD" parameterType="int" resultType="fire.common.entity.CheckDeviceResult">
 		select c.*,t.Name,n.Model,n.Detail from fir_checkdevice c join fir_devicetype t
 		on(c.DeviceTypeId=t.Id) left join fir_device n 
 		on(c.DeviceId=n.Id)

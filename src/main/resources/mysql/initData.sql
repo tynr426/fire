@@ -1,3 +1,4 @@
+
 truncate table com_menu;
 /*!40000 ALTER TABLE `com_menu` DISABLE KEYS */;
 INSERT INTO `com_menu` VALUES (1,'基础信息','','sys',NULL,NULL,0,1,NULL,NULL,1,NULL),
@@ -12,5 +13,3 @@ INSERT INTO `com_menu` VALUES (1,'基础信息','','sys',NULL,NULL,0,1,NULL,NULL
 (20104,'检查报告','/fire/company/checkdevice/toCheckDevice.do',NULL,NULL,NULL,201,3,2,NULL,1,NULL),
 (30101,'设备数量概况','/fire/company/device/toCompanyDeviceNumSummary.do','',NULL,NULL,301,3,NULL,NULL,1,NULL),
 (30102,'设备整改及时率','/fire/company/assignment/toRectificationRate.do','',NULL,NULL,301,3,NULL,NULL,1,NULL);
-/*!40000 ALTER TABLE `com_menu` ENABLE KEYS */;
-UNLOCK TABLES;

@@ -109,11 +109,13 @@ contentType="text/html; charset=utf-8" %>
 	 load();
   }); 
  function load(){
+	 var data={deviceTypeId:0};
 	  var config={
 				url:companypath+"/device/show.do",
 	  			pageSize:10,
 	  			pageIndex:1,
 	  			barSize:3,
+	  			data:data,
 	  			pageBarId:"PageBarList",
 	  			templateId:"bodyListTemplate",
 	  			container:"pageBody"

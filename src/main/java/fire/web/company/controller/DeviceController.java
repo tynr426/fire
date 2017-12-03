@@ -41,8 +41,8 @@ public class DeviceController extends ExceptionController{
 	private ReportSummaryService dnsService;
 	@RequestMapping("/show.do")
 	@ResponseBody
-	public Object getDevicePage(int index,int size){
-		PageInfo<DeviceResult> pi = deviceService.getDevicePage(Company.getCompanyId(),index, size);
+	public Object getDevicePage(int index,int size,int deviceTypeId){
+		PageInfo<DeviceResult> pi = deviceService.getDevicePage(Company.getCompanyId(),index, size, deviceTypeId);
 		return new JsonResult(pi);	
 	}
 	
