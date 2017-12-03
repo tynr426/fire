@@ -128,6 +128,7 @@
     function GetData(type) {
     	$('[label-btn="group1|click|key1"]').removeClass("select");
     	$('[label-btn="group1|click|key1"]').eq(type-1).addClass("select");
+    	$(".expert-open").addClass("expert-close").removeClass("expert-open");
     	var year=$("#Year").val();
     	if(year=="")year=2017;
     	var data={
