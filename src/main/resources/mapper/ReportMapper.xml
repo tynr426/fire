@@ -61,7 +61,11 @@
             </if>
             ) AS RectifiedNum
 FROM
-    fir_deviceType AS a;
+    fir_deviceType AS a where 1=1 
+     <if test="deviceTypeId!=0">
+            	and a.Id=#{deviceTypeId}
+      </if>
+    
 	</select>
 	<select id="getAssignmentSummaryList" resultType="fire.common.entity.AssignmentSummary">
 	SELECT 

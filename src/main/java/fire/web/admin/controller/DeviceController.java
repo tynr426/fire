@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import fire.web.controller.ExceptionController;
 import fire.web.service.ReportSummaryService;
 import fire.web.utils.JsonResult;
@@ -26,7 +28,8 @@ public class DeviceController extends ExceptionController{
 	}
 	@RequestMapping("getDeviceNumSummaryList.do")
 	@ResponseBody
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	public Object getDeviceNumSummaryList(int companyId, int deviceTypeId,Date startTime,Date endTime){
 		return new JsonResult(dnsService.getDeviceNumSummaryList(companyId, deviceTypeId, startTime, endTime));
 	}

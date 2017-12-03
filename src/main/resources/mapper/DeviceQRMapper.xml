@@ -6,6 +6,9 @@
 	<select id="findById" parameterType="int" resultType="fire.common.entity.DeviceQR">
 		select * from fir_deviceqr WHERE Id = #{id}
 	</select>
+	<select id="findByCode" parameterType="String" resultType="fire.common.entity.DeviceQR">
+		select * from fir_deviceqr WHERE Code = #{code}
+	</select>
 	<insert id="addDeviceQR" parameterType="java.util.List">
 		
 		<foreach collection ="list" item="deviceQR" index= "index" separator =";">
@@ -22,6 +25,12 @@
                )  
         </foreach >		
 		</insert>
+		<update id="update">
+			UPDATE fir_deviceqr SET 
+			IsUsed=1, 
+			DeviceId=#{deviceId}
+			WHERE Code = #{code}
+		</update>
 	<delete id="delete" parameterType="int">
 		delete from fir_deviceqr where Id = #{id}
 	</delete>

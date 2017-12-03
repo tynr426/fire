@@ -52,4 +52,9 @@ public class DeviceQRServiceImpl implements DeviceQRService{
 		return pi;
 	}
 
+	public DeviceQR getDeviceQRByCode(String code) {
+		DeviceQR dq = deviceQRDAO.findByCode(code);
+		return dq;
+	}
+
 }

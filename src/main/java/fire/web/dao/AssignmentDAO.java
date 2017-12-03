@@ -18,6 +18,11 @@ public interface AssignmentDAO {
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
+	public List<AssignmentResult> findByManagerLimit(
+			@Param("companyId")int companyId,
+			@Param("begin") Integer begin,
+			@Param("size") Integer size
+			);
 	public int updateStatus(Assignment assignment);
 	public Assignment getAssignmentByCheckId(int checkId);
 }

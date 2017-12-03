@@ -22,7 +22,7 @@ public class AssignmentServiceImpl implements AssignmentService{
 	private CheckDeviceDAO cdDAO;
 	@Transactional
 	public int save(Assignment entity){
-		    CheckDevice cd = cdDAO.findById(entity.getCheckId());
+		    CheckDevice cd = cdDAO.getCD(entity.getCheckId());
 			entity.setCompanyId(Company.getCompanyId());
 			entity.setFromManagerId(Company.getCompany().getManagerId());
 			entity.setAddTime(new Date());
@@ -70,6 +70,14 @@ public class AssignmentServiceImpl implements AssignmentService{
 		assignment.setStatus(status);
 		int n = assignmentDAO.updateStatus(assignment);
 		return n;
+	}
+	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId, int index, int size) {
+		PageInfo<AssignmentResult> pi = new PageInfo<AssignmentResult>();
+		pi.setPageIndex(index);
+		pi.setPageSize(size);
+		pi.setCount(assignmentDAO.findAssignmentCount());
+		pi.setList(assignmentDAO.findByLimit(managerId,pi.getBegin(), size));
+		return pi;
 	}
 
 }

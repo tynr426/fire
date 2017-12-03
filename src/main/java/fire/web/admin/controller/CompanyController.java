@@ -28,8 +28,11 @@ public class CompanyController extends ExceptionController{
 		PageInfo<Company> pi = companyService.getCompanyPage(index, size);
 		return new JsonResult(pi);	
 	}
-	
-	
+	@RequestMapping("/showCompany.do")
+	@ResponseBody
+	public Object showCompany(){
+		return new JsonResult(companyService.showCompany());	
+	}
 	@RequestMapping("/addCompany.do")
 	@ResponseBody	
 	public JsonResult regist(CompanyResult company){

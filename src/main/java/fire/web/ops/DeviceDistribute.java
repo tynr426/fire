@@ -80,6 +80,4 @@ public class DeviceDistribute extends Distribute {
 		String str=Utils.objectToJson(new JsonResult(deviceService.updateDevice(device)));
 		resp.getWriter().write(str);
 	}
-
-
 }

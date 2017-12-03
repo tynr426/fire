@@ -62,12 +62,12 @@
 																	<td><div class="inputbox">
 																			<input type="text" id="StartTime" name="StartTime" value=""
 																				
-																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																				onclick="WdatePicker({ dateFmt: 'yyyy/MM/dd'});">
 																		</div>
 																		<div class="inputbox">
 																			<input type="text" id="EndTime" name="EndTime" value=""
 																				
-																				onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});">
+																				onclick="WdatePicker({ dateFmt: 'yyyy/MM/dd'});">
 																		</div>
 																		</td>
 																</tr>
@@ -102,7 +102,7 @@
 												<a href="javascript:void(0);" onclick="load(); "
 													class="btn">筛选</a>  <a
 													href="javascript:void(0);"
-													onclick="$('#filterForm').formReset();" class="btn">清空</a>
+													onclick="deviceNumSummary.reset();" class="btn">清空</a>
 											</div>
 											<!--//按钮-->
 										</div>
@@ -177,11 +177,14 @@ function load(){
 			startTime:start,
 			endTime:end
 			};
-
 	$("#pageBody").loadList("bodyListTemplate",data,null,null,'/fire/admin/device/getDeviceNumSummaryList.do')
+	$(".expert-open").addClass("expert-close").removeClass("expert-open");
 }
 $(function(){
 	load();
+	deviceNumSummary.loadDeviceType();
+	deviceNumSummary.loadCompanyName();
+	
 });
 </script>
 
