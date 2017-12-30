@@ -44,8 +44,8 @@ public class CheckDeviceController extends ExceptionController{
 	}
 	@RequestMapping("/showCheckDevice.do")
 	@ResponseBody
-	public Object getCheckDevicePage(int index,int size,String managerName,String model,Integer deviceTypeId){
-		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(Company.getCompanyId(),index, size,managerName,model,deviceTypeId);
+	public Object getCheckDevicePage(int index,int size,Integer managerId){
+		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(Company.getCompanyId(), index, size, managerId);
 		return new JsonResult(pi);
 	}
 }

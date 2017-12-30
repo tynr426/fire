@@ -67,6 +67,7 @@ public class ManagerServiceImpl implements ManagerService{
 			result.setManagerId(manager.getId());
 			result.setUserName(manager.getUserName());
 			result.setUserId(manager.getUserId());
+			result.setManagerName(manager.getName());
 			result.setToken(Authorize.getCompanyToken(manager, code,1));
 			return result;
 		}else {
@@ -78,6 +79,34 @@ public class ManagerServiceImpl implements ManagerService{
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		request.getSession().removeAttribute(Constants.CompanyPre+Constants.CompanyLoginCacheKey);
 		return 0;
+	}
+	public CompanyResult wxLogin(int managerId,int companyId) {
+
+
+		Company company =companyDAO.getCompanyById(companyId);
+		if(company==null){
+			throw new NameException("公司代码输入不正确");
+		}		
+
+		Manager manager = managerDao.findById(managerId);
+		if(manager==null){
+			throw new NameException("用户名不正确");
+		}
+
+
+		CompanyResult result=new CompanyResult();
+		result.setId(company.getId());
+		result.setName(company.getName());
+		result.setCode(company.getCode());
+		result.setAddress(company.getAddress());
+		result.setFace(company.getLogo());
+		result.setManagerId(manager.getId());
+		result.setUserName(manager.getUserName());
+		result.setUserId(manager.getUserId());
+		result.setManagerName(manager.getName());
+		result.setToken(Authorize.getCompanyToken(manager, "",1));
+		return result;
+
 	}
 	public int addManager(Manager manager) throws NameException {
 		Manager one = managerDao.findByName(manager.getName());
@@ -121,7 +150,7 @@ public class ManagerServiceImpl implements ManagerService{
 		PageInfo<Manager> pi = new PageInfo<Manager>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
-		pi.setCount(managerDao.findManagerCount());
+		pi.setCount(managerDao.findManagerCount(companyId));
 		pi.setList(managerDao.findByLimit(companyId,pi.getBegin(), size));
 		return pi;
 	}

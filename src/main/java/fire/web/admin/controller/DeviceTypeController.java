@@ -91,9 +91,12 @@ public class DeviceTypeController {
 		DeviceType deviceType= deviceTypeService.getDeviceType(id);
 		if(deviceType==null) return new JsonResult(new Exception("当前设备不存在"));
 		
-		String imagePath=req.getSession().getServletContext().getRealPath(deviceType.getVirtualPath());
+		String imagePath="";
+		if(deviceType.getVirtualPath()!=null&&deviceType.getVirtualPath().length()>0){
+		req.getSession().getServletContext().getRealPath(deviceType.getVirtualPath());
+		}
 		List<DeviceQR> list=new ArrayList<DeviceQR>();
-		String virtural = "/userfiles/"+id+"/";
+		String virtural = "/userfiles/devicetype/"+id+"/";
 		String dir=req.getSession().getServletContext().getRealPath(virtural);
 		Random rand = new Random();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");	

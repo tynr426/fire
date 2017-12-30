@@ -24,19 +24,19 @@
 	<insert id="addAssignment" parameterType="fire.common.entity.Assignment">
 		insert into fir_assignment(
 		CompanyId,FromManagerId,ToManagerId,
-		CheckId,PredictTime,Remark,AddTime,Status
+		CheckId,PredictTime,Remark,AddTime,Status,Title
 		)
 		values(
 		#{CompanyId},#{FromManagerId},#{ToManagerId},
 		#{CheckId},#{PredictTime},#{Remark},#{AddTime},
-		#{Status}
+		#{Status},#{Title}
 		)		
 	</insert>
 	<delete id="delete" parameterType="int">
 		delete from fir_assignment where Id = #{id}
 	</delete>
-	<select id="findAssignmentCount" resultType="int">
-		select count(*) from fir_assignment 
+	<select id="findAssignmentCount" resultType="int" parameterType="int">
+		select count(*) from fir_assignment where CompanyId=#{companyId}
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.AssignmentResult">
 		select a.*,b.Name,c.Description from fir_assignment a join com_manager b
@@ -45,11 +45,24 @@
 		where a.CompanyId=#{companyId} 
 		limit #{begin},#{size}
 	</select>
+	<select id="findByManagerCount" resultType="int">
+		select count(*) from fir_assignment a join fir_checkdevice b
+		on(a.CheckId=b.Id)
+		where a.ToManagerId=#{managerId}
+		<if test="deviceTypeId!=null and deviceTypeId!=0">
+			and b.DeviceTypeId=#{deviceTypeId}
+		</if>
+	</select>
+	
 	<select id="findByManagerLimit" resultType="fire.common.entity.AssignmentResult">
-		select a.*,b.Name,c.Description from fir_assignment a join com_manager b
+		select a.*,b.Name,c.Description,c.DeviceTypeId,d.Name as DeviceType from fir_assignment a join com_manager b
 		on(a.ToManagerId=b.Id) join fir_checkdevice c
-		on(a.CheckId=c.Id)
+		on(a.CheckId=c.Id) join fir_devicetype d
+		on(c.DeviceTypeId=d.Id)
 		where a.ToManagerId=#{managerId} 
+		<if test="deviceTypeId!=null and deviceTypeId!=0">
+			and c.DeviceTypeId=#{deviceTypeId}
+		</if>
 		limit #{begin},#{size}
 	</select>
 	<update id="updateStatus" parameterType="fire.common.entity.Assignment">
@@ -57,4 +70,10 @@
 			status = #{status}
 		WHERE Id = #{id}
 	</update>
+	<select id="getAssignmentByDeviceId" resultType="fire.common.entity.AssignmentResult">
+	select a.*,b.Description from fir_assignment a 
+		join fir_checkdevice b
+		on(a.CheckId=b.Id) 
+		where a.ToManagerId=#{toManagerId} and b.DeviceId=#{deviceId} 
+	</select>
 </mapper>

@@ -43,13 +43,13 @@ contentType="text/html; charset=utf-8" %>
 					<ul id="loginForm">
 						<li class="user-name"><i class="icon name-icon"></i>
 							<div class="inputbox">
-								<input type="text" id="UserName" name="UserName" maxlength="12" value="admin"
+								<input type="text" id="UserName" name="UserName" maxlength="12" value=""
 									placeholder="用户名" error="用户名格式不正确！" validate="isnull|username" />
 							
 							</div></li>
 						<li class="user-password"><i class="icon pass-icon"></i>
 							<div class="inputbox">
-								<input id="password" type="password" validate="isnull" value="admin"
+								<input id="password" type="password" validate="isnull" value=""
 									name="password" placeholder="密码" error="密码格式不正确" maxlength="16" />
 							</div> </li>
 

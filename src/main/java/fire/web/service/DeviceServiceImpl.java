@@ -13,6 +13,7 @@ import fire.common.entity.Device;
 import fire.common.entity.DeviceParameterValue;
 import fire.common.entity.DeviceQR;
 import fire.common.entity.DeviceResult;
+import fire.common.entity.ScanInfo;
 import fire.web.dao.DeviceDAO;
 import fire.web.dao.DeviceParameterValueDAO;
 import fire.web.dao.DeviceQRDAO;
@@ -32,10 +33,7 @@ public class DeviceServiceImpl implements DeviceService{
 	public int addDevice(DeviceResult device){
 		if(device.getCompanyId()==0)
 			throw new NameException("没有获取到公司名称");
-		DeviceQR dq = deviceQRDAO.findByCode(device.getCode());
-		if(dq.getDeviceId()==null){
-			throw new NameException("该二维码已被使用");
-		}
+		
 		int n = deviceDAO.addDevice(device);
 		List<DeviceParameterValue> list=device.getList();
 		if(list!=null){
@@ -44,7 +42,13 @@ public class DeviceServiceImpl implements DeviceService{
 			}
 			deviceParameterValueDAO.addDeviceParameterValue(list);
 		}
-		deviceQRDAO.update(dq.getCode(),device.getId());
+		ScanInfo dq = deviceQRDAO.findByCode(device.getCode());
+		if(dq!=null&&dq.getDeviceId()!=null&&dq.getDeviceId()>0){
+			throw new NameException("该二维码已被使用");
+		}
+		else if(dq!=null){
+		deviceQRDAO.update(device.getCode(),device.getId());
+		}
 		return n;
 	}
 	/*
@@ -110,7 +114,7 @@ public class DeviceServiceImpl implements DeviceService{
 		PageInfo<DeviceResult> pi = new PageInfo<DeviceResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
-		pi.setCount(deviceDAO.findDeviceCount());
+		pi.setCount(deviceDAO.findDeviceCount(companyId));
 		pi.setList(deviceDAO.findByLimit(companyId,pi.getBegin(), size,deviceTypeId));
 		return pi;
 	}

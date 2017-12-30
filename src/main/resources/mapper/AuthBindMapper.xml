@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.AuthBindDAO">
+	<insert id="addAuthBind" parameterType="fire.common.entity.AuthBind"> 
+		insert into com_authbind(
+		CompanyId,ManagerId,UnionId,
+		OpenId,NickName,Sex,Face,IntegType,AuthoreTime,
+		IsReceiveMsg,Subscribe
+		)
+		values(
+		#{CompanyId},#{ManagerId},#{UnionId},
+		#{OpenId},#{NickName},#{Sex},#{Face},#{IntegType},#{AuthoreTime},
+		#{IsReceiveMsg},#{Subscribe}
+		)
+	</insert>
+	<update id="updateAuthBind" parameterType="fire.common.entity.AuthBind">
+		UPDATE com_authbind SET 
+			CompanyId=#{CompanyId}, 
+			UnionId=#{UnionId}, 
+			OpenId=#{OpenId}, 
+			NickName=#{NickName},
+			Sex=#{Sex},
+			Face=#{Face},
+			IntegType=#{IntegType},
+			Subscribe=#{Subscribe}
+			WHERE ManagerId=#{managerId}
+	</update>
+	<select id="findByOpenId" parameterType="String" resultType="fire.common.entity.AuthBind">
+		select * from com_authbind where OpenId=#{openId} limit 1
+	</select>
+	<select id="findOpenIds" parameterType="int" resultType="fire.common.entity.AuthBind">
+		select openId,nickname from com_authbind where managerId=#{managerId} 
+		and  Subscribe=1
+	</select>
+		<select id="findByOpenIdAndManagerId"  resultType="fire.common.entity.AuthBind">
+		select * from com_authbind where OpenId=#{openId} and ManagerId=#{managerId} limit 1
+	</select>
+	
+</mapper>

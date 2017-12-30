@@ -7,13 +7,14 @@ var device={
 			var Model = $("#Model").val().trim();
 			var Spec = $("#Spec").val().trim();
 			var Buildings = $("#Buildings").val();
+			var RenewalDate = $("#RenewalDate").val();
 			var Floor = $("#Floor").val();
 			var Position = $("#Position").val();
 			var Passageway = $("#Passageway").val();
 			var AddTime = $("#AddTime").val();
 			var Detail = $("#Detail").val().trim();
 			var devicejson={DeviceTypeId:DeviceTypeId,Manufacturer:Manufacturer,
-					Model:Model,Spec:Spec,Buildings:Buildings,Floor:Floor,
+					Model:Model,Spec:Spec,Buildings:Buildings,RenewalDate:RenewalDate,Floor:Floor,
 					Position:Position,Passageway:Passageway,AddTime:AddTime,
 					Detail:Detail};
 
@@ -196,15 +197,15 @@ var device={
 			var Model = $("#Model").val().trim();
 			var Spec = $("#Spec").val().trim();
 			var Buildings = $("#Buildings").val();
+			var RenewalDate = $("#RenewalDate").val();
 			var Floor = $("#Floor").val();
 			var Position = $("#Position").val();
 			var Passageway = $("#Passageway").val();
-			var AddTime = $("#AddTime").val();
 			var Detail = $("#Detail").val().trim();
+			var AddTime = $("#AddTime").val().trim();
 			var devicejson={Id:Id,DeviceTypeId:DeviceTypeId,Manufacturer:Manufacturer,
-					Model:Model,Spec:Spec,Buildings:Buildings,Floor:Floor,
-					Position:Position,Passageway:Passageway,AddTime:AddTime,
-					Detail:Detail};
+					Model:Model,Spec:Spec,Buildings:Buildings,RenewalDate:RenewalDate,Floor:Floor,
+					Position:Position,Passageway:Passageway,Detail:Detail,AddTime:AddTime};
 			var arrValue=[];
 			if(device.deviceTypeList!=null){
 				$.each(device.deviceTypeList,function(i,item){

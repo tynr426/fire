@@ -6,10 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import fire.common.entity.DeviceQR;
 import fire.common.entity.DeviceQRResult;
+import fire.common.entity.DeviceResult;
+import fire.common.entity.ScanInfo;
 
 public interface DeviceQRDAO {
 	public DeviceQR findById(int id);
-	public DeviceQR findByCode(String code);
+	public ScanInfo findByCode(String code);
 	public int addDeviceQR(List<DeviceQR> list);
 	public int update(@Param("code") String code,
 			@Param("deviceId") Integer deviceId);

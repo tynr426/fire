@@ -33,9 +33,10 @@ public class DeviceQRDistribute extends Distribute {
 	}
 
 	private void getDeviceQRByCode(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		String code = req.getParameter("Code");
+		String qrCode = req.getParameter("QrCode");
+		Integer toManagerId = ConvertUtils.toInt(req.getParameter("ToManagerId"));
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		String str=Utils.objectToJson(new JsonResult(deviceQRService.getDeviceQRByCode(code)));
+		String str=Utils.objectToJson(new JsonResult(deviceQRService.getDeviceQRByCode(qrCode,toManagerId)));
 		resp.getWriter().write(str);
 	}
 

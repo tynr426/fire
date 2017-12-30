@@ -13,14 +13,13 @@ public interface CheckDeviceDAO {
 	public int updateCD(CheckDevice cd);
 	public CheckDeviceResult getCD(int id);
 	public int delete(int id);
-	public int findCDCount();
+	public int findCDCount(@Param("companyId")int companyId,
+			@Param("managerId")Integer managerId);
 	public List<CheckDeviceResult> findByLimit(
-			@Param("companyId") Integer companyId,
+			@Param("companyId") int companyId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size,
-			@Param("managerName") String managerName,
-			@Param("model") String model,
-			@Param("deviceTypeId") Integer deviceTypeId
+			@Param("managerId") Integer managerId
 			);
 	public int updateStatus(CheckDevice cd);
 }

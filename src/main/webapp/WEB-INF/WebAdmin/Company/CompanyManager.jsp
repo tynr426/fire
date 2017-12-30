@@ -114,7 +114,7 @@ contentType="text/html; charset=utf-8" %>
  function load(){
 	  var config={
 				url:adminpath+"/company/showCompanyPage.do",
-	  			pageSize:3,
+	  			pageSize:10,
 	  			pageIndex:1,
 	  			barSize:3,
 	  			pageBarId:"PageBarList",

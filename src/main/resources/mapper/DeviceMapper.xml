@@ -15,6 +15,7 @@
 			Manufacturer=#{Manufacturer}, 
 			Spec=#{Spec}, 
 			Buildings=#{Buildings},
+			RenewalDate=#{RenewalDate},
 			Floor=#{Floor},
 			Position=#{Position},
 			Passageway=#{Passageway},
@@ -25,19 +26,19 @@
 		insert into fir_device(
 		DeviceTypeId,Model,Manufacturer,
 		Spec,UseTime,AddTime,Buildings,
-		Floor,Position,Passageway,Detail,CompanyId
+		Floor,Position,Passageway,Detail,CompanyId,RenewalDate
 		)
 		values(
 		#{DeviceTypeId},#{Model},#{Manufacturer},
 		#{Spec},#{UseTime},#{AddTime},#{Buildings},
-		#{Floor},#{Position},#{Passageway},#{Detail},#{CompanyId}
+		#{Floor},#{Position},#{Passageway},#{Detail},#{CompanyId},#{RenewalDate}
 		)		
 	</insert>
 	<delete id="delete" parameterType="int">
 		delete from fir_device where Id = #{id}
 	</delete>
 	<select id="findDeviceCount" resultType="int">
-		select count(*) from fir_device 
+		select count(*) from fir_device where CompanyId=#{companyId}
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.DeviceResult">
 		select d.*,t.Name from fir_device d join fir_devicetype t

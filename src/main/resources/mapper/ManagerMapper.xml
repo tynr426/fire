@@ -77,8 +77,8 @@
 	<delete id="deleteResult" parameterType="java.lang.Integer">
 		delete from com_manager where CompanyId = #{companyId}
 	</delete>
-	<select id="findManagerCount" resultType="int">
-		select count(*) from com_manager
+	<select id="findManagerCount" resultType="int" parameterType="int">
+		select count(*) from com_manager where CompanyId=#{companyId}
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.Manager">
 		select * from com_manager where CompanyId=#{companyId} limit #{begin},#{size}

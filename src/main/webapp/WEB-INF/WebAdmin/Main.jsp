@@ -37,17 +37,13 @@ contentType="text/html; charset=utf-8" %>
 						<div class="extend">
 							<ol>
 								<li><a href="javascript:void(0);"
-									onclick="frm.update({ title: '管理员信息完善', formId: 'AccountFormTemplate', id: '<$var AdminId/>', width: '500px', height: 'auto', completed: pub.top.user.updateCompleted, action: 'update', url: '/webadmin/Passport/User.html' });">完善信息</a>
-								</li>
-								<li><a href="javascript:void(0);"
-									onclick='pub.html({ content: ECF("#PasswordTemplate").html(), width: 500, height: 300, title: "修改密码", buttons: [{ focus: true, name: "确认", callback: user.updPwd }] })'>修改密码</a>
+									onclick="frm.add({ title: '修改密码', formId: 'PasswordBoxTemplate', callback: admin.updatePassword, width: 400, height: 280 })">修改密码</a>
 								</li>
 							</ol>
 						</div> <!--//扩展显示--></li>
 					<li><a href="javascript:void(0);" class="btn clean"
 						title="清理缓存" onclick="main.clearCache();"></a></li>
-					<li><a href="javascript:void(0);" class="btn main" title="主界面"
-						onclick="frame.go('SysIndex.html');"></a></li>
+					<li><a href="javascript:frame.go('/fire/admin/device/toDeviceNumSummary.do');" class="btn main" title="主界面"></a></li>
 					<li><a href="javascript:void(0);" class="btn loginout"
 						title="退出" onclick="login.loginOut();"></a></li>
 				</ul>
@@ -102,9 +98,8 @@ contentType="text/html; charset=utf-8" %>
                                 ]
                             },
                             {
-                                "Id": 1702, "ParentId": 17, "MenuName": "微商城", "children": [
-                                    { "Id": 170206, "ParentId": 1702, "MenuName": "基础授权", "Link": "/fire/admin/social/toWechatSet.do" },
-                                    { "Id": 170207, "ParentId": 1702, "MenuName": "自定义菜单", "Link": "/fire/deviceQR/DeviceType.do" }
+                                "Id": 1702, "ParentId": 17, "MenuName": "微信", "children": [
+                                    { "Id": 170206, "ParentId": 1702, "MenuName": "基础授权", "Link": "/fire/admin/social/toWechatSet.do" }
                                 ]
                             },
                             {

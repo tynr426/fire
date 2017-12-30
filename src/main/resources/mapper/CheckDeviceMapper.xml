@@ -12,7 +12,7 @@
 		values(
 		#{DeviceId},#{DeviceTypeId},#{CompanyId},
 		#{ManagerId},#{ManagerName},#{Description},#{Certificate},
-		#{SeverityLevel},#{AddTime}.#{Status}
+		#{SeverityLevel},#{AddTime},#{Status}
 		)	
 	</insert>
 	<select id="getCD" parameterType="int" resultType="fire.common.entity.CheckDeviceResult">
@@ -38,25 +38,20 @@
 	<delete id="delete" parameterType="int">
 		delete from fir_checkdevice where Id = #{id}
 	</delete>
-	<select id="findCDCount" resultType="int">
-		select count(*) from fir_checkdevice 
+	<select id="findCDCount" resultType="int" >
+			select count(*) from fir_checkdevice c join fir_devicetype t
+		on(c.DeviceTypeId=t.Id)  join fir_device n 
+		on(c.DeviceId=n.Id) where c.CompanyId=#{companyId}
+		<if test="managerId!=null and managerId!=0">
+			and c.ManagerId=#{managerId}
+		</if>
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.CheckDeviceResult">
 		select c.*,t.Name,n.Model,n.Detail from fir_checkdevice c join fir_devicetype t
 		on(c.DeviceTypeId=t.Id)  join fir_device n 
-
-		on(c.DeviceId=n.Id) where 1=1
-		<if test="companyId!=null and companyId!=''">
-			and c.CompanyId=#{companyId}
-		</if>
-		<if test="managerName!=null and managerName!=''">
-			and c.ManagerName=#{managerName}
-		</if>
-		<if test="deviceTypeId!=null and deviceTypeId!=0">
-			and t.Id=#{deviceTypeId}
-		</if>
-		<if test="model!=null and model!=''">
-			and n.Model=#{model}
+		on(c.DeviceId=n.Id) where c.CompanyId=#{companyId}
+		<if test="managerId!=null and managerId!=0">
+			and c.ManagerId=#{managerId}
 		</if>
 		 limit #{begin},#{size}
 	</select>

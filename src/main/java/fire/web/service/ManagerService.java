@@ -9,6 +9,7 @@ import fire.web.utils.PageInfo;
 public interface ManagerService {
 	public CompanyResult login(String username,String password,String code) throws VerifyCodeException,NameException,PasswordException;
 	public int loginOut();
+	public CompanyResult wxLogin(int managerId,int companyId);
 	public int addManager(Manager manager)throws NameException;
 	public int updateManager(Manager manager);
 	public Manager getManager(int id);

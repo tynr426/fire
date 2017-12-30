@@ -65,11 +65,9 @@ public class CheckDeviceDistribute extends Distribute {
 		int companyId=ConvertUtils.toInt(req.getParameter("CompanyId"));
 		int index=ConvertUtils.toInt(req.getParameter("Index"));
 		int size=ConvertUtils.toInt(req.getParameter("Size"));
-		String managerName=req.getParameter("ManagerName");
-		String model=req.getParameter("Model");
-		int deviceTypeId=ConvertUtils.toInt(req.getParameter("DeviceTypeId"));
+		Integer managerId=ConvertUtils.toInt(req.getParameter("ManagerId"));
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		String str=Utils.objectToJson(new JsonResult(checkDeviceService.getCheckDevicePage(companyId, index, size, managerName, model, deviceTypeId)));
+		String str=Utils.objectToJson(new JsonResult(checkDeviceService.getCheckDevicePage(companyId, index, size, managerId)));
 		resp.getWriter().write(str);
 	}
 

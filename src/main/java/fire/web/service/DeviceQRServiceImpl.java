@@ -6,8 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import fire.common.entity.AssignmentResult;
 import fire.common.entity.DeviceQR;
 import fire.common.entity.DeviceQRResult;
+import fire.common.entity.ScanInfo;
+import fire.web.dao.AssignmentDAO;
 import fire.web.dao.DeviceDAO;
 import fire.web.dao.DeviceQRDAO;
 import fire.web.utils.PageInfo;
@@ -15,6 +18,8 @@ import fire.web.utils.PageInfo;
 public class DeviceQRServiceImpl implements DeviceQRService{
 	@Resource
 	private DeviceQRDAO deviceQRDAO;
+	@Resource
+	private AssignmentDAO assignmentDAO;
 	@Resource
 	private DeviceDAO deviceDAO;
 	public int addDeviceQR(List<DeviceQR> list) throws NameException {
@@ -52,9 +57,16 @@ public class DeviceQRServiceImpl implements DeviceQRService{
 		return pi;
 	}
 
-	public DeviceQR getDeviceQRByCode(String code) {
-		DeviceQR dq = deviceQRDAO.findByCode(code);
-		return dq;
+	public ScanInfo getDeviceQRByCode(String code,Integer toManagerId) {
+		ScanInfo re = deviceQRDAO.findByCode(code);
+ 		if(re!=null&&re.getDeviceId()!=null&&re.getDeviceId()>0){
+			AssignmentResult assignment= assignmentDAO.getAssignmentByDeviceId(re.getDeviceId(), toManagerId);
+			if(assignment!=null){				
+				re.setAssignmentId(assignment.getId());
+				re.setAssignmentDes(assignment.getDescription());
+			}
+		}
+		return re;
 	}
 
 }

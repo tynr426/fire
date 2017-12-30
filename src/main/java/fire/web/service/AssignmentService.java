@@ -12,7 +12,7 @@ public interface AssignmentService {
 	public Assignment getAssignment(int id);
 	public int deleteAssignment(int id);
 	public PageInfo<AssignmentResult> getAssignmentPage(int companyId,int index,int size);
-	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId,int index,int size);
+	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId,int index,int size,Integer deviceTypeId,String keyword);
 	public int updateStatus(Integer id, Integer status);
 	public int save(Assignment entity);
 	public Assignment getAssignmentByCheckId(int checkId);

@@ -12,7 +12,7 @@ public interface DeviceDAO {
 	public DeviceResult findById(int id);
 	public int addDevice(DeviceResult device);
 	public int delete(int id);
-	public int findDeviceCount();
+	public int findDeviceCount(int companyId);
 	public List<DeviceResult> findByLimit(
 			@Param("companyId")int companyId,
 			@Param("begin") Integer begin,

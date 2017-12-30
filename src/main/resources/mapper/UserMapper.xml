@@ -6,4 +6,12 @@
 	<select id="findByUserName" parameterType="String" resultType="fire.common.entity.User">
 		SELECT * FROM adm_account WHERE UserName = #{UserName} limit 1
 	</select>
+	<select id="findById" parameterType="int" resultType="fire.common.entity.User">
+		SELECT * FROM adm_account WHERE Id = #{id} limit 1
+	</select>
+	<update id="updateUser" parameterType="fire.common.entity.User">
+		UPDATE adm_account SET		
+        Password=#{Password}
+		WHERE Id = #{Id}
+	</update>
 </mapper>

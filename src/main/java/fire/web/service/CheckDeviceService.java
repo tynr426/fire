@@ -9,6 +9,6 @@ public interface CheckDeviceService {
 	public int updateCD(CheckDevice cd);
 	public CheckDeviceResult getCheckDevice(int id);
 	public int deleteCD(int id);
-	public PageInfo<CheckDeviceResult> getCheckDevicePage(int companyId,int index,int size,String managerName,String model,Integer deviceTypeId);
+	public PageInfo<CheckDeviceResult> getCheckDevicePage(int companyId,int index,int size,Integer managerId);
 
 }

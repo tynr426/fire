@@ -46,7 +46,7 @@ public class Utils {
 		    try {
 		       jsonStr = mapper.writeValueAsString(obj);
 		    } catch (IOException e) {
-		     ;
+		     System.out.println(e.getMessage());
 		    }
 		   return jsonStr;
 		  }

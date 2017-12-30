@@ -1,6 +1,6 @@
 package fire.web.company.controller;
 
-import java.util.Date;
+
 
 import javax.annotation.Resource;
 
@@ -13,7 +13,9 @@ import fire.common.entity.Assignment;
 import fire.common.entity.AssignmentResult;
 import fire.web.controller.ExceptionController;
 import fire.web.service.AssignmentService;
+import fire.web.service.AuthBindService;
 import fire.web.service.ReportSummaryService;
+import fire.web.service.WeChatAccountService;
 import fire.web.utils.Company;
 import fire.web.utils.JsonResult;
 import fire.web.utils.PageInfo;
@@ -25,6 +27,10 @@ public class AssignmentController extends ExceptionController{
 	private AssignmentService assignmentService;
 	@Resource
 	private ReportSummaryService reportService;
+	@Resource
+	private WeChatAccountService weChatAccountService;
+	@Resource
+	private AuthBindService authBindService;
 	@RequestMapping("/toAssignment.do")
 	public String toManager(){
 		return "WebCompany/System/Assignment";
@@ -39,6 +45,7 @@ public class AssignmentController extends ExceptionController{
 	@RequestMapping("/save.do")
 	@ResponseBody
 	public Object save(Assignment assignment){
+
 		return new JsonResult(assignmentService.save(assignment));	
 	}
 	@RequestMapping("/getAssignmentByCheckId.do")

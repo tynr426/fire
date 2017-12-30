@@ -120,7 +120,7 @@ var deviceType={
 		},
 		finishUploadBtn: function () {
 			var json=arguments[0];
-			if(json.virtualPath!=undefined){
+			if(json!=undefined&&json.virtualPath!=undefined){
 				$("[name=VirtualPath]").attr("src", path+json.virtualPath);
 			}
 			console.log(arguments[0]);

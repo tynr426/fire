@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -20,7 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import fire.common.entity.WeChatAccount;
 import fire.sdk.utils.JsonResult;
+import fire.sdk.utils.WechatJsSDK;
+import fire.web.service.WeChatAccountService;
+import fire.web.service.WeChatAccountServiceImpl;
 import fire.web.utils.Md5;
 @Controller
 public class UploadFileController{
@@ -71,5 +76,6 @@ public class UploadFileController{
 			destPath+="\\";
 		}
 		return destPath;
-	}  
+	}
+
 }

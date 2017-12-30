@@ -44,5 +44,16 @@ public class UserServiceImpl implements UserService{
 		request.getSession().removeAttribute("user");
 		return 0;
 	}
+	public int updatePwd(String oldPwd, String pwd, int id) {
+		User user = userDAO.findById(id);
+		if(user==null){
+			throw new NameException("不存在改用户");
+		}
+		if(!Md5.getMd5(oldPwd).equals(user.getPassword())){
+			throw new PasswordException("原密码不正确");
+		}
+		user.setPassword(Md5.getMd5(pwd));
+		return userDAO.updateUser(user);
+	}
 
 }

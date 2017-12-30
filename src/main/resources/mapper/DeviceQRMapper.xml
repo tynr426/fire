@@ -6,8 +6,12 @@
 	<select id="findById" parameterType="int" resultType="fire.common.entity.DeviceQR">
 		select * from fir_deviceqr WHERE Id = #{id}
 	</select>
-	<select id="findByCode" parameterType="String" resultType="fire.common.entity.DeviceQR">
-		select * from fir_deviceqr WHERE Code = #{code}
+	<select id="findByCode" parameterType="String" resultType="fire.common.entity.ScanInfo">
+		select c.Model,c.Buildings,c.Floor,c.Position,c.Passageway,b.Name as DeviceTypeName,a.DeviceId,IFNULL(c.DeviceTypeId,b.Id) as DeviceTypeId from fir_deviceqr as a join fir_deviceType as b
+		on(a.DeviceTypeId=b.Id)
+		 left join
+		fir_device as c on(a.DeviceId=c.Id)
+		 WHERE a.Code = #{code}
 	</select>
 	<insert id="addDeviceQR" parameterType="java.util.List">
 		

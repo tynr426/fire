@@ -49,8 +49,7 @@
 						</div> <!--//扩展显示--></li>
 					<li><a href="javascript:void(0);" class="btn clean"
 						title="清理缓存" onclick="main.clearCache();"></a></li>
-					<li><a href="javascript:void(0);" class="btn main" title="主界面"
-						onclick="frame.go('SysIndex.html');"></a></li>
+					<li><a href="javascript:frame.go('/fire/company/device/toCompanyDeviceNumSummary.do');" class="btn main" title="主界面"></a></li>
 					<li><a href="javascript:void(0);" class="btn loginout"
 						title="退出" onclick="loginCM.loginOut();"></a></li>
 				</ul>

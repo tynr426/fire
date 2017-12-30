@@ -29,9 +29,6 @@ ${dict.passageway[(passageway)]}
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/company/device/delete.do');">删除</a>
                             </li>
-                           	<li>
-                                <a href="javascript:void(0);" onclick="frm.add({ title: '生成二维码', formId: 'DeviceFormTemplate1', callback: device.addRrCode, width: 800, height: 400">生成二维码</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -106,6 +103,16 @@ ${dict.passageway[(passageway)]}
                     <td>
                         <div class="inputbox">
                             <input type="text" name="AddTime" id="AddTime" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" error="输入格式不正确！" validate="isnull"/>
+                        </div>
+                    </td>
+					<th>
+                        <p class="name rm">
+                            <em class="red">*</em>年检时间：
+                        </p>
+                    </th>
+                    <td>
+                        <div class="inputbox">
+                            <input type="text" name="RenewalDate" id="RenewalDate" readonly=readonly onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'});" error="输入格式不正确！" validate="isnull"/>
                         </div>
                     </td>
 				</tr>				

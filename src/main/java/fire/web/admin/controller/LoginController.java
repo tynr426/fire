@@ -19,6 +19,7 @@ import fire.web.service.PasswordException;
 import fire.web.service.UserService;
 import fire.web.service.VerifyCodeException;
 import fire.web.utils.Admin;
+import fire.web.utils.Company;
 import fire.web.utils.CookiesUtil;
 import fire.web.utils.JsonResult;
 
@@ -69,4 +70,10 @@ public class LoginController extends ExceptionController{
 		e.printStackTrace();		
 		return new JsonResult(3,e);	
 	}	
+	@RequestMapping("/updatePwd.do")
+	@ResponseBody
+	public JsonResult updatePwd(String oldPwd,String pwd){
+		int n =userService.updatePwd(oldPwd, pwd, Admin.getUserId());
+		return new JsonResult(n);
+	}
 }

@@ -25,7 +25,7 @@ public interface ManagerDAO {
 	public int delete(Integer Id);
 	public int deleteResult(Integer companyId);
 	//查询计数
-	public int findManagerCount();
+	public int findManagerCount(int companyId);
 	//分页查询
 	public List<Manager> findByLimit(
 			@Param("companyId")int companyId,

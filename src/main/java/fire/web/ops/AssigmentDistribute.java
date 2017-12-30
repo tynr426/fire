@@ -31,8 +31,10 @@ public class AssigmentDistribute extends Distribute {
 		int managerId=ConvertUtils.toInt(req.getParameter("ManagerId"));
 		int index=ConvertUtils.toInt(req.getParameter("Index"));
 		int size=ConvertUtils.toInt(req.getParameter("Size"));
+		Integer deviceTypeId=ConvertUtils.toInt(req.getParameter("DeviceTypeId"));
+		String keyword=req.getParameter("Keyword");
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		String str=Utils.objectToJson(new JsonResult(assignmentService.getAssignmentPageByManager(managerId, index, size)));
+		String str=Utils.objectToJson(new JsonResult(assignmentService.getAssignmentPageByManager(managerId, index, size, deviceTypeId, keyword)));
 		resp.getWriter().write(str);
 	}
 }
