@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="fire.web.dao.DeviceCheckParameterValueDAO">
+	<select id="getDeviceCheckParameterValues" parameterType="java.lang.Integer" resultType="fire.common.entity.DeviceCheckParameterValue">
+		select * from fir_devicecheckparametervalue
+		WHERE CheckId = #{checkId}
+	</select>
+	<update id="updateDeviceCheckParameterValue" parameterType="java.util.List">
+	  <foreach item="item" collection="dpvs" separator=";">  
+		UPDATE fir_devicecheckparametervalue SET 
+			CheckId = #{item.CheckId},
+			ParameterId=#{item.ParameterId},
+			Value=#{item.Value},
+			Description=#{item.Description}
+			WHERE CheckId = #{item.CheckId} AND ParameterId=#{item.ParameterId}
+		</foreach>  
+	</update>
+	<insert id="addDeviceCheckParameterValue" parameterType="java.util.List">
+	<foreach collection="dpvs" item="item"  separator=";">  
+		insert into fir_devicecheckparametervalue(
+		CheckId,ParameterId,Value,Description
+		)
+		values 
+		(#{item.CheckId},#{item.ParameterId},
+		#{item.Value},#{item.Description})	
+		 </foreach>  	
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from fir_devicecheckparametervalue where CheckId = #{checkId}
+	</delete>
+</mapper>
