@@ -1,4 +1,13 @@
 var companyManager={
+		enumList:[],
+		init:function(){
+			$.post(path+"/categoryenum/getEnumList.do",{enumType:"UnitPropertiesEnum"},function(){
+				var json=arguments[0];
+				if(json.state==0){
+					companyManager.enumList=json.data;
+				}
+			});
+		},
 			load:function(){
 				$.ajax({
 					url:path+"/company/manager/getCompanyByCompanyId.do",
@@ -17,9 +26,13 @@ var companyManager={
 								html = $("#wechat_config_template").html();
 
 								step1.find("*[dynamic]").html(html);
-								
 								$.each(result.data,function(key,value){
+									if(typeof(value)=="boolean"){
+										$("#wechat_Config").find("#"+key.firstUpperCase()).val(value.toString());
+									}
+									else{
 									$("#wechat_Config").find("#"+key.firstUpperCase()).val(value);
+								}
 								});
 								
 								result.data=[result.data];
@@ -37,9 +50,6 @@ var companyManager={
 						$("#wechat_info_template").tmpl(result.data).appendTo(target);
 						companyManager.show();
 						
-					},
-					error:function(){
-						alert("加载失败!");
 					}
 				});
 			},
@@ -54,20 +64,22 @@ var companyManager={
 				var ManagerName = $("#ManagerName").val().trim();
 				var Email = $("#Email").val().trim();
 				var Mobile = $("#Mobile").val().trim();
+				var Unitproperties = $("#Unitproperties").val();
+				var Buildingtype = $("#Buildingtype").val();
+				var Isimport = $("#Isimport").val();
 				$.ajax({
 					url:path+"/company/manager/updateCompany.do",
 					type:"post",
 					data:{Id:Id,Name:Name,Code:Code,
 						Address:Address,Atten:Atten,Tel:Tel,
-						ManagerName:ManagerName,Email:Email,Mobile:Mobile},
+						ManagerName:ManagerName,Email:Email,Mobile:Mobile,
+						Unitproperties:Unitproperties,Buildingtype:Buildingtype,
+						Isimport:Isimport},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
 							window.location.reload();
 						}
-					},
-					error:function(){
-						alert("保存失败!");
 					}
 				});
 			},
@@ -82,6 +94,12 @@ var companyManager={
 
 				if (pid < 1) {
 					step2.hide();
+					var arr=[];
+					$.each(companyManager.enumList,function(i,item){
+						arr.push("<option value='"+item.enumValue+"'>"+item.enumDesc+"</option>");
+						
+					});
+					$("#Unitproperties").html(arr.join());
 					step1.show();
 				}
 				else {

@@ -50,9 +50,6 @@ var wechat = {
 						$("#wechat_info_template").tmpl(result.data).appendTo(target);
 						wechat.set.show();
 						
-					},
-					error:function(){
-						alert("加载失败!");
 					}
 				});
 			},
@@ -76,9 +73,6 @@ var wechat = {
 						if(result.state==0){
 							window.location.reload();
 						}
-					},
-					error:function(){
-						alert("保存失败!");
 					}
 				});
 			},

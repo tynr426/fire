@@ -13,11 +13,17 @@ public interface ReportDAO {
 			@Param("companyId")int companyId,
 			@Param("deviceTypeId")int deviceTypeId,
 			@Param("startTime") Date startTime,
-			@Param("endTime") Date endTime
+			@Param("endTime") Date endTime,
+			@Param("unitproperties") Integer unitproperties,
+			@Param("buildingtype") Integer buildingtype,
+			@Param("isimport") Boolean isimport
 			);
 	public List<AssignmentSummary> getAssignmentSummaryList(
 			@Param("companyId")int companyId,
 			@Param("deviceTypeId")int deviceTypeId,
-			@Param("startTime") String year
+			@Param("startTime") String year,
+			@Param("unitproperties") Integer unitproperties,
+			@Param("buildingtype") Integer buildingtype,
+			@Param("isimport") Boolean isimport
 			);
 }

@@ -59,6 +59,7 @@ public class DeviceQRServiceImpl implements DeviceQRService{
 
 	public ScanInfo getDeviceQRByCode(String code,Integer toManagerId) {
 		ScanInfo re = deviceQRDAO.findByCode(code);
+		
  		if(re!=null&&re.getDeviceId()!=null&&re.getDeviceId()>0){
 			AssignmentResult assignment= assignmentDAO.getAssignmentByDeviceId(re.getDeviceId(), toManagerId);
 			if(assignment!=null){				

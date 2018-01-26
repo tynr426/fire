@@ -12,9 +12,6 @@ var deviceQR={
 						});
 						$("#DeviceTypeId").append(str);
 					}
-				},
-				error:function(){
-					alert("加载失败");
 				}
 			});
 		},

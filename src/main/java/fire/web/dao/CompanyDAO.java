@@ -29,7 +29,7 @@ public interface CompanyDAO {
 	//查询计数
 	public int findCompanyCount();
 	//分页查询
-	public List<Company> findByLimit(
+	public List<CompanyResult> findByLimit(
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);

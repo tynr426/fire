@@ -3,7 +3,7 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="fire.web.dao.CheckDeviceDAO">
-	<insert id="addCD" parameterType="fire.common.entity.CheckDevice" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addCD" parameterType="fire.common.entity.CheckDeviceResult" useGeneratedKeys="true" keyProperty="id">
 		insert into fir_checkdevice(
 		DeviceId,DeviceTypeId,CompanyId,ManagerId,
 		ManagerName,Description,Certificate,SeverityLevel,
@@ -21,7 +21,7 @@
 		on(c.DeviceId=n.Id)
 		where c.Id=#{id}
 	</select>
-	<update id="updateCD" parameterType="fire.common.entity.CheckDevice">
+	<update id="updateCD" parameterType="fire.common.entity.CheckDeviceResult">
 		UPDATE fir_checkdevice SET
 			DeviceId=#{DeviceId}, 
 			DeviceTypeId=#{DeviceTypeId}, 
@@ -39,19 +39,38 @@
 		delete from fir_checkdevice where Id = #{id}
 	</delete>
 	<select id="findCDCount" resultType="int" >
-			select count(*) from fir_checkdevice c join fir_devicetype t
+		select count(*) from fir_checkdevice c join fir_devicetype t
 		on(c.DeviceTypeId=t.Id)  join fir_device n 
 		on(c.DeviceId=n.Id) where c.CompanyId=#{companyId}
-		<if test="managerId!=null and managerId!=0">
-			and c.ManagerId=#{managerId}
+		<if test="status!=null">
+			and c.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or t.Name like CONCAT('%',#{keyword},'%'))
 		</if>
 	</select>
+	<select id="getStatistics" resultType="fire.common.entity.StatusStatistics">
+		select count(*) as Count,c.Status from fir_checkdevice c join fir_devicetype t
+		on(c.DeviceTypeId=t.Id)  join fir_device n 
+		on(c.DeviceId=n.Id) where c.CompanyId=#{companyId}
+		<if test="status!=null">
+			and c.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or t.Name like CONCAT('%',#{keyword},'%'))
+		</if>
+		group by c.Status
+	</select>
 	<select id="findByLimit" resultType="fire.common.entity.CheckDeviceResult">
+
 		select c.*,t.Name,n.Model,n.Detail from fir_checkdevice c join fir_devicetype t
 		on(c.DeviceTypeId=t.Id)  join fir_device n 
 		on(c.DeviceId=n.Id) where c.CompanyId=#{companyId}
-		<if test="managerId!=null and managerId!=0">
-			and c.ManagerId=#{managerId}
+		<if test="status!=null">
+			and c.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or t.Name like CONCAT('%',#{keyword},'%'))
 		</if>
 		 limit #{begin},#{size}
 	</select>

@@ -10,7 +10,7 @@ import fire.common.entity.RepairrecordResult;
 public interface RepairrecordDAO {
 	public int updateRepairrecord(Repairrecord repairrecord);
 	public RepairrecordResult findById(int id);
-	public int addRepairrecord(RepairrecordResult repairrecordResult);
+	public int addRepairrecord(Repairrecord repairrecord);
 	public int delete(int id);
 	public int findRepairrecordCount();
 	public List<RepairrecordResult> findByLimit(

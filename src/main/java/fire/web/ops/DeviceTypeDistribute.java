@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fire.common.entity.DeviceTypeResult;
+import fire.sdk.utils.ConvertUtils;
 import fire.sdk.utils.DTOBeanUtils;
 import fire.web.service.DeviceTypeService;
 import fire.web.utils.JsonResult;
@@ -27,11 +28,12 @@ public class DeviceTypeDistribute extends Distribute {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(sp.Action.equals("findAll")){
-			findAll(req,resp);
+			getDeviceType(req,resp);
 		}
 		
 	}
-	private void findAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	private void getDeviceType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		//int parameterType=ConvertUtils.toInt(req.getParameter("ParameterType"));
 		String str=Utils.objectToJson(new JsonResult(deviceTypeService.findDeviceTypeResult()));
 		resp.setContentType("text/javascript; charset=utf-8"); 
 		resp.getWriter().write(str);

@@ -12,9 +12,6 @@ var companyDeviceNumSummary={
 						});
 						$("#DeviceTypeId").append(str);
 					}
-				},
-				error:function(){
-					alert("加载失败");
 				}
 			});
 		},

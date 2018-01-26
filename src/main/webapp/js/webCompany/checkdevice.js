@@ -43,9 +43,6 @@ var checkdevice={
 							}
 						}
 						
-					},
-					error:function(){
-						alert("加载失败!");
 					}
 				});
 			},
@@ -58,7 +55,7 @@ var checkdevice={
 					success:function(result){
 						$("#ToManagerId").val(result.data.toManagerId);
 						$("#PredictTime").val(result.data.predictTime);
-						$("#Remark").val(result.data.remark);
+						$("#Remark").val(result.data.assignmentRemark);
 					}		
 				});
 			},
@@ -90,9 +87,6 @@ var checkdevice={
 							alert("操作成功!");
 							$(obj).dialog('close');
 						}
-					},
-					error:function(){
-						alert("加载失败!");
 					}
 				});
 			}

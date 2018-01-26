@@ -19,8 +19,8 @@ public class DevicetypeparameterController extends ExceptionController{
 	private DevicetypeparameterService devicetypeparameterService;
 	@RequestMapping("/show.do")
 	@ResponseBody
-	public Object getDeviceTypeParameterPage(int deviceTypeId,int index,int size){
-		PageInfo<Devicetypeparameter> pi = devicetypeparameterService.getDevicetypeparameterPage(deviceTypeId,index, size);
+	public Object getDeviceTypeParameterPage(int deviceTypeId,int parameterType,int index,int size){
+		PageInfo<Devicetypeparameter> pi = devicetypeparameterService.getDevicetypeparameterPage(deviceTypeId,parameterType,index, size);
 		return new JsonResult(pi);	
 	}
 	

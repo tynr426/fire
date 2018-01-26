@@ -12,9 +12,6 @@ var deviceNumSummary={
 						});
 						$("#DeviceTypeId").append(str);
 					}
-				},
-				error:function(){
-					alert("加载失败");
 				}
 			});
 		},
@@ -31,9 +28,19 @@ var deviceNumSummary={
 						});
 						$("#CompanyId").append(str);
 					}
-				},
-				error:function(){
-					alert("加载失败");
+				}
+			});
+		},
+		loadUnitproperties:function(){
+			var enumarr=[];
+			$.post(path+"/categoryenum/getEnumList.do",{enumType:"UnitPropertiesEnum"},function(){
+				var json=arguments[0];
+				if(json.state==0){
+					var enumList=json.data;
+					$.each(enumList,function(i,item){
+						enumarr.push("<option value='"+item.enumValue+"'>"+item.enumDesc+"</option>")
+					});
+					$("#Unitproperties").append(enumarr.join());
 				}
 			});
 		},

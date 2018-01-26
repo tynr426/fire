@@ -69,9 +69,6 @@ var device={
 						alert(result.message);		
 					}								
 
-				},
-				error:function(){
-					alert("添加失败");
 				}
 			});
 		},
@@ -85,9 +82,6 @@ var device={
 					if(data.state==0){
 						user.openDialog(result.data);
 					}
-				},
-				error:function(){
-					alert("获取失败");
 				}
 			});
 		},
@@ -257,9 +251,6 @@ var device={
 						alert(result.message);			
 					}								
 
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		},

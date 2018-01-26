@@ -1,8 +1,10 @@
 package fire.web.service;
 
-import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 import fire.common.entity.AuthBind;
+import fire.common.entity.AuthBindResult;
 
 public interface AuthBindService {
 	public int addAuthBind(AuthBind authBind);
@@ -11,4 +13,6 @@ public interface AuthBindService {
 			);
 	public int updateAuthBind(AuthBind authBind
 			);
+	public List<AuthBindResult> getBindList(int companyId);
+	public int deleteById(int id);
 }

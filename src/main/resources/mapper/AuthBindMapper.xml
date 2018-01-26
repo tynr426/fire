@@ -37,5 +37,12 @@
 		<select id="findByOpenIdAndManagerId"  resultType="fire.common.entity.AuthBind">
 		select * from com_authbind where OpenId=#{openId} and ManagerId=#{managerId} limit 1
 	</select>
-	
+	<select id="getBindList" parameterType="int" resultType="fire.common.entity.AuthBindResult">
+		select a.*,b.Name as ManagerName,b.UserName from com_authbind a join com_manager b
+		on(a.ManagerId=b.Id)
+		where a.CompanyId=#{companyId}
+	</select>
+	<delete id="deleteById" parameterType="int">
+		delete from com_authbind where Id=#{id}
+	</delete>
 </mapper>

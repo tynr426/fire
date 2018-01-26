@@ -18,9 +18,6 @@ var deviceType={
 						alert(result.message);		
 					}								
 
-				},
-				error:function(){
-					alert("添加失败");
 				}
 			});
 		},
@@ -34,9 +31,6 @@ var deviceType={
 					if(data.state==0){
 						user.openDialog(result.data);
 					}
-				},
-				error:function(){
-					alert("获取失败");
 				}
 			});
 		},
@@ -60,9 +54,6 @@ var deviceType={
 						alert(result.message);			
 					}								
 
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		},
@@ -112,9 +103,6 @@ var deviceType={
 						alert(result.message);			
 					}								
 
-				},
-				error:function(){
-					alert("生成失败");
 				}
 			});
 		},
@@ -138,8 +126,8 @@ var deviceType={
 			})
 		},
 		callBackUpdateFilePath: function (file, serverData, responseReceived) {
-			debugger;
-			console.log(serverData);
+			
+			
 			if (file.filestatus == -4) {
 				var json= $.parseJSON(serverData);
 				$("#VirtualPath").val(json.data);
@@ -152,19 +140,22 @@ var deviceType={
 
 var deviceTypeParameter={
 		deviceTypeId:0,
+		parameterType:1,
 		editorTypeDesc:function(key){
 			console.log(key)
 		},
-		openParameterDialog:function(deviceTypeId){
+		openParameterDialog:function(deviceTypeId,parameterType){
+			$("#parameterBody").html("");
 			if(deviceTypeId!=undefined){
 				deviceTypeParameter.deviceTypeId=deviceTypeId;
 			}
+			deviceTypeParameter.parameterType=parameterType;
 			var opt={
 					resizable: true,
 					width: 950,
 					height: 450,
 					modal: true,
-					title:"设备参数"
+					title:(deviceTypeParameter.parameterType==1?"设备参数":"检查参数")
 			};
 			var config={
 					url:adminpath+"/dtp/show.do",
@@ -173,7 +164,9 @@ var deviceTypeParameter={
 					barSize:3,
 					templateId:"DeviceParameterListTemplate",
 					container:"parameterBody",
-					data:{deviceTypeId:deviceTypeParameter.deviceTypeId}
+					data:{deviceTypeId:deviceTypeParameter.deviceTypeId,
+						parameterType:deviceTypeParameter.parameterType
+					}
 			};
 			var pageInfo=new ecPage.fn._init(config);
 
@@ -257,20 +250,20 @@ var deviceTypeParameter={
 				type:"post",
 				data:{Description:Description,EditorType:EditorType,
 					Unit:Unit,Candidate:candidate,Reorder:Reorder,
-					Required:Required,DeviceTypeId:deviceTypeParameter.deviceTypeId},
+					Required:Required,DeviceTypeId:deviceTypeParameter.deviceTypeId,
+					parameterType:deviceTypeParameter.parameterType},
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
-							alert("添加成功");
+							
 							$(obj).dialog('close');
-							deviceTypeParameter.openParameterDialog();
+							deviceTypeParameter.openParameterDialog(
+									deviceTypeParameter.deviceTypeId,
+									deviceTypeParameter.parameterType);
 						}else{	
 							alert(result.message);		
 						}								
 
-					},
-					error:function(){
-						alert("添加失败");
 					}
 			});
 		},
@@ -284,9 +277,6 @@ var deviceTypeParameter={
 					if(data.state==0){
 						user.openDialog(result.data);
 					}
-				},
-				error:function(){
-					alert("获取失败");
 				}
 			});
 		},
@@ -338,16 +328,16 @@ var deviceTypeParameter={
 					dataType:"json",
 					success:function(result){
 						if(result.state==0){
-							alert("您已修改成功");
+						
 							$(obj).dialog('close');
-							deviceTypeParameter.openParameterDialog();
+							deviceTypeParameter.openParameterDialog(
+									deviceTypeParameter.deviceTypeId,
+									deviceTypeParameter.parameterType		
+							);
 						}else{	
 							alert(result.message);			
 						}								
 
-					},
-					error:function(){
-						alert("修改失败");
 					}
 			});
 		}
@@ -374,9 +364,6 @@ var deviceQR={
 						alert(result.message);			
 					}								
 
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 

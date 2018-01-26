@@ -1,6 +1,7 @@
 package fire.web.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +16,15 @@ import fire.common.entity.AuthBind;
 import fire.common.entity.CheckDevice;
 import fire.common.entity.CheckDeviceResult;
 import fire.common.entity.DeviceResult;
+import fire.common.entity.RepairrecordResult;
+import fire.common.entity.StatusStatistics;
 import fire.common.entity.WeChatAccount;
 import fire.sdk.utils.WechatTemplateMsg;
 import fire.web.dao.AssignmentDAO;
 import fire.web.dao.AuthBindDAO;
 import fire.web.dao.CheckDeviceDAO;
 import fire.web.dao.DeviceDAO;
+import fire.web.dao.RepairrecordDAO;
 import fire.web.dao.WeChatAccountDAO;
 import fire.web.utils.Company;
 import fire.web.utils.Constants;
@@ -39,13 +43,15 @@ public class AssignmentServiceImpl implements AssignmentService{
 	
 	@Resource
 	private AuthBindDAO authBindDAO;
-	
+	@Resource
+	private RepairrecordDAO repairrecordDAO;
 	@Transactional
 	public int save(Assignment entity){
-		    CheckDevice cd = cdDAO.getCD(entity.getCheckId());
+		    CheckDeviceResult cd = cdDAO.getCD(entity.getCheckId());
 			entity.setCompanyId(Company.getCompanyId());
 			entity.setFromManagerId(Company.getCompany().getManagerId());
 			entity.setAddTime(new Date());
+			entity.setStatus(1);
 			cd.setStatus(2);
 			cdDAO.updateCD(cd);
 			
@@ -68,11 +74,12 @@ public class AssignmentServiceImpl implements AssignmentService{
 		}
 		return assignment;
 	}
-	public Assignment getAssignmentByCheckId(int checkId) {
-		Assignment assignment = assignmentDAO.getAssignmentByCheckId(checkId);
+	public AssignmentResult getAssignmentByCheckId(int checkId) {
+		AssignmentResult assignment = assignmentDAO.getAssignmentByCheckId(checkId);
 		if(assignment==null){
 			throw new NameException("checkId不存在");
 		}
+	
 		return assignment;
 	}
 
@@ -102,13 +109,28 @@ public class AssignmentServiceImpl implements AssignmentService{
 		int n = assignmentDAO.updateStatus(assignment);
 		return n;
 	}
-	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId, int index, int size,Integer deviceTypeId,String keyword) {
+	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId, int index, int size,Integer status,String keyword) {
 		PageInfo<AssignmentResult> pi = new PageInfo<AssignmentResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
-		pi.setCount(assignmentDAO.findByManagerCount(managerId,deviceTypeId,keyword));
-		pi.setList(assignmentDAO.findByManagerLimit(managerId,pi.getBegin(), size,deviceTypeId,keyword));
+		pi.setCount(assignmentDAO.findByManagerCount(managerId,status,keyword));
+		pi.setList(assignmentDAO.findByManagerLimit(managerId,pi.getBegin(), size,status,keyword));
 		return pi;
+	}
+	public List<StatusStatistics> getStatistics(int managerId, Integer status, String keyword) {
+		List<StatusStatistics> list = assignmentDAO.getStatistics(managerId, status, keyword);
+		if(list==null){
+			list=new ArrayList<StatusStatistics>();
+		}
+		int count = 0;
+		for(StatusStatistics entity:list){
+			count+=entity.getCount();
+		}
+		StatusStatistics entity = new StatusStatistics();
+		entity.setCount(count);
+		entity.setStatus(999);
+		list.add(entity);
+		return list;
 	}
 
 }

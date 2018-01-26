@@ -25,7 +25,7 @@ public class CompanyController extends ExceptionController{
 	@RequestMapping("/showCompanyPage.do")
 	@ResponseBody
 	public Object getCompanyPage(int index,int size){
-		PageInfo<Company> pi = companyService.getCompanyPage(index, size);
+		PageInfo<CompanyResult> pi = companyService.getCompanyPage(index, size);
 		return new JsonResult(pi);	
 	}
 	@RequestMapping("/showCompany.do")

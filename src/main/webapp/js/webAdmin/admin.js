@@ -24,9 +24,6 @@ var admin = {
 						alert(result.message);			
 					}								
 					
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		}

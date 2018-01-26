@@ -21,22 +21,24 @@
 			Status=#{Status}
 			WHERE Id = #{Id}
 	</update>
-	<insert id="addRepairrecord" parameterType="fire.common.entity.RepairrecordResult" useGeneratedKeys="true" keyProperty="id">
+	<insert id="addRepairrecord" parameterType="fire.common.entity.Repairrecord" useGeneratedKeys="true" keyProperty="id">
 		insert into fir_repairrecord(
 		AssignmentId,DeviceId,DeviceTypeId,
-		IsFinish,Certificate,Description,AddTime,Status,Name,Model
+		IsFinish,Certificate,Description,AddTime,Status
 		)
 		values(
 		#{AssignmentId},#{DeviceId},#{DeviceTypeId},
 		#{IsFinish},#{Certificate},#{Description},#{AddTime},
-		#{Status},#{Name},#{Model}
+		#{Status}
 		)		
 	</insert>
 	<delete id="delete" parameterType="int">
 		delete from fir_repairrecord where Id = #{id}
 	</delete>
 	<select id="findRepairrecordCount" resultType="int">
-		select count(*) from fir_repairrecord 
+		select count(*) from fir_repairrecord q join fir_devicetype t
+		on(q.DeviceTypeId=t.Id) left join fir_device n 
+		on(q.DeviceId=n.Id) 
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.RepairrecordResult">
 		select q.*,t.Name,n.Model from fir_repairrecord q join fir_devicetype t

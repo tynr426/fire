@@ -8,7 +8,7 @@ import fire.common.entity.RepairrecordResult;
 import fire.web.utils.PageInfo;
 
 public interface RepairrecordService {
-	public int addRepairrecord(RepairrecordResult repairrecordResult)throws NameException;
+	public int addRepairrecord(Repairrecord repairrecord)throws NameException;
 	public int updateRepairrecord(Repairrecord repairrecord);
 	public RepairrecordResult getRepairrecord(int id);
 	public int deleteRepairrecord(int id);

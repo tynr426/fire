@@ -8,6 +8,7 @@ import fire.common.entity.DeviceNumSummary;
 import fire.common.entity.ReportSummary;
 
 public interface ReportSummaryService {
-	public List<DeviceNumSummary> getDeviceNumSummaryList(int companyId,int deviceTypeId,Date startTime,Date endTime);
-	public ReportSummary getAssignmentSummaryList(int companyId,int deviceTypeId,String year);
+	public List<DeviceNumSummary> getDeviceNumSummaryList(int companyId,int deviceTypeId,Date startTime,Date endTime,
+			Integer unitproperties,Integer buildingtype,Boolean isimport);
+	public ReportSummary getAssignmentSummaryList(int companyId,int deviceTypeId,String year,Integer unitproperties,Integer buildingtype,Boolean isimport);
 }

@@ -83,7 +83,39 @@
 																		</div></td>
 
 																</tr>
-															
+															<tr>
+																	<th><p class="name">公司性质：</p></th>
+																	<td><div class="selectbox">
+																			<select id="Unitproperties"><option value="0"
+																					selected="selected">全部</option>
+																				</select>
+																		</div></td>
+
+																</tr>
+																<tr>
+																	<th><p class="name">建筑类型：</p></th>
+																	<td><div class="selectbox">
+																			<select id="Buildingtype">
+																			<option value="0" selected="selected">全部</option>
+																			<option value="1">民用建筑公共建筑</option>
+																			<option value="2">民用建筑住宅建筑</option>
+																			<option value="3">工业建筑</option>
+																			<option value="4">农业建筑</option>
+																			</select>
+																		</div></td>
+
+																</tr>
+																<tr>
+																	<th><p class="name">重点单位：</p></th>
+																	<td><div class="selectbox">
+																			<select id="Isimport">
+																			<option value="">全部</option>
+																			<option value="false">否</option>
+																			<option value="true">是</option>
+																			</select>
+																		</div></td>
+
+																</tr>
 
 															</tbody>
 														</table>
@@ -145,6 +177,9 @@ var t=1;
     	var data={   			
     			companyId:$("#CompanyId").val(),
     			deviceTypeId:$("#DeviceTypeId").val(),
+    			unitproperties:$("#Unitproperties").val(),
+    			buildingtype:$("#Buildingtype").val(),
+    			isimport:$("#Isimport").val(),
     			year:year
     			};
     	$.ajax({
@@ -181,6 +216,7 @@ var t=1;
 	 GetData(1);
 	 deviceNumSummary.loadDeviceType();
 	 deviceNumSummary.loadCompanyName();
+	 deviceNumSummary.loadUnitproperties();
  })
  </script>
 

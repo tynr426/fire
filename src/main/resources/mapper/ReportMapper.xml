@@ -4,95 +4,145 @@
 
 <mapper namespace="fire.web.dao.ReportDAO">
 	<select id="getDeviceNumSummaryList" resultType="fire.common.entity.DeviceNumSummary">
-		SELECT 
-    Name,
-    (SELECT 
-            COUNT(*)
-        FROM
-            fir_device
-        WHERE
-            DeviceTypeId= a.Id
-            <if test="deviceTypeId!=0">
-            	and DeviceTypeId=#{deviceTypeId}
-            </if>
-              <if test="companyId!=0">
-            	and CompanyId=#{companyId}
-            </if>
-            <if test="endTime!=null">
-            	and AddTime&lt;#{endTime}
-            </if>
-            ) as DeviceNum,
-              (SELECT 
-            COUNT(*)
-        FROM
-            fir_checkdevice
-        WHERE
-            deviceTypeId = a.Id AND Status > 0
-              <if test="deviceTypeId!=0">
-            	and DeviceTypeId=#{deviceTypeId}
-            </if>
-              <if test="companyId!=0">
-            	and CompanyId=#{companyId}
-            </if>
-             <if test="startTime!=null">
-            	and AddTime&gt;#{startTime}
-             </if>
-             <if test="endTime!=null">
-            	and AddTime&lt;#{endTime}
-            </if>
-            ) AS FailureNum,
-    (SELECT 
-            COUNT(*)
-        FROM
-            fir_checkdevice
-        WHERE
-            deviceTypeId = a.Id AND Status = 2
-              <if test="deviceTypeId!=0">
-            	and DeviceTypeId=#{deviceTypeId}
-            </if>
-              <if test="companyId!=0">
-            	and CompanyId=#{companyId}
-            </if>
-               <if test="startTime!=null">
-            	and AddTime&gt;#{startTime}
-             </if>
-             <if test="endTime!=null">
-            	and AddTime&lt;#{endTime}
-            </if>
-            ) AS RectifiedNum
-FROM
-    fir_deviceType AS a where 1=1 
-     <if test="deviceTypeId!=0">
-            	and a.Id=#{deviceTypeId}
-      </if>
-    
+		SELECT
+		a.Name,
+		(SELECT
+		COUNT(*)
+		FROM
+		fir_device as n
+		<if test="unitproperties!=0 or buildingtype!=0 or isimport!=null">
+			join com_company as b on(n.CompanyId=b.Id)
+
+		</if>
+		WHERE
+		n.DeviceTypeId= a.Id
+		<if test="deviceTypeId!=0">
+			and n.DeviceTypeId=#{deviceTypeId}
+		</if>
+		<if test="companyId!=0">
+			and n.CompanyId=#{companyId}
+		</if>
+		<if test="endTime!=null">
+			and date_add(n.AddTime, interval -1 day)&lt;#{endTime}
+		</if>
+		<if test="unitproperties!=0 and unitproperties!=null">
+			and b.Unitproperties=#{unitproperties}
+		</if>
+		<if test="buildingtype!=0 and buildingtype!=null">
+			and b.Buildingtype=#{buildingtype}
+		</if>
+		<if test="isimport!=null">
+			and b.Isimport=#{isimport}
+		</if>
+		) as DeviceNum,
+		(SELECT
+		COUNT(*)
+		FROM
+		fir_checkdevice as n
+		<if test="unitproperties!=0 or buildingtype!=0 or isimport!=null">
+			join com_company as b on(n.CompanyId=b.Id)
+		</if>
+		WHERE
+		n.deviceTypeId = a.Id AND n.Status > 0
+		<if test="deviceTypeId!=0">
+			and n.DeviceTypeId=#{deviceTypeId}
+		</if>
+		<if test="companyId!=0">
+			and n.CompanyId=#{companyId}
+		</if>
+		<if test="startTime!=null">
+			and n.AddTime&gt;#{startTime}
+		</if>
+		<if test="endTime!=null">
+			and date_add(n.AddTime, interval -1 day)&lt;#{endTime}
+		</if>
+		<if test="unitproperties!=0 and unitproperties!=null">
+			and b.Unitproperties=#{unitproperties}
+		</if>
+		<if test="buildingtype!=0 and buildingtype!=null">
+			and b.Buildingtype=#{buildingtype}
+		</if>
+		<if test="isimport!=null">
+			and b.Isimport=#{isimport}
+		</if>
+		) AS FailureNum,
+		(SELECT
+		COUNT(*)
+		FROM
+		fir_checkdevice as n
+		<if test="unitproperties!=0 or buildingtype!=0 or isimport!=null">
+			join com_company as b on(n.CompanyId=b.Id)
+		</if>
+		WHERE
+		n.deviceTypeId = a.Id AND n.Status = 3
+		<if test="deviceTypeId!=0">
+			and n.DeviceTypeId=#{deviceTypeId}
+		</if>
+		<if test="companyId!=0">
+			and n.CompanyId=#{companyId}
+		</if>
+		<if test="startTime!=null">
+			and n.AddTime&gt;#{startTime}
+		</if>
+		<if test="endTime!=null">
+			and date_add(n.AddTime, interval -1 day)&lt;#{endTime}
+		</if>
+		<if test="unitproperties!=0 and unitproperties!=null">
+			and b.Unitproperties=#{unitproperties}
+		</if>
+		<if test="buildingtype!=0 and buildingtype!=null">
+			and b.Buildingtype=#{buildingtype}
+		</if>
+		<if test="isimport!=null">
+			and b.Isimport=#{isimport}
+		</if>
+		) AS RectifiedNum
+		FROM
+		fir_deviceType AS a
+		where 1=1
+		<if test="deviceTypeId!=0">
+			and a.Id=#{deviceTypeId}
+		</if>
 	</select>
 	<select id="getAssignmentSummaryList" resultType="fire.common.entity.AssignmentSummary">
-	SELECT 
-    DATE_FORMAT(PredictTime, '%m') Month,
-    COUNT(*) as AssignmentCount,
-    (SELECT 
-            COUNT(*)
-        FROM
-            fir_RepairRecord
-        WHERE
-            assignmentid = a.Id
-                AND Addtime &gt; a.PredictTime
-        GROUP BY DATE_FORMAT(Addtime, '%m')) as CompleteCount
-FROM
-    fir_assignment AS a join fir_CheckDevice  as b on(a.checkId=b.Id)
-    where 1=1
-      <if test="startTime!=null">
-            	and DATE_FORMAT(PredictTime, '%Y')=#{startTime}
-             </if>
-     <if test="companyId!=0">
-            	and a.CompanyId=#{companyId}
-            </if>
-              <if test="deviceTypeId!=0">
-            	and b.DeviceTypeId=#{deviceTypeId}
-            </if>
-GROUP BY Month;
+		SELECT
+		DATE_FORMAT(PredictTime, '%m') Month,
+		COUNT(*) as AssignmentCount,
+		(SELECT
+		COUNT(*)
+		FROM
+		fir_RepairRecord
+		WHERE
+		assignmentid = a.Id
+		AND Addtime &gt; a.PredictTime
+		GROUP BY DATE_FORMAT(Addtime, '%m')) as CompleteCount
+		FROM
+		fir_assignment AS a join fir_CheckDevice as b on(a.checkId=b.Id)
+		<if test="unitproperties!=0 or buildingtype!=0 or isimport!=null">
+			join com_company as c on(a.CompanyId=c.Id)
 
-	
+		</if>
+		where 1=1
+		<if test="startTime!=null">
+			and DATE_FORMAT(PredictTime, '%Y')=#{startTime}
+		</if>
+		<if test="companyId!=0">
+			and a.CompanyId=#{companyId}
+		</if>
+		<if test="deviceTypeId!=0">
+			and b.DeviceTypeId=#{deviceTypeId}
+		</if>
+		<if test="unitproperties!=0 and unitproperties!=null">
+			and c.Unitproperties=#{unitproperties}
+		</if>
+		<if test="buildingtype!=0 and buildingtype!=null">
+			and c.Buildingtype=#{buildingtype}
+		</if>
+		<if test="isimport!=null">
+			and c.Isimport=#{isimport}
+		</if>
+		GROUP BY Month;
+
+
 	</select>
 </mapper>

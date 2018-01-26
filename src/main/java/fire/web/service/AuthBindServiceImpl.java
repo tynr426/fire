@@ -1,12 +1,14 @@
 package fire.web.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import fire.common.entity.AuthBind;
+import fire.common.entity.AuthBindResult;
 import fire.web.dao.AuthBindDAO;
 @Service("authBindService")
 public class AuthBindServiceImpl implements AuthBindService{
@@ -39,6 +41,15 @@ public class AuthBindServiceImpl implements AuthBindService{
 
 	public int updateAuthBind(AuthBind authBind) {
 		return abDAO.updateAuthBind(authBind);
+	}
+
+	public List<AuthBindResult> getBindList(int companyId) {
+		return abDAO.getBindList(companyId);
+
+	}
+
+	public int deleteById(int id) {
+		return abDAO.deleteById(id);
 	}
 
 }

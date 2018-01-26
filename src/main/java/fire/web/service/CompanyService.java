@@ -13,6 +13,6 @@ public interface CompanyService {
 	public int updateCompany(CompanyResult result);
 	public CompanyResult getCompany(int Id);
 	public int deleteCompany(Integer Id);
-	public PageInfo<Company> getCompanyPage(int index,int size);
+	public PageInfo<CompanyResult> getCompanyPage(int index,int size);
 	public int updateStatus(Integer id,int status);
 }

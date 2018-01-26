@@ -100,8 +100,8 @@
 
 				<div class="button">
 					<a href="javascript:void(0);"
-						onclick="frm.add({ title: '添加设备参数', formId: 'DeviceParameterFormTemplate', callback: deviceTypeParameter.addDeviceTypeParameter, width: 800, height: 400 });"
-						class="btn">添加设备参数</a>
+						onclick="frm.add({ title: '添加自定义参数', formId: 'DeviceParameterFormTemplate', callback: deviceTypeParameter.addDeviceTypeParameter, width: 800, height: 400 });"
+						class="btn">添加自定义参数</a>
 				</div>
 
 

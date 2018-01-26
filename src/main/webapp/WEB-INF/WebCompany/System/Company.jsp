@@ -60,4 +60,5 @@
 
 <script language="javascript" type="text/javascript">
 	companyManager.load(1);
+	companyManager.init();
 </script>

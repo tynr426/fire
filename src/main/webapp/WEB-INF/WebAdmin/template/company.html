@@ -8,8 +8,28 @@
             </td>
             <td><div class="string center">${name}</div></td>
             <td><div class="string center">${code}</div></td>
-            <td><div class="string center">${sn}</div></td>
             <td><div class="string center">${tel}</div></td>
+            <td><div class="string center">
+${enumDesc}
+</div></td>
+            <td><div class="string center">
+{{if buildingtype==1}}
+民用建筑公共建筑
+{{else buildingtype==2}}
+民用建筑住宅建筑
+{{else buildingtype==3}}
+工业建筑
+{{else buildingtype==4}}
+农业建筑
+{{/if}}
+</div></td>
+            <td><div class="string center">
+{{if isimport==true}}
+是
+{{else isimport==false}}
+否
+{{/if}}
+</div></td>
             <td>
                 <!--自定义开关-->
                 {{if status==0}}
@@ -39,7 +59,7 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'CompanyFormTemplate', id: ${id}, url:'/admin/company/getCompany.do', callback: company.updateCompany, width: 700, height: 400,finish:company.updateFinish});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改单位', formId: 'CompanyFormTemplate', id: ${id}, url:'/admin/company/getCompany.do', callback: company.updateCompany, width: 750, height: 500,finish:company.updateFinish});">修改</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="frm.del(${id},load,'/admin/company/delete.do');">删除</a>
@@ -95,7 +115,7 @@
                         </p>
                     </th>
                     <td colspan="3">
-                       <div class="selectbox"><select id="Province" name="Province" onchange="" validate="isnull" error="请选择所在地"></select></div><span class="tips"></span><div class="selectbox"><select id="City" name="City" onchange="" validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div><span class="tips"></span><div class="selectbox"><select id="Area" name="Area" validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div>
+                       <div class="selectbox"><select id="Province" name="Province"  validate="isnull" error="请选择所在地"></select></div><span class="tips"></span><div class="selectbox"><select id="City" name="City"  validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div><span class="tips"></span><div class="selectbox"><select id="Area" name="Area" validate="isnull" error="请选择所在地"><option value='-1' selected="selected">请选择</option></select></div>
                     </td>
       			
                 </tr>
@@ -113,6 +133,49 @@
                     </td>
                   
                 </tr>
+				<th>
+                        <p class="name">
+                            <em class="red">*</em>公司性质：
+                        </p>
+                    </th>
+                    <td colspan="3">
+                        <div class="inputbox">
+                            <select id="Unitproperties"  error="请选择！" validate="isnull">
+								
+							</select>
+                        </div>
+                    </td>
+                  
+                </tr>
+<tr>
+                        <th>
+                            <p class="name">
+                                	建筑类型：
+                            </p>
+                        </th>
+                        <td>
+							<select id="Buildingtype"  error="请选择！" validate="isnull">
+								<option value="">选择</option>
+								<option value="1">民用建筑公共建筑</option>
+								<option value="2">民用建筑住宅建筑</option>
+								<option value="3">工业建筑</option>
+								<option value="4">农业建筑</option>
+							</select>
+                        </td>
+<th>
+                            <p class="name">
+                                	重点单位：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="selectbox">
+                               <select id="Isimport"  error="请选择是否重点单位！" validate="isnull">
+								<option value="false">否</option>
+								<option value="true">是</option>
+							</select>
+                            </div>
+                        </td>
+                    </tr>
 				<tr>
 			<th>
                         <p class="name">

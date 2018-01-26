@@ -22,9 +22,6 @@ var manager={
 						alert(result.message);		
 					}								
 
-				},
-				error:function(){
-					alert("添加失败");
 				}
 			});
 		},
@@ -38,9 +35,6 @@ var manager={
 					if(data.state==0){
 						user.openDialog(result.data);
 					}
-				},
-				error:function(){
-					alert("获取失败");
 				}
 			});
 		},
@@ -71,9 +65,6 @@ var manager={
 							alert(result.message);			
 						}								
 
-					},
-					error:function(){
-						alert("修改失败");
 					}
 			});
 		},
@@ -96,9 +87,6 @@ var manager={
 						alert(result.message);			
 					}								
 					
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		},
@@ -127,9 +115,6 @@ var manager={
 						alert(result.message);			
 					}								
 					
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		},
@@ -146,9 +131,6 @@ var manager={
 						alert(result.message);			
 					}								
 					
-				},
-				error:function(){
-					alert("修改失败");
 				}
 			});
 		}

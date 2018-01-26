@@ -61,7 +61,7 @@ public class AssignmentController extends ExceptionController{
 	@RequestMapping("getAssignmentSummaryList.do")
 	@ResponseBody
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	public Object getAssignmentSummaryList(int deviceTypeId,String year){
-		return new JsonResult(reportService.getAssignmentSummaryList(Company.getCompanyId(), deviceTypeId, year));
+	public Object getAssignmentSummaryList(int deviceTypeId,String year,Integer unitproperties,Integer buildingtype,Boolean isimport){
+		return new JsonResult(reportService.getAssignmentSummaryList(Company.getCompanyId(), deviceTypeId, year, unitproperties, buildingtype, isimport));
 	}
 }

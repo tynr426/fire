@@ -31,10 +31,13 @@
                         <ul>
                             
                             <li>
-                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 300,finish:deviceType.finishUploadBtn});">修改</a>
+                                <a href="javascript:void(0);" onclick="frm.update({ title: '修改消防设备类型', formId: 'DeviceTypeFormTemplate', id: ${id}, url:'/deviceType/getDeviceType.do', callback: deviceType.updateDeviceType , width: 700, height: 340,finish:deviceType.finishUploadBtn});">修改</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog(${id})">参数</a>
+                                <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog(${id},1)">设备参数</a>
+                            </li>
+							 <li>
+                                <a href="javascript:void(0);" onclick="deviceTypeParameter.openParameterDialog(${id},2)">检查参数</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" onclick="deviceType.openDialog(${id})">生成二维码</a>
@@ -98,7 +101,7 @@
 					<div class="pic-box">
 						<ol>
 							<li><img name="VirtualPath" style="width: 100%; height: 100px;"
-								src="/fire/Static/Upload/selectPic.png" />
+								src="/fire/Static/Upload/selectPic.png" onerror="this.src='/fire/Static/Upload/selectPic.png'"/>
 							<div class="button" id="uploadDemo"></div></li>
 						</ol>
 					</div>

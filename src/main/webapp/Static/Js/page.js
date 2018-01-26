@@ -259,7 +259,13 @@ function showData(pager, data, append) {
 			var newErrorNull = "<tr><td colspan=\"" + cols.length + "\">无此数据</td></tr>";
 
 			c.container.html(newErrorNull);
-		} else {
+		}
+		else if (c.container[0].nodeName == 'UL'){
+			var newErrorNull = "<li>无此数据</li>";
+
+			c.container.html(newErrorNull);
+		} 
+		else {
 			c.container.html("无此数据");
 		}
 	};

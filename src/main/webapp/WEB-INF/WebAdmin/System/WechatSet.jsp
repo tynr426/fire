@@ -52,18 +52,7 @@
                                                 </colgroup>
 
                                                 <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <p class="name">
-                                                                URL：
-                                                            </p>
-                                                        </th>
-                                                        <td>
-                                                            <div class="string">
-                                                                <$var sitedomain />/Wechat.axd
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                            
                                                     <tr>
                                                         <th>
                                                             <p class="name">

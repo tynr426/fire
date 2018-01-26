@@ -78,14 +78,6 @@ public class DeviceController extends ExceptionController{
 		PageInfo<RepairrecordResult> pi = repairrecordService.getRepairrecordpage(index, size);
 		return new JsonResult(pi);
 	}
-	
-	
-	@RequestMapping("/addRepairrecord.do")
-	@ResponseBody	
-	public JsonResult addRepairrecord(RepairrecordResult repairrecordResult){
-		int n = repairrecordService.addRepairrecord(repairrecordResult);
-		return new JsonResult(n);
-	}
 	@RequestMapping("/getRepairrecord.do")
 	@ResponseBody	
 	public JsonResult getRepairrecord(int id){
@@ -117,7 +109,8 @@ public class DeviceController extends ExceptionController{
 	@RequestMapping("getCompanyDeviceNumSummaryList.do")
 	@ResponseBody
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	public Object getDeviceNumSummaryList(int deviceTypeId,Date startTime,Date endTime){
-		return new JsonResult(dnsService.getDeviceNumSummaryList(Company.getCompanyId(), deviceTypeId, startTime, endTime));
+	public Object getDeviceNumSummaryList(int deviceTypeId,Date startTime,Date endTime,
+			Integer unitproperties,Integer buildingtype,Boolean isimport){
+		return new JsonResult(dnsService.getDeviceNumSummaryList(Company.getCompanyId(), deviceTypeId, startTime, endTime, unitproperties, buildingtype, isimport));
 	}
 }

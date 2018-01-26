@@ -82,8 +82,8 @@ public class CompanyServiceImpl implements CompanyService{
 		return managerDAO.deleteResult(Id);
 	}
 
-	public PageInfo<Company> getCompanyPage(int index, int size) {
-		PageInfo<Company> pi = new PageInfo<Company>();
+	public PageInfo<CompanyResult> getCompanyPage(int index, int size) {
+		PageInfo<CompanyResult> pi = new PageInfo<CompanyResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
 		pi.setCount(companyDAO.findCompanyCount());

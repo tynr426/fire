@@ -6,8 +6,19 @@
 	<select id="findById" parameterType="int" resultType="fire.common.entity.Assignment">
 		select * from fir_assignment WHERE Id = #{id}
 	</select>
-	<select id="getAssignmentByCheckId" parameterType="int" resultType="fire.common.entity.Assignment">
-		select * from fir_assignment WHERE CheckId = #{checkId} limit 1
+	<select id="getAssignmentByCheckId" parameterType="int" resultMap="map1">
+		select a.Id,ToManagerId, a.PredictTime,a.Remark,
+		a.Status,a.AddTime
+		from fir_assignment as a 
+		 WHERE a.CheckId = #{checkId} limit 1
+	</select>
+	<resultMap id="map1" type="fire.common.entity.AssignmentResult">
+		 <collection property="list" javaType="java.util.List" ofType="fire.common.entity.Repairrecord"
+		 			 select="findRepairrecord" column="id">
+		 </collection>
+	</resultMap>
+	<select id="findRepairrecord" parameterType="int" resultType="fire.common.entity.Repairrecord">
+		select * from fir_repairrecord where AssignmentId=#{id}
 	</select>
 	<update id="updateAssignment" parameterType="fire.common.entity.Assignment">
 		UPDATE fir_assignment SET
@@ -36,7 +47,9 @@
 		delete from fir_assignment where Id = #{id}
 	</delete>
 	<select id="findAssignmentCount" resultType="int" parameterType="int">
-		select count(*) from fir_assignment where CompanyId=#{companyId}
+		select count(*) from fir_assignment a join com_manager b
+		on(a.ToManagerId=b.Id) join fir_checkdevice c
+		on(a.CheckId=c.Id) where a.CompanyId=#{companyId}
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.AssignmentResult">
 		select a.*,b.Name,c.Description from fir_assignment a join com_manager b
@@ -46,11 +59,16 @@
 		limit #{begin},#{size}
 	</select>
 	<select id="findByManagerCount" resultType="int">
-		select count(*) from fir_assignment a join fir_checkdevice b
-		on(a.CheckId=b.Id)
-		where a.ToManagerId=#{managerId}
-		<if test="deviceTypeId!=null and deviceTypeId!=0">
-			and b.DeviceTypeId=#{deviceTypeId}
+		select count(*) from fir_assignment a join com_manager b
+		on(a.ToManagerId=b.Id) join fir_checkdevice c
+		on(a.CheckId=c.Id) join fir_devicetype d
+		on(c.DeviceTypeId=d.Id)
+		where a.ToManagerId=#{managerId} 
+		<if test="status!=null">
+			and a.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or d.Name like CONCAT('%',#{keyword},'%'))
 		</if>
 	</select>
 	
@@ -60,10 +78,27 @@
 		on(a.CheckId=c.Id) join fir_devicetype d
 		on(c.DeviceTypeId=d.Id)
 		where a.ToManagerId=#{managerId} 
-		<if test="deviceTypeId!=null and deviceTypeId!=0">
-			and c.DeviceTypeId=#{deviceTypeId}
+		<if test="status!=null">
+			and a.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or d.Name like CONCAT('%',#{keyword},'%'))
 		</if>
 		limit #{begin},#{size}
+	</select>
+	<select id="getStatistics" resultType="fire.common.entity.StatusStatistics">
+		select count(*) as Count,a.Status from fir_assignment a join com_manager b
+		on(a.ToManagerId=b.Id) join fir_checkdevice c
+		on(a.CheckId=c.Id) join fir_devicetype d
+		on(c.DeviceTypeId=d.Id)
+		where a.ToManagerId=#{managerId} 
+		<if test="status!=null">
+			and a.Status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			and (c.ManagerName like CONCAT('%',#{keyword},'%') or d.Name like CONCAT('%',#{keyword},'%'))
+		</if>
+		group by a.Status
 	</select>
 	<update id="updateStatus" parameterType="fire.common.entity.Assignment">
 		UPDATE fir_assignment SET

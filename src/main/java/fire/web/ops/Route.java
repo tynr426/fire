@@ -55,6 +55,10 @@ public class Route extends HttpServlet {
 			distribute=new DeviceQRDistribute(sp,this.getServletContext());
 		}else if(module.equals("company.assigment")){
 			distribute=new AssigmentDistribute(sp,this.getServletContext());
+		}else if(module.equals("company.Repairrecord")){
+			distribute=new RepairrecordDistribute(sp,this.getServletContext());
+		}else if(module.equals("company.AuthBind")){
+			distribute=new AuthBindDistribute(sp,this.getServletContext());
 		}
 		distribute.doPost(req, resp);
 

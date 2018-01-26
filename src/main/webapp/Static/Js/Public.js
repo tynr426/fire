@@ -968,8 +968,12 @@ var frm = {
 						var doc = (result.data);
 
 						$.each(doc,function(key,item){
+							if(typeof(item)=="boolean"){
+								$("#dialogForm").find("#"+key.firstUpperCase()).val(item.toString());
+							}
+							else{
 							$("#dialogForm").find("#"+key.firstUpperCase()).val(item);
-
+							}
 						});
 						if(typeof(opt.finish)=='function'){
 							opt.finish(doc);
@@ -1957,7 +1961,7 @@ $.extend($, {
 		ctl = $("#" + ctlId),
 		sctl = $("#" + secendId),
 		tctl = $("#" + thirdId),
-		areaList = {};
+		areaList = {},slist=[];
 		ctl.append('<option value="" parentId="" >请选择</option>');
 
 		$.getScript(jsonUrl, function(item) {

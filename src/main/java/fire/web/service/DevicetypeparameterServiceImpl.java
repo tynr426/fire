@@ -13,13 +13,13 @@ import fire.web.utils.PageInfo;
 public class DevicetypeparameterServiceImpl implements DevicetypeparameterService{
 	@Resource
 	private DTPDAO dTPDAO;
-	public List<Devicetypeparameter> showDevicetypeparameter() {
-		List<Devicetypeparameter> list = dTPDAO.findAll();
+	public List<Devicetypeparameter> showDevicetypeparameter(int parameterType) {
+		List<Devicetypeparameter> list = dTPDAO.findAll(parameterType);
 		return list;
 	}
 
 	public int addDevicetypeparameter(Devicetypeparameter dtp) throws NameException {
-		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(), dtp.getId());
+		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(),dtp.getParameterType(), dtp.getId());
 		if(one!=null){
 			throw new NameException("该类型已存在");
 		}
@@ -29,7 +29,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 	}
 
 	public int updateDevicetypeparameter(Devicetypeparameter dtp) {
-		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(), dtp.getId());
+		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(),dtp.getDeviceTypeId(), dtp.getId());
 		if(one!=null){
 			throw new NameException("该类型已存在");
 		}
@@ -54,12 +54,12 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 		return n;
 	}
 
-	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int deviceTypeId,int index, int size) {
+	public PageInfo<Devicetypeparameter> getDevicetypeparameterPage(int deviceTypeId,int parameterType,int index, int size) {
 		PageInfo<Devicetypeparameter> pi = new PageInfo<Devicetypeparameter>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
-		pi.setCount(dTPDAO.findDevicetypeparameterCount());
-		pi.setList(dTPDAO.findByLimit(deviceTypeId,pi.getBegin(), size));
+		pi.setCount(dTPDAO.findDevicetypeparameterCount(deviceTypeId,parameterType));
+		pi.setList(dTPDAO.findByLimit(deviceTypeId,parameterType, pi.getBegin(), size));
 		return pi;
 	}
 

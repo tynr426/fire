@@ -20,9 +20,6 @@ var repairrecord={
 						alert(result.message);		
 					}								
 
-				},
-				error:function(){
-					alert("添加失败");
 				}
 			});
 		},
@@ -33,9 +30,6 @@ var repairrecord={
 				data:{id:id},
 				dataType:"json",
 				success:function(result){	
-				},
-				error:function(){
-					alert("获取失败");
 				}
 			});
 		},
@@ -62,9 +56,6 @@ var repairrecord={
 							alert(result.message);			
 						}								
 
-					},
-					error:function(){
-						alert("修改失败");
 					}
 			});
 		}

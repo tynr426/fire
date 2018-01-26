@@ -81,7 +81,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService{
 
 	public List<DeviceTypeResult> findDeviceTypeResult() {
 		List<DeviceTypeResult> list = deviceTypeDAO.findAll();
-		List<Devicetypeparameter> dtp = dTPDAO.findAll();
+		List<Devicetypeparameter> dtp = dTPDAO.findAll(1);
 		for(DeviceTypeResult entity:list){
 			for(int i=0;i<dtp.size();i++){
 				Devicetypeparameter p=dtp.get(i);

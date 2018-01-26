@@ -30,7 +30,7 @@ contentType="text/html; charset=utf-8" %>
 
 									<div class="button">
 										<a href="javascript:void(0);"
-											onclick="frm.add({ title: '添加单位', formId: 'CompanyFormTemplate', callback: company.addCompany, width: 800, height: 400, finish: $.areas,finishArgs:['Province','City','Area'] });"
+											onclick="frm.add({ title: '添加单位', formId: 'CompanyFormTemplate', callback: company.addCompany, width: 800, height: 400, finish: company.updateFinish,finishArgs:['add'] });"
 											class="btn">添加单位</a>
 									</div>
 
@@ -51,7 +51,9 @@ contentType="text/html; charset=utf-8" %>
 									<col style="width: 25px;" />
 									<col style="width: auto;" />
 									<col style="width: auto;" />
-									<col style="width: 280px;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
+									<col style="width: auto;" />
 									<col style="width: auto;" />
 									<col style="width: 61px;" />
 									<col style="width: 61px;" />
@@ -70,10 +72,16 @@ contentType="text/html; charset=utf-8" %>
 											<p class="name center">单位代码</p>
 										</td>
 										<td>
-											<p class="name center">序列号</p>
+											<p class="name center">联系方式</p>
 										</td>
 										<td>
-											<p class="name center">联系方式</p>
+											<p class="name center">公司性质</p>
+										</td>
+										<td>
+											<p class="name center">建筑类型</p>
+										</td>
+										<td>
+											<p class="name center">是否重点单位</p>
 										</td>
 										<td>
 											<p class="name center">状态</p>
@@ -122,5 +130,6 @@ contentType="text/html; charset=utf-8" %>
 	  			container:"pageBody"
 	  			};
 	  var pageInfo=new ecPage.fn._init(config);
+	  company.init();
  }
 </script>

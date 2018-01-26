@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 
 import fire.common.entity.Assignment;
 import fire.common.entity.AssignmentResult;
+import fire.common.entity.RepairrecordResult;
+import fire.common.entity.StatusStatistics;
 
 public interface AssignmentDAO {
 	public int updateAssignment(Assignment assignment);
@@ -19,18 +21,23 @@ public interface AssignmentDAO {
 			@Param("size") Integer size
 			);
 	public int findByManagerCount(@Param("managerId")int managerId,
-			@Param("deviceTypeId") Integer deviceTypeId,
+			@Param("status") Integer status,
 			@Param("keyword") String keyword
 			);
 	public List<AssignmentResult> findByManagerLimit(
 			@Param("managerId")int managerId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size,
-			@Param("deviceTypeId") Integer deviceTypeId,
+			@Param("status") Integer status,
+			@Param("keyword") String keyword
+			);
+	public List<StatusStatistics> getStatistics(
+			@Param("managerId")int managerId,
+			@Param("status") Integer status,
 			@Param("keyword") String keyword
 			);
 	public int updateStatus(Assignment assignment);
-	public Assignment getAssignmentByCheckId(int checkId);
+	public AssignmentResult getAssignmentByCheckId(int checkId);
 	public AssignmentResult getAssignmentByDeviceId(
 			@Param("deviceId")int deviceId,
 			@Param("toManagerId")int toManagerId);

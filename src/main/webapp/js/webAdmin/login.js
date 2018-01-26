@@ -31,9 +31,6 @@ var login = {
 							alert(result.message);		
 						}								
 
-					},
-					error:function(){
-						alert("登录失败");
 					}
 				});
 			}
@@ -45,9 +42,6 @@ var login = {
 					dataType:"json",
 					success:function(result){
 						window.location.href="toLogin.do";
-					},
-					error:function(){
-						alert(arguments);
 					}
 
 				});

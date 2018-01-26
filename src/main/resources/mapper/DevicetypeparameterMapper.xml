@@ -4,14 +4,16 @@
 
 <mapper namespace="fire.web.dao.DTPDAO">
 	<select id="getDTPByDescription" resultType="fire.common.entity.Devicetypeparameter">
-		SELECT * FROM fir_devicetypeparameter WHERE Description = #{description} and Id!=#{id} limit 1
+		SELECT * FROM fir_devicetypeparameter WHERE Description = #{description}
+		 AND ParameterType=#{parameterType}
+		 and Id!=#{id} limit 1
 	</select>
 	<select id="findById" parameterType="int" resultType="fire.common.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter  
 		WHERE Id = #{Id}
 	</select>
 	<select id="findAll" resultType="fire.common.entity.Devicetypeparameter">
-		SELECT * FROM fir_devicetypeparameter where status=1
+		SELECT * FROM fir_devicetypeparameter where status=1 AND ParameterType=#{parameterType}
 	</select>
 	<update id="updateDevicetypeparameter" parameterType="fire.common.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET 
@@ -36,18 +38,24 @@
 		Required,
 		Status,
 		Remark,
-		DeviceTypeId)
+		DeviceTypeId,
+		ParameterType)
 		values(
-		#{Description},#{DataType},#{EditorType},#{Candidate},#{Unit},#{Reorder},#{Required},#{Status},#{Remark},#{DeviceTypeId})		
+		#{Description},#{DataType},#{EditorType},#{Candidate},#{Unit},#{Reorder},#{Required},#{Status},#{Remark},
+		#{DeviceTypeId},#{ParameterType})		
 	</insert>
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from fir_devicetypeparameter where Id = #{Id}
 	</delete>
 	<select id="findDevicetypeparameterCount" resultType="int">
 		select count(*) from fir_devicetypeparameter 
+		where DeviceTypeId=#{deviceTypeId}
+		AND ParameterType=#{parameterType}
 	</select>
 	<select id="findByLimit" resultType="fire.common.entity.Devicetypeparameter">
-		select * from fir_devicetypeparameter where DeviceTypeId=#{deviceTypeId} limit #{begin},#{size}
+		select * from fir_devicetypeparameter where DeviceTypeId=#{deviceTypeId}
+		AND ParameterType=#{parameterType} order by Reorder
+		 limit #{begin},#{size}
 	</select>
 	<update id="updateStatus" parameterType="fire.common.entity.Devicetypeparameter">
 		UPDATE fir_devicetypeparameter SET

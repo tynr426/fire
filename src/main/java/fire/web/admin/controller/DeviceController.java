@@ -32,8 +32,9 @@ public class DeviceController extends ExceptionController{
 	@ResponseBody
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-	public Object getDeviceNumSummaryList(int companyId, int deviceTypeId,Date startTime,Date endTime){
-		return new JsonResult(reportService.getDeviceNumSummaryList(companyId, deviceTypeId, startTime, endTime));
+	public Object getDeviceNumSummaryList(int companyId, int deviceTypeId,Date startTime,Date endTime,
+			Integer unitproperties,Integer buildingtype,Boolean isimport){
+		return new JsonResult(reportService.getDeviceNumSummaryList(companyId, deviceTypeId, startTime, endTime, unitproperties, buildingtype, isimport));
 	}
 //	@InitBinder  
 //	public void initBinder(WebDataBinder binder, WebRequest request) {  
@@ -50,7 +51,7 @@ public class DeviceController extends ExceptionController{
 	@RequestMapping("getAssignmentSummaryList.do")
 	@ResponseBody
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	public Object getAssignmentSummaryList(int companyId,int deviceTypeId,String year){
-		return new JsonResult(reportService.getAssignmentSummaryList(companyId, deviceTypeId, year));
+	public Object getAssignmentSummaryList(int companyId,int deviceTypeId,String year,Integer unitproperties,Integer buildingtype,Boolean isimport){
+		return new JsonResult(reportService.getAssignmentSummaryList(companyId, deviceTypeId, year, unitproperties, buildingtype, isimport));
 	}
 }

@@ -38,6 +38,49 @@
                     <tr>
                         <th>
                             <p class="name">
+                                	公司性质：
+                            </p>
+                        </th>
+                        <td>
+							<select id="Unitproperties"  error="请选择！" validate="isnull">
+								
+							</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p class="name">
+                                	建筑类型：
+                            </p>
+                        </th>
+                        <td>
+							<select id="Buildingtype"  error="请选择！" validate="isnull">
+								<option value="">选择</option>
+								<option value="1">民用建筑公共建筑</option>
+								<option value="2">民用建筑住宅建筑</option>
+								<option value="3">工业建筑</option>
+								<option value="4">农业建筑</option>
+							</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p class="name">
+                                	重点单位：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="selectbox">
+                               <select id="Isimport"  error="请选择是否重点单位！" validate="isnull">
+								<option value="false">否</option>
+								<option value="true">是</option>
+							</select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p class="name">
                                 	公司地址：
                             </p>
                         </th>
@@ -157,6 +200,92 @@
                             </div>
                         </td>
                     </tr>
+<tr>
+                        <th>
+                            <p class="name">
+                                	公司性质：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="string">
+{{if unitproperties==1}}
+商场(市场)
+{{else unitproperties==2}}
+宾馆(饭店)
+{{else unitproperties==3}}
+体育场(馆)
+{{else unitproperties==4}}
+会堂
+{{else unitproperties==5}}
+公共娱乐场所
+{{else unitproperties==6}}
+其他公众聚集场所
+{{else unitproperties==7}}
+医院
+{{else unitproperties==8}}
+养老院和寄宿制的学校
+{{else unitproperties==9}}
+幼儿园
+{{else unitproperties==10}}
+国家机关
+{{else unitproperties==11}}
+易燃易爆化学物品的生产、充装、存储、供应、销售单位
+{{else unitproperties==12}}
+公共图书馆
+{{else unitproperties==13}}
+展览馆
+{{else unitproperties==14}}
+博物馆
+{{else unitproperties==15}}
+档案馆以及具有火灾危险性的文物保护单位
+{{else unitproperties==16}}
+客运车站
+{{else unitproperties==17}}
+码头
+{{else unitproperties==18}}
+民用机场
+{{else unitproperties==19}}
+其他
+{{/if}}           
+                            </div>
+                        </td>
+                    </tr>
+					<tr>
+                        <th>
+                            <p class="name">
+                                	建筑类型：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="string">
+{{if buildingtype==1}}
+民用建筑公共建筑
+{{else buildingtype==2}}
+民用建筑住宅建筑
+{{else buildingtype==3}}
+工业建筑
+{{else buildingtype==4}}
+农业建筑
+{{/if}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p class="name">
+                                	重点单位：
+                            </p>
+                        </th>
+                        <td>
+                            <div class="string">
+							 		{{if isimport==true}}
+是
+{{else isimport==false}}
+否
+{{/if}}
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <th>
                             <p class="name">
@@ -234,7 +363,7 @@
                         </th>
                         <td>
                             <div class="button">
-                                <a href="javascript:void(0);" class="btn" onclick="companyManager.show(0,);">修改</a>
+                                <a href="javascript:void(0);" class="btn" onclick="companyManager.show(0);">修改</a>
                             </div>
                         </td>
                     </tr>

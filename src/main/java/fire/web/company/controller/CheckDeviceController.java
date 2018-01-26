@@ -32,7 +32,7 @@ public class CheckDeviceController extends ExceptionController{
 	}
 	@RequestMapping("/updateCheckDevice.do")
 	@ResponseBody	
-	public JsonResult updateCheckDevice(CheckDevice cd){
+	public JsonResult updateCheckDevice(CheckDeviceResult cd){
 		int n = cdService.updateCD(cd);
 		return new JsonResult(n);
 	}
@@ -44,8 +44,8 @@ public class CheckDeviceController extends ExceptionController{
 	}
 	@RequestMapping("/showCheckDevice.do")
 	@ResponseBody
-	public Object getCheckDevicePage(int index,int size,Integer managerId){
-		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(Company.getCompanyId(), index, size, managerId);
+	public Object getCheckDevicePage(int index,int size,Integer status){
+		PageInfo<CheckDeviceResult> pi = cdService.getCheckDevicePage(Company.getCompanyId(), index, size, status, null);
 		return new JsonResult(pi);
 	}
 }

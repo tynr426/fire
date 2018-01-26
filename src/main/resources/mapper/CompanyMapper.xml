@@ -29,7 +29,10 @@
 			Area=#{Area},
 			Address = #{Address},
 			Tel=#{Tel},
-			Atten=#{Atten}
+			Atten=#{Atten},
+			Unitproperties=#{Unitproperties},
+			Buildingtype=#{Buildingtype},
+			Isimport=#{Isimport}
 			WHERE Id = #{Id}
 	</update>
 	<insert id="addCompany" parameterType="fire.common.entity.Company" useGeneratedKeys="true" keyProperty="id">
@@ -43,9 +46,12 @@
 		Tel,
 		SN,
 		Status,
-		Atten)
+		Atten,
+		Unitproperties,
+		Buildingtype,
+		Isimport)
 		values(
-		#{Name},#{Code},#{Province},#{City},#{Area},#{Address},#{Tel},#{SN},#{Status},#{Atten})		
+		#{Name},#{Code},#{Province},#{City},#{Area},#{Address},#{Tel},#{SN},#{Status},#{Atten},#{Unitproperties},#{Buildingtype},#{Isimport})		
 	</insert>
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from com_company where Id = #{Id}
@@ -53,8 +59,10 @@
 	<select id="findCompanyCount" resultType="int">
 		select count(*) from com_company
 	</select>
-	<select id="findByLimit" resultType="fire.common.entity.Company">
+	<select id="findByLimit" resultType="fire.common.entity.CompanyResult">
+		select m.*,n.EnumDesc from (
 		select * from com_company limit #{begin},#{size}
+		) as m left join fir_categoryenum as n on(m.Unitproperties=n.EnumValue)
 	</select>
 	<update id="updateStatus" parameterType="fire.common.entity.Company">
 		UPDATE com_company SET

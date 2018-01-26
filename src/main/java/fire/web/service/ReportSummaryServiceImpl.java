@@ -22,17 +22,19 @@ import fire.web.dao.ReportDAO;
 public class ReportSummaryServiceImpl implements ReportSummaryService{
 	@Resource
 	private ReportDAO reportDAO;
-	public List<DeviceNumSummary> getDeviceNumSummaryList(int companyId, int deviceTypeId, Date startTime,Date endTime) {
-		List<DeviceNumSummary> list = reportDAO.getDeviceNumSummaryList(companyId, deviceTypeId, startTime, endTime);
+	public List<DeviceNumSummary> getDeviceNumSummaryList(int companyId, int deviceTypeId, Date startTime,Date endTime,
+			Integer unitproperties,Integer buildingtype,Boolean isimport) {
+		List<DeviceNumSummary> list = reportDAO.getDeviceNumSummaryList(companyId, deviceTypeId, startTime, endTime, unitproperties, buildingtype, isimport);
 		return list;
 	}
-	public ReportSummary getAssignmentSummaryList(int companyId,int deviceTypeId,String year){
+	public ReportSummary getAssignmentSummaryList(int companyId,int deviceTypeId,String year,
+			Integer unitproperties,Integer buildingtype,Boolean isimport){
 		 Calendar cale =  Calendar.getInstance(); 
 		 if(year.equals("")){
 	         year = String.valueOf(cale.get(Calendar.YEAR));  
 	        
 		 }	
-		List<AssignmentSummary> list= reportDAO.getAssignmentSummaryList(companyId, deviceTypeId, year);
+		List<AssignmentSummary> list= reportDAO.getAssignmentSummaryList(companyId, deviceTypeId, year, unitproperties, buildingtype, isimport);
 	
 		ReportSummary summary=new ReportSummary();
 		ReportData reportData=new ReportData();
