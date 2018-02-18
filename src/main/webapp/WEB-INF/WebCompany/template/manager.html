@@ -1,7 +1,14 @@
 <script type="text/template" id="bodyListTemplate">
         
         <tr>
-            <td><div class="string center">${name}</div></td>
+            <td><div class="string center">
+{{if name==null || name==""}}
+${userName}
+{{else}}
+${name}
+{{/if}}
+
+</div></td>
             <td><div class="string center">${email}</div></td>
             <td><div class="string center">${mobile}</div></td>
             <td><div class="string center">${position}</div></td>

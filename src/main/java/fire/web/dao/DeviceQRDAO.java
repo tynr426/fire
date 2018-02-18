@@ -13,9 +13,11 @@ public interface DeviceQRDAO {
 	public DeviceQR findById(int id);
 	public ScanInfo findByCode(String code);
 	public int addDeviceQR(List<DeviceQR> list);
+	public int delete(int id);
 	public int update(@Param("code") String code,
 			@Param("deviceId") Integer deviceId);
-	public int delete(int id);
+	public List<DeviceQR> getQrByCodeOrDeviceId(@Param("code") String code,
+			@Param("deviceId") Integer deviceId);
 	public int findDeviceQRCount();
 	public List<DeviceQRResult> findByLimit(
 			@Param("begin") Integer begin,
@@ -30,4 +32,5 @@ public interface DeviceQRDAO {
 	public List<DeviceQR> getQRList(
 			String batch
 			);
+	public int unBind(Integer deviceId);
 }

@@ -44,9 +44,10 @@ public class AssignmentController extends ExceptionController{
 	}
 	@RequestMapping("/save.do")
 	@ResponseBody
-	public Object save(Assignment assignment){
-
-		return new JsonResult(assignmentService.save(assignment));	
+	public Object save(Assignment entity){
+		entity.setCompanyId(Company.getCompanyId());
+		entity.setFromManagerId(Company.getCompany().getManagerId());
+		return new JsonResult(assignmentService.save(entity));	
 	}
 	@RequestMapping("/getAssignmentByCheckId.do")
 	@ResponseBody

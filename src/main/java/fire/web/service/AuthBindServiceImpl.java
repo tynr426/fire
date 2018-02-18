@@ -22,6 +22,7 @@ public class AuthBindServiceImpl implements AuthBindService{
 			n=abDAO.updateAuthBind(authBind);
 		}
 		else{
+			System.out.println("openId:"+authBind.getOpenId()+"managerId:"+authBind.getManagerId()+""+(entity!=null));
 		authBind.setAuthoreTime(new Date());
 		
 		 n = abDAO.addAuthBind(authBind);

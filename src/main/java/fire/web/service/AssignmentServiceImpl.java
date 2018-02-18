@@ -48,8 +48,6 @@ public class AssignmentServiceImpl implements AssignmentService{
 	@Transactional
 	public int save(Assignment entity){
 		    CheckDeviceResult cd = cdDAO.getCD(entity.getCheckId());
-			entity.setCompanyId(Company.getCompanyId());
-			entity.setFromManagerId(Company.getCompany().getManagerId());
 			entity.setAddTime(new Date());
 			entity.setStatus(1);
 			cd.setStatus(2);
@@ -109,12 +107,12 @@ public class AssignmentServiceImpl implements AssignmentService{
 		int n = assignmentDAO.updateStatus(assignment);
 		return n;
 	}
-	public PageInfo<AssignmentResult> getAssignmentPageByManager(int managerId, int index, int size,Integer status,String keyword) {
+	public PageInfo<AssignmentResult> getAssignmentPageByManager(int companyId,int managerId, int index, int size,Integer status,String keyword) {
 		PageInfo<AssignmentResult> pi = new PageInfo<AssignmentResult>();
 		pi.setPageIndex(index);
 		pi.setPageSize(size);
-		pi.setCount(assignmentDAO.findByManagerCount(managerId,status,keyword));
-		pi.setList(assignmentDAO.findByManagerLimit(managerId,pi.getBegin(), size,status,keyword));
+		pi.setCount(assignmentDAO.findByManagerCount(companyId,managerId,status, keyword));
+		pi.setList(assignmentDAO.findByManagerLimit(companyId,managerId,pi.getBegin(), size,status, keyword));
 		return pi;
 	}
 	public List<StatusStatistics> getStatistics(int managerId, Integer status, String keyword) {

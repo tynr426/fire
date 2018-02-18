@@ -7,18 +7,18 @@
 		select * from fir_assignment WHERE Id = #{id}
 	</select>
 	<select id="getAssignmentByCheckId" parameterType="int" resultMap="map1">
-		select a.Id,ToManagerId, a.PredictTime,a.Remark,
+		select a.Id,a.CheckId,ToManagerId, a.PredictTime,a.Remark,
 		a.Status,a.AddTime
 		from fir_assignment as a 
 		 WHERE a.CheckId = #{checkId} limit 1
 	</select>
 	<resultMap id="map1" type="fire.common.entity.AssignmentResult">
 		 <collection property="list" javaType="java.util.List" ofType="fire.common.entity.Repairrecord"
-		 			 select="findRepairrecord" column="id">
+		 			 select="findRepairrecord" column="{Id}">
 		 </collection>
 	</resultMap>
 	<select id="findRepairrecord" parameterType="int" resultType="fire.common.entity.Repairrecord">
-		select * from fir_repairrecord where AssignmentId=#{id}
+		select * from fir_repairrecord where AssignmentId=#{Id}
 	</select>
 	<update id="updateAssignment" parameterType="fire.common.entity.Assignment">
 		UPDATE fir_assignment SET
@@ -63,7 +63,10 @@
 		on(a.ToManagerId=b.Id) join fir_checkdevice c
 		on(a.CheckId=c.Id) join fir_devicetype d
 		on(c.DeviceTypeId=d.Id)
-		where a.ToManagerId=#{managerId} 
+		where b.CompanyId=#{companyId}
+		<if test="managerId!=null and managerId!=0">
+			and a.ToManagerId=#{managerId}
+		</if>
 		<if test="status!=null">
 			and a.Status=#{status}
 		</if>
@@ -77,7 +80,10 @@
 		on(a.ToManagerId=b.Id) join fir_checkdevice c
 		on(a.CheckId=c.Id) join fir_devicetype d
 		on(c.DeviceTypeId=d.Id)
-		where a.ToManagerId=#{managerId} 
+		where b.CompanyId=#{companyId}
+		<if test="managerId!=null and managerId!=0">
+			and a.ToManagerId=#{managerId}
+		</if>
 		<if test="status!=null">
 			and a.Status=#{status}
 		</if>
@@ -106,9 +112,10 @@
 		WHERE Id = #{id}
 	</update>
 	<select id="getAssignmentByDeviceId" resultType="fire.common.entity.AssignmentResult">
-	select a.*,b.Description from fir_assignment a 
-		join fir_checkdevice b
-		on(a.CheckId=b.Id) 
-		where a.ToManagerId=#{toManagerId} and b.DeviceId=#{deviceId} 
+	select a.*,b.Description,b.Status as CheckStatus from fir_checkdevice b 
+		left join fir_assignment a
+		on(a.CheckId=b.Id and a.ToManagerId=#{toManagerId}) 
+		where  b.DeviceId=#{deviceId} 
+		order by b.Id DESC limit 1;
 	</select>
 </mapper>

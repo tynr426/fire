@@ -37,6 +37,12 @@
 			DeviceId=#{deviceId}
 			WHERE Code = #{code}
 		</update>
+		<update id="unBind" parameterType="int">
+			UPDATE fir_deviceqr SET 
+			IsUsed=0, 
+			DeviceId=0
+			WHERE DeviceId = #{deviceId}
+		</update>
 	<delete id="delete" parameterType="int">
 		delete from fir_deviceqr where Id = #{id}
 	</delete>
@@ -64,5 +70,9 @@
 	</select>
 	<select id="getQRList" parameterType="String" resultType="fire.common.entity.DeviceQR">
 		select *from fir_deviceqr where batch=#{batch}
+	</select>
+		<select id="getQrByCodeOrDeviceId"  resultType="fire.common.entity.DeviceQR">
+		select * from fir_deviceqr
+		 WHERE Code = #{code} or DeviceId=#{deviceId}
 	</select>
 </mapper>

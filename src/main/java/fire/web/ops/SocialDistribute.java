@@ -54,7 +54,7 @@ public class SocialDistribute extends Distribute {
 		WeChatAccount wca=weChatAccountService.getWeChatAccount();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String virtual="/userfiles/device/"+companyId+"/"+sdf.format(new Date())+"/";
-		System.out.println("pc-mediaId="+mediaId);
+		//System.out.println("pc-mediaId="+mediaId);
 		String fileName=saveImageToDisk(req,wca,mediaId,virtual);
 		String str=Utils.objectToJson(new JsonResult(fileName));
 		resp.getWriter().write(str);
@@ -77,10 +77,10 @@ public class SocialDistribute extends Distribute {
 				fileOutputStream.write(data, 0, len);
 			}
 			path=virtual+filename;
-			System.out.println("path="+path);
+			//System.out.println("path="+path);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("ex="+e.getMessage());
+			//System.out.println("ex="+e.getMessage());
 		} finally {
 			if (inputStream != null) {
 				try {

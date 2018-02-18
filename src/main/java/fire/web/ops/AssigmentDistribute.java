@@ -37,6 +37,7 @@ public class AssigmentDistribute extends Distribute {
 	}
 	}
 	private void showAssigment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		int companyId=ConvertUtils.toInt(req.getParameter("CompanyId"));
 		int managerId=ConvertUtils.toInt(req.getParameter("ManagerId"));
 		int index=ConvertUtils.toInt(req.getParameter("Index"));
 		int size=ConvertUtils.toInt(req.getParameter("Size"));
@@ -46,7 +47,7 @@ public class AssigmentDistribute extends Distribute {
 		}
 		String keyword=req.getParameter("Keyword");
 		resp.setContentType("text/javascript; charset=utf-8"); 
-		String str=Utils.objectToJson(new JsonResult(assignmentService.getAssignmentPageByManager(managerId, index, size, status, keyword)));
+		String str=Utils.objectToJson(new JsonResult(assignmentService.getAssignmentPageByManager(companyId,managerId, index, size, status, keyword)));
 		resp.getWriter().write(str);
 	}
 	private void getAssignmentByCheckId(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{

@@ -20,11 +20,14 @@ public interface AssignmentDAO {
 			@Param("begin") Integer begin,
 			@Param("size") Integer size
 			);
-	public int findByManagerCount(@Param("managerId")int managerId,
+	public int findByManagerCount(
+			@Param("companyId")int companyId,
+			@Param("managerId")int managerId,
 			@Param("status") Integer status,
 			@Param("keyword") String keyword
 			);
 	public List<AssignmentResult> findByManagerLimit(
+			@Param("companyId")int companyId,
 			@Param("managerId")int managerId,
 			@Param("begin") Integer begin,
 			@Param("size") Integer size,

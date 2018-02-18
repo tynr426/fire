@@ -28,9 +28,23 @@ public class DeviceQRDistribute extends Distribute {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(sp.Action.equals("getDeviceQRByCode")){
-			getDeviceQRByCode(req,resp);
+		try {
+			if(sp.Action.equals("getDeviceQRByCode")){
+				getDeviceQRByCode(req,resp);
+			}
+			else if(sp.Action.equals("isBindQr")){
+				isBindQr(req,resp);
+			}else if(sp.Action.equals("bind")){
+				bind(req,resp);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			resp.setContentType("text/javascript; charset=utf-8"); 
+			JsonResult result=new JsonResult(e);
+			String str=Utils.objectToJson(result);
+			resp.getWriter().write(str);
 		}
+		
 	}
 
 	private void getDeviceQRByCode(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -49,6 +63,27 @@ public class DeviceQRDistribute extends Distribute {
 				result=new JsonResult(100,new Throwable("该设备已经绑定其他公司"));
 			}
 		}
+		String str=Utils.objectToJson(result);
+		resp.getWriter().write(str);
+	}
+	private void isBindQr(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String qrCode = req.getParameter("QrCode");
+		Integer deviceId = ConvertUtils.toInt(req.getParameter("DeviceId"));
+		Integer deviceTypeId = ConvertUtils.toInt(req.getParameter("DeviceTypeId"));
+	
+		resp.setContentType("text/javascript; charset=utf-8"); 
+		int re=deviceQRService.getQrByCodeOrDeviceId(qrCode,deviceId,deviceTypeId);
+		JsonResult result=new JsonResult(re);
+		String str=Utils.objectToJson(result);
+		resp.getWriter().write(str);
+	}
+	private void bind(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String qrCode = req.getParameter("QrCode");
+		Integer deviceId = ConvertUtils.toInt(req.getParameter("DeviceId"));
+		
+		resp.setContentType("text/javascript; charset=utf-8"); 
+		int re=deviceQRService.bind(qrCode,deviceId);
+		JsonResult result=new JsonResult(re);
 		String str=Utils.objectToJson(result);
 		resp.getWriter().write(str);
 	}
