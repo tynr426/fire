@@ -20,8 +20,10 @@ import fire.sdk.utils.QRUtil;
 import fire.sdk.utils.WechatJsSDK;
 import fire.web.service.WeChatAccountService;
 import fire.web.service.WeChatAccountServiceImpl;
+import fire.web.utils.Constants;
 import fire.web.utils.JsonResult;
 import fire.web.utils.Md5;
+import fire.web.utils.PropertyUtil;
 import fire.web.utils.Utils;
 
 public class SocialDistribute extends Distribute {
@@ -53,7 +55,7 @@ public class SocialDistribute extends Distribute {
 		String mediaId=req.getParameter("MediaId");
 		WeChatAccount wca=weChatAccountService.getWeChatAccount();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String virtual="/userfiles/device/"+companyId+"/"+sdf.format(new Date())+"/";
+		String virtual="/device/"+companyId+"/"+sdf.format(new Date())+"/";
 		//System.out.println("pc-mediaId="+mediaId);
 		String fileName=saveImageToDisk(req,wca,mediaId,virtual);
 		String str=Utils.objectToJson(new JsonResult(fileName));
@@ -69,14 +71,14 @@ public class SocialDistribute extends Distribute {
 		try {
 			//服务器存图路径
 
-			String dir=QRUtil.mkdirs(request.getSession().getServletContext().getRealPath(virtual));
+			String dir=QRUtil.mkdirs(PropertyUtil.getProperty(Constants.UpLoadDir)+virtual);
 
 			String filename = Md5.createID() + ".jpg";
 			fileOutputStream = new FileOutputStream(dir + filename);
 			while ((len = inputStream.read(data)) != -1) {
 				fileOutputStream.write(data, 0, len);
 			}
-			path=virtual+filename;
+			path=Constants.ImageVirtual+virtual+filename;
 			//System.out.println("path="+path);
 		} catch (IOException e) {
 			e.printStackTrace();

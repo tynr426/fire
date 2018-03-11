@@ -19,6 +19,7 @@ public class AuthBindServiceImpl implements AuthBindService{
 		AuthBind entity= findByOpenIdAndManagerId(authBind.getOpenId(),authBind.getManagerId());
 		int n =0;
 		if(entity!=null&&entity.getId()>0){
+			authBind.setId(entity.getId());
 			n=abDAO.updateAuthBind(authBind);
 		}
 		else{

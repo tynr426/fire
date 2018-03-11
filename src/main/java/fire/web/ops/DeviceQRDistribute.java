@@ -63,6 +63,15 @@ public class DeviceQRDistribute extends Distribute {
 				result=new JsonResult(100,new Throwable("该设备已经绑定其他公司"));
 			}
 		}
+		if(entity.getCheckStatus()!=null){
+			//该设备需要维修
+			if(entity.getCheckStatus()!=3&& entity.getToManagerId()!=toManagerId){
+				result=new JsonResult(100,new Throwable("该设备的维修已经指派给其他人!"));
+			}
+			else if(entity.getCheckStatus()==1){
+				result=new JsonResult(100,new Throwable("该设备的维修等待分派!"));
+			}
+		}
 		String str=Utils.objectToJson(result);
 		resp.getWriter().write(str);
 	}

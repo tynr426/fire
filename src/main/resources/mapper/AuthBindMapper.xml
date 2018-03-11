@@ -25,7 +25,7 @@
 			Face=#{Face},
 			IntegType=#{IntegType},
 			Subscribe=#{Subscribe}
-			WHERE ManagerId=#{managerId}
+			WHERE Id=#{Id}
 	</update>
 	<select id="findByOpenId" parameterType="String" resultType="fire.common.entity.AuthBind">
 		select * from com_authbind where OpenId=#{openId} limit 1

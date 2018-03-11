@@ -26,7 +26,9 @@ import fire.sdk.utils.JsonResult;
 import fire.sdk.utils.WechatJsSDK;
 import fire.web.service.WeChatAccountService;
 import fire.web.service.WeChatAccountServiceImpl;
+import fire.web.utils.Constants;
 import fire.web.utils.Md5;
+import fire.web.utils.PropertyUtil;
 @Controller
 public class UploadFileController{
 	@ResponseBody
@@ -34,8 +36,8 @@ public class UploadFileController{
 	public Object handleFileUpload(MultipartHttpServletRequest request){
 		Iterator<String> iterator = request.getFileNames();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String virtual="/userfiles/device/"+sdf.format(new Date())+"/";
-		String dir=mkdirs(request.getSession().getServletContext().getRealPath(virtual));
+		String virtual="/device/"+sdf.format(new Date())+"/";
+		String dir=mkdirs(PropertyUtil.getProperty(Constants.UpLoadDir+virtual));
 		
 		String name ="";
 		while (iterator.hasNext()) {
@@ -61,7 +63,7 @@ public class UploadFileController{
 			}
 			
 		}
-		return new JsonResult(virtual+name);
+		return new JsonResult(Constants.ImageVirtual+virtual+name);
 		// do stuff...
 
 	}

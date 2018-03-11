@@ -45,17 +45,21 @@ public class AssignmentServiceImpl implements AssignmentService{
 	private AuthBindDAO authBindDAO;
 	@Resource
 	private RepairrecordDAO repairrecordDAO;
+	//
 	@Transactional
 	public int save(Assignment entity){
 		    CheckDeviceResult cd = cdDAO.getCD(entity.getCheckId());
 			entity.setAddTime(new Date());
-			entity.setStatus(1);
+			//待整改
+			entity.setStatus(0);
+			//待整改
 			cd.setStatus(2);
 			cdDAO.updateCD(cd);
 			
 			WeChatAccount wca= weChatAccountDAO.getWeChatAccount();
 			CheckDeviceResult cdr =cdDAO.getCD(entity.getCheckId());
 			DeviceResult device = deviceDAO.findById(cd.getDeviceId());
+			//发送消息通知
 			List<AuthBind> listOpenId=authBindDAO.findOpenIds(entity.getToManagerId());
 			WechatTemplateMsg bll=new WechatTemplateMsg(wca.getAppId(), wca.getSecret(), Constants.H5Domain+"company/assigment/toAssigment.do");
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");

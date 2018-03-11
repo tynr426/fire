@@ -64,7 +64,8 @@ public class DeviceQRServiceImpl implements DeviceQRService{
  		if(re!=null&&re.getDeviceId()!=null&&re.getDeviceId()>0){
 			AssignmentResult assignment= assignmentDAO.getAssignmentByDeviceId(re.getDeviceId(), toManagerId);
 			if(assignment!=null){				
-				re.setAssignmentId(assignment.getId());
+				re.setAssignmentId(assignment.getCheckId());
+				re.setToManagerId(assignment.getToManagerId());
 				re.setAssignmentDes(assignment.getDescription());
 				re.setCheckStatus(assignment.getCheckStatus());
 			}

@@ -355,9 +355,7 @@ var deviceQR={
 				success:function(result){
 					if(result.state==0){
 						var list=result.data;
-						$.each(list,function(i,item){
-							item.qrvirtural=path+item.qrvirtural;
-						});
+	
 						$("#deviceQRbodyListTemplate").tmpl(list).appendTo("#DataFrom");
 						
 					}else{	

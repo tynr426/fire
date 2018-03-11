@@ -1,8 +1,6 @@
 package fire.web.admin.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.zxing.WriterException;
 
 import fire.common.entity.DeviceQR;
 import fire.common.entity.DeviceType;
@@ -26,9 +22,12 @@ import fire.common.entity.DeviceTypeResult;
 import fire.sdk.utils.QRUtil;
 import fire.web.service.DeviceQRService;
 import fire.web.service.DeviceTypeService;
+import fire.web.service.NameException;
+import fire.web.utils.Constants;
 import fire.web.utils.JsonResult;
 import fire.web.utils.Md5;
 import fire.web.utils.PageInfo;
+import fire.web.utils.PropertyUtil;
 
 @Controller
 @RequestMapping("/deviceType")
@@ -96,8 +95,12 @@ public class DeviceTypeController {
 		req.getSession().getServletContext().getRealPath(deviceType.getVirtualPath());
 		}
 		List<DeviceQR> list=new ArrayList<DeviceQR>();
-		String virtural = "/userfiles/devicetype/"+id+"/";
-		String dir=req.getSession().getServletContext().getRealPath(virtural);
+		String virtural = "/devicetype/"+id+"/";
+		String dir=PropertyUtil.getProperty(Constants.UpLoadDir);
+		if(dir==null||dir.length()==0){
+			throw new NameException("请配置上传路径");
+		}
+		dir+=virtural;
 		Random rand = new Random();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");	
 		String batch = sdf.format(new Date())+rand.nextInt(1000);
@@ -109,7 +112,7 @@ public class DeviceTypeController {
 			entity.setBatch(batch);
 			
 				try {
-					entity.setQRVirtural(virtural+ QRUtil.encode(entity.getCode(),imagePath,dir,false));
+					entity.setQRVirtural(Constants.ImageVirtual+virtural+ QRUtil.encode(entity.getCode(),imagePath,dir,false));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
