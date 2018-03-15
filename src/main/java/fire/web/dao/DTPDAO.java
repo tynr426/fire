@@ -11,7 +11,7 @@ public interface DTPDAO {
 	//通过DTPname查询DTP
 	public Devicetypeparameter getDTPByDescription(
 			@Param("description")String description,
-			@Param("parameterType")int parameterType, 
+			@Param("deviceTypeId")int deviceTypeId, 
 			@Param("id")int id );
 	//查询DTP集合
 	public List<Devicetypeparameter> findAll(int parameterType);

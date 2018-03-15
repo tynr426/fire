@@ -5,7 +5,7 @@
 <mapper namespace="fire.web.dao.DTPDAO">
 	<select id="getDTPByDescription" resultType="fire.common.entity.Devicetypeparameter">
 		SELECT * FROM fir_devicetypeparameter WHERE Description = #{description}
-		 AND ParameterType=#{parameterType}
+		 AND DeviceTypeId=#{deviceTypeId}
 		 and Id!=#{id} limit 1
 	</select>
 	<select id="findById" parameterType="int" resultType="fire.common.entity.Devicetypeparameter">

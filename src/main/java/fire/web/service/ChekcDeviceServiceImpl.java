@@ -30,7 +30,9 @@ public class ChekcDeviceServiceImpl implements CheckDeviceService{
 			for(DeviceCheckParameterValue entity:list){
 				entity.setCheckId(cd.getId());
 			}
-			deviceCheckParameterValueDAO.addDeviceCheckParameterValue(list);
+			if(!list.isEmpty()){				
+				deviceCheckParameterValueDAO.addDeviceCheckParameterValue(list);
+			}
 		}
 		return cDDAO.addCD(cd);
 	}

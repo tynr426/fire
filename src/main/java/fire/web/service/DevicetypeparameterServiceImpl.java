@@ -19,7 +19,7 @@ public class DevicetypeparameterServiceImpl implements DevicetypeparameterServic
 	}
 
 	public int addDevicetypeparameter(Devicetypeparameter dtp) throws NameException {
-		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(),dtp.getParameterType(), dtp.getId());
+		Devicetypeparameter one = dTPDAO.getDTPByDescription(dtp.getDescription(),dtp.getDeviceTypeId(), dtp.getId());
 		if(one!=null){
 			throw new NameException("该类型已存在");
 		}

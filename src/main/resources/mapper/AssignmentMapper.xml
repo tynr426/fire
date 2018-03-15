@@ -14,11 +14,11 @@
 	</select>
 	<resultMap id="map1" type="fire.common.entity.AssignmentResult">
 		 <collection property="list" javaType="java.util.List" ofType="fire.common.entity.Repairrecord"
-		 			 select="findRepairrecord" column="{assignmentId=Id}">
+		 			 select="findRepairrecord" column="{Id=a.Id}">
 		 </collection>
 	</resultMap>
 	<select id="findRepairrecord" resultType="fire.common.entity.Repairrecord">
-		select * from fir_repairrecord where AssignmentId=#{assignmentId,jdbcType=INTEGER}
+		select * from fir_repairrecord where AssignmentId=#{Id,jdbcType=INTEGER}
 	</select>
 	<update id="updateAssignment" parameterType="fire.common.entity.Assignment">
 		UPDATE fir_assignment SET
