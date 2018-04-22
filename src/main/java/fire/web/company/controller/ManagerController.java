@@ -66,6 +66,7 @@ public class ManagerController extends ExceptionController{
 	@RequestMapping("/update.do")
 	@ResponseBody	
 	public JsonResult updateManager(Manager manager){
+		manager.setCompanyId(Company.getCompanyId());
 		int n = managerService.updateManager(manager);	
 		return new JsonResult(n);
 	}

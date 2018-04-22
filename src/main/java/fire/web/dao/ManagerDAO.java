@@ -10,10 +10,12 @@ import fire.common.entity.Manager;
 public interface ManagerDAO {
 	public List<Manager> getManagerByCompanyId(int companyId);
 	public int deleteByCompanyId(int companyId);
-	public Manager findByUserName(String username);
+	public Manager findByUserName(@Param("userName")String userName,
+			@Param("companyId")int companyId);
 	public Manager findByName(String name);
 	public Manager findNameIsExist(
 			@Param("name")String name,
+			@Param("companyId")int companyId,
 			@Param("id")int id);
 	//修改
 	public int updateManager(Manager Manager);

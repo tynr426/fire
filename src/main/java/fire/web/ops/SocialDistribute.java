@@ -53,18 +53,19 @@ public class SocialDistribute extends Distribute {
 
 		int companyId=ConvertUtils.toInt(req.getParameter("CompanyId"));
 		String mediaId=req.getParameter("MediaId");
-		WeChatAccount wca=weChatAccountService.getWeChatAccount();
+		String access_token=req.getParameter("AccessToken");
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String virtual="/device/"+companyId+"/"+sdf.format(new Date())+"/";
 		//System.out.println("pc-mediaId="+mediaId);
-		String fileName=saveImageToDisk(req,wca,mediaId,virtual);
+		String fileName=saveImageToDisk(req,access_token,mediaId,virtual);
 		String str=Utils.objectToJson(new JsonResult(fileName));
 		resp.getWriter().write(str);
 	}
-	private String saveImageToDisk(HttpServletRequest request,WeChatAccount wca, String mediaId,String virtual){
+	private String saveImageToDisk(HttpServletRequest request,String access_token, String mediaId,String virtual){
 
 		String path = "";
-		InputStream inputStream =WechatJsSDK.getMedia(wca.getAppId(),wca.getSecret(),mediaId);
+		InputStream inputStream =WechatJsSDK.getMedia(access_token,mediaId);
 		byte[] data = new byte[1024];
 		int len = 0;
 		FileOutputStream fileOutputStream = null;
@@ -78,6 +79,7 @@ public class SocialDistribute extends Distribute {
 			while ((len = inputStream.read(data)) != -1) {
 				fileOutputStream.write(data, 0, len);
 			}
+			fileOutputStream.flush();
 			path=Constants.ImageVirtual+virtual+filename;
 			//System.out.println("path="+path);
 		} catch (IOException e) {

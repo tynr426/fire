@@ -37,6 +37,7 @@ public class CompanyServiceImpl implements CompanyService{
 		Manager manager = new Manager();
 		manager.setUserName(result.getUserName());
 		manager.setPassword(result.getPassword());
+		manager.setName(result.getUserName());
 		manager.setStatus(1);
 		manager.setUserId(0);
 		if(n>0){			

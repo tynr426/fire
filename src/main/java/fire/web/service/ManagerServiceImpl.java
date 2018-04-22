@@ -51,7 +51,7 @@ public class ManagerServiceImpl implements ManagerService{
 			throw new NameException("公司代码输入不正确");
 		}		
 
-		Manager manager = managerDao.findByUserName(username);
+		Manager manager = managerDao.findByUserName(username, company.getId());
 		if(manager==null){
 			throw new NameException("用户名不正确");
 		}
@@ -109,7 +109,11 @@ public class ManagerServiceImpl implements ManagerService{
 
 	}
 	public int addManager(Manager manager) throws NameException {
-		Manager one = managerDao.findByName(manager.getName());
+		Manager one = managerDao.findByUserName(manager.getUserName(), manager.getCompanyId());
+		if(one!=null){
+			throw new NameException("该用户名已存在");
+		}
+		one = managerDao.findNameIsExist(manager.getName(),manager.getCompanyId(), 0);
 		if(one!=null){
 			throw new NameException("该用户已存在");
 		}
@@ -124,7 +128,7 @@ public class ManagerServiceImpl implements ManagerService{
 		return n;
 	}
 	public int updateManager(Manager manager) {
-		Manager one = managerDao.findNameIsExist(manager.getName(),manager.getId());
+		Manager one = managerDao.findNameIsExist(manager.getName(),manager.getCompanyId(),manager.getId());
 		if(one!=null){
 			throw new NameException("该用户已存在");
 		}

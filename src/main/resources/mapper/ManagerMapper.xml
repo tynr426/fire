@@ -9,14 +9,14 @@
 	<delete id="deleteByCompanyId" parameterType="int">
 		delete from com_manager where CompanyId = #{CompanyId}
 	</delete>
-	<select id="findByUserName" parameterType="String" resultType="fire.common.entity.Manager">
-		SELECT * FROM com_manager WHERE UserName = #{UserName} limit 1
+	<select id="findByUserName"  resultType="fire.common.entity.Manager">
+		SELECT * FROM com_manager WHERE UserName = #{userName} and CompanyId=#{companyId} limit 1
 	</select>
 	<select id="findByName" parameterType="String" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager WHERE Name = #{name} limit 1
 	</select>
 	<select id="findNameIsExist" resultType="fire.common.entity.Manager">
-		SELECT * FROM com_manager WHERE Name = #{name} and Id!=#{id} limit 1
+		SELECT * FROM com_manager WHERE Name = #{name} and CompanyId=#{companyId} and Id!=#{id} limit 1
 	</select>
 	<select id="findById" parameterType="int" resultType="fire.common.entity.Manager">
 		SELECT * FROM com_manager
